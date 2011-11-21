@@ -1,0 +1,130 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          fll-init
+# Required-Start:
+# Required-Stop:
+# X-Start-Before:    hostname
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: read in fll live specific cheatcodes at top of init
+# Description:       The purpose of fll-init-top is to read in fll live
+#                    specific cheatcodes before any standard iniscript is
+#                    started in runlevel S.
+### END INIT INFO
+
+###
+# F.U.L.L.S.T.O.R.Y init script
+#
+# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# http://developer.berlios.de/projects/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-init"
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+###
+# VERBOSE setting and other rcS variables
+###
+#. /lib/init/vars.sh
+
+###
+# source lsb functions
+###
+. /lib/lsb/init-functions
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			noagp|agp=no)
+				BLACKLIST="${BLACKLIST} agp agpgart"
+				;;
+			blacklist=*)
+				BLACKLIST="${BLACKLIST} ${param#blacklist=}"
+				;;
+			hostname=*)
+				CUSTOM_HOSTNAME="${param#hostname=}"
+				;;
+		esac
+	done
+fi
+
+do_start() {
+	# disable checkroot/checkfs
+	touch /fastboot
+
+	###
+	# custom hostname given on cmdline
+	###
+	if [ "${CUSTOM_HOSTNAME}" ]; then
+		log_daemon_msg "${NAME}" "setting hostame of '${CUSTOM_HOSTNAME}'"
+		echo "${CUSTOM_HOSTNAME}" > /etc/hostname
+		echo "${CUSTOM_HOSTNAME}" > /etc/mailname
+		# update /etc/hosts
+		sed -i '/localhost/!s/^\(127.0.0.1[ \t]\+\)\(.\+\)$/\1'"${CUSTOM_HOSTNAME}"'/' \
+			/etc/hosts
+		log_end_msg 0
+	fi
+
+	###
+	# honour blacklist= cheatcode to disable naughty modules before udev
+	###
+	if [ "${BLACKLIST}" ]; then
+		log_daemon_msg "${NAME}" "blacklisting modules"
+		for module in ${BLACKLIST}; do
+			log_progress_msg "${module}"
+			if ! grep -s -q "^blacklist ${module}" /etc/modprobe.d/*; then
+				echo "blacklist ${module}" >> /etc/modprobe.d/fll-blacklist.conf
+			fi
+		done
+		log_end_msg 0
+	fi
+}
+
+case "${1}" in
+	start)
+		do_start
+		;;
+	stop)
+		# no-op
+		;;
+	restart|reload|force-reload)
+		echo "Error: argument '${1}' not supported" >&2
+		exit 3
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop}" >&2
+		exit 3
+		;;
+esac
+
+:

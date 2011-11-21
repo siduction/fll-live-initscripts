@@ -1,0 +1,6 @@
+Section "Monitor"	
+	Identifier	"Monitor 0"
+	ModelName	"@@MODELNAME@@"
+	HorizSync	@@HORIZSYNC@@
+	VertRefresh	@@VERTREFRESH@@
+EndSection

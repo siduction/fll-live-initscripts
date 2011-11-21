@@ -1,0 +1,131 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          fll-adduser
+# Required-Start:    keyboard-setup console-setup
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: add user to live system
+# Description:       The purpose of fll-adduser is to add a user to the live
+#                    system and populate their /home.
+### END INIT INFO
+
+###
+# F.U.L.L.S.T.O.R.Y init script
+#
+# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# http://developer.berlios.de/projects/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-adduser"
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+###
+# VERBOSE setting and other rcS variables
+###
+#. /lib/init/vars.sh
+
+###
+# source lsb functions
+###
+. /lib/lsb/init-functions
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			username=*)
+				FLL_LIVE_USER="${param#username=}"
+				sed -i "s/^FLL_LIVE_USER=.*/FLL_LIVE_USER=\"${FLL_LIVE_USER}\"/" \
+					/etc/default/distro
+				;;
+		esac
+	done
+fi
+
+add_live_user() {
+	if getent passwd "${FLL_LIVE_USER}" >/dev/null 2>&1; then
+		log_action_begin_msg " user '${FLL_LIVE_USER}' exists"
+		return 0
+	fi
+	
+	log_action_begin_msg " adding user '${FLL_LIVE_USER}'"
+	adduser --disabled-password --gecos "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" >/dev/null
+}
+
+hack_sudoers() {
+	if [ -e "/etc/sudoers.d/15_${FLL_DISTRO_NAME}" ]; then
+		return 0
+	fi
+	
+	# append sudoers entry
+	cat >> "/etc/sudoers.d/15_${FLL_DISTRO_NAME}" \
+<<EOF
+# WARNING: This allows the unprivileged ${FLL_LIVE_USER} user to start commands as root
+# WARNING: This is totally insecure and (almost) makes ${FLL_LIVE_USER} a second root account.
+# WARNING: Never allow external access to the ${FLL_LIVE_USER} user!!!
+${FLL_LIVE_USER} ALL=(ALL:ALL) NOPASSWD: ALL
+EOF
+		chmod 0440 "/etc/sudoers.d/15_${FLL_DISTRO_NAME}"
+}
+
+hack_bashrc() {
+	FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
+	grep -s -q 'alias su' ${FLL_LIVE_USER_HOME}/.bashrc && return 0
+	
+	printf "\nalias su='sudo su'\nalias sux='sudo sux'\n" \
+		>> ${FLL_LIVE_USER_HOME}/.bashrc
+}
+
+case "${1}" in
+	start)
+		log_daemon_msg "${NAME}"
+		
+		add_live_user
+		hack_sudoers
+		hack_bashrc
+		
+		log_end_msg 0
+		;;
+	stop)
+		;;
+	restart|force-reload)
+		echo "Error: argument '${1}' not supported" >&2
+		exit 3
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop}" >&2
+		exit 3
+		;;
+esac
+
+:

@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+%:
+	dh ${@}
+
+override_dh_installinit:
+	dh_installinit
+	dh_installinit --no-start --name=fll-init       -- start 00 S .
+	dh_installinit --no-start --name=fll-locales    -- start 05 S .
+	dh_installinit --no-start --name=fll-fstab      -- start 30 S .
+	dh_installinit --no-start --name=fll-nbdclient  -- start 31 S .
+	dh_installinit --no-start --name=fll-network    -- start 38 S .
+	dh_installinit --no-start --name=fll-adduser    -- start 90 S .
+	dh_installinit --no-start --name=fll-shell      -- start 91 S .
+	dh_installinit --no-start --name=fll-xorgconfig -- start 80 2 3 4 5 .
+	dh_installinit --no-start --name=fll-xdm        -- start 95 2 3 4 5 .
+	dh_installinit --no-start --name=fll-desktop    -- start 95 2 3 4 5 .
+	dh_installinit --no-start --name=fll-reboot     -- start 90 0 6 .

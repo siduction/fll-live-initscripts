@@ -1,0 +1,47 @@
+FLL_LOGIN(1)
+============
+Kel Modderman <kel@otaku42.de>
+
+
+NAME
+----
+fll_login - FULLSTORY live inittab login wrapper
+
+
+SYNOPSIS
+--------
+'fll_login'
+
+
+DESCRIPTION
+-----------
+fll_login(1) is designed to facilitate the login(1) of the passwd\'less
+user while in the fll live linux environment. It should be called by
+inittab(5) for all runlevels that would normally spawn getty(8).
+
+
+OPTIONS
+-------
+'fll_login' takes no options
+
+
+SEE ALSO
+--------
+login(1), inittab(5), getty(8)
+
+
+AUTHOR
+------
+Kel Modderman <kel@otaku42.de>
+
+
+RESOURCES
+---------
+FULLSTORY Homepage: http://developer.berlios.de/projects/fullstory/[]
+
+
+COPYING
+-------
+Copyright \(C) 2007 Kel Modderman. Free use of this software is
+granted under the terms of the GNU General Public License (GPL)
+version 2, or at your choice, any later version.

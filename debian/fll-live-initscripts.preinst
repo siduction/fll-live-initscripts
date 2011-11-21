@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+
+chrooted() {
+	# borrowed from udev's postinst
+	if [ "$(stat -c %d/%i /)" = "$(stat -Lc %d/%i /proc/1/root 2>/dev/null)" ]; then
+		# the device number/inode pair of / is the same as that of
+		# /sbin/init's root, so we're *not* in a chroot and hence
+		# return false.
+		return 1
+	fi
+	return 0
+}
+
+case "$1" in
+	install)
+		if ! chrooted; then
+			echo '############################################################'
+			echo 'Installing this package is dangerous and not supported!'
+			echo 'Aborting installation.'
+			echo '############################################################'
+			exit 1
+		fi
+		;;
+esac
+
+#DEBHELPER#

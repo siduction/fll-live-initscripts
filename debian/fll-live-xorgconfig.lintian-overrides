@@ -1,0 +1,3 @@
+# we depend on fll-live-initramfs, which implies $remote_fs by definition; at
+# the same time insserv dependency resolution needs to remain simple
+fll-live-xorgconfig: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-xorgconfig: required-start

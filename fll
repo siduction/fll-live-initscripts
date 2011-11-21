@@ -1,0 +1,27 @@
+# Common functions for fll-live-initscripts
+
+fll_get_mnt() {
+	local FLL
+	local DEVS
+
+	if grep -s -q -w fromiso /proc/cmdline; then
+		echo /fll/fromiso
+	else
+		FLL="$(readlink -f /dev/fll)"
+
+		for ln in $(udevadm info --query=symlink --name=${FLL}); do
+			DEVS="${DEVS} /dev/${ln}"
+		done
+
+		for dev in ${FLL} ${DEVS}; do
+			#mount | awk -v fll="${dev}" '$1 == fll { print $3 }'
+			awk -v fll="${dev}" '$1 == fll { print $2 }' /proc/mounts
+		done
+	fi
+}
+
+fll_redirect() {
+	exec  >/tmp/${NAME}.log 2>&1
+	set -x
+}
+

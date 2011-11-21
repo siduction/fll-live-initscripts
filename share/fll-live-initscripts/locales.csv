@@ -1,0 +1,93 @@
+locale	default	model	layout	variant	options	tz	locales	notes
+00_00.utf8	0		us			Etc/UTC	en_US.utf8	
+be_BY.utf8	0		by,us			Europe/Minsk	en_US.utf8	
+bg_BG.utf8	0		bg,us			Europe/Sofia	en_US.utf8	
+bs_BA.utf8	0		ba,us			Europe/Sarajevo	en_US.utf8	
+C	0		us			Etc/UTC	en_US.utf8	
+cs_CZ.utf8	0		cz,us			Europe/Prague	en_US.utf8	
+da_DK.utf8	0		dk,us			Europe/Copenhagen	en_US.utf8	
+de_AT.utf8			de,us			Europe/Vienna	de_DE.utf8 en_US.utf8	
+de_BE.utf8			be,de,fr,us			Europe/Brussels	de_DE.utf8 fr_FR.utf8 en_US.utf8	whats sensible?
+de_CH.utf8			ch,us	fr		Europe/Zurich	de_DE.utf8 en_US.utf8	is the fr variant sane?
+de_DE.utf8	0		de,us			Europe/Berlin	US.utf8	
+de_LI.utf8			de,us			Europe/Vaduz	de_DE.utf8 en_US.utf8	
+de_LU.utf8			de,us			Europe/Luxembourg	de_DE.utf8 en_US.utf8	
+el_CY.utf8			gr,us			Europe/Athens	en_US.utf8	
+el_GR.utf8	0		gr,us			Europe/Athens	en_US.utf8	
+en_AG.utf8			us			America/Antigua	en_US.utf8	
+en_AU.utf8			us			Australia/Sydney	en_US.utf8	
+en_BW.utf8			us			Africa/Gaborone	en_US.utf8	
+en_CA.utf8			us,ca			America/Toronto	en_US.utf8	
+en_DK.utf8			dk,us			Europe/Copenhagen	en_US.utf8	
+en_GB.utf8			gb,us			Europe/London	en_US.utf8	
+en_HK.utf8			us			Asia/Hong_Kong	en_US.utf8	
+en_IE.utf8			ie,gb,us			Europe/Dublin	en_GB.utf8 en_US.utf8	
+en_IN.utf8			us			Asia/Kolkata	en_US.utf8	
+en_NG.utf8			us			Africa/Lagos	en_US.utf8	
+en_NZ.utf8			us			Pacific/Auckland	en_US.utf8	
+en_PH.utf8			us			Asia/Manila	en_US.utf8	
+en_SG.utf8			us			Asia/Singapore	en_US.utf8	
+en_US.utf8	0		us			US/NewYork	C	
+en_ZA.utf8			us			Africa/Johannesburg	en_US.utf8	
+en_ZW.utf8			us			Africa/Harare	en_US.utf8	
+es_AR.utf8			latam,es,us			America/Argentina/Buenos_Aires	es_ES.utf8 en_US.utf8	
+es_BO.utf8			latam,es,us			America/La_Paz	es_ES.utf8 en_US.utf8	
+es_CL.utf8			latam,es,us			America/Santiago	es_ES.utf8 en_US.utf8	
+es_CO.utf8			latam,es,us			America/Bogota	es_ES.utf8 en_US.utf8	
+es_CR.utf8			latam,es,us			America/Costa_Rica	es_ES.utf8 en_US.utf8	
+es_DO.utf8			latam,es,us			America/Santo_Domingo	es_ES.utf8 en_US.utf8	
+es_EC.utf8			latam,es,us			America/Guayaquil	es_ES.utf8 en_US.utf8	
+es_ES.utf8	0		es,us			Europe/Madrid	en_US.utf8	 (old comment?)
+es_GT.utf8			latam,es,us			America/Guatemala	es_ES.utf8 en_US.utf8	
+es_HN.utf8			latam,es,us			America/Tegucigalpa	es_ES.utf8 en_US.utf8	
+es_MX.utf8			latam,es,us			America/Mexico_City	es_ES.utf8 en_US.utf8	
+es_NI.utf8			latam,es,us			America/Managua	es_ES.utf8 en_US.utf8	
+es_PA.utf8			latam,es,us			America/Panama	es_ES.utf8 en_US.utf8	
+es_PE.utf8			latam,es,us			America/Lima	es_ES.utf8 en_US.utf8	
+es_PR.utf8			latam,es,us			America/Puerto_Rico	es_ES.utf8 en_US.utf8	
+es_PY.utf8			latam,es,us			America/Asuncion	es_ES.utf8 en_US.utf8	
+es_SV.utf8			latam,es,us			America/El_Salvador	es_ES.utf8 en_US.utf8	
+es_US.utf8			latam,es,us			America/New_York	es_ES.utf8 en_US.utf8	
+es_UY.utf8			latam,es,us			America/Montevideo	es_ES.utf8 en_US.utf8	
+es_VE.utf8			latam,es,us			America/Caracas	es_ES.utf8 en_US.utf8	
+et_EE.utf8	0		et,us			Europe/Tallinn	en_US.utf8	
+fi_FI.utf8	0		fi,us			Europe/Helsinki	en_US.utf8	
+fr_BE.utf8			be,fr,us			Europe/Brussels	fr_FR.utf8 en_US.utf8	should this be fr first?
+fr_CA.utf8			ca,us			America/Toronto	fr_FR.utf8 en_US.utf8	should this offer fr keyboards? Fallback to nl before en?
+fr_CH.utf8			ch,us	fr		Europe/Zurich	en_US.utf8	
+fr_FR.utf8	0		fr,us			Europe/Paris	en_US.utf8	
+fr_LU.utf8			fr,us			Europe/Luxembourg	fr_FR.utf8 en_US.utf8	
+fr_NC.utf8			fr,us			Pacific/Noumea	fr_FR.utf8 en_US.utf8	not a real locale
+ga_IE.utf8	0		ie,gb,us			Europe/Dublin	en_IE.utf8 en_GB.utf8 en_US.utf8	
+he_IL.utf8	0		il,us			Asia/Jerusalem	en_US.utf8	, must be saner then us?
+hr_HR.utf8	0		hr,us			Europe/Zagreb	en_US.utf8	
+hu_HU.utf8	0		hu,us			Europe/Budapest	en_US.utf8	
+is_IS	0		is,us			Atlantic/Reykjavik	en_US.utf8	
+it_CH.utf8			it,de,fr,us			Europe/Zurich	it_IT.utf8 en_US.utf8	
+it_IT.utf8	0		it,us			Europe/Rome	en_US.utf8	
+ja_JP.utf8	0		jp,us			Asia/Tokyo	en_US.utf8	
+ko_KR.utf8	0		kr,us			Asia/Seoul	en_US.utf8	
+nb_NO.utf8	0		no,us			Europe/Oslo	nb_NO.utf8 en_US.utf8	
+nl_AW.utf8			us,nl			America/Aruba	nl_NL.utf8 en_US.utf8	us seems “sane”
+nl_BE.utf8	0		be,fr,us			Europe/Brussels	nl_NL.utf8 en_US.utf8	
+nl_NL.utf8	0		us,nl			Europe/Amsterdam	en_US.utf8	
+nn_NO.utf8	0		no,us			Europe/Oslo	nn_NO.utf8 en_US.utf8	
+pl_PL.utf8	0		pl,us			Europe/Warsaw	en_US.utf8	
+pt_BR.utf8	0		br,us			America/Sao_Paulo	pt_PT.utf8 en_US.utf8	
+pt_PT.utf8			pt,us			Europe/Lisbon	pt_BR.utf8 en_US.utf8	
+ro_RO.utf8	0		ro,us			Europe/Bucharest	en_US.utf8	
+ru_RU.utf8	0		ru,us			Europe/Moscow	en_US.utf8	
+ru_UA.utf8			ru,us			Europe/Kiev	en_US.utf8	
+se_FI.utf8			fi,no,se,us	fi		Europe/Helsinki	fi_FI.utf8 en_US.utf8	
+se_NO.utf8			no,fi,se,us	smi		Europe/Oslo	nn_NO.utf8 en_US.utf8	
+se_SE.utf8			se,fi,no,us	smi		Europe/Stockholm	sv_SE.utf8 en_US.utf8	
+sk_SK.utf8	0		sk,us			Europe/Bratislava	en_US.utf8	
+sl_SI.utf8	0		si,us			Europe/Ljubljana	en_US.utf8	#CONSOLEFONT=iso02g
+sv_FI.utf8			se,fi,us	basic		Europe/Helsinki	en_US.utf8	
+sv_SE.utf8	0		se,us	basic		Europe/Stockholm	en_US.utf8	not built
+tr_CY.utf8			tr,us			Europe/Istanbul	en_US.utf8	
+tr_TR.utf8	0		tr,us			Europe/Istanbul	en_US.utf8	
+zh_CN.utf8	0		us			Asia/Shaghai	zh_TW en_US.utf8	
+zh_HK.utf8			us			Asia/Hong_Kong	zh_CH en_US.utf8	
+zh_SG.utf8			us			Asia/Singapore	zh_CH en_US.utf8	
+zh_TW.utf8			us			Asia/Taipei	zh_CN en_US.utf8	

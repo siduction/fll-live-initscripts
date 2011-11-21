@@ -1,0 +1,42 @@
+package "fll_fstab_generator"
+version "1.0"
+
+option	"auto" a
+	"add \"auto\" to default mount options"
+	flag off
+option	"blkid" b
+	"use blkid to query filesystem information"
+	flag off
+option	"file" f
+	"write output to file"
+	typestr="FILE"
+	string optional
+option	"ignore" i
+	"ignore device(s) (may be specified multiple times)"
+	typestr="DEVICE"
+	string optional multiple
+option	"labels" l
+	"use volume labels to represent device"
+	flag off
+option	"mkdir" m
+	"create mount point directories"
+	flag off
+option	"nomounts" n
+	"do not attempt to detect existing mountpoints"
+	flag off
+option	"removable" r
+	"include entries for removable devices"
+	flag off
+option	"noswap" N
+	"do not include entries for swap devices"
+	flag off
+option	"swapon" s
+	"activate detected swap partitions"
+	flag off
+option	"uuids" u
+	"use UUIDs to represent device"
+	flag off
+option	"wanted" w
+	"include removable device (may be specified multiple times)"
+	typestr="DEVICE"
+	string optional multiple

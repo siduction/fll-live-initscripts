@@ -1,0 +1,204 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          fll-network
+# Required-Start:    mountdevsubfs ifupdown
+# Required-Stop:
+# X-Start-Before:    networking
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: configure ifupdown for detected network devices
+# Description:       Probe cable status of detected network devices and
+#                    enable dhcp for those devices which return a positive
+#                    cable link status.
+### END INIT INFO
+
+###
+# F.U.L.L.S.T.O.R.Y init script
+#
+# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# http://developer.berlios.de/projects/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-network"
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+###
+# VERBOSE setting and other rcS variables
+###
+#. /lib/init/vars.sh
+
+###
+# source lsb functions
+###
+. /lib/lsb/init-functions
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			ifplugd)
+				IFPLUGD="yes"
+				;;
+			nodhcp|dhcp=no|ip=*|BOOTIF=*|nbdroot=*)
+				NODHCP="yes"
+				;;
+			nonetwork*)
+				exit 0
+				;;
+		esac
+	done
+fi
+
+detect_netdevs() {
+	nicinfo --ethernet | awk -F, '{ print $1 }'
+}
+
+write_skel_to_eni() {
+	cat > /etc/network/interfaces \
+<<EOF
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+EOF
+}
+
+write_dhcp_to_eni() {
+	case "${1}" in
+		auto|allow-*)
+			printf "\n${1} ${2}\n" >> /etc/network/interfaces
+			;;
+		*)
+			printf "\n" >> /etc/network/interfaces
+			;;
+	esac
+
+	printf "iface ${2} inet dhcp\n" >> /etc/network/interfaces
+}
+
+if which ip >/dev/null; then
+	if_set_up() {
+		ip link set "${1}" up
+	}
+else
+	if_set_up() {
+		ifconfig "${1}" up
+	}
+fi
+
+ifplugstatus_dhcp() {
+	[ "${1}" ] || return 1
+
+	if if_set_up "${1}"; then
+		# settle
+		sleep 2
+				
+		# probe for link beat
+		ifplugstatus --quiet "${1}"
+			
+		if [ "${?}" -eq 2 ]; then
+			# link beat detected
+			log_progress_msg "${1}"
+			write_dhcp_to_eni allow-hotplug "${1}"
+		else
+			# link beat not detected
+			ifconfig "${1}" down
+		fi
+	fi
+	
+	return 0
+}
+
+ifplugd_dhcp() {
+	sed -i 's/^\(HOTPLUG_INTERFACES=\).*/\1"'"${@}"'"/' /etc/default/ifplugd
+
+	for netdev in ${@}; do
+		log_progress_msg "${1}"
+		write_dhcp_to_eni none "${1}"
+		INTERFACE="${netdev}" ACTION=add /lib/udev/ifplugd.agent
+	done
+}
+
+do_start() {
+	write_skel_to_eni
+
+	if [ "${NODHCP}" = "yes" ] || [ -x /usr/sbin/NetworkManager ]; then
+		# we don't manage network interfaces
+		return 0
+	fi
+
+	NETDEVICES=$(detect_netdevs)
+
+	if [ -z "${NETDEVICES}" ]; then
+		return 0
+	fi
+	
+	log_daemon_msg "${NAME}"
+	
+	if [ "${IFPLUGD}" = "yes" ]; then
+		log_action_begin_msg " activating ifplugd link detection"
+
+		ifplugd_dhcp ${NETDEVICES}
+	else
+		log_action_begin_msg " probing for an ethernet link"
+		
+		for netdev in ${NETDEVICES}; do
+			# fork child process to do cable link test
+			ifplugstatus_dhcp "${netdev}" &
+		done
+
+		# wait for child processes to finish
+		wait
+	fi
+
+	log_end_msg 0
+}
+
+case "${1}" in
+	start)
+		do_start
+		;;
+	stop)
+		;;
+	restart|force-reload)
+		echo "Error: argument '${1}' not supported" >&2
+		exit 3
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop}" >&2
+		exit 3
+		;;
+esac
+
+:

@@ -1,0 +1,182 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          fll-desktop
+# Required-Start:    fll-adduser
+# Required-Stop:
+# X-Start-Before:    gdm3 kdm lxdm slim wdm xdm
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: configure window manager to be used on live system
+# Description:       The purpose of this script is to configure a X window
+#                    manager.
+### END INIT INFO
+
+###
+# F.U.L.L.S.T.O.R.Y init script
+#
+# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# http://developer.berlios.de/projects/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-desktop"
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+###
+# VERBOSE setting and other rcS variables
+###
+#. /lib/init/vars.sh
+
+###
+# source lsb functions
+###
+. /lib/lsb/init-functions
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			desktop=*)
+				DESKTOP="${param#desktop=}"
+				;;
+		esac
+	done
+fi
+
+if [ -z "${DESKTOP}" ]; then
+	[ -x "/usr/bin/icewm" ] && DESKTOP="icewm"		# sixth choice
+	[ -x "/usr/bin/startfluxbox" ] && DESKTOP="fluxbox"	# fifth choice
+	[ -x "/usr/bin/startlxde" ] && \
+		[ -x "/usr/bin/openbox" ] && DESKTOP="lxde"	# fourth choice
+	[ -x "/usr/bin/xfwm4" ] && DESKTOP="xfce"		# third choice
+	[ -x "/usr/bin/metacity" ] && DESKTOP="gnome"		# second choice
+	[ -x "/usr/bin/kwin" ] && DESKTOP="kde"			# first choice, if installed and desktop= is empty
+
+	# none of the major desktop environments is installed, don't interfere 
+	# with ordinary priorities.
+	[ -z "${DESKTOP}" ] && exit 0
+fi
+
+do_start() {
+	FLL_LIVE_USER_GROUP=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 4)
+	FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
+
+	log_daemon_msg "${NAME}"
+
+	case "${DESKTOP}" in 
+		flux*)
+			WM="/usr/bin/startfluxbox"
+			;;
+		gnome)
+			WM="/usr/bin/metacity"
+			;;
+		icewm)
+			WM="/usr/bin/icewm"
+			;;
+		kde)
+			WM="/usr/bin/kwin"
+			;;
+		lxde)	
+			WM="/usr/bin/openbox"
+			;;
+		xfce*)
+			WM="/usr/bin/xfwm4"
+			;;
+		*)
+			log_action_msg " desktop '${DESKTOP}' is not available"
+			log_end_msg 0
+			return 1
+			;;
+	esac
+
+	if [ -x "${WM}" ]; then
+		case "${WM}" in 
+			"/usr/bin/kwin")
+				if [   -r /usr/share/xsessions/kde.desktop ] && \
+				   [ ! -r /usr/share/xsessions/kde-plasma.desktop ]; then
+					XSESSION="kde"
+				else
+					XSESSION="kde-plasma"
+				fi
+				;;
+			"/usr/bin/metacity")
+				XSESSION="gnome"
+				;;
+			"/usr/bin/startfluxbox")
+				XSESSION="fluxbox"
+				;;
+			"/usr/bin/xfwm4")
+				XSESSION="xfce"
+				;;
+			"/usr/bin/icewm")
+				XSESSION="IceWM"
+				;;
+			"/usr/bin/openbox")
+				XSESSION="LXDE"
+				;;
+		esac
+	
+		log_action_begin_msg " setting up window manager '${WM}'"
+		echo "[Desktop]"		>  ${FLL_LIVE_USER_HOME}/.dmrc
+		echo "Session=${XSESSION}"	>> ${FLL_LIVE_USER_HOME}/.dmrc
+		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER_GROUP}" "${FLL_LIVE_USER_HOME}/.dmrc"
+			
+		update-alternatives --set x-window-manager "${WM}" >/dev/null
+		log_end_msg "${?}"
+		return 0
+	else
+		log_action_msg " desktop '${DESKTOP}' is not available"
+		log_end_msg 0
+		return 1
+	fi
+}
+
+case "${1}" in
+	start)
+		do_start
+		;;
+	stop)
+		;;
+	restart|force-reload)
+		echo "Error: argument '${1}' not supported" >&2
+		exit 3
+		;;
+	kde|gnome|flux*|xfce*|icewm|lxde)
+		DESKTOP="${1}"
+		do_start
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop}" >&2
+		exit 3
+		;;
+esac
+
+:

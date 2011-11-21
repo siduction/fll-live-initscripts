@@ -1,0 +1,4084 @@
+fll-live-initscripts (3.13.7) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 08 Oct 2011 02:42:28 +0200
+
+fll-live-initscripts (3.13.6) unstable; urgency=low
+
+  [ Rick Battle ]
+  * added support for lightdm and made it the default for xfce*|lxde, 
+    replacing slim.
+
+  [ Niall Walsh ]
+  * Fixup lightdm support to use disto-defaults.postinst to setup runlevels
+
+  [ Stefan Lippers-Hollmann ]
+  * add a versioned alternative recommends for lightdm.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 08 Oct 2011 02:42:12 +0200
+
+fll-live-initscripts (3.13.5) unstable; urgency=low
+
+  * switch to simplified dh7, --before --after --until and --remaining options
+    are deprecated since debhelper 8.9.4.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Aug 2011 03:21:19 +0200
+
+fll-live-initscripts (3.13.4) unstable; urgency=low
+
+  * fll: parse /proc/mounts instead of mount in fll_get_mount
+  * fll-login: change case to pick message to ${lang} instead of ${LANG}
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 13 Jul 2011 13:03:11 +0100
+
+fll-live-initscripts (3.13.3) unstable; urgency=low
+
+  * fll_login: trap TERM to inform user console is no longer activatable.
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 17 Jun 2011 17:30:48 +0100
+
+fll-live-initscripts (3.13.2) unstable; urgency=low
+
+  * initial translations of prompt thanks to: bluewater and the manual team,
+    x-un-i and slh. includes cs, da, de, es, it, ja, nl, pl, pt, ro, ru.
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 15 Jun 2011 00:10:23 +0100
+
+fll-live-initscripts (3.13.1) unstable; urgency=low
+
+  * steal "Please press Enter to activate this console. " string from busybox.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 13 Jun 2011 03:47:03 +0200
+
+fll-live-initscripts (3.13.0) unstable; urgency=low
+
+  * Add read prompt to fll_login to avoid logging in VTs automatically.
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 13 Jun 2011 02:36:00 +0100
+
+fll-live-initscripts (3.12.4) unstable; urgency=low
+
+  * avoid LSB logging functions, as those depend on /bin/echo to remain present
+    during shutdown/ umount, thanks to bfree.
+  * fix file name for fll-reboot in debian/copyright.
+  * adapt lintian overrides to new lintian 2.5.x syntax (no leading slash for
+    package contents).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 09 Jun 2011 02:31:07 +0200
+
+fll-live-initscripts (3.12.3) unstable; urgency=low
+
+  * Use /etc/ld.so.conf.d/* for extra paths in LD_LIBRARY_PATH for fll-reboot
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Tue, 07 Jun 2011 16:47:14 +0100
+
+fll-live-initscripts (3.12.2) unstable; urgency=low
+
+  * add libswitch-perl to dependencies for fll-live-xorgconfig, upcoming perl
+    versions won't provide Switch() in the core distribution anymore.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 28 May 2011 15:00:35 +0200
+
+fll-live-initscripts (3.12.1) unstable; urgency=low
+
+  * Make linux default xmkmodel and only set one keyboard.
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sun, 22 May 2011 16:42:46 +0100
+
+fll-live-initscripts (3.12.0) unstable; urgency=low
+
+  * fll-reboot: refactor the reboot hack a bit by attempting to define functions
+    inline to override commands which would normally be searched for in $PATH as
+    well as prefixing the required LD_* env variables and path to binary.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 22 May 2011 22:05:41 +1000
+
+fll-live-initscripts (3.11.1) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * set waittime for automatic login to 1 second ( when using 0 gdm3 falls out
+    to the default)
+
+  [ Stefan Lippers-Hollmann ]
+  * adapt for new KDE xsession name in 4.6.x, kde --> kde-plasma.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 28 Apr 2011 23:07:34 +0200
+
+fll-live-initscripts (3.10.10) unstable; urgency=low
+
+  * give the newly developed "simple modesetting-only KMS driver for the 
+    hardware emulated in qemu-kvm" a chance and avoid overriding cirrus by
+    vesa.
+  * bump standards version to 3.9.2, no changes necessary.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 22 Apr 2011 19:29:07 +0200
+
+fll-live-initscripts (3.10.9) unstable; urgency=low
+
+  * update for new sponsor.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 26 Feb 2011 18:34:14 +0100
+
+fll-live-initscripts (3.10.8) unstable; urgency=low
+
+  * drop support for gdm (#613491).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 20 Feb 2011 02:27:54 +0100
+
+fll-live-initscripts (3.10.7) unstable; urgency=low
+
+  * drop pre-aptosid cleanup procedures.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 14 Feb 2011 22:00:07 +0100
+
+fll-live-initscripts (3.10.6) unstable; urgency=low
+
+  * drop no longer required versioned dependencies (met in stable).
+  * no longer conflict with nouveau.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 10 Feb 2011 15:24:29 +0100
+
+fll-live-initscripts (3.10.5) unstable; urgency=low
+
+  * harmonize ext2/3 and ext4 mount options and drop barrier=0.
+  * switch from noatime to relatime.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 03 Feb 2011 19:06:34 +0100
+
+fll-live-initscripts (3.10.4) unstable; urgency=low
+
+  * use the distro designation instead of usernames, which might be unstable
+    between reboots.
+  * drop pre-squeeze dependencies/ breaks.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 21 Jan 2011 14:30:03 +0100
+
+fll-live-initscripts (3.10.3) unstable; urgency=low
+
+  * make use of /etc/sudoers.d/ instead of hacking global sudoers.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 21 Jan 2011 02:15:32 +0100
+
+fll-live-initscripts (3.10.2) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * Patch for an aptosid-gnome from Angelescu Ovidiu <mrhsaacdoh@gmail.com> aka
+    convbsd and William J. Henderson <tornado@tjtag.com> aka tjtag
+  * modified control
+  * modified fll-xdm to remove default session=gnome in gdm3 (see aptosid-irc
+    changes)
+  * modified code to fix file permisions
+  * add x-un-i's fstab patch
+
+  [ Stefan Lippers-Hollmann ]
+  * partial revert for svn r28392, r28401:
+    - drop /etc/gdm3/PreSession/Default handling.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 20 Jan 2011 02:17:31 +0100
+
+fll-live-initscripts (3.10.1) unstable; urgency=low
+
+  * update load balancing for push mirrors.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 26 Dec 2010 14:59:32 +0100
+
+fll-live-initscripts (3.10.0) unstable; urgency=low
+
+  * Bump version build-depends on debhelper to >= 8.
+  * Enhance note in distro-default's package description about it being
+    more than just an empty package.
+  * fll_fstab_generator uses UUID=/LABEL= descriptors for non-linuxy
+    filesystems, which previously used convenience symlink pathname.
+  * Update fll_fstab_generator.8 for new --ignore option.
+  * Add fll_blockdev_detect, an experimental utility which could be used
+    by fll-live-initramfs to detect block devices and execute aa script
+    to probe them for live filesystem.
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 23 Nov 2010 00:04:28 +1000
+
+fll-live-initscripts (3.9.8) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * new option "--ignore" for fll_fstab_generator to ignore the partition
+  * with the given UUID.
+
+  [ Kel Modderman ]
+  * Use column(1) to prettify fstab instead of internally attempting to
+    do it. The same probably needs to be done at some stage in fll-
+    installer.
+  * Add btrfs to linux_filesystem() function of fll_fstab_generator.
+  * Extend Joaquim Boura's --ignore feature to allow ignoring by block
+    device node or parent block device node by absolute path or basename.
+  * Allow the device_wanted() function of fll_fstab_generator to use basename
+    like the new device_ignore function.
+  * Merge device_wanted and device_ignore functions into device_flagged.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 20 Nov 2010 16:07:51 +1000
+
+fll-live-initscripts (3.9.7) unstable; urgency=low
+
+  * fix hjt's mail address.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 06 Oct 2010 16:45:06 +0200
+
+fll-live-initscripts (3.9.6) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * fix x-un-i's mail address.
+
+  [ Niall Walsh ]
+  * xorgconfig: rm /etc/X11/xorg.conf if it's not wanted (e.g. persist)
+  * act as if nodhcp is set (just loop in eni) if ip, bootif or nbdroot are set
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 06 Oct 2010 14:46:09 +0200
+
+fll-live-initscripts (3.9.5) unstable; urgency=low
+
+  * ensure that fll-xdm succeeds before gdm gdm3 kdm lxdm slim wdm xdm.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 26 Sep 2010 21:10:14 +0200
+
+fll-live-initscripts (3.9.4) unstable; urgency=low
+
+  * 1>&2
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 03 Sep 2010 14:16:49 +0200
+
+fll-live-initscripts (3.9.3) unstable; urgency=low
+
+  * unregister distro-defaults/switch2aptosid, it's not needed anymore.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 01 Sep 2010 23:02:23 +0200
+
+fll-live-initscripts (3.9.2) unstable; urgency=low
+
+  * return to recommend tzdata, we use it directly.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 30 Aug 2010 00:57:07 +0200
+
+fll-live-initscripts (3.9.1) unstable; urgency=low
+
+  * no longer recommend tzdata, it's a dependency of util-linux anyways.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 30 Aug 2010 00:14:50 +0200
+
+fll-live-initscripts (3.9.0) unstable; urgency=low
+
+  * drop ModetUser from Uploaders
+  * adapt for aptosid.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 29 Aug 2010 20:33:55 +0200
+
+fll-live-initscripts (3.8.24) unstable; urgency=low
+
+  * don't parse for the DMI info, but for the graphics card subsystem ID, to
+    detect kvm.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 22 Aug 2010 02:57:43 +0200
+
+fll-live-initscripts (3.8.23) unstable; urgency=low
+
+  * add lintian overrides.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 20 Aug 2010 02:06:09 +0200
+
+fll-live-initscripts (3.8.22) unstable; urgency=low
+
+  * prefer vesa for kvm, cirrus is broken (false colours, broken EDID).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 20 Aug 2010 01:52:10 +0200
+
+fll-live-initscripts (3.8.21) unstable; urgency=medium
+
+  * make fll-locales X-Interactive, otherwise apt-get install locks up.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 17 Aug 2010 20:35:40 +0200
+
+fll-live-initscripts (3.8.20) unstable; urgency=low
+
+  * the Debian GeoMirror (http://cdn.debian.net/debian/) is used now, therefore
+    regional specific overrides for Debian mirrors can be dropped.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 13 Aug 2010 19:00:31 +0200
+
+fll-live-initscripts (3.8.19) unstable; urgency=low
+
+  * switch to compat level 8.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Aug 2010 03:59:55 +0200
+
+fll-live-initscripts (3.8.18) unstable; urgency=low
+
+  * bump standards version to 3.9.1:
+    - use breaks instead of Conflicts for incompatible old kdm/ slim versions.
+  * elaborate long description a bit further, to make lintian happy.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 03 Aug 2010 18:34:59 +0200
+
+fll-live-initscripts (3.8.17) unstable; urgency=low
+
+  * Have liveapt mkdir preferences.d/ (otherwise it hangs)
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 14 Jun 2010 18:40:56 +0100
+
+fll-live-initscripts (3.8.16) unstable; urgency=low
+
+  * no longer conflict with xserver-xorg-video-cirrus.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 13 Jun 2010 01:45:06 +0200
+
+fll-live-initscripts (3.8.15) unstable; urgency=low
+
+  * conflict with xserver-xorg-video-all, xserver-xorg-video-cirrus and
+    xserver-xorg-video-nouveau, to keep broken packages out of the build.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 10 Jun 2010 14:55:38 +0200
+
+fll-live-initscripts (3.8.14) unstable; urgency=low
+
+  [ Bernard Gray ]
+  * fix typo in xorg detection
+
+  [ Niall Walsh ]
+  * fix keyboard layout for cs (keyboard is cz not cs)
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Thu, 03 Jun 2010 15:50:05 +0100
+
+fll-live-initscripts (3.8.13) unstable; urgency=low
+
+  * distro-defaults: drop runlevel safety check, the default runlevel doesn't
+    matter for the LSB overrides.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 26 May 2010 16:16:12 +0200
+
+fll-live-initscripts (3.8.12) unstable; urgency=low
+
+  * handle runlevel overrides for all known display managers:
+    - gdm
+    - gdm3
+    - kdm
+    - lxdm
+    - slim
+    - wdm
+    - xdm
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 26 May 2010 15:05:38 +0200
+
+fll-live-initscripts (3.8.11) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll_fstab_generator: add a --swapon option which causes program to
+    mount detected swap filesystems.
+
+  [ Stefan Lippers-Hollmann ]
+  * fix dh_installinit calls as well.
+  * move fll-xdm into runlevel 2-5 as well.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 May 2010 15:10:10 +0200
+
+fll-live-initscripts (3.8.10) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll_fstab_generator: fix type causing segfault when using blkid
+    probe.
+  * fll_fstab_generator: devices given as direct arguments undergo the
+    removable filter.
+
+  [ Stefan Lippers-Hollmann ]
+  * start fll-xorgconfig and fll-desktop later (runlevel 2+), to ease the
+    dependency nightmare in S.
+  * fll-xorgconfig doesn't need to depend on fll-xorgconfig anymore, thanks to
+    keyboard-setup taking care of that.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 May 2010 14:30:02 +0200
+
+fll-live-initscripts (3.8.9) unstable; urgency=low
+
+  * drop keymap from X-Start-Before: keymap keyboard-setup, keyboard-setup
+    takes care of it itself, thanks a lot to bfree.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 12 May 2010 23:52:11 +0200
+
+fll-live-initscripts (3.8.8) unstable; urgency=low
+
+  * remove extraneous X-Start-Before and Should-Start from fll-nbdclient
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 12 May 2010 01:16:37 +0100
+
+fll-live-initscripts (3.8.7) unstable; urgency=low
+
+  * drop all dependencies on $remote_fs for testing. Given that all init
+    scripts are guaranteed to be live only, /usr/ is mounted by definition.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 May 2010 20:32:45 +0200
+
+fll-live-initscripts (3.8.6) unstable; urgency=low
+
+  * Add fll-nbdclient to debian/rules so it gets installed
+  * Have fll-locales call udevadm trigger for keyboards after setup
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 28 Apr 2010 00:06:23 +0100
+
+fll-live-initscripts (3.8.5) unstable; urgency=low
+
+  * fll-nbdclient: omits nbdroot pid for sendsigs when nbdroot live on dhcp
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 26 Apr 2010 20:12:32 +0100
+
+fll-live-initscripts (3.8.4) unstable; urgency=low
+
+  * fll_fstab_generator: split out process_disk() into functions and
+    improve string type handling.
+  * fll_fstab_generator: tweak output a little bit.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 26 Apr 2010 20:11:37 +1000
+
+fll-live-initscripts (3.8.3) unstable; urgency=low
+
+  * fll_fstab_generator: unref udev_device structures.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 25 Apr 2010 13:21:28 +1000
+
+fll-live-initscripts (3.8.2) unstable; urgency=low
+
+  * fll_fstab_generator: rename gengetopt generated filename from
+    cmdline.[ch] to fll_fstab_cmdline.[ch].
+  * fll-fstab: remove reference to workaround.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 23 Apr 2010 21:40:19 +1000
+
+fll-live-initscripts (3.8.1) unstable; urgency=low
+
+  * fll_fstab_generator: add -b --blkid option to use libblkid to probde
+    for filesystem type.
+  * fll_fstab_generator: fold mountpoint detection function into
+    process_disk().
+  * fll_fstab_generator: do not rely on DM_NAME udev property to
+    identify devmapper devices.
+  * fll_fstab_generator: enumerate for DEVTYPE disk or partition, do not
+    explicitly set a match for DEVNAME /dev/mapper/*, they are DEVTYPE
+    disk.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 23 Apr 2010 00:15:58 +1000
+
+fll-live-initscripts (3.8.0) unstable; urgency=low
+
+  * fll_fstab_generator: port to C program which uses libudev to
+    enumerate block devices.
+    - build-depend on gengetopt, pkg-config and libudev-dev
+    - fll-live-utils is now arch: any
+  * fll_resume_validate: removed.
+  * fll-fstab: s/swapless/noswap/;s/nomnt/nomounts/.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 22 Apr 2010 20:01:18 +1000
+
+fll-live-initscripts (3.7.7) unstable; urgency=low
+
+  * fll-reboot: mark as interactive.
+  * fll-reboot: remove everything which umountfs takes care of.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 15 Apr 2010 22:47:39 +1000
+
+fll-live-initscripts (3.7.6) unstable; urgency=low
+
+  * fll-reboot: do not provide reboot & halt, adjust dependencies to
+    sequence script after unountfs but before umountroot, halt and
+    reboot. Do not override halt/reboot lsb info.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 15 Apr 2010 22:36:02 +1000
+
+fll-live-initscripts (3.7.5) unstable; urgency=low
+
+  * add umountfs and umountroot to X-Stop-After of fll-reboot, thanks to kelmo.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 15 Apr 2010 02:17:14 +0200
+
+fll-live-initscripts (3.7.4) unstable; urgency=low
+
+  * Drop invalid dependencies of perl,libfile-slurp-perl for fll-live-
+    utils and shlibs for fll-live-xorgconfig.
+  * Fix fll-live-initscripts.postrm.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 15 Apr 2010 07:30:44 +1000
+
+fll-live-initscripts (3.7.3) unstable; urgency=low
+
+  * fll-reboot: don't provide/ override umountfs/ umountroot for now, it breaks
+    lvm2.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 14 Apr 2010 19:49:36 +0200
+
+fll-live-initscripts (3.7.2) unstable; urgency=low
+
+  * fll-live-initscripts: do not create template /etc/default/fll-init
+    /etc/default/fll-locales. Do not remove /etc/default/fll-init, its
+    now not created.
+  * fll-reboot: declare a X-Stop-After dependency to fix startpar
+    makefile style shutdown. This is a fragile workaround which is
+    required due to our replacing of umountroot/halt/reboot scripts.
+  * fll-reboot: provide and override umountfs/umountroot.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 14 Apr 2010 23:48:51 +1000
+
+fll-live-initscripts (3.7.1) unstable; urgency=low
+
+  * Remove all ucf crap, it is unused until now.
+  * insserv is now pseudo-essential so do not special case it.
+  * fll-init: touch /fastboot to avoid checkfs/checkroot while allowing
+    those services to be present. Installer will need to undo this.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 14 Apr 2010 22:31:39 +1000
+
+fll-live-initscripts (3.7.0) unstable; urgency=low
+
+  * Remove common functions insert_initscript()/remove_initscript() and any
+    traces of code which used them.
+  * Remove fll_analyze_initscripts, no longer used.
+  * fll-init: drop code which loaded capability module.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 14 Apr 2010 21:27:18 +1000
+
+fll-live-initscripts (3.6.26) unstable; urgency=low
+
+  * drop depends on $remote_fs from fll-locales, to break dependency circle,
+    this is broken and needs large scale fixes.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 10 Mar 2010 23:26:46 +0100
+
+fll-live-initscripts (3.6.25) unstable; urgency=low
+
+  [ Nikolas Poniros ]
+  * Added lxdm to distro-defaults to create/remove needed insserv overrides
+
+  [ Stefan Lippers-Hollmann ]
+  * drop build-depends on dash, it's now essential. Thanks to edhunter.
+  * bump standards version to 3.8.4, no changes necessary.
+  * switch to dpkg-source 3.0 (native) format.
+  * fix lintian warnings:
+    - init.d-script-sourcing-without-test, by replacing unrecognized -s checks
+      with -r.
+    - init.d-script-missing-dependency-on-remote_fs, while (guaranteed) not an
+      issue in our environment, this is correct.
+    - fll_xorgconfig.8: spelling-error-in-manpage s/seperated/separated/.
+    - fll-reboot: init.d-script-does-not-provide-itself
+    - locales: script-not-executable
+  * re-indent locales.
+  * update and harmonize debian/copyright.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 10 Mar 2010 03:09:14 +0100
+
+fll-live-initscripts (3.6.24) unstable; urgency=low
+
+  * make fll-adduser depend on console-setup.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 23 Dec 2009 01:19:48 +0100
+
+fll-live-initscripts (3.6.23) unstable; urgency=low
+
+  * fix sequence between fll-adduser and fll-shell.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 23 Dec 2009 00:53:27 +0100
+
+fll-live-initscripts (3.6.22) unstable; urgency=low
+
+  * start fll-adduser after keyboard-setup.
+  * fll-adduser needs to run before fll-shell.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 23 Dec 2009 00:28:51 +0100
+
+fll-live-initscripts (3.6.21) unstable; urgency=low
+
+  * remove spurious qutation marks, break the awk parser.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 19 Dec 2009 02:21:24 +0100
+
+fll-live-initscripts (3.6.20) unstable; urgency=low
+
+  * fixup locales.csv
+    - "en US" typo
+    - add debian primary mirrors
+    - update comments
+    - latam for latin american es_*
+    - ftp2.de instead of ftp.de except for de_DE
+    - pickup extra hints from keyboard-config's .config
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 18 Dec 2009 17:14:31 +0000
+
+fll-live-initscripts (3.6.19) unstable; urgency=low
+
+  * fll-locale overhaul to use locales and locales.csv in /usr/share/
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 18 Dec 2009 03:47:51 +0000
+
+fll-live-initscripts (3.6.18) unstable; urgency=medium
+
+  * fll-adduser must have run before fll-xdm, otherwise FLL_LIVE_USER isn't
+    set and $HOME not necessarily populated.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 15 Dec 2009 10:20:48 +0100
+
+fll-live-initscripts (3.6.17) unstable; urgency=low
+
+  * adapt for the configuration split between console-setup and
+    keyboard-configuration.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 18 Nov 2009 15:07:12 +0000
+
+fll-live-initscripts (3.6.16) unstable; urgency=low
+
+  * work around a dependency issue with a2x and build-depend on libxml2-utils
+    explicitly.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 09 Nov 2009 23:13:05 +0100
+
+fll-live-initscripts (3.6.15) unstable; urgency=low
+
+  * fll-locales:
+    - no_NO doesn't exist, it's nn_NO
+    - add Swedish (sv_SE) locale support
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sun, 01 Nov 2009 16:50:54 +0000
+
+fll-live-initscripts (3.6.14) unstable; urgency=low
+
+  * remove special handling for virtualbox-ose, there are no
+    redistributable kernel modules anymore.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 01 Nov 2009 16:58:53 +0100
+
+fll-live-initscripts (3.6.13) unstable; urgency=low
+
+  * Always run insserv to restore halt/reboot services
+  * fll-analyze-initscripts also should assume insserv
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sat, 17 Oct 2009 14:31:08 +0100
+
+fll-live-initscripts (3.6.12) unstable; urgency=low
+
+  * replace hack to run /etc/init.d/hwclock.sh, run /sbin/hwclock like udev.
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Thu, 15 Oct 2009 12:12:26 +0100
+
+fll-live-initscripts (3.6.11) unstable; urgency=low
+
+  * hide update-rc.d overrides while setting up display managers.
+  * don't add LSB overrides for hwclock.sh/ hwclockfirst.sh anymore.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 14 Oct 2009 21:11:01 +0200
+
+fll-live-initscripts (3.6.10) unstable; urgency=low
+
+  * reintroduce slim support.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Sep 2009 12:00:31 +0200
+
+fll-live-initscripts (3.6.9) unstable; urgency=low
+
+  * replace vol_id by blkid, as it has been dropped in udev 0.146-1.
+  * bump standards version to 3.8.3, no changes necessary.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 22 Aug 2009 16:25:29 +0200
+
+fll-live-initscripts (3.6.8) unstable; urgency=low
+
+  * RM: slim -- RoM (#538921).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 19 Aug 2009 00:21:57 +0200
+
+fll-live-initscripts (3.6.7) unstable; urgency=low
+
+  * Remove hardcoded fbdev fallback on powerpc
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Tue, 21 Jul 2009 21:58:12 +0100
+
+fll-live-initscripts (3.6.6) unstable; urgency=low
+
+  * X.org has good composite heuristics by now, don't set this explicitly.
+  * we cannot detect X.org anymore, don't claim otherwise.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 19 Jul 2009 04:19:33 +0200
+
+fll-live-initscripts (3.6.5) unstable; urgency=low
+
+  * merge XMODULE and XNEWMODULE usage.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 18 Jul 2009 23:55:55 +0200
+
+fll-live-initscripts (3.6.4) unstable; urgency=low
+
+  * remove dead code, fll_xserver_discover doesn't exist anymore and xresprobe
+    is therefore renderen useless.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 18 Jul 2009 23:14:32 +0200
+
+fll-live-initscripts (3.6.3) unstable; urgency=low
+
+  * revert --nocheat handling introduced in r23542, we don't create any
+    xorg.conf on default anymore.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 18 Jul 2009 15:49:10 +0200
+
+fll-live-initscripts (3.6.2) unstable; urgency=low
+
+  * xresprobe is no more, remove code chunks parsing it.
+  * bail out, if there are not manual overrides specified.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 18 Jul 2009 15:37:32 +0200
+
+fll-live-initscripts (3.6.1) unstable; urgency=low
+
+  * fll-reboot: simplify a bit by removing pioodl() function for string
+    length sorting and instead parsing mounts in reverse order as done in
+    sysvinit 2.86.ds1-62. Depend on sysvinit >= 2.86.ds1-64 for fstab-decode.
+  * distro-defaults: register interest in /etc/init.d/slim for runlevel
+    override handling to be effective. Also add slim to list of overrides
+    to be purged in postrm.
+  * Fix lintian pedantic errors by calling `set -e' explicitly and not on
+    the shebang line.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 18 Jul 2009 16:30:02 +1000
+
+fll-live-initscripts (3.6.0) unstable; urgency=low
+
+  * X-org 7.4 doesn't evaluate /usr/share/xserver-xorg/pci/ to determine the
+    installed graphics cards anymore:
+    - drop temporarily shipped PCI IDs in contrib/
+    - drop fll_xserver_discover
+    - adapt debian/control accordingly.
+  * make fll-live-xorgconfig arch=all.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 15 Jul 2009 02:45:07 +0200
+
+fll-live-initscripts (3.5.10) unstable; urgency=low
+
+  * support slim >=1.3.1 in addition to kdm/ gdm, thanks to edhunter.
+  * make sure to start slim only in runlevel 5.
+  * make slim's dpi overrides more robust.
+  * make slim's config overrides more robust.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 09 Jul 2009 03:26:08 +0200
+
+fll-live-initscripts (3.5.9) unstable; urgency=low
+
+  * remove special handling for KDE3, it's obsolete.
+  * make dpi handling for kdm more robust.
+  * conflict with too old kdm versions (including experimental ones with
+    broken timeouts).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 08 Jul 2009 21:18:28 +0200
+
+fll-live-initscripts (3.5.8) unstable; urgency=low
+
+  * ship contrib/cirrus/cirrus.ids by David Nusinow <dnusinow@debian.org>.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 21 Jun 2009 03:44:15 +0200
+
+fll-live-initscripts (3.5.7) unstable; urgency=low
+
+  * update shipped PCI IDs in contrib:
+    - xserver-xorg-video-ati 1:6.12.2-2
+    - xserver-xorg-video-nv 1:2.1.13-1
+  * add new PCI IDs in contrib:
+    - xserver-xorg-video-intel 2:2.7.1-1
+    - xserver-xorg-video-radeon 1:6.12.2-2
+  * temporarily ship PCI IDs which were already removed from the corresponding
+    xserver-xorg-video-* packages, conflict with older versions still providing
+    them.
+  * bump standards version to 3.8.2, no changes necessary.
+  * contrib/*/Makefile inherited by the work for
+    xserver-xorg-video-{ati,intel,radeonhd} by Brice Goglin
+    <bgoglin@debian.org> and Julien Cristau <jcristau@debian.org>.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 21 Jun 2009 02:43:13 +0200
+
+fll-live-initscripts (3.5.6) unstable; urgency=low
+
+  * fll-locales:
+    - add sidux.office-vienna.at as new primary to the mirror preseeding.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 20 Jun 2009 15:04:21 +0200
+
+fll-live-initscripts (3.5.5) unstable; urgency=low
+
+  * fll-locales:
+    - Remove BOOTTIME.KMAP MD5 hash calculation. Has been dropped completely.
+
+ -- Michael Deelwater <michael.deelwater@googlemail.com>  Thu, 11 Jun 2009 01:11:44 +0200
+
+fll-live-initscripts (3.5.4) unstable; urgency=low
+
+  * create a minimal (device section only) xorg.conf for xrandr 1.2 compatible
+    hardware, in case no manual cheatcodes affecting xorg.conf are supplied.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 28 May 2009 00:39:24 +0200
+
+fll-live-initscripts (3.5.3) unstable; urgency=low
+
+  * somehow last cleary fix was gone. redoing it.
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 17 May 2009 15:25:32 +0200
+
+fll-live-initscripts (3.5.2) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * on debug redirect output to a log file in /tmp/${NAME}.log.
+    Allow debug all fll init scripts at once.
+  * fixed typo
+
+  [ Bernard Gray ]
+  * xfce requires session xfce not xfce4 in ~/.dmrc
+
+  [ Stefan Lippers-Hollmann ]
+  * fix bashisms introduced in r23385.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 17 May 2009 00:09:06 +0200
+
+fll-live-initscripts (3.5.1) unstable; urgency=low
+
+  * upload to sidux, again.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 10 May 2009 02:19:17 +0200
+
+fll-live-initscripts (3.5.0) unstable; urgency=low
+
+  * drop our own vmmouse_detect copy, it's now part of
+    xserver-xorg-input-vmmouse (>> 12.6.3), recommend it appropriately.
+  * drop input templates and detection.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 19 Apr 2009 17:27:31 +0200
+
+fll-live-initscripts (3.4.9) unstable; urgency=low
+
+  * increase number of random characters for mktemp, required since mktemp
+    >= 1.6-2.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 27 Mar 2009 01:08:13 +0100
+
+fll-live-initscripts (3.4.8) unstable; urgency=low
+
+  * parse all files in /etc/modprobe.d/* for potential blacklist entries;
+    this does not filter out conffile backups and other cruft.
+  * don't append blacklists to udev conffile, but create new
+    /etc/modprobe.d/fll-blacklist.conf, if unavoidable. Treat
+    fll-blacklist.conf as configuration file under the responsibility of the
+    local admin and do not remove it on purge.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 05 Mar 2009 22:41:30 +0100
+
+fll-live-initscripts (3.4.7) unstable; urgency=low
+
+  * mount ext4 with barrier=0.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 17 Feb 2009 21:40:14 +0100
+
+fll-live-initscripts (3.4.6) unstable; urgency=low
+
+  * added recognition of virtio block devices (thks kelmo).
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 11 Jan 2009 02:35:17 +0100
+
+fll-live-initscripts (3.4.5) unstable; urgency=low
+
+  * fix quotation marks for ZAxisMapping in vmmouse templates.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 07 Jan 2009 17:06:48 +0100
+
+fll-live-initscripts (3.4.4) unstable; urgency=low
+
+  * enable the mouse wheel for vmmouse.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 26 Dec 2008 16:07:05 +0100
+
+fll-live-initscripts (3.4.3) unstable; urgency=low
+
+  * Adjust contrib/Makefile for proper build/clean of vmmouse_detect.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 22 Dec 2008 02:24:18 +1000
+
+fll-live-initscripts (3.4.2) unstable; urgency=low
+
+  * install manpage.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 05 Dec 2008 16:33:05 +0100
+
+fll-live-initscripts (3.4.1) experimental; urgency=low
+
+  * d'oh, we want to detect fll_detect_vmmouse, not fll_xserver_discover.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 05 Dec 2008 02:16:06 +0100
+
+fll-live-initscripts (3.4.0) experimental; urgency=low
+
+  * add detect_vmmouse from xf86-input-vmmouse.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 05 Dec 2008 01:55:18 +0100
+
+fll-live-initscripts (3.3.43) unstable; urgency=low
+
+  * #490912 is fixed, re- enable vmmouse.
+  * depend on ${misc:Depends}, to make lintian (and dh) happy.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 04 Dec 2008 23:20:53 +0100
+
+fll-live-initscripts (3.3.42) unstable; urgency=low
+
+  * fll-locales:
+    - Change CTRL-SHIFT to ALT-SHIFT for switching keyboard layouts. This does
+      not interfere with konsole's CTRL-SHIFT-N when X is running.
+
+ -- Michael Deelwater <michael.deelwater@googlemail.com>  Tue, 18 Nov 2008 00:45:23 +0100
+
+fll-live-initscripts (3.3.41) unstable; urgency=low
+
+  * fll-locales
+    - Add DEMO_CODE section for Canada
+    - Remove unnecessary "ga" DEMO_CODE section
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 12 Nov 2008 19:57:30 +0000
+
+fll-live-initscripts (3.3.40) unstable; urgency=low
+
+  * add support for the "ETPS/2 Elantech Touchpad", as found in Asus EeePC
+    901/ 1000.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 27 Oct 2008 00:28:36 +0100
+
+fll-live-initscripts (3.3.39) unstable; urgency=low
+
+  * Give build system so love:
+    - use make-ish style targets instead of shell for loops
+    - tighten initscript check to enforce posix scripting
+  * fll-reboot:
+    - remove use of local
+  * fll-xorgconfig:
+    - remove use of local
+    - check /usr/share/fll-live-xorgconfig/xrandr/ati.ids for radeon XMODULE
+      too
+    - organise contrib/ into directories of driver name
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 26 Oct 2008 09:31:40 +1000
+
+fll-live-initscripts (3.3.38) unstable; urgency=low
+
+  [ Michael Deelwater ]
+  * fll-locales:
+    - Set XKBLAYOUT=ch, XKBVARIANT=fr for Swiss demographic code.
+
+  [ Stefan Lippers-Hollmann ]
+  * prefer ati/ radeon over radeonhd, it's now the only driver shipped by
+    upstream X.org and supports recent cards (in sid and experimental) better
+    than radeonhd.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 25 Oct 2008 02:45:35 +0200
+
+fll-live-initscripts (3.3.37) unstable; urgency=low
+
+  [ Niall Walsh ]
+  *fll-xorgconfig:
+    - Default to fbdev not vesa on powerpc
+    - Fix xdriver
+    - Make composite test apply to user given xdriver|xmodule
+  * fll-reboot:
+    - Try setting LD_LINUX to ld if ld-linux not present
+
+  [ Michael Deelwater ]
+  * fll-locales:
+    - Let use console-setup use multiple keyboard layouts if available.
+
+ -- Michael Deelwater <michael.deelwater@googlemail.com>  Wed, 22 Oct 2008 18:53:23 +0200
+
+fll-live-initscripts (3.3.36) unstable; urgency=low
+
+  * fll-locales:
+    - avoid switching font size from defaults, this blanks the VT 1/2 way
+      through boot
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 20 Oct 2008 20:50:07 +1000
+
+fll-live-initscripts (3.3.35) unstable; urgency=low
+
+  [ Michael Deelwater ]
+  * fll-console-setup:
+    - new file
+  * debian/rules:
+    - initscript install rule for fll-console-setup
+
+  [ Kel Modderman ]
+  * fll_fstab_generator:
+    - handle ps3d* block devices
+    - avoid checking if ps3d* are disk devices with udevadm by having the
+      is_wanted() function always return 0 for them
+    - use vol_id to determine fstype of ps3d* devices
+  * fll-live-utils:
+    - it is arch: all package
+  * fll-console:
+    - rename fll-console-setup to fll-console. It is a script to preseed
+      console-setup
+    - adjust LSB dependencies of fll-locales and fll-console to ensure start
+      before scripts which load keymaps early in runelvel S
+    - remove hardcoded md5sum from console-setup
+    - only save setupcon configuration, let the initscript do the loading of it
+      later
+  * Merge fll-console into fll-locales. Remove console-data preseeding, just
+    preseed console-setup, i only requires XKBLAYOUT.
+  * fll-locales:
+    - rename SIDUX_MIRROR to FLL_MIRROR, to remain in a neutral namespace
+    - try using VGA as default console font
+  * Rename fll-hwsetup to fll-bluez, remove the need for hwinfo and simply
+    check if a bluetooth class driver has loaded yet. Start later in runlevel
+    S.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 19 Oct 2008 07:21:08 +1000
+
+fll-live-initscripts (3.3.34) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - relax LSB dependency on fll-locales to Should-Start, and avoid apt
+      bailing out due to insserv dependency error when fll-live-initscripts
+      is not yet configured at fll-live-xorgconfig configure time
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 13 Oct 2008 10:58:44 +1000
+
+fll-live-initscripts (3.3.33) unstable; urgency=low
+
+  * partially revert r20333: drop the language selection, but keep the kdmrc
+    detection for KDE3 and KDE4. This avoids changing a Debian Conffile (kdmrc)
+    proactively on every system, while still leaving the same problem for
+    setting specific dpi values.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 08 Oct 2008 23:07:15 +0200
+
+fll-live-initscripts (3.3.32) unstable; urgency=low
+
+  * fll-xdm:
+    - allow gdm to be preferred when lxde desktop is chosen
+      <https://noc.sidux.com/fll/ticket/1>
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 08 Oct 2008 03:47:30 +1000
+
+fll-live-initscripts (3.3.31) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll-desktop:
+    - add support for LXDE desktop
+    - reorder desktop list order
+    - patch thanks to ModestUser:
+      http://sidux.com/PNphpBB2-viewtopic-t-12841.html
+  * fll-xdm:
+    - add logic for detecting kdmrc file for kde3 and kde4
+    - source system locale and set kdm language setting
+    - patch thanks to ModestUser:
+      http://sidux.com/PNphpBB2-viewtopic-t-12823.html
+
+  [ Stefan Lippers-Hollmann ]
+  * remove no longer existing manpage from debian/*.manpages.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 04 Oct 2008 00:47:30 +0200
+
+fll-live-initscripts (3.3.30) unstable; urgency=low
+
+  * fll-network:
+    - depend on ceni, use nicinfo for ethernet detection so that this code
+      need only exist, and be fixed, in one place
+    - add code to handle addition of ethernet devices to HOTPLUG_INTERFACES
+      configuration for ifplugd
+  * fll-live-utils:
+    - drop fll_is80211
+  * fll-live-initscripts:
+    - depend on ceni
+    - remove usage of ucf, not required for this live only package, all files
+      are handled by maintainer scripts
+  * fll-xorgconfig:
+    - recommend xresprobe only
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 30 Sep 2008 23:20:07 +1000
+
+fll-live-initscripts (3.3.29) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - vmmouse is not working well at all right now, so just use mouse driver
+      per default for now
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 22 Sep 2008 07:54:13 +1000
+
+fll-live-initscripts (3.3.28) unstable; urgency=low
+
+  [ Niall Walsh ]
+  * fll-locales:
+    - Don't use a $(ls) subshell for liveapt language package list fallback
+    - Don't install anything for english unless the exact variant is present
+
+  [ Kel Modderman ]
+  * fll-hwsetup:
+    - resurrect script, to manage bluetooth runlevel links
+  * fll-locales:
+    - try to fix a bit of syntax breakage
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 20 Sep 2008 06:22:51 +1000
+
+fll-live-initscripts (3.3.27) unstable; urgency=low
+
+  * Remove fll-hwsetup, it is not needed or wanted to manage cups or
+    bluetooth in this way anymore.
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 16 Sep 2008 12:20:22 +1000
+
+fll-live-initscripts (3.3.26) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll:
+    - when looking for mount point associated with /dev/fll, consider all udev
+      symlinks as possible device name
+
+  [ Stefan Lippers-Hollmann ]
+  * use fll_get_mnt again.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 16 Sep 2008 01:38:10 +0200
+
+fll-live-initscripts (3.3.25) unstable; urgency=low
+
+  * fll-locales:
+    - No output from liveapt until a language file is found
+    - Surpress any ls errors from trying to find a fallback liveapt list
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sun, 14 Sep 2008 18:15:07 +0100
+
+fll-live-initscripts (3.3.24) unstable; urgency=low
+
+  * removed spurious $ that was creating troubles on the previous change.
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 14 Sep 2008 16:37:26 +0200
+
+fll-live-initscripts (3.3.23) unstable; urgency=low
+
+  * fixed set custom dpi for xfce/gdm
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 14 Sep 2008 14:20:02 +0200
+
+fll-live-initscripts (3.3.22) unstable; urgency=low
+
+  * override console-data to US american for dutch as well.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 14 Sep 2008 01:58:03 +0200
+
+fll-live-initscripts (3.3.21) unstable; urgency=low
+
+  * prefer US keyboards layouts in Nederland.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 14 Sep 2008 01:28:34 +0200
+
+fll-live-initscripts (3.3.20) unstable; urgency=low
+
+  * add further debugging infos for liveapt.
+  * temporarily revert to classic mountpoint detection for liveapt.
+  * try /bin/sh (dash) for fll-reboot.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 13 Sep 2008 22:57:07 +0200
+
+fll-live-initscripts (3.3.19) unstable; urgency=low
+
+  * fll-locales:
+    - fix liveapt size checking
+    - switch default for pt to pt-br
+    - use fll_get_mnt to find the "cd" mount point for liveapt
+  * fll
+    - add fll_get_mnt to return /fll/fromiso or follow /dev/fll as appropriate
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 05 Sep 2008 15:43:25 +0100
+
+fll-live-initscripts (3.3.18) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll-init:
+    - make grep quiet again
+
+  [ Niall Walsh ]
+  * fll-locales:
+    - allow liveapt to use up to 1/5th of free mem
+    - guess Romanian demo code block
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Thu, 04 Sep 2008 16:45:06 +0100
+
+fll-live-initscripts (3.3.17) unstable; urgency=low
+
+  * fll-hwsetup:
+    - do not use return code with log_end_msg()
+  * fll-xorgconfig:
+    - use nv for nVidia Corporation GeForce 7950 GT AGP
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 03 Sep 2008 22:14:52 +1000
+
+fll-live-initscripts (3.3.16) unstable; urgency=low
+
+  * fll-locales:
+    - If no list of i18n packages exists for the selected ll_CC,
+      try and use the first match for the language (e.g. try en_* for en_IE).
+    - Use --assume-yes rather then --trivial-only with apt-get.  Needed to
+      allow dependencies to install (e.g. for ja_JP)
+    - Make spacing consistent on $()
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Tue, 02 Sep 2008 18:25:49 +0100
+
+fll-live-initscripts (3.3.15) unstable; urgency=low
+
+  * fll-init, fll-hwsetup:
+    - use insert_initscript() wherever remove_initscript() is used to enhance
+      persistency
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 02 Sep 2008 05:20:44 +1000
+
+fll-live-initscripts (3.3.14) unstable; urgency=low
+
+  * fll-reboot:
+    - don't bother attempting to eject media if toram cheatcode was used
+    - actually eject /dev/fll-cdrom
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 01 Sep 2008 08:05:25 +1000
+
+fll-live-initscripts (3.3.13) unstable; urgency=low
+
+  * Remove fll-resume.init, instead add a general utility in
+    /usr/sbin/fll_resume_validate which contains the same functionality.
+  * Purge /etc/udev/rules.d/70-fll-live.rules in fll-live-
+    initscripts.postrm, it may have been created by fll-live-initramfs.
+  * fll-reboot:
+    - make use of /dev/fll-cdrom symlink established via fll-live-initramfs
+      generated udev rule instead of trying to detect media was found on
+      iso9660fs
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 01 Sep 2008 07:23:01 +1000
+
+fll-live-initscripts (3.3.12) unstable; urgency=low
+
+  * fll-adduser:
+    - remove legacy code for adding user to extra groups
+  * fll-hwsetup:
+    - create common function for determining if hardware is present based
+      on hwinfo output
+    - use remove_initscript() function and not update-rc.d directly
+  * fll-network:
+    - use ip instead of ifconfig if present for setting operstate to up
+    - rename ifplug_dhcp() to ifplugstatus_dhcp()
+  * fll-init:
+    - use remove_initscript() function and not update-rc.d directly
+    - general cleanup
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 01 Sep 2008 05:37:47 +1000
+
+fll-live-initscripts (3.3.11) unstable; urgency=low
+
+  * fll-live-initscripts:
+    - relax new HAL policy for suspend to allow suspend-to-ram
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 30 Aug 2008 08:53:50 +1000
+
+fll-live-initscripts (3.3.10) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - don't be too fancy with alps/synaptics input device templates, let the
+      driver pick it's own defaults
+  * fll-live-initscripts:
+    - provide a HAL policy file to disable suspend/hibernate
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 29 Aug 2008 09:28:24 +1000
+
+fll-live-initscripts (3.3.9) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - update nv and ati pciids source files for currently supported GPU's
+    - modify contrib/ati.awk to match RS700 series of GPU
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 28 Aug 2008 00:39:05 +1000
+
+fll-live-initscripts (3.3.8) unstable; urgency=low
+
+  * distro-defaults:
+    - provide insserv LSB init info override for /etc/init.d/hwclock* until
+      #487196 is closed
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 27 Aug 2008 04:56:54 +1000
+
+fll-live-initscripts (3.3.7) unstable; urgency=low
+
+  * fll-reboot:
+    - provide halt and reboot facilities
+    - use maintainer script hacks to override real halt and reboot initscripts
+      when boot system is dependency based
+    - perform same maintainer script actions for remove and purge arguments
+  * distro-defaults:
+    - if default runlevel != 5, desktop manager overrides are removed by
+      postinst
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 25 Aug 2008 13:32:01 +1000
+
+fll-live-initscripts (3.3.6) unstable; urgency=low
+
+  * fll_analyze_initscripts:
+    - fix previous cleanup to not _always_ detect insserv as installed
+  * fll:
+    - when removing initscripts, use --force option
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 24 Aug 2008 07:33:18 +1000
+
+fll-live-initscripts (3.3.5) unstable; urgency=low
+
+  * Add deb-trigger support to distro-defaults for enhanced insserv override
+    control. Also override for xdm.
+  * Don't call insserv directly in postinst, that is nasty.
+  * bin/fll_analyze_initscripts:
+    - cleanup test for insserv so its not done many times
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 19 Aug 2008 08:14:00 +1000
+
+fll-live-initscripts (3.3.4) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * add bfree to uploaders.
+
+  [ Niall Walsh ]
+  * Never set demo code from supplied lang_code directly, extract it from the
+    selected LANG if not supplied by the user.
+  * Guess missing BY (Belarus) DEMO_CODE section.
+
+  [ Kel Modderman ]
+  * Create new arch: any binary package to provide the /usr/bin, /usr/sbin
+    utilities.
+  * Add fll_is80211.c, use to detect if network interface is 802.11 capable or
+    not. Add linux-libc-dev to build deps.
+  * fll-network:
+    - use fll_is80211 for wireless interface detection
+    - cleanup detect_netdevs() functions
+  * Relax inter-depenencies between packages provided from this source, no
+    need for it.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 30 Jul 2008 23:00:35 +1000
+
+fll-live-initscripts (3.3.3) unstable; urgency=low
+
+  * Use dpkg --print-architecture instead of dpkg-architecture for liveapt
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 21 Jul 2008 18:00:46 +0100
+
+fll-live-initscripts (3.3.2) unstable; urgency=low
+
+  * liveapt needs dpkg-dev/ dpkg-architecture.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 20 Jul 2008 20:00:05 +0200
+
+fll-live-initscripts (3.3.1) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - remove udev bug workaround, udev 0.124-3 seems better
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 15 Jul 2008 16:57:29 +1000
+
+fll-live-initscripts (3.3.0) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - vbox-guest-utils now ships an ids file for xserver video driver
+      autodetection, no need to detect it again
+    - create xrandr style conf for vmware, just like vbox
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 14 Jul 2008 23:10:05 +1000
+
+fll-live-initscripts (3.2.23) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - tighten udev bug workaround implimented in 3.2.21
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 14 Jul 2008 01:46:12 +1000
+
+fll-live-initscripts (3.2.22) unstable; urgency=low
+
+  * ftp.spline.de is online again, put it back into the load balancing
+    rotation.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 13 Jul 2008 13:53:54 +0200
+
+fll-live-initscripts (3.2.21) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - add workaround for likely buggy behaviour in udev package version
+      >= 0.124-1, and only reject block devices when ID_TYPE != disk when
+      ID_TYPE is actually defined
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 10 Jul 2008 15:53:29 +1000
+
+fll-live-initscripts (3.2.20) unstable; urgency=low
+
+  * fll-locales:
+    - don't produce any messages from liveapt in fll-locales unless
+      the package list for the arch/lang is found.
+    - rename liveapt disabling cheat to noaptlang
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Tue, 08 Jul 2008 12:45:46 +0100
+
+fll-live-initscripts (3.2.19) unstable; urgency=low
+
+  * fll-locales:
+    - liveapt is on by default, cheatcode now noliveapt to diable it.
+    - make some liveapt warnings a little clearer
+    - run the liveapt code in localize for installer
+    - make -n explicit with all shell tests
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 07 Jul 2008 19:48:30 +0100
+
+fll-live-initscripts (3.2.18) unstable; urgency=low
+
+  * Add liveapt cheatcode to use /i18n debian repo
+    on cd to install packages for lang= live
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 04 Jul 2008 17:46:31 +0100
+
+fll-live-initscripts (3.2.17) unstable; urgency=low
+
+  * fll-network:
+    - simplify write_dhcp_to_eni()
+    - adjust ifplugd configuration for new hotplug script
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 03 Jul 2008 00:01:49 +1000
+
+fll-live-initscripts (3.2.16) unstable; urgency=low
+
+  * Update contrib/src/nv_driver.c from xf86-video-nv 2.0.10.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 02 Jul 2008 16:06:18 +1000
+
+fll-live-initscripts (3.2.15) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll_fstab_generator:
+    - enhance is_removable() for improved readability
+    - omit warning when "removable" sysfs attribute file is not present for
+      a block device
+    - checkbashisms warns about using the shell built-in type; use which
+      instead
+
+  [ Bernard Gray ]
+  * add timed auto-login for gdm after x restart. Fixes bug in xfce 2008-02
+
+  [ Stefan Lippers-Hollmann ]
+  * only register one variable at a time using local, while still not SuSv3
+    compatible it meets the exceptions defined by Debian Policy 10.4.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 30 Jun 2008 10:32:53 +0200
+
+fll-live-initscripts (3.2.14) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - allow XFORCERANDR to override XNORANDR
+    - create xrandr style configuration for Vbox guests, the guest module no
+      longer respects user defined modes at all
+    - don't create xrandr style configuration when hardware support cannot be
+      determined
+    - hardcode vesa as fallback when hardware support cannot be determined
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 28 Jun 2008 12:01:04 +1000
+
+fll-live-initscripts (3.2.13) unstable; urgency=low
+
+  * cupsys --> cups.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 25 Jun 2008 13:50:46 +0200
+
+fll-live-initscripts (3.2.12) unstable; urgency=low
+
+  * Fix typo in last changelog entry (s/strncpy/strncmp/).
+  * Install a common shell function library to /lib/init/fll.
+  * Adjust insert_initscript common function to use FLL_MOUNTPOINT variable if
+    set, which it always should be.
+  * debian/*.init:
+    - source /lib/init/fll, common shell function library for our live
+      initscripts
+  * fll-xdm:
+    - remove inline insert_initscript() function
+  * fll-xorgconfig:
+    - use new remove_initscript function for vbox guest utils service removal
+    - always ensure vbox guest utils is configured to start
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 24 Jun 2008 13:12:38 +1000
+
+fll-live-initscripts (3.2.11) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - prioritize the radeon xorg driver to last position. It has been
+      separated from the ati wrapper, and we are still giving priority to
+      radeonhd
+    - modify driver_prio() sorting function to use strcmp and not strncmp for
+      more precise whole string comparison
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 23 Jun 2008 21:22:13 +1000
+
+fll-live-initscripts (3.2.10) unstable; urgency=low
+
+  * ftp.spline.de is offline for now, remove it as an option.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 18 Jun 2008 23:50:42 +0200
+
+fll-live-initscripts (3.2.9) unstable; urgency=low
+
+  * fll-network.init:
+    - add initial auto-configuration of udev/hotplug style ifplugd feature,
+      for now only active with "ifplugd" cheatcode
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 18 Jun 2008 20:26:16 +1000
+
+fll-live-initscripts (3.2.8) unstable; urgency=low
+
+  * fll_analyze_initscripts:
+    - add -l|--runlevel cli option to force runlevel configuration dump on
+      insserv enabled systems.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 13 Jun 2008 22:56:25 +1000
+
+fll-live-initscripts (3.2.7) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll-xorgconfig:
+    - add .ids suffix to xrandr pciids lists
+    - update contrib/src/nv_driver.c for geforce 9 mobile gpu ids, need to
+      get these new ids into xserver-xorg-video-nv for detection, however
+
+  [ Joaquim Boura ]
+  * cheatcode dpi was no longer set correctly for gdm.
+
+  [ Stefan Lippers-Hollmann ]
+  * bump standards version to 3.8.0, no changes necessary.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Jun 2008 15:47:33 +0200
+
+fll-live-initscripts (3.2.6) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - add initial support for detection + first time only setup of USB Wacom
+      input devices
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 06 Jun 2008 12:22:31 +1000
+
+fll-live-initscripts (3.2.5) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - reinvent nv override logic, emulating the NVIsSupported() function of
+      xf86-video-nv, which is basically a list of device id's that the driver
+      _should_ support, but god knows why they are not listed in
+      NVKnownChipsets...
+    - xserver-xorg-video-geode ships a pci board id list, no need to override
+      it either
+    - xserver-xorg-video-vmware ships a pci board id list, we only need to
+      provide a input device override
+    - simplify blocks of code handling virtulbox and vmware
+    - cleanup code flow that detects of virtualbox guest support is wanted or
+      not
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 30 May 2008 09:58:22 +1000
+
+fll-live-initscripts (3.2.4) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - set fs_passno whenever script is detecting local mount points
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 29 May 2008 19:31:04 +1000
+
+fll-live-initscripts (3.2.3) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - set a default PATH
+    - some code flow simplification
+    - handle hfsplus volumes
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 29 May 2008 17:07:45 +1000
+
+fll-live-initscripts (3.2.2) unstable; urgency=low
+
+  * fll-reboot:
+    - don't use ansi escape sequences
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 28 May 2008 11:10:55 +1000
+
+fll-live-initscripts (3.2.1) unstable; urgency=low
+
+  * contrib/Makefile:
+    - fix creation of xrandr/ati board list; actually use the gawk script
+      designed to extract ati device info, and not nv
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 26 May 2008 19:26:20 +1000
+
+fll-live-initscripts (3.2.0) unstable; urgency=low
+
+  * Tweak LSB comments of some initscripts
+    - fll-network: drop required-start dep on $local_fs
+    - fll-fstab: add should-start dep on lvm2, make sure start is before
+      mountall
+    - fll-hwsetup: required start of $local_fs and not $all
+    - fll-resume: required start of $local_fs and not mountdevsubfs
+    - fll-init: drop required-start dep on udev
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 25 May 2008 15:02:37 +1000
+
+fll-live-initscripts (3.1.3) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - use error=remount-ro mount option for ext2 and ext3 / filesystem
+    - use ID_FS_LABEL_SAFE returned by udev_info() as third argument to
+      print_fsentry()
+    - use a temporary directory to maintain uniquity and sanity of any string
+      to be used in fs_spec and fs_file
+    - check value returned by sed call in is_mounted() is actually a directory
+      before returning it
+    - if labels are wanted, use the "safe" label in fs_file
+    - major overhaul of print_fsentry()
+    - drop scan_partitions() function
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 24 May 2008 22:29:43 +1000
+
+fll-live-initscripts (3.1.2) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - revert change in version 3.0.36 introducing device id's of unknown but
+      possibly supported boards to contrib/xrandr/nv list, it produced poor
+      results on propoerly supported chips.
+  * fll_fstab_generator:
+    - tweak default mount options so that users may mount/unmount filesystems
+      by default.
+    - add explicit 'rw' mount option for filesystems which support that
+    - reorder mount options of cdrom and floppy devices for consistency
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 23 May 2008 13:04:49 +1000
+
+fll-live-initscripts (3.1.1) unstable; urgency=low
+
+  * use ftp:// for spline, http:// is no longer available.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 20 May 2008 00:44:13 +0200
+
+fll-live-initscripts (3.1.0) unstable; urgency=low
+
+  * fll_fstab_generator:
+    - include in binary package for first time
+  * fll-fstab:
+    - use fll_fstab_generator instead of fll_fshelper
+  * fll-locales:
+    - announce keymap installation at boot time
+    - fix possible typo in default keymap selection case block
+  * fll_fshelper:
+    - purge it, it is obsolete
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 19 May 2008 20:36:50 +1000
+
+fll-live-initscripts (3.0.37) unstable; urgency=low
+
+  * Drop dash dependency, remove #!/bin/dash shebang line from all scripts.
+  * fll-xorgconfig:
+    - drop erroneous dependency on libfile-slurp-perl
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 17 May 2008 12:15:05 +1000
+
+fll-live-initscripts (3.0.36) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - update contrib/src/nv_driver.c from xf86-video-nv 2.1.9.
+    - also extract from contrib/src/nv_driver.c a list of supported boards
+      that are too new and not listed in known board list.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 16 May 2008 13:29:44 +1000
+
+fll-live-initscripts (3.0.35) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * Changed CD_KEYMAP on German to "latin1 - no dead keys"  as the keyboard
+    on the textconsole was set to Programmer.
+
+  [ Stefan Lippers-Hollmann ]
+  * add x-un-i to uploaders.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 13 May 2008 23:27:29 +0200
+
+fll-live-initscripts (3.0.34) unstable; urgency=low
+
+  * Adjust build system to something compat. with dh_auto_* as called by dh in
+    debhelper >= 7. Add top level Makefile, move the initscripts check to it.
+  * Redirect noise from a2x in man/Makefile.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 12 May 2008 15:16:38 +1000
+
+fll-live-initscripts (3.0.33) unstable; urgency=low
+
+  * Adapt to dh centric packaging style.
+  * fll_xserver_discover:
+    - general style cleanup
+    - no longer hardcode "vesa" as default driver
+    - only accept regular files in pci.ids scandir filter
+  * distro-defaults:
+    - do not bother writing a /etc/default/distro stub, just claim ownership
+      of the conffile
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 10 May 2008 15:35:16 +1000
+
+fll-live-initscripts (3.0.32) unstable; urgency=low
+
+  * Nuke fll_fstab_generator, it was an experiment that will no longer be
+    persued.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 05 May 2008 23:20:05 +1000
+
+fll-live-initscripts (3.0.31) unstable; urgency=low
+
+  * bump version number to fix the earlier overlap.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Apr 2008 12:23:31 +0200
+
+fll-live-initscripts (3.0.30) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - trivial change to compile with pedantic gcc pragma
+    - fix typo causing dev_name to not be allocated a fallback string when it
+      is NULL
+  * fll_fstab_generator:
+    - able to generate basic fstab configurations
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 30 Apr 2008 17:11:28 +1000
+
+fll-live-initscripts (3.0.29) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - don't hardcode driver as vesa here, fll_xserver_discover defaults to
+      vesa when detection fails, and we may choose to allow the xserver to
+      have a go in the future by nullifying the vesa fallback in
+      fll-xorgconfig.init
+  * fll_xserver_discover:
+    - remove remnants of pciutils based code; struct pciaccess was still
+      declared
+    - cleanup the copyright/license errata in source file header
+  * fll_fstab_generator:
+    - initial import, not yet included in package
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 26 Apr 2008 12:50:19 +1000
+
+fll-live-initscripts (3.0.28) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll_xserver_discover:
+    - use libpciaccess and not pciutils for PCI device probing library
+    - mark functions static
+    - build depend on libpciaccess-dev, drop build deps of pciutils-dev and
+      zlib1g-dev
+
+  [ Stefan Lippers-Hollmann ]
+  * bump compat level to 7 and depend on debhelper 7.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 25 Apr 2008 15:53:52 +0200
+
+fll-live-initscripts (3.0.27) unstable; urgency=low
+
+  * fll-shell:
+    - adapt to bash 3.2-2, .bash_profile was renamed to .profile
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 21 Apr 2008 10:36:08 +1000
+
+fll-live-initscripts (3.0.26) unstable; urgency=low
+
+  * Fix typo in previous changelog entry.
+  * fll_fshelper:
+    - ensure duplicate mount point names are never used, warn and skip any
+      device who has been given a mount point name the same as a device before
+      it
+    - special case device mapper virtual block device mount point names, use
+      dm-X as is used in /proc/partitions (we should switch to /sys/block)
+    - count disks by comparing the "basename" of each block device sans and
+      partition or minor number. Each time in changes, incriment the disk
+      number count
+    - no longer add commented out tmpfs example
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 15 Apr 2008 22:12:30 +1000
+
+fll-live-initscripts (3.0.25) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - add missing vmmouse input device template
+    - disable xresprobe and modelines for vmware xorg.conf
+  * fll-shell:
+    - preseeding of vimrc.local and pager alternative now done at build time
+      so removed from the initscript
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 14 Apr 2008 19:25:44 +1000
+
+fll-live-initscripts (3.0.24) unstable; urgency=low
+
+  * fixed another glitch on fll-xdm
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sat, 05 Apr 2008 14:40:33 +0200
+
+fll-live-initscripts (3.0.23) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * Implement script syntax/bashism sanity check at package build time,
+    build-depend on devscripts and dash. Make failure to pass check fatal.
+  * fll-xdm:
+    - fix second syntax error from r17094, == was used, it is a bashism and
+      fll-xdm is a dash script
+    - overhaul logic behind setting default desktop display manager
+  * fll-xorgconfig:
+    - remove possible bashisms from script, making checkbashisms happy
+
+  [ Stefan Lippers-Hollmann ]
+  * catch script interpreters invoked with parameters as well.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 05 Apr 2008 11:49:36 +0200
+
+fll-live-initscripts (3.0.22) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * When cheatcode desktop is used set gdm/kdm as default dm depending on
+    that.
+
+  [ Stefan Lippers-Hollmann ]
+  * fix syntax error.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 04 Apr 2008 23:47:43 +0200
+
+fll-live-initscripts (3.0.21) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - provide vmware detection/overrides
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 02 Apr 2008 22:37:32 +1000
+
+fll-live-initscripts (3.0.20) unstable; urgency=low
+
+  * Add LANG_CODE handlers for missing sidux generated locales
+  * Start full split handling of lang=xx_YY so e.g. lang=en_IE will work
+  * Adding commented sections for some extra locales
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 31 Mar 2008 06:19:55 +0100
+
+fll-live-initscripts (3.0.19) unstable; urgency=low
+
+  * fll-locales:
+    - use ftp.pt.debian.org mirror when lang=pt is selected
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 31 Mar 2008 11:03:37 +1000
+
+fll-live-initscripts (3.0.18) unstable; urgency=low
+
+  * fll-locales:
+    - invoke debconf-set-selections only once, not 8 times, reading values
+      piped from a for loop
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 30 Mar 2008 10:49:33 +1000
+
+fll-live-initscripts (3.0.17) unstable; urgency=low
+
+  * fll-reboot:
+    - copy the pop_livecd() function into do_stop()
+    - use stty to set sane defaults for /dev/console before prompting for
+      keyboard input
+    - don't bother to re-enable kernel printk's after ejecting media
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 30 Mar 2008 10:04:53 +1000
+
+fll-live-initscripts (3.0.16) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - constify the return of string containing driver name
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 27 Mar 2008 15:43:28 +1000
+
+fll-live-initscripts (3.0.15) unstable; urgency=low
+
+  * No more coloured output by the startup fll initscripts. Remove
+    lib/fll-init-cols.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 26 Mar 2008 17:02:42 +1000
+
+fll-live-initscripts (3.0.14) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - accept vesa cheatcode to set xmodule to vesa
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 26 Mar 2008 03:13:16 +1000
+
+fll-live-initscripts (3.0.13) unstable; urgency=low
+
+  * Do not suggest hotkey-setup.
+  * fll-xorgconfig:
+    - xf86-video-amd is transitioning its driver name to geode, adopt it early
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 25 Mar 2008 08:31:14 +1000
+
+fll-live-initscripts (3.0.12) unstable; urgency=low
+
+  * Update copyright statements in the initscripts, remove the copyright
+    holder of the fullstory project, that entity doesn't exist in any formal
+    capacity.
+  * distro-defaults:
+    - only override LSB defaults of kdm/gdm if inittab default runlevel is 5
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 21 Mar 2008 22:37:54 +1000
+
+fll-live-initscripts (3.0.11) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - add driver_prio() as compar() function for scanning of pci.ids dir, give
+      radeonhd last preference, otherwise returning versionsort()
+    - give ati driver/wrapper last priority when searching pciids for device
+      string, this kills 2 birds in one stone. Firstly it allows radeonhd to
+      take preference for R500+ drivers, and ensures r128 and mach64 claim
+      devices that they support
+  * fll-xorgconfig:
+    - add AMD Geode GX/LX display driver fallback detection, this driver
+      doesn't install a pciids list, and probably will not do so in future
+    - when removing virtualbox-ose-guest-utils service, look up initscript
+      removal command with fll_analyze_initscripts
+    - default to vesa, remove this default in near future
+  * fll-xdm:
+    - tiny cleanup of bits using eval on a subshell output
+    - add insert_initscript() as fallback function for when start and stop
+      sequence numbers are not returned by fll_analyze_initscripts
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 20 Mar 2008 23:57:31 +1000
+
+fll-live-initscripts (3.0.10) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - write a Device section to xorg.conf containing driver, busid, boardname
+      again. Omitting it seems to work fine, but for an upcoming release we
+      should try to avoid collateral userspace damage
+  * fll_xserver_discover:
+    - tiny debug usage cleanup
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 19 Mar 2008 13:53:22 +1000
+
+fll-live-initscripts (3.0.9) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - return an empty XMODULE string when no driver was detected in ids lists
+    - use the GNU extension, scandir(3), when searching
+      /usr/share/xserver-xorg/pci/ ids lists, it provides convenience
+      functions that are very useful
+  * fll_xorgconfig:
+    - no longer default to 'vesa' driver, if no driver is given, simply do not
+      include the device section in xorg.conf, let the server do the work. In
+      this case, also do not include Modelines, Modes or frequencies (randr1.2
+      like)
+    - do not write the driver, busid or boardname to the default device
+      section (except for vboxvideo, cheatcode or nv override). Allow the
+      xserver to use the same data we hijacked for early detection, to do
+      dynamic detection at X startup
+    - no longer create a default 'Device' section if no driver, busid or
+      boardname were specified as program arguments
+    - overhaul nv override logic, add nv_overridable() function to determine
+      if we should force nv based on board description + regular expression
+    - update contrib/src/nv_driver.c for new G80 pci ids
+    - cleanup output when detection monitor settings via probe
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 19 Mar 2008 03:18:10 +1000
+
+fll-live-initscripts (3.0.8) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - put the printing of device variables into the xdisplay() function
+    - allow debugging id list contents with -dd
+    - do not break on first encounter of VGA class device, instead process all
+      devices. As consequence, devices with lowest busid will be preferred
+    - break when driver string has been found in ids list
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 18 Mar 2008 12:57:37 +1000
+
+fll-live-initscripts (3.0.7) unstable; urgency=low
+
+  * fll-adduser:
+    - redirect stdout when using fallback method of adding live user to
+      various groups
+  * distro-defaults:
+    - add chrooted() function to postinst maintainer script
+    - only attempt to create /etc/default/distro if in a chroot
+    - if in a chroot, and insserv is in path, set desktop manager initscript
+      to default runlevel configuration after creating overrides
+    - create a default /etc/apt/sources.list template it in a chroot, and the
+      file doesn't exist yet
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 11 Mar 2008 20:30:28 +1000
+
+fll-live-initscripts (3.0.6) unstable; urgency=low
+
+  * relax fll-hwsetup rc start index
+
+ -- Bernard Gray <bernard.gray@gmail.com>  Fri, 07 Mar 2008 15:46:18 +1100
+
+fll-live-initscripts (3.0.5) unstable; urgency=low
+
+  * fll-xdm:
+    - don't touch the LSB init info of the dm initscripts, desktop-defaults is
+      providing more robust overrides
+  * fll-shell:
+    - disable pam_lastlog during live init, so that the squashfs chroot
+      contains always a pristine configuration.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 06 Mar 2008 16:04:49 +1000
+
+fll-live-initscripts (3.0.4) unstable; urgency=low
+
+  * fll_analyze_initscripts:
+    - add initial insserv boot system support
+    - accept -n|--dryrun and -d|--default switches
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 04 Mar 2008 23:59:54 +1000
+
+fll-live-initscripts (3.0.3) unstable; urgency=low
+
+  * distro-defaults:
+    - override kdm and gdm LSB default start and stop values, so that they
+      only start in runlevel 5, and stop in all other runlevels
+    - manage the override with ucf, regenerate it every postinst with some
+      careful sed
+  * fll-live-initscripts:
+    - reuse the function that distro-defaults uses to purge conffile from the
+      disk and ucf database
+    - update copyright year stamps in bin/fll_*
+  * fll_analyze_initscripts:
+    - remove the whitelist/blacklist input file cruft introduced with
+      fll-build.bash developments
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 04 Mar 2008 23:20:48 +1000
+
+fll-live-initscripts (3.0.2) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - add debugging cli switch to print out informational messages during
+      detection
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 04 Mar 2008 07:58:54 +1000
+
+fll-live-initscripts (3.0.1) unstable; urgency=low
+
+  * Tweak the LSB dependencies of live initscripts.
+  * Tweak static runlevel configuration of live initscripts.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 02 Mar 2008 23:28:35 +1000
+
+fll-live-initscripts (3.0.0) unstable; urgency=low
+
+  * Bump major release version number.
+  * Assimilate the distro-defaults package. Handle the /etc/defaults/distro
+    conffile manually (with ucf) in the postinst and postrm scripts.
+  * Do the same conffile handling for fll-live-initscripts as for
+    distro-defaults, the files are dynamically generated, so just use ucf to
+    relate the package to the file, and manage its addition and removal in the
+    postinst and postrm scripts.
+  * fll-locales:
+    - simplify the addition of dynamic variables to /etc/default/fll-locales
+    - LANG is more interesting that LANGUAGE when dumping contents to
+      /etc/default/fll-locales
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 02 Mar 2008 22:19:57 +1000
+
+fll-live-initscripts (2.0.98) unstable; urgency=low
+
+  * Adjust all LSB headers for initial insserv support. Cheat with fll-reboot,
+    and use the special keyworkd $all in the Required-Stop declaration.
+  * fll-init:
+    - fix blacklisting of modules with blacklist= boot param, there was a
+      typo.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 02 Mar 2008 01:25:59 +1000
+
+fll-live-initscripts (2.0.97) unstable; urgency=low
+
+  * Trim trailing whitespace from ./debian/* on lines containing content.
+  * fll-adduser:
+    - remove pam_lastlog hack, this will be done in the builder postinst
+    - general cleanup, fix some typos
+  * fll-init:
+    - fix typo in /etc/default/fll-init
+    - ensure LSB header declares x-start-before hostname.sh
+  * fll-network:
+    - remove kppp-noauth hack, do it in the builder
+    - declare in LSB header x-start-before networking
+  * fll-xorgconfig:
+    - don't declare stop runlevels in LSB header.
+    - make sure we depend on the fll-locales service
+  * fll-xdm:
+    - if insserv is installed, adjust the LSB headers so ?dm is started in
+      runlevel 5 only
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 01 Mar 2008 20:44:48 +1000
+
+fll-live-initscripts (2.0.96) unstable; urgency=low
+
+  * fll-init:
+    - honour nocpufreq cheatcode now that fll-cpufreq is redundant.
+  * fll-xorgconfig:
+    - no need to check package versions for various xserver-video drivers
+      anymore.
+  * fll_fshelper:
+    - rename $disk and $part to $d and $p to avoid variable scope problems
+    - add --simulate-live cli option for testing on an installed system, it
+      disables local mount detection
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 29 Feb 2008 14:01:50 +1000
+
+fll-live-initscripts (2.0.95) unstable; urgency=low
+
+  * make lintian happy by just build-depending on pciutils-dev (>= 1:2.2.10).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 26 Feb 2008 15:12:40 +0100
+
+fll-live-initscripts (2.0.94) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * Build-Depend on pciutils-dev (>= 1:2.2.10-1) for the .pc file that it now
+    ships. Query required lib flags with pkg-config for fll_xserver_discover.
+  * fll-adduser: do not attemot to add user to groups if /etc/adduser.conf has
+    been pre-configured to do it.
+
+  [ Stefan Lippers-Hollmann ]
+  * add pkg-config to build-depends.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 26 Feb 2008 15:09:07 +0100
+
+fll-live-initscripts (2.0.93) unstable; urgency=low
+
+  * RFC: introduce primitive load balancing for sidux repositories,
+    a similar solution needs to be implemented for
+    http://sidux.com/files/misc/sources.list.d/sidux.list
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 25 Feb 2008 19:01:52 +0100
+
+fll-live-initscripts (2.0.92) unstable; urgency=low
+
+  * dark backgrounds interfere with "konsole --type su", tel vim about light
+    backgrounds.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 23 Feb 2008 22:43:26 +0100
+
+fll-live-initscripts (2.0.91) unstable; urgency=low
+
+  * Drop fll_src_uri. It has been made redundant.
+  * fll-reboot:
+    - detect runlevel with /bin/runlevel rather than checking $O
+    - no need to copy this script now, just register it for runlevels 0 and 6
+  * contrib/src/*
+    - update pciids sources for ati and nv
+  * contrib/ati.awk:
+    - update regexp to allow new R500 and R600 pciids to be in our lists
+  * debian/control, /debian/rules:
+    - change section to misc
+    - drop build-dep of cdbs, rules file is now debhelper-centric
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 23 Feb 2008 15:10:34 +1000
+
+fll-live-initscripts (2.0.90) unstable; urgency=low
+
+  * Failure to lookup source package URI with fll_src_uri now returns an error
+    to the caller.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 22 Feb 2008 22:53:04 +1000
+
+fll-live-initscripts (2.0.89) unstable; urgency=low
+
+  * appease lintian and write (C) as © in debian/copyright.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 20 Feb 2008 22:19:44 +0100
+
+fll-live-initscripts (2.0.88) unstable; urgency=low
+
+  * bin/fll_fshelper:
+    - name mountpoint by disk and partition number, eg: /media/disk1-part2
+    - run through perltidy
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 18 Feb 2008 16:59:59 +1000
+
+fll-live-initscripts (2.0.87) unstable; urgency=low
+
+  * add ${shlibs:Depends} to dependencies of fll-live-xorgconfig, we do link
+    against glibc.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 10 Feb 2008 15:49:30 +0100
+
+fll-live-initscripts (2.0.86) unstable; urgency=low
+
+  [ Joaquim Boura ]
+  * Local-settings for Korean. thanks to muchan
+
+  [ Kel Modderman ]
+  * fll-cpufreq: dropped, depend on cpufrequtils for this functionality.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 10 Feb 2008 22:34:25 +1000
+
+fll-live-initscripts (2.0.85) unstable; urgency=low
+
+  * update to debhelper compat 6.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 18 Jan 2008 23:22:33 +0100
+
+fll-live-initscripts (2.0.84) unstable; urgency=low
+
+  * recently default sessions don't work out well, hack around it by
+    specifying a default window managers based on prioritized installed ones.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 18 Jan 2008 17:58:56 +0100
+
+fll-live-initscripts (2.0.83) unstable; urgency=low
+
+  * revert useless su-to-rootrc preseeding, gksu itself needs fixing.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 17 Jan 2008 03:01:31 +0100
+
+fll-live-initscripts (2.0.82) unstable; urgency=low
+
+  * fix conditional when to preseed su-to-rootrc (only if it doesn't exist),
+    thanks to kelmo for noticing.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 17 Jan 2008 02:27:40 +0100
+
+fll-live-initscripts (2.0.81) unstable; urgency=low
+
+  * fix syntax error in fll-adduser, introduced by invalid function name for
+    confuigure_sutoroot.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 17 Jan 2008 02:03:19 +0100
+
+fll-live-initscripts (2.0.80) unstable; urgency=low
+
+  * preseed /etc/su-to-rootrc to use sudo, revert it in fll-installer.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 17 Jan 2008 01:18:31 +0100
+
+fll-live-initscripts (2.0.79) unstable; urgency=low
+
+  * fix XSESSION entry for fluxbox.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 06 Jan 2008 03:36:20 +0100
+
+fll-live-initscripts (2.0.78) unstable; urgency=low
+
+  * Fluxbox Start fixed.
+
+ -- Andreas Weber <andreas@it-weber.com>  Mon, 31 Dec 2007 07:59:39 +0100
+
+fll-live-initscripts (2.0.77) unstable; urgency=low
+
+  * fix collision between dutch and norwegian cheatcodes.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 26 Dec 2007 19:50:00 +0100
+
+fll-live-initscripts (2.0.76) unstable; urgency=low
+
+  * hopefully get norgweian right this time.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 21 Dec 2007 00:50:58 +0100
+
+fll-live-initscripts (2.0.75) unstable; urgency=low
+
+  * add norwegian locale support.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 21 Dec 2007 00:32:56 +0100
+
+fll-live-initscripts (2.0.74) unstable; urgency=low
+
+  * fll-resume:
+    - improve output to console by making colourful and stripping leading
+      /dev/.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 07 Dec 2007 14:30:31 +1000
+
+fll-live-initscripts (2.0.73) unstable; urgency=low
+
+  * Import contrib/src/ati_pciids_gen.h from xserver-xorg-video-ati
+    (1:6.7.196-2).
+  * fll-resume:
+    - enhance output, avoid redetection in the case where valid configuration
+      already exists.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 06 Dec 2007 15:00:07 +1000
+
+fll-live-initscripts (2.0.72) unstable; urgency=low
+
+  * fll-resume: 1st revision.
+  * Add a real person to copyright headers.
+  * fll-cpufreq:
+    - enhance e_powersave detection
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 04 Dec 2007 21:15:57 +1000
+
+fll-live-initscripts (2.0.71) unstable; urgency=low
+
+  * update to Standards-Version 3.7.3, no changes necessary.
+  * replace ftp.au.debian.org by mirror.linux.org.au.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 03 Dec 2007 22:28:30 +0100
+
+fll-live-initscripts (2.0.70) unstable; urgency=low
+
+  * fll_fshelper:
+    - add --wanted /dev/sdxx=1 command line option to prevent inhibition of
+      removable devices from resulting fstab
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 02 Dec 2007 21:32:28 +1000
+
+fll-live-initscripts (2.0.69) unstable; urgency=low
+
+  * fll_fshelper:
+    - reinstate usb/fw /sys/block/*/device symlink test for the
+      device_is_removable() function
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 30 Nov 2007 15:12:24 +1000
+
+fll-live-initscripts (2.0.68) unstable; urgency=low
+
+  * fll_fshelper:
+    - check if partition is in %p_seen hash when parsing /proc/mounts
+    - remove usless block after checking %u_seen and %l_seen
+    - use generic /media/disk{1..n} mount point names
+    - unpack @_ in dbg function before processing its contents
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 29 Nov 2007 21:00:55 +1000
+
+fll-live-initscripts (2.0.67) unstable; urgency=low
+
+  * fll_fshelper:
+    - disable tmpfs on /tmp per default, add it to fstab commented out. Memory
+      footprint too large on constrained systems
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 28 Nov 2007 22:18:03 +1000
+
+fll-live-initscripts (2.0.66) unstable; urgency=low
+
+  * Depend on libapt-pkg-perl for fll_src_uri.
+  * fll-shell:
+    - rename fll-rootsh to fll-shell
+    - do shell-centric preseeding that was done in fll-builder here
+      (vimrc.local, $PAGER)
+  * fll-network:
+    - do kppp "noauth" fixup here, and not in fll-builder
+  * fll-xdm:
+    - set x-cursor-theme
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 25 Nov 2007 17:43:56 +1000
+
+fll-live-initscripts (2.0.65) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - add radeonhd >= 0.0.4~git20071124-1 to list of randr1.2 aware driver
+      packages
+  * fll-cpufreq:
+    - add support for VIA Esther cpufreq via e_powersaver
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 25 Nov 2007 09:59:22 +1000
+
+fll-live-initscripts (2.0.64) unstable; urgency=low
+
+  * fll_fshelper:
+    - when --install-gui option is used, use , as field seperator
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 24 Nov 2007 18:34:05 +1000
+
+fll-live-initscripts (2.0.63) unstable; urgency=low
+
+  * /etc/X11/default-display-manager requires a bogus path to start gdm
+   - /etc/bin/gdm - see debian bug #452344
+  * add comment in code for the above
+
+ -- Bernard Gray <bernard.gray@gmail.com>  Fri, 23 Nov 2007 10:28:01 +1100
+
+fll-live-initscripts (2.0.62) unstable; urgency=low
+
+  * fll_fshelper:
+    - make sure we are using the /dev/disk/by-* udev symlink for all
+      non-native, non blkid supported filesystems. We were doing it when
+      parsing /proc/mounts but not when scanning all other partitions.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 22 Nov 2007 13:06:32 +1000
+
+fll-live-initscripts (2.0.61) unstable; urgency=low
+
+  * fll-live-initscripts must depend on libfile-slurp-perl. Shuffle the names
+    around to group them better. Fixes fll-fstab for and non-X build.
+  * Fix spelling in preinst scripts.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 22 Nov 2007 09:57:35 +1000
+
+fll-live-initscripts (2.0.60) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - uncrustify (code beautification)
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 20 Nov 2007 16:31:50 +1000
+
+fll-live-initscripts (2.0.59) unstable; urgency=low
+
+  * fll-locales:
+    - discard the generic UTC fallback locale, just use the "us" settings
+    - update "ie" mirror to "ftp.ie.debian.org"
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 20 Nov 2007 09:49:52 +1000
+
+fll-live-initscripts (2.0.58) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - if vbox vga hardware is not detected, make sure to purge start of
+      guest-utils initscript
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 18 Nov 2007 21:33:24 +1000
+
+fll-live-initscripts (2.0.57) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * revert 2.0.56, we need additional changes as well.
+
+  [ Kel Modderman ]
+  * fll_xorgconfig:
+    - fix input GetOptions handling, it takes 5 key=value arguments, not 4
+  * fll-xorgconfig:
+    - add initial support for innotek VirtualBox guest extensions
+    - add inputdevice_vboxmouse template
+    - add new "noxprobe" cheatcode, to disable the detection of monitor
+      settings for legacy X drivers that do that
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 18 Nov 2007 16:51:02 +1000
+
+fll-live-initscripts (2.0.56) unstable; urgency=low
+
+  * add initial support for virtualbox-ose-guest-utils.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 17 Nov 2007 19:07:09 +0100
+
+fll-live-initscripts (2.0.55) unstable; urgency=low
+
+  * fll-xdm:
+    - set DEFAULT_DISPLAY_MANAGER_FILE when successfully registering a desktop
+      manager
+    - change order that supported desktop manager's are processed, last one
+      gets priority
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 17 Nov 2007 10:15:03 +1000
+
+fll-live-initscripts (2.0.54) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - add a CFLAGS variable to tiny Makefile
+  * fll-network:
+    - add "nonetwork" cheatcode, as per request of "nico" in forums
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 14 Nov 2007 09:29:27 +1000
+
+fll-live-initscripts (2.0.53) unstable; urgency=low
+
+  * fll_fshelper:
+    - mount a tmpfs on /tmp per default. Allows booting on systems with full
+      / partition
+    - adjust -n|--no-swap option in help output
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 12 Nov 2007 14:38:51 +1000
+
+fll-live-initscripts (2.0.52) unstable; urgency=low
+
+  * Add debian/fll-live-xorgconfig.preinst to prevent installation in
+    non-chroot environment.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 12 Nov 2007 11:19:47 +1000
+
+fll-live-initscripts (2.0.51) unstable; urgency=low
+
+  * use also param xdriver with the same meaning as xmodule
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 11 Nov 2007 11:43:56 +0100
+
+fll-live-initscripts (2.0.50) unstable; urgency=low
+
+  * fll_fshelper:
+    - set fs_passno to 0 for swap partitions
+  * fll-locales:
+    - mirror.debian.org no longer exists in /etc/apt/sources.d/, fix path
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 09 Nov 2007 20:21:18 +1000
+
+fll-live-initscripts (2.0.49) unstable; urgency=low
+
+  * Also fix readdir call to match ISO C90.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 09 Nov 2007 11:34:10 +1000
+
+fll-live-initscripts (2.0.48) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll_xserver_discover:
+    - define XSERVER_PCIIDS_DIR
+    - int printxdriver() -> char *lookup_xorg_dvr_for(), function now returns a
+      point to string that is the xorg driver to be used
+    - instead of sscanf, strip the .ids extension from current enrty->d_name
+      with strrchr plus a pointer trick
+    - add a few code comments
+    - remove extra / in filename seperator
+    - add some commented debug printf's
+    - define VGA_CLASS as 0x0300
+
+  [ Stefan Lippers-Hollmann ]
+  * include strings.h, needed for strncasecmp().
+  * fix fopen call to match ISO C90.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 09 Nov 2007 02:17:41 +0100
+
+fll-live-initscripts (2.0.47) unstable; urgency=low
+
+  * Add bin/fll_xserver_discover.c, a C port using libpci to detect VGA
+    hardware. It is currently unused. Requires pciutils-dev and zlib1g-dev.
+  * Add Build-dep of pciutils-dev and zlib1g-dev.
+  * Remove perl version of fll_xserver_discover, no longer suggest
+    discover1-data.
+  * fll-live-xorgconfig becomes arch: all, adapt debian/rules to build
+    fll_xserver_discover.
+  * Export XMODULE and not XDRIVER.
+  * Build-Dep on asciidoc and docbook, use asciidoc to convert ascii txt
+    source to troff at build time. Add xsltproc, docbook-xml and docbook-xsl
+    too.
+  * Port existing manpages to ascii text, add ascii manpage source for
+    fll_xserver_discover(8).
+  * Add ascii manpage source for fll_xorgconfig(8).
+  * fll_xorgconfig:
+    - hardcode the Screen option in Serverlayout section, save 6 lines of
+      obsolete code
+    - remove template support for Depth's 1 and 4
+    - remove the obsolete files, module and dri templates
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 06 Nov 2007 15:56:57 +1000
+
+fll-live-initscripts (2.0.46) unstable; urgency=low
+
+  * start with the lazy ass mirror selection adaption, switching to easier
+    methods through sources.list.d requires additional knowledge about
+    selected suites and components and will be dereffered just like random
+    sidux mirror selection post pre2.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 03 Nov 2007 23:04:52 +0100
+
+fll-live-initscripts (2.0.45) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - don't specify the device section to use in the screen section, the first
+      device section listed will be selected by xserver-xorg-core >= 2:1.4-3
+  * fll-xorgconfig:
+    - nv devices are falling back to vesa way too often. In this case grep the
+      boardname for 4xxx, 5xxx, 6xxx, 7xxx generation device descriptions and
+      force use of nv driver
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 01 Nov 2007 20:25:42 +1000
+
+fll-live-initscripts (2.0.44) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - my synopsis about xresprobe reporting erraticly sorted list of
+      resolutions was wrong, therefore sort_modes() has been removed
+    - take the left most resolution value that xresprobe returns as preferred
+      (this is arguable, xresprobe sometimes returns a too high mode than can
+      be preferred by a human eye) and discard any modes in the list with X or
+      Y axis values greater than that of the preferred
+  * fll_fshelper:
+    - depend on File::Slurp, use slurp to read removable attribute file that
+      udev exports to sysfs in device_is_removable() function
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 30 Oct 2007 16:45:42 +1000
+
+fll-live-initscripts (2.0.43) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - force colordepth of 16 for vesa, this helps with antiquated graphics
+      chipsets.
+  * fll_fshelper:
+    - don't include a name of tool that goes missing after live-cd in a
+      persistent configfile.
+  * fll-cpufreq:
+    - use -type & -name options to locate arch specific cpufreq dir rather
+      than -path.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 29 Oct 2007 11:15:29 +1000
+
+fll-live-initscripts (2.0.42) unstable; urgency=low
+
+  * don't depend on dctrl-tools.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 28 Oct 2007 16:01:09 +0100
+
+fll-live-initscripts (2.0.41) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - xresprobe sometimes returns a list of modes in a _non_ descending
+      order, add sanitize_modes() to combat this phenomenon. From the string
+      of probed resolutions, prefer the left most resolution, discarding all
+      other higher resolutions from the rest of the string.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 26 Oct 2007 19:15:45 +1000
+
+fll-live-initscripts (2.0.40) unstable; urgency=low
+
+  * fll_src_uri:
+    - castrate the script to bare minimum now that we have the more portable
+      sh source fetcher back
+    - get all source archive URI's, not just for dsc
+  * fll_analyze_initscripts:
+    - cleanup some variable usage
+  * fll_xorgconfig:
+    - use new $type variable in input_detect() rather than redefining $phys.
+      This allows and extra sanity check based on value of $phys.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 25 Oct 2007 16:47:49 +1000
+
+fll-live-initscripts (2.0.39) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - don't check XDISPTYPE for vertrefresh workaround
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 24 Oct 2007 22:56:07 +1000
+
+fll-live-initscripts (2.0.38) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - experiment with /dev/input/mouse for touchpad mice, this should be
+      future proof
+    - remove repeater from touchpad template, i could not find any useful
+      information about what this does
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 24 Oct 2007 22:36:33 +1000
+
+fll-live-initscripts (2.0.37) unstable; urgency=low
+
+  * fll_analyze_initscripts, fll_src_uri:
+    - remove trivial use of functions
+  * fll_xorgconfig:
+    - move 'protocol' handling into complex input_detect() function
+    - check number of args to gtf_modielines() is equal to 3
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 24 Oct 2007 21:02:37 +1000
+
+fll-live-initscripts (2.0.36) unstable; urgency=low
+
+  * fll_analyze_initscripts:
+    - support globbing in fll_init_{white,black}list
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 22 Oct 2007 17:17:23 +1000
+
+fll-live-initscripts (2.0.35) unstable; urgency=low
+
+  * Run the perl scripts through perlcritic.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 20 Oct 2007 14:09:24 +1000
+
+fll-live-initscripts (2.0.34) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - warn if vsync= was used and hardware supported xrandr style config and
+      vice versa (with xrate=)
+    - do not enable composite for ati per default
+  * fll_src_uri:
+    - fix comment about mdsums, it no longer applies
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 19 Oct 2007 09:59:38 +1000
+
+fll-live-initscripts (2.0.33) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * minor cosmetic tweaking of xrandr 1.2 refresh rate feedback.
+
+  [ Kel Modderman ]
+  * fll-xorgconfig:
+    - honour vsync= cheatcode when used in context of a randr1.2 style
+      configuration (an alias for xrate=)
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 17 Oct 2007 11:13:49 +1000
+
+fll-live-initscripts (2.0.32) unstable; urgency=low
+
+  * cosmetic adaptions for range outputs.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 16 Oct 2007 14:14:21 +0200
+
+fll-live-initscripts (2.0.31) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - fix typo when displaying maximum vertical refresh, ansi escape sequence
+      variable was missing a $
+    - add xrandr cheatcode to force use of randr style xorg.conf
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 16 Oct 2007 14:14:49 +1000
+
+fll-live-initscripts (2.0.30) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - remove xkboptions support for the useless xfce-xkb-plugin
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 16 Oct 2007 08:04:24 +1000
+
+fll-live-initscripts (2.0.29) unstable; urgency=low
+
+  * Add contrib/nv_driver_parse_G8x.awk, its a gawk script to help with
+    possible G8X nv + xrandr extension test.
+  * Add contrib/atipciids_parse_r234_hundred.awk, a gawk script to help with
+    possible r[234]00 ati + xrandr extension test.
+  * Add gawk to Build-Deps, use awk scripts in ./contrib to make a list of
+    device id's that should support xrandr extensions for required drivers.
+  * Add contrib/src/atipciids.h and  contrib/src/nv_driver.c for the gawk to
+    harvest device id's from.
+  * fll-xorgconfig:
+    - make xrate= cheatcode an alias for vsync when used in non xrandr config
+      context
+    - announce pciid based on fll_xserver_discover (XVENDOR and XDEVICE)
+    - add URL to debian site of XrandR
+    - mark a place for nv driver in xserver_has_xrandr(), we only want to
+      return true for G8X series nvidia boards
+    - pass device id (from XDEVICE) to xserver_has_xrandr() for more complex
+      checking
+    - adjust regexp for leading whitespace in x_res_probe()
+    - make sure we don't return true for xrandr test for ati devices not part
+    of r200/r300/r400 device id family
+  * fll_xserver_discover:
+    - print out device and vendor id
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 15 Oct 2007 20:57:13 +1000
+
+fll-live-initscripts (2.0.28) unstable; urgency=low
+
+  * actually use the newly set lower limits for CRTs, don't only display
+    the new values, thanks to kelmo for noticing.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 15 Oct 2007 02:36:38 +0200
+
+fll-live-initscripts (2.0.27) unstable; urgency=low
+
+  * set 73 Hz minimum vertical frequency for CRTs capable of it (gets rounded
+    to 75 Hz, conforming to VESA and DIN 66'234).
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 15 Oct 2007 02:17:32 +0200
+
+fll-live-initscripts (2.0.26) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - stop treating all ps/2 and USB mice as IMPS/@ protocol explicitly, this
+      caused ExplorerPS/2 imput devices to go mad. Instead, attempt to allow
+      xserver to do the right thing by using the auto protocal in all places
+      we were hardcoding IMPS/2
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 14 Oct 2007 23:59:39 +1000
+
+fll-live-initscripts (2.0.25) unstable; urgency=low
+
+  * disable nodeadkeys for german keyboard layouts, it breaks virtualbox in
+    combination with X.org 7.3.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 13 Oct 2007 14:33:40 +0200
+
+fll-live-initscripts (2.0.24) unstable; urgency=low
+
+  * fixed typo
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Sat, 13 Oct 2007 00:08:18 +0200
+
+fll-live-initscripts (2.0.23) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - more scrutiny over what we accept as valid values for handler and phys
+      fields while parsing /proc/bus/input/devices
+  * fll-cpufreq:
+    - fix cpufreq module/regexp detection for archs != x86_64
+  * fll-network:
+    - filter out devices with type != 1 in detect_netdevs()
+  * fll-init:
+    - check blacklist before adding extra data to it
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 11:47:29 +1000
+
+fll-live-initscripts (2.0.22) unstable; urgency=low
+
+  * Use curly braces in awk if/else if block in fll_cp_with_perc()
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 08:18:19 +1000
+
+fll-live-initscripts (2.0.21) unstable; urgency=low
+
+  * fll-cpufreq:
+    - do write cpufreq module to /etc/modules, but this time, manage what is
+      written to avoid adding spurious modules to the list. Especially when in
+      persistent mode, but using different hardware
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 11 Oct 2007 20:42:06 +1000
+
+fll-live-initscripts (2.0.20) unstable; urgency=low
+
+  * Fix poor grammar in debian/copyright.
+  * Purge fll-EXAMPLE, we have enough of them now.
+  * fll_analyze_initscripts.1:
+    - remove ref to --apply option, it was unused, and now absent.
+  * fll-cpufreq:
+    - do not write cpufreq module to /etc/modules, this is annoying with
+      persistency. If this turns out to be painful, we may be better served
+      hacking the cpufrequtils package initscript into something useable
+  * fll-network:
+    - refactor netdev detection into simple shell function, get rid of perl
+      heavyweight
+    - split out code that writes to e/n/i, we may use it for alternative
+      routines later
+    - move check for existing config out of write_dhcp_to_eni to loop that
+      forks the link probe
+    - write a new /e/n/i on each boot, we may provide a persistent hook in the
+      future
+    - extend write_dhcp_to_eni to accept auto|allow-hotplug as first arguments
+    - don't do anything if network-manager is installed
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 11 Oct 2007 18:41:38 +1000
+
+fll-live-initscripts (2.0.19) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * fix typo.
+
+  [ Kel Modderman ]
+  * fll_xserver_discover:
+    - nitpicking, get rid of (rev ...) even when the rev contains mixed
+      letters/numbers
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 11 Oct 2007 08:12:15 +1000
+
+fll-live-initscripts (2.0.18) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll-init.default: s/whitelist/blacklist/.
+  * fll_analyze_initscripts:
+    - make sure we don't process an initscript name as a package when it turns
+      out to be wrong/missing
+    - fix up parsing of whitelisted initscript names.
+
+  [ Stefan Lippers-Hollmann ]
+  * small shifting between depends/ recommends/ suggests.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 10 Oct 2007 21:51:59 +0200
+
+fll-live-initscripts (2.0.17) unstable; urgency=low
+
+  * fll_analyze_initscripts:
+    - add ability to process white and black lists, of either package or
+      initscripts names (even mixed).
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 10 Oct 2007 21:03:22 +1000
+
+fll-live-initscripts (2.0.16) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - remove bashism's, use dash
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 09 Oct 2007 22:42:03 +1000
+
+fll-live-initscripts (2.0.15) unstable; urgency=low
+
+  * Add fll_src_ui to fll-live-initscripts binary package.
+  * Run perltidy over perl scripts.
+  * Use the 'use autoload' pragma for all perl scripts with dbg function.
+  * fll_src_uri:
+    - adjust to more suitable defaults for slh. Don't tar nor cleanup
+      source package tree unless expicitly asked to
+    - add dgb function
+  * fll_fshelper:
+    - syntax cleanup, use round brackets to surroud function arguments
+  * fll_xorgconfig
+    - fairly invasive syntax cleanup
+  * fll_xserver_discover:
+    - fix typo in comment
+    - remove large if block around lspci lookup
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 09 Oct 2007 21:00:51 +1000
+
+fll-live-initscripts (2.0.14) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * update syntax for Vcs headers in debian/control
+
+  [ Kel Modderman ]
+  * Add fll_src_uri, a tool to make a list of src package dsc URI's or fetch a
+    bunch of src packages given a list of dsc URI's. We don't use it yet, but
+    we may use it in the build process in the future.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 08 Oct 2007 14:43:08 +1000
+
+fll-live-initscripts (2.0.13) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - when xmodule= cheatcode is used, do the xresprobe probe with that module
+      as argument too, as this is almost always used to force the vesa driver
+    - don't define XKBVARIANT for specific languages here, that is the job of
+      fll-locales
+    - add note above $XDEPTH handling that x_res_probe may also export this
+      variable (xresprobe "depth:" field).
+    - add rate and mode cheatcode aliases
+  * fll-locales:
+    - add XKBVARIANT variable support
+    - cleanup fll-locales.default, improve comments, remove defunct KDEKEYBOARDS
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 07 Oct 2007 12:27:00 +1000
+
+fll-live-initscripts (2.0.12) unstable; urgency=low
+
+  * fll_fshelper:
+    - use Cwd::realpath to return the canonical pathnames rather than readlink
+      system call capturned in backticks
+    - improve dbg output in device_is_removable test
+  * fll_xorgconfig:
+    - cleanup --composite post-processing
+    - forget about passing hash ref to input_detect
+    - allow 15 as --colordepth argument
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 06 Oct 2007 15:15:59 +1000
+
+fll-live-initscripts (2.0.11) unstable; urgency=low
+
+  * fll_xorgconfig:
+    - move XkbOptions to last position in inputdevice_keyboard section
+      template
+    - no longer provide fallbacks for vendorname and boardname
+  * fll_xserver_discover:
+    - remove device counting stuff
+    - don't slurp pci.ids lists, just open and process line-by-line
+  * fll_fshelper:
+    - provide --verbose alias to --debug
+  * fll-xorgconfig:
+    - add xkboptions= cheatcode handling
+    - add convenient xkboptions when xfce4-xkb-plugin is installed
+  * fll-locales:
+    - fix default xkblayout for de_CH
+    - merge KDEKEYBOARDS and XKBLAYOUT (delete single entry XKBLAYOUT,
+      s/KDEKEYBOARDS/XKBLAYOUT/)
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 05 Oct 2007 15:39:52 +1000
+
+fll-live-initscripts (2.0.10) unstable; urgency=low
+
+  * fll_xorgconfig: brown paper bag error, don't quote fallback Generic USB
+    Mouse InputDevice Identifier.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 04 Oct 2007 10:34:10 +1000
+
+fll-live-initscripts (2.0.9) unstable; urgency=low
+
+  * fll_xorgconfig: don't wrap serial mouse name in quotation marks either.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 04 Oct 2007 08:25:39 +1000
+
+fll-live-initscripts (2.0.8) unstable; urgency=low
+
+  * Move hwinfo to Recommends.
+  * fll_xserver_discover:
+    - remove $type and $driver, they are unused as well as deprecated now
+    - cleanup use of print when displaying shell variables to stdout
+    - put all processing of pci sysfs string into function, in case we want to
+      account for > 1 VGA device in future
+  * fll_xorgconfig:
+    - merge fll_xinput_discover functionality
+    - add --serial-mouse cli option
+    - take care to strip quotation marks from mouse name
+  * fll-xorgconfig:
+    - adapt for merge of fll_xinput_discover into fll_xorgconfig
+  * fll-hwsetup:
+    - adjust for conditional use of hwinfo.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 03 Oct 2007 21:06:18 +1000
+
+fll-live-initscripts (2.0.7) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - export File::Slurp functions, use the slurp alias to alow for easier
+      future adaptation
+    - a few cleanups
+  * fll_xorgconfig:
+    - syntax cleanups
+  * fll_xinput_discover:
+    - name the extra imps2 mouse entry "Generic IMPS/2 Mouse"
+  * fll-xorgconfig:
+    - do not source /lib/init/vars.sh, we don't really have a verbose option,
+      only a debug option
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 02 Oct 2007 20:39:37 +1000
+
+fll-live-initscripts (2.0.6) unstable; urgency=low
+
+  * fll_xserver_discover:
+    - deprecate method of VGA device detection via discover1-data, drop
+      dependency on discover1-data
+    - use /usr/share/xserver-xorg/pci/*.ids to identify xserver module that
+      supports VGA device
+    - depend on File::Slurp, read_dir is used now, remove locsmif's emulator
+    - add basic cli options for debug and force use of discover1-data
+    - use PCI bus address from sysfs string, rather than another lspci lookup
+    - do not print vendor name, no point, it is the first part of the board
+      name
+    - activate warnings against locsmif's advice, forcing some coding style
+      choices
+  * fll_xorgconfig:
+    - merge ps2 and usb templates into imps2 template
+    - remove @@VENDORNAME@@ token, not required/handled anymore
+  * fll_xinput_discover:
+    - adjust to merged ps2/usb template
+    - don't output more than one device of type imps2 to fll_xorgconfig, that
+      would cause a pointer device conflict
+  * fll-xorgconfig:
+    - remove ref to XVENDORNAME, print XBOARDNAME on own line
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 02 Oct 2007 10:53:45 +1000
+
+fll-live-initscripts (2.0.5) unstable; urgency=low
+
+  * fll_xinput_discover:
+    - really enable usb workaround, forgot to prepend --input to Generic USB
+      mouse workaround
+    - add input_priority function -> input device priority sorting algorithm
+      that ensures CorePointer is elected to a device type that is most likely
+      to not be removed.
+  * fll_xorgconfig:
+    - reinstate support for Virtual, even if only for my own good
+    - enhance debug output
+    - simplify handling of $protocol for usb/ps2 and synaptics/alps, both
+      pairs are handled identically
+    - sort $x{mouse} keys numerically
+    - remove need for --composite option to require boolean as argument
+    - reinstate display subsections for depths 1, 4 and 15
+  * fll-xorgconfig:
+    - source /lib/init/vars.sh for VERBOSE variable
+    - use VERBOSE to enable program output, fix use of VERBOSE
+  * fll_fshelper:
+    - fix help output for -d|--debug option
+    - don't bother making backup for once only write
+    - no need to explicitly truncate file
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 01 Oct 2007 20:45:11 +1000
+
+fll-live-initscripts (2.0.4) unstable; urgency=low
+
+  * make workaround more clear.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 30 Sep 2007 11:00:00 +1000
+
+fll-live-initscripts (2.0.3) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - prune some unused cheatcodes
+    - enhance output when probing with xresprobe
+  * fll_xinput_discover:
+    - simplify CorePointer election
+    - add a usb mouse "bogus" detection when no usb device is detected, by
+    electing a CorePointer, we somehow lose the ability for a usb input device
+    to be hotplugged later
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 30 Sep 2007 10:57:05 +1000
+
+fll-live-initscripts (2.0.2) unstable; urgency=low
+
+  * remove hardcoded CorePointer/ SendCoreEvents references for pointing devices.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 29 Sep 2007 12:31:18 +0200
+
+fll-live-initscripts (2.0.1) unstable; urgency=low
+
+  * fll-xorgconfig: fix typo when announcing detected resolution.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 29 Sep 2007 19:04:28 +1000
+
+fll-live-initscripts (2.0.0) unstable; urgency=low
+
+  * Bump major version number.
+  * fll-xorgconfig:
+    - fix ansi output when announcing XrandR mode
+    - just announce the highest res detected by xresprobe
+    - fix mga xrandr1.2 support package version
+    - turn composite on for ati and intel drivers
+  * fll_xorgconfig:
+    - elect serial mouse as "CorePointer" in ServerLayout section
+    - don't elect CorePointer or SendCoreEvents in ServerLayout section at
+    all, just elect the device
+    - change --input API, mandatory 4 arguments,
+    corepointer={CorePointer,SendCoreEvents} must be given.
+    - remove duplicate "CoreKeyboard" from ServerLayout section, it is defined
+    in the "Keyboard0" section too
+    - append mouse number to name, not prepend (looks a bit better)
+    - remove support for --nowheel, we don't use it
+    - add a bunch of code comments
+    - cleanup the screen template, removing rarely used Display sections of
+    depth 1 and 4
+    - fix name of tool in heading template
+    - add --composite option
+  * fll_xinput_discover:
+    - readjust logic, detect and put all input devices into XINPUT
+    - always attempt to probe proc
+    - count %input keys before probing with hwinfo
+    - assign a corepointer, logic is very basic, it will select first
+    non-removable input device detected to be corepointer
+    - if only one input device is detected, make it the CorePointer no matter
+    what type it may be
+    - hwinfo method now only detects serial input device
+    - add a bunch of code comments
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 29 Sep 2007 17:48:58 +1000
+
+fll-live-initscripts (1.99.08) unstable; urgency=low
+
+  * fll-xorgconfig:
+    - typo in XNEWMODULE cheatcode verbosity
+    - move hwinfo serial mouse detection layer to fll_xinput_discover
+    - honor xmouse=serial|smouse cheatcode by passing --serial to
+    fll_xinput_discover
+    - reenable extensions section, it is required to turn composite on/off
+  * fll_xinput_discover:
+    - provide fallback detection method via hwinfo when no input devices
+    present in /proc/bus/input/devices
+    - filter ps2 and usb mice from XINPUT output, the Xserver will
+    autoconfigure them.
+    - add handling for 'debug' as first argument
+    - allow forced probe of serial devices via --serial cli option
+    - add getopt handling for debug and serial cli options
+  * fll_xorgconfig:
+    - do not push coretype to ServerLayout section for all types but
+    alps/synaptics touchpads and serial
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 28 Sep 2007 13:42:51 +1000
+
+fll-live-initscripts (1.99.07) unstable; urgency=low
+
+  * add workaround to detect serial mice.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 27 Sep 2007 21:57:33 +0200
+
+fll-live-initscripts (1.99.06) unstable; urgency=low
+
+  * fix hsync/ vsync overrides.
+  * enhance override verbosity.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 27 Sep 2007 18:05:25 +0200
+
+fll-live-initscripts (1.99.05) unstable; urgency=low
+
+  * fix typo.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 27 Sep 2007 15:02:36 +0200
+
+fll-live-initscripts (1.99.04) unstable; urgency=low
+
+  * fll-xorgconfig: use the lsb init functions, make alot of output.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 27 Sep 2007 22:06:40 +1000
+
+fll-live-initscripts (1.99.03) unstable; urgency=low
+
+  * Add noxrandr cheatcode
+  * Handle xmodule= cheatcode slightly different, still do x_res_probe with
+    detected module as argument.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 27 Sep 2007 17:19:35 +1000
+
+fll-live-initscripts (1.99.02) unstable; urgency=low
+
+  * Make modeline regexp slightly more readable.
+  * Only drop hz marker from Modelines in legacy type configs.
+  * Seperate --rate from --mode, allow the options to be used individually.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 27 Sep 2007 08:04:47 +1000
+
+fll-live-initscripts (1.99.01) unstable; urgency=low
+
+  * drop Hz marker from gtf lines.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 26 Sep 2007 21:12:40 +0200
+
+fll-live-initscripts (1.99.00) unstable; urgency=low
+
+  * Add fll-live-xorgconfig stuff
+    - bin/fll_mkxorgconfig - make /etc/X11/xorg.conf
+    - bin/fll_xserver_discover - detect required Xorg driver
+    - debian/fll-live-initscripts-xorg.fll-xorgconfig.init
+    - share/fll_mkxorgconfig/templates/*
+  * bin/fll_xserver_discover:
+    - add BusID detection
+    - strip perl tips from comments
+  * fll-hwsetup: castrate all mkxf86config related crap.
+  * fll-xorgconfig: initial cheatcode parsing.
+  * Add bin/fll_xinput_discover.
+  * Add xresprobe parsing code, prepare for upload.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 26 Sep 2007 12:55:44 +1000
+
+fll-live-initscripts (1.2.10) unstable; urgency=low
+
+  * bin/fll_fshelper:
+    - don't depend on ata_id
+    - syntax cleanups
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 23 Sep 2007 20:23:12 +1000
+
+fll-live-initscripts (1.2.9) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * add VCS control headers.
+
+  [ Horst Tritremmel ]
+  * GraphicalTheme and GraphicalThemedColor removed from setup_gdm
+    function in fll-live-initscripts.fll-xdm.init. Is now part from
+    dsktop-defaults
+
+ -- Horst Tritremmel <hjt@users.berlios.de>  Wed, 19 Sep 2007 09:23:57 +0200
+
+fll-live-initscripts (1.2.8) unstable; urgency=low
+
+  * fll_analyzw_initscripts is in /usr/bin (not /usr/sbin)
+  * as above (I missed an entry)
+
+ -- Bernard Gray <bernard.gray@gmail.com>  Wed, 29 Aug 2007 10:42:35 +1000
+
+fll-live-initscripts (1.2.7) unstable; urgency=low
+
+  * fll-xdm: introduce get_init_seq_num() funtion to lookup runlevel sequence
+    start + stop numbers from squashfs chroot before reconfiguring our desktop
+    managers for init 5 start only.
+  * fll-xdm: accept only 2 args to get_init_seq_num(), hardcode usage of the
+    essential mawk.
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 28 Aug 2007 16:39:25 +1000
+
+fll-live-initscripts (1.2.6) unstable; urgency=low
+
+  * fll_fshelper: remove --no-id option, simplify ata/scsi id detection.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 26 Aug 2007 23:00:32 +1000
+
+fll-live-initscripts (1.2.5) unstable; urgency=low
+
+  * fll_fshelper: use device node symlinks from udev to determine ata/scsi
+    disk id's for free, rather than calling ata_id.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 26 Aug 2007 22:47:52 +1000
+
+fll-live-initscripts (1.2.4) unstable; urgency=low
+
+  * fll_fshelper: cleanup MOUNTS loop.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 26 Aug 2007 10:07:08 +1000
+
+fll-live-initscripts (1.2.3) unstable; urgency=low
+
+  * fll_fshelper: optimize usage of ata_id.
+  * fll_fshelper: enhance MOUNTS loop.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 25 Aug 2007 21:35:20 +1000
+
+fll-live-initscripts (1.2.2) unstable; urgency=low
+
+  * fll-fshelper was renamed...
+
+ -- Joaquim Boura <x-un-i@berlios.de>  Fri, 24 Aug 2007 20:41:37 +0200
+
+fll-live-initscripts (1.2.1) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * revert r10116 and r10117 and make window manager selection more robust
+    (again).
+
+  [ Kel Modderman ]
+  * Merge fll-fshelper functionality in form of bin/fll_fshelper.
+  * Restructure top lovel files into bin/, lib/, man/ directories.
+  * Add preinst with chroot check from udev/initramfs-tools. Package will fail
+    to install in any system != chroot.
+  * fll-fstab.init: update for /usr/sbin/fll_fshelper.
+  * fll_fshelper: modularise ata_id usage.
+  * fll_fshelper: no need to specify auto mount option when defaults is used.
+  * fll_fshelper: improve MOUNTS loop.
+  * fll-fstab.init: use --no-id option of fll_fshelper for live boot, faster.
+  * fll_fshelper.8: update for --no-id, remove --no-swap short option.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 24 Aug 2007 20:30:31 +1000
+
+fll-live-initscripts (1.2.0) unstable; urgency=low
+
+  * use fll-fshelper.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 22 Aug 2007 15:52:54 +0200
+
+fll-live-initscripts (1.1.25) unstable; urgency=low
+
+  [ Stefan Lippers-Hollmann ]
+  * document default behaviour in case no desktop= cheatcode is given (r9775).
+
+  [ Kel Modderman ]
+  * fll-locales: attempted optimisation of expensive call to dpkg-reconfigure
+    of locales package. Use cli options to dpkg-reconfigure instead of leading
+    variables, and use --no-load to avoid reloading/checking package
+    templates.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 13 Aug 2007 00:18:26 +1000
+
+fll-live-initscripts (1.1.24) unstable; urgency=low
+
+  * prefer kde/ gnome in favour of xfce's broken priority.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 07 Aug 2007 13:30:32 +0200
+
+fll-live-initscripts (1.1.23) unstable; urgency=low
+
+  * fll-network: s/dchp/dhcp/, thanks to sigfri for spotting.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 06 Aug 2007 11:12:26 +1000
+
+fll-live-initscripts (1.1.22) unstable; urgency=low
+
+  * fll-network, fll-fstab: start at sequence number 34.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 02 Aug 2007 15:23:23 +1000
+
+fll-live-initscripts (1.1.21) unstable; urgency=low
+
+  * fll-hwsetup: better sanity check to decide if we are in fact going to
+    configure X11.
+  * fll-init:
+    - renamed fll-init-top to fll-init
+    - provide /etc/default/fll-init, this will be created at build time and
+      used by fll-live-initramfs to configure runlevel configuration
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 30 Jul 2007 22:41:45 +1000
+
+fll-live-initscripts (1.1.20) unstable; urgency=low
+
+  * fll-adduser: disable lastlog for autologin on console.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 27 Jul 2007 08:22:26 +1000
+
+fll-live-initscripts (1.1.19) unstable; urgency=low
+
+  * fll-network: stick with networking stuff, don't play arounf with
+    /etc/adjtime.
+  * fll-locales: start hwclock in set_timezone() as an experiment.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 12 Jul 2007 14:45:26 +1000
+
+fll-live-initscripts (1.1.18) unstable; urgency=low
+
+  * fll-locales: handle ll_CC lang= cheatcodes. This allows languages to be
+    used in arbitary demographic environments. Thanks to baldyeti for the
+    patch. http://sidux.com/PNphpBB2-viewtopic-t-3966.html
+  * fll-locales: make sure string given to awk's tolower is quoted.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 09 Jul 2007 10:03:24 +1000
+
+fll-live-initscripts (1.1.17) unstable; urgency=low
+
+  * fix xsession definitions.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 07 Jul 2007 20:25:10 +0200
+
+fll-live-initscripts (1.1.16) unstable; urgency=low
+
+  * fix access rights for ${FLL_LIVE_USER}.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 07 Jul 2007 18:02:35 +0200
+
+fll-live-initscripts (1.1.15) unstable; urgency=low
+
+  * add IceWM support.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 07 Jul 2007 15:02:19 +0200
+
+fll-live-initscripts (1.1.14) unstable; urgency=low
+
+  [ Kel Modderman ]
+  * fll-network: forget about ntpdate workarounds, zero /etc/adjtime before
+    starting networking to prevent clock slew adjustment from causing X to
+    blank.
+
+  [ Stefan Lippers-Hollmann ]
+  * fix alternatives selection for fluxbox.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 07 Jul 2007 13:55:11 +0200
+
+fll-live-initscripts (1.1.13) unstable; urgency=low
+
+  * fll-init-tail: removed, didn't do anything useful.
+  * fll-reboot: add -h option to halt to sync drives that need that.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 06 Jul 2007 08:19:23 +1000
+
+fll-live-initscripts (1.1.12) unstable; urgency=low
+
+  * fll-network: mostly revert patch that inhibited ntpdate, but disable
+    ntpdate via a cheatcode (nontp) for now.
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 03 Jul 2007 22:29:55 +1000
+
+fll-live-initscripts (1.1.11) unstable; urgency=low
+
+  * fll-locales: introduce utc=yes cheatcode that will retain debian's default
+    of UTC=yes in /etc/default/rcS while still allowing TZ selection.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 02 Jul 2007 19:13:16 +1000
+
+fll-live-initscripts (1.1.10) unstable; urgency=low
+
+  * fll-network: revert to sleep of 2 seconds before ifplugstatus link
+    detection.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 28 Jun 2007 10:17:40 +1000
+
+fll-live-initscripts (1.1.9) unstable; urgency=low
+
+  * fll-network: remove executable bit from /etc/network/if-up.d/ntpdate to
+    avoid funky problems associated with touching the clock. X often blanks
+    itself just after logging into KDE, for example.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 27 Jun 2007 08:16:00 +1000
+
+fll-live-initscripts (1.1.8) unstable; urgency=low
+
+  * fll-cpufreq: no longer tamper with /etc/powersave/*, add cpufreq module to
+    /etc/modules instead.
+  * fll-locales: add kb field to locale headers that are parsed by sed for
+    list argument. Output is install-gui friendly, and we only used sed once!
+  * fll-network: try settling for one second rather than two when detecting
+    link beat.
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 26 Jun 2007 17:34:32 +1000
+
+fll-live-initscripts (1.1.7) unstable; urgency=low
+
+  * Allow flldebug= debug aid to be fll-'less. For example, to debug
+    fll-cpufreq use flldebug=cpufreq.
+  * fll-network: fork child processes to do link beat detection on all
+    detected ethernet devices in parallel. Wait for them to return before
+    continuing.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 25 Jun 2007 17:18:49 +1000
+
+fll-live-initscripts (1.1.6) unstable; urgency=low
+
+  * Test for existance of /proc/cmdline in all initscripts before attempting
+    to parse it.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 18 Jun 2007 20:19:10 +1000
+
+fll-live-initscripts (1.1.5) unstable; urgency=low
+
+  * Added more comments and largely revised code. Requested by kelmo: the
+    script will finish its tasks, but exit with exit code 1 if it can't report
+    info on one or more of the services passed on the commandline.
+
+ -- Michiel de Boer <sidux@rebelhomicide.demon.nl>  Mon, 18 Jun 2007 04:03:57 +0200
+
+fll-live-initscripts (1.1.4) unstable; urgency=low
+
+  * fll-rootsh: create /root/.hushlogin.
+  * Change fll-hwsetup and fll-cpufreq to sequence level 80.
+  * fll-locales: allow script to run in installed mode when FLL_LANG in
+    present in environment, not just when "${1}" = "localize".
+  * fll-locales: remove FLL_LANG=* as possible argumemnt to script.
+  * fll-locales: redifine log_*() functions to be no-op when called with
+    localize argument.
+  * fll-locales: cleanup of locale table.
+  * fll-locales: add "list" argument handling to display list of supported
+    locales via sed regular expression harvest of itself.
+  * fll-locales: update usage.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 17 Jun 2007 20:40:22 +1000
+
+fll-live-initscripts (1.1.3) unstable; urgency=low
+
+  * fll-locales: when "${1}" = "localize" allow script to run in installed
+    mode.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 17 Jun 2007 09:46:39 +1000
+
+fll-live-initscripts (1.1.2) unstable; urgency=low
+
+  * fll-locales: remove spurios '.' from FLL_LANG arg handling.
+  * fll-locales: use only primary mirrors. enhance sources.list substitution
+    for primary mirrors.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 16 Jun 2007 23:49:23 +1000
+
+fll-live-initscripts (1.1.1) unstable; urgency=low
+
+  * fll-locales: call save_locale_variables for localize target.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 16 Jun 2007 22:19:58 +1000
+
+fll-live-initscripts (1.1.0) unstable; urgency=low
+
+  * fll-locales: many enhancements and bugfixes
+    - remove LANGUAGE default, the case construct handles that
+    - allow FLL_LANG environment variable to trump all, allowing fll-locales
+      to be useful for fll-installer
+    - add MIRROR variable for all supported languages, do a sources.list
+      substitution
+    - allow lang=gr to select greek language profile
+    - allow lang=si to select slovenian language profile
+    - fix CD_VARIANT_PATH calculation, substitute spaces and brackets for
+      underscores
+    - rewrite save_locale_variables() to use a for loop that operates on a
+      list of variables
+    - use Etc/UTC and not UTC as fall back timezone.
+  * fll-locales.default: add MIRROR variable.
+  * fll-locales: split do_start() into specific parts for locales, timezone
+    and sources list localisation. Add a special "localize" argument handling
+    to script to allow installer to only execute what it needs -> locales
+    settings.
+  * fll-hwsetup: do not bother announcing sound card label, who really
+    cares to know that when we can save a second or two at bootup.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 16 Jun 2007 20:34:34 +1000
+
+fll-live-initscripts (1.0.76) unstable; urgency=low
+
+  * Start fll-hwestup later, at sequence 90.
+  * fll-hwsetup: remove pcmciautils related garbage.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 16 Jun 2007 00:05:32 +1000
+
+fll-live-initscripts (1.0.75) unstable; urgency=low
+
+  * fll-fstab.init: no longer handle swap mounting, let
+    /etc/init.d/mountall.sh do that now that it has been whitelisted.
+  * fll-fstab.init: execute at sequence level 30, before mountall.sh is.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 14 Jun 2007 17:03:59 +1000
+
+fll-live-initscripts (1.0.74) unstable; urgency=low
+
+  * fll-hwsetup.init: just test for /dev/input/mice for gpm start
+    criterion.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 10 Jun 2007 22:52:10 +1000
+
+fll-live-initscripts (1.0.73) unstable; urgency=low
+
+  * fll-locales.init: clean up TZ handling.
+  * fll-hwsetup: don't announce mouse detection, who really cares anyway.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 10 Jun 2007 22:13:52 +1000
+
+fll-live-initscripts (1.0.72) unstable; urgency=low
+
+  * Skip devices with phy80211 sysfs attribute, they are mac80211 supported
+    devices that we cannot appropriately autoconfigure.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 09 Jun 2007 15:36:44 +1000
+
+fll-live-initscripts (1.0.71) unstable; urgency=low
+
+  * Bugfix: our console-data preseeding has been long broken, each individual
+    debconf communication must be parsed individually. Do this in a for loop.
+  * Use console-data postinst to install keymap. Slightly less pretty, alot
+    more comfortable.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 07 Jun 2007 20:43:21 +1000
+
+fll-live-initscripts (1.0.70) unstable; urgency=low
+
+  * fll_analyze_initscripts.1: fix typo, s/croot/chroot/.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 04 Jun 2007 23:43:03 +1000
+
+fll-live-initscripts (1.0.69) unstable; urgency=low
+
+  * fll-adduser: add hack_sudoers(), from fll-builder.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 04 Jun 2007 22:45:33 +1000
+
+fll-live-initscripts (1.0.68) unstable; urgency=low
+
+  * fll-hwsetup: don't purge alsa-utils when hwinfo fails to identify a sound
+    device.
+  * fll-reboot: make "System halted" string green, to stand out against the
+    yellow prompt to remove cd.
+  * fll_login: ensure we are user friendly while creating ~/.hushlogin.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 04 Jun 2007 18:35:34 +1000
+
+fll-live-initscripts (1.0.67) unstable; urgency=low
+
+  * remove auto-login grace period for kdm.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 04 Jun 2007 12:59:09 +1000
+
+fll-live-initscripts (1.0.66) unstable; urgency=low
+
+  * fll-adduser: FLL_LIVE_USER_HOME cannot be determined before the user is
+    created. This caused the .bashrc hack to fail.
+  * Use dash to execute fll-* init scripts, depend on dash.
+
+ -- Kel Modderman <kel@otaku42.de>  Mon, 04 Jun 2007 00:28:32 +1000
+
+fll-live-initscripts (1.0.65) unstable; urgency=low
+
+  * fll-cpufreq: don't allow restart|force-reload.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 23:28:01 +1000
+
+fll-live-initscripts (1.0.64) unstable; urgency=low
+
+  * remove transitional package for initscripts-sidux-live.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Jun 2007 15:24:12 +0200
+
+fll-live-initscripts (1.0.63) unstable; urgency=low
+
+  * fll-desktop: allow script to accept desktop names as arguments, and
+    facilitate the x-window-manager update. We can revive restartx/desktop
+    chooser via this.
+  * fll-xdm: delay login by 3 secs again, 1 sec looked glitchy, but 0 doesn't
+    show wallapaper . . .
+  * fll-cpufreq: fix typo in NAME.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 23:18:17 +1000
+
+fll-live-initscripts (1.0.62) unstable; urgency=low
+
+  * fll-adduser: drop hack_live_user_files().
+  * fll_login: create ~/.hushlogin.
+  * fll-rootsh: no need to create .hushlogin here.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 21:48:40 +1000
+
+fll-live-initscripts (1.0.61) unstable; urgency=low
+
+  * upload to sidux.com.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 13:40:08 +0200
+
+fll-live-initscripts (1.0.60) unstable; urgency=low
+
+  * fll-xdm: reduce kdm autologin delay to one second.
+  * fll-reboot: make eject prompt colourful again, this time in yellow.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 21:16:11 +1000
+
+fll-live-initscripts (1.0.59) unstable; urgency=low
+
+  * fll-locales: store all of the console-data variables.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 21:06:06 +1000
+
+fll-live-initscripts (1.0.58) unstable; urgency=low
+
+  * fll-locales: store LANGUAGE cheatcode.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 20:38:25 +1000
+
+fll-live-initscripts (1.0.57) unstable; urgency=low
+
+  * fll-adduser: remove compat. code for rsync'ing etc/skel contents for
+    pre-created live user.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 20:33:45 +1000
+
+fll-live-initscripts (1.0.56) unstable; urgency=low
+
+  * fll-hwsetup: depend on fll-locales to have already been started.
+  * fll-locales: store all determined variables except for lang in
+    /etc/defaul/fll-locales.
+  * fll-locales.default: don't store default values here.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 18:09:42 +1000
+
+fll-live-initscripts (1.0.55) unstable; urgency=low
+
+  * fll-locales: store external settings in /etc/default/fll-locales.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 17:49:09 +1000
+
+fll-live-initscripts (1.0.54) unstable; urgency=low
+
+  * Depend on hwinfo.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 17:14:26 +1000
+
+fll-live-initscripts (1.0.53) unstable; urgency=low
+
+  * fll-hwsetup: add bluetooth detection via hwinfo.
+  * fll-hwsetup: attempt sound and printer detection in same manner as
+    bluetooth.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 17:11:05 +1000
+
+fll-live-initscripts (1.0.52) unstable; urgency=low
+
+  * fll-hwsetup: really remove volume handling.
+  * fll-xdm: try adding 3 second delay to kdm autologin in an attempt to
+    expose desktop background.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 16:20:49 +1000
+
+fll-live-initscripts (1.0.51) unstable; urgency=low
+
+  * fll-network, fll-adduser: output adjustments.
+  * fll-hwsetup: remove volume handling.
+  * fll-hwsetup: remove some comments.
+  * fll-adduser: mark function for removal when user is no longer made at
+    build time.
+  * fll-hwsetup: check for pcmcia_core.
+  * fll-hwsetup: let alsa handle sound, hwsetup doesn't do that anymore.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 16:16:39 +1000
+
+fll-live-initscripts (1.0.50) unstable; urgency=low
+
+  * fll-hwsetup: fix typo, /etc/default not /etc/defaults.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 13:28:23 +1000
+
+fll-live-initscripts (1.0.49) unstable; urgency=low
+
+  * fll-hwsetup: move to sequence position 35.
+  * fll-hwsetup: add pcmcia detection, manage pcmciautils init script.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 13:00:05 +1000
+
+fll-live-initscripts (1.0.48) unstable; urgency=low
+
+  * fll-init-tail: move to runlevel S. Keep the default runlevels as debian
+    servcies only.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 12:36:50 +1000
+
+fll-live-initscripts (1.0.47) unstable; urgency=low
+
+  * Add fll-init-tail.
+  * fll-init-top: remove printk stuff.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 12:34:46 +1000
+
+fll-live-initscripts (1.0.46) unstable; urgency=low
+
+  * fll_login: revert last change.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 12:27:01 +1000
+
+fll-live-initscripts (1.0.45) unstable; urgency=low
+
+  * fll_login: add ugly redirect to inhibit pam messages.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 11:57:19 +1000
+
+fll-live-initscripts (1.0.44) unstable; urgency=low
+
+  * fll-adduser: fix output.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 11:20:11 +1000
+
+fll-live-initscripts (1.0.43) unstable; urgency=low
+
+  * fll-adduser: fix typo.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 11:05:10 +1000
+
+fll-live-initscripts (1.0.42) unstable; urgency=low
+
+  * fll-adduser: adapt for creation of live user by fll-builder, as that is
+    the current default behaviour.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 10:47:15 +1000
+
+fll-live-initscripts (1.0.41) unstable; urgency=low
+
+  * Really purge all initscripts-sidux-live from packaging.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 10:14:20 +1000
+
+fll-live-initscripts (1.0.40) unstable; urgency=low
+
+  * Remove legacy initscripts-sidux-life stuff, turn it into a dummy
+    transitional package.
+  * Fix apply option of fll_analyze_runlevels.
+  * alsa-utils runs before fll-hwesetup.
+
+ -- Kel Modderman <kel@otaku42.de>  Sun, 03 Jun 2007 10:12:58 +1000
+
+fll-live-initscripts (1.0.39) unstable; urgency=low
+
+  * Keep quiet when quiet is found in /proc/cmdline.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 22:54:32 +1000
+
+fll-live-initscripts (1.0.38) unstable; urgency=low
+
+  * Add USEBACKGROUND to kdm overrides.
+  * Make string "hwsetup" yellow.
+  * Don't bother with one time /dev/mouse link, we have udev now.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 20:32:56 +1000
+
+fll-live-initscripts (1.0.37) unstable; urgency=low
+
+  * Add fll-desktop.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 18:23:14 +1000
+
+fll-live-initscripts (1.0.36) unstable; urgency=low
+
+  * Add fll-xdm.
+  * fll-locales: store KDEKEYBOARDS somewhere.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 17:17:11 +1000
+
+fll-live-initscripts (1.0.35) unstable; urgency=low
+
+  * Announce script name in ansi blue.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 16:34:40 +1000
+
+fll-live-initscripts (1.0.34) unstable; urgency=low
+
+  * Add /lib/fll/fll-init-cols.
+  * Source /lib/fll/fll-init-cols from each init script.
+  * Add colourful output to live specific scripts.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 14:25:52 +1000
+
+fll-live-initscripts (1.0.33) unstable; urgency=low
+
+  * Fix fll_analyze_runlevels for testing a chroot instead of host system.
+  * Update fll_analyze_runlevels(1) manpage.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 11:36:59 +1000
+
+fll-live-initscripts (1.0.32) unstable; urgency=low
+
+  * Dump fll_analyze_runlevels update from locsmif
+    - better method of filling runlevel data structure for each init script
+    - use getopts for argument handling
+    - other trivial fixes
+  * Fix -f|--force option of fll_analyze_runlevels.
+  * Conform to make strict pragma.
+
+ -- Kel Modderman <kel@otaku42.de>  Sat, 02 Jun 2007 09:52:02 +1000
+
+fll-live-initscripts (1.0.31) unstable; urgency=low
+
+  * Optimise all fll init scripts by not sourcing lsb vars or init functions
+    where not strictly required.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 18:30:00 +1000
+
+fll-live-initscripts (1.0.30) unstable; urgency=low
+
+  * fll-hwsetup: fix monitor mode output.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 17:30:39 +1000
+
+fll-live-initscripts (1.0.29) unstable; urgency=low
+
+  * fll-hwsetup: no need to output that the xserver is xorg, we don't use
+    anything else.
+  * fll-fstab: cleanups of noswap handling.
+  * fll-hwsetup: relax test for removal of gpm.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 17:27:29 +1000
+
+fll-live-initscripts (1.0.28) unstable; urgency=low
+
+  * fll-hwsetup: output verbose details about xserver configuration.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 16:51:27 +1000
+
+fll-live-initscripts (1.0.27) unstable; urgency=low
+
+  * fll-locales: add XKBLAYOUT to /etc/defaults/distro. Also do the same to
+    legacy live-autoconfig.
+  * fll-hwsetup: don't hack XkbdLayout in xorg.conf again, mkxf86config
+    already does this.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 13:25:05 +1000
+
+fll-live-initscripts (1.0.26) unstable; urgency=low
+
+  * Add dependency of ifplugd. Adjust Recommends.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 11:56:17 +1000
+
+fll-live-initscripts (1.0.25) unstable; urgency=low
+
+  * fll-hwsetup: improve output of mouse detection.
+  * fll-hwsetup: handle bluetooth service.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 11:22:38 +1000
+
+fll-live-initscripts (1.0.24) unstable; urgency=low
+
+  * fll-hwsetup: requires udev to have started.
+  * fll-hwsetup: disable gpm and alsa-utils init when there are no devices for
+    them to manage.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 10:08:49 +1000
+
+fll-live-initscripts (1.0.23) unstable; urgency=low
+
+  * Add fll-hwsetup.
+  * Fixup lsb header runlevel info.
+
+ -- Kel Modderman <kel@otaku42.de>  Fri, 01 Jun 2007 08:31:58 +1000
+
+fll-live-initscripts (1.0.22) unstable; urgency=low
+
+  * Add flldebug=${NAME} debug handling to all fll initscripts to ease
+    debugging in future.
+  * Revert to having fll-adduser and fll-cpufreq start at sequence 90 in
+    runlevel S.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 23:29:45 +1000
+
+fll-live-initscripts (1.0.21) unstable; urgency=low
+
+  * live-network: condense output.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 22:27:29 +1000
+
+fll-live-initscripts (1.0.20) unstable; urgency=low
+
+  * live-init-top: re-enable console printk's at level 5. See syslog(2).
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 22:15:14 +1000
+
+fll-live-initscripts (1.0.19) unstable; urgency=low
+
+  * live-locales: add strong quotes around output containing variables.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 21:56:16 +1000
+
+fll-live-initscripts (1.0.18) unstable; urgency=low
+
+  * live-adduser: using single quote is more readable in printf command that
+    adds su/sux aliases. Interpolation is not wanted anyway.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 21:43:39 +1000
+
+fll-live-initscripts (1.0.17) unstable; urgency=low
+
+  * fll-rootsh: update lsb description.
+  * Start fll-adduser in runlevels 2 3 4 5, start fll-cpufreq at sequence 05.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 21:36:48 +1000
+
+fll-live-initscripts (1.0.16) unstable; urgency=low
+
+  * live-rootsh: dramatically simplify bash presets. Take the templates that
+    the bash package provides and not from base-files.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 21:19:46 +1000
+
+fll-live-initscripts (1.0.15) unstable; urgency=low
+
+  * Import latest legacy live-autoconfig, r7470.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 21:06:33 +1000
+
+fll-live-initscripts (1.0.14) unstable; urgency=low
+
+  * fll_login: call /bin/login with exec or else 'the user you use will
+    continue to appear to be logged in even after you log out of the
+    "subsession"', login(1).
+  * live-adduser: create zero length .hushlogin file in
+    hack_live_user_files().
+  * live-rootsh: create zero length .hushlogin file.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 20:57:57 +1000
+
+fll-live-initscripts (1.0.13) unstable; urgency=low
+
+  * live-adduser: drop sed hack /etc/shadow.
+  * live-adduser: add hack_live_user_files() to apply changes to .bashrc and
+    other things in future. Please try to keep this function clean and
+    manageable . . .
+  * Add adduser to dependencies, debian/control.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 20:46:48 +1000
+
+fll-live-initscripts (1.0.12) unstable; urgency=low
+
+  * Rename manpages with .1 suffix.
+  * fll-adduser: lock down live user in /etc/shadow.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 20:08:50 +1000
+
+fll-live-initscripts (1.0.11) unstable; urgency=low
+
+  * Add fll_login.1 manpage.
+  * Add fll-adduser.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 20:04:23 +1000
+
+fll-live-initscripts (1.0.10) unstable; urgency=low
+
+  * Add fll_login wrapper to allow proper shell login via getty.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 18:51:51 +1000
+
+fll-live-initscripts (1.0.9) unstable; urgency=low
+
+  * fll-fstab: check that swap was detected before attempting to use it.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 18:25:16 +1000
+
+fll-live-initscripts (1.0.8) unstable; urgency=low
+
+  * Add -f|--force and -r|--remove cli options to fll_analyze_runlevels.
+  * Move sidux script fragments out of the way into ./sidux.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 18:23:59 +1000
+
+fll-live-initscripts (1.0.7) unstable; urgency=low
+
+  * Version bump, no changes. (last two revisions bi-product of not thinking
+    while updating repoistory with new packages).
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 17:38:33 +1000
+
+fll-live-initscripts (1.0.6) unstable; urgency=low
+
+  * Version bump, no changes.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 17:24:47 +1000
+
+fll-live-initscripts (1.0.5) unstable; urgency=low
+
+  * fll-locales: configure timzeone first.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 17:15:51 +1000
+
+fll-live-initscripts (1.0.4) unstable; urgency=low
+
+  * fll-locales: improve output.
+  * fll-cpufreq: add powersaved hacks to disable suspend and cpufrq module
+    preseeding.
+  * fll-init-top: add capability module to /etc/modules.
+  * Add fll-rootsh.
+  * Add fll-network.
+  * fll-init-top: honor noagp by adding agp and agpgart modules to
+    /etc/modprobe.d/blacklist.
+  * fll-cpufreq: purge power{save,now}d when nocpufreq cheatcode is used.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 14:25:37 +1000
+
+fll-live-initscripts (1.0.3) unstable; urgency=low
+
+  * Add fstab init script.
+  * Fixup comments in previous init scripts that used 'live-' prefix.
+  * Add fll-cpufreq.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 12:51:02 +1000
+
+fll-live-initscripts (1.0.2) unstable; urgency=low
+
+  * Rename fll-autoconfig to fll-init-top. The concept of monolithic
+    autoconfig script is dead in this live init concept.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 10:53:19 +1000
+
+fll-live-initscripts (1.0.1) unstable; urgency=low
+
+  * fll-live-initramfs now takes care of runlevel sanitisation.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 31 May 2007 10:43:51 +1000
+
+fll-live-initscripts (1.0.0) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 30 May 2007 20:51:58 +1000

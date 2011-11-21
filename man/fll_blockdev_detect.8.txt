@@ -1,0 +1,57 @@
+FLL_BLOCKDEV_DETECT(8)
+======================
+Kel Modderman <kel@otaku42.de>
+
+
+NAME
+----
+fll_blockdev_detect - a program for detecting block devices
+
+
+SYNOPSIS
+--------
+'fll_blockdev_detect' [OPTIONS...]
+
+
+DESCRIPTION
+-----------
+fll_blockdev_detect(8) is used for detection of block devices in the fll live
+linux early boot environment. It uses libudev to listen to kernel block device
+events.
+
+
+OPTIONS
+-------
+-e <prog>, --execp=<prog>::
+	Execute program for every block device with environment variables
+	inherited from libudev which concern that device.
+
+-m, --monitor::
+	Monitor the system for block device add/change events.
+
+-r, --removable::
+	Detect only devices with removable attribute.
+
+-t <secs>, --timeout=<secs>::
+	Set monitor duration in seconds. Default=30.
+
+
+SEE ALSO
+--------
+udev(7)
+
+
+AUTHOR
+------
+Kel Modderman <kel@otaku42.de>
+
+
+RESOURCES
+---------
+FULLSTORY Homepage: http://developer.berlios.de/projects/fullstory/[]
+
+
+COPYING
+-------
+Copyright \(C) 2008 Kel Modderman <kel@otaku42.de>. Free use of this software
+is granted under the terms of the GNU General Public License (GPL) version 2.

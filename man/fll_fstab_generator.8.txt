@@ -1,0 +1,75 @@
+FLL_FSTAB_GENERATOR(8)
+======================
+Kel Modderman <kel@otaku42.de>
+
+
+NAME
+----
+fll_fstab_generator - a program for generating the /etc/fstab file
+
+
+SYNOPSIS
+--------
+'fll_fstab_generator' [OPTIONS...]
+
+
+DESCRIPTION
+-----------
+fll_fstab_generator(8) is used for the initial creation of '/etc/fstab' while
+in the fll live linux environment.
+
+
+OPTIONS
+-------
+-a, --auto::
+	Set 'auto' mount option where applicable.
+
+-d, --debug::
+	Enable debug output. Use twice to see shell execution (set -x).
+
+-f <file>, --file=<file>::
+	File to write fstab configuration output to.
+
+-l, --labels::
+	Use LABELS tokens for mount names when possible.
+
+-m, --mkdir::
+	Create mount points for each '/etc/fstab' filesystem entry.
+
+-n, --nomnt::
+	Disable detection of local mounts, simulating a fll live environment.
+
+-s, --swapless::
+	Disable addition of swap partitions to '/etc/fstab'.
+
+-u, --uuids::
+	Use UUID tokens for mount names when possible.
+
+-w <device>, --wanted=<device>::
+	Specify devices to include in fstab configuration when they would
+	otherwise not qualify for inclusion. For example, usb devices.
+
+-i <device>, --ignore=<device>::
+	Specify devices to ignore and not include in fstab configuration when
+	they would otherwise qualify for inclusion.
+
+
+SEE ALSO
+--------
+fstab(5)
+
+
+AUTHOR
+------
+Kel Modderman <kel@otaku42.de>
+
+
+RESOURCES
+---------
+FULLSTORY Homepage: http://developer.berlios.de/projects/fullstory/[]
+
+
+COPYING
+-------
+Copyright \(C) 2008 Kel Modderman <kel@otaku42.de>. Free use of this software
+is granted under the terms of the GNU General Public License (GPL) version 2.

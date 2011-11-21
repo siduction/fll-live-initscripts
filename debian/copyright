@@ -1,0 +1,52 @@
+This is fll-live-initramfs, written and maintained by Kel Modderman
+<kel@otaku42.de> on Tue, 29 May 2007 13:04:10 +1000.
+
+The original source can always be found at:
+	http://developer.berlios.de/projects/fullstory
+
+Copyright:
+	Copyright © 2007-2008 Kel Modderman <kel@otaku42.de>
+	Copyright © 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+
+./bin/fll_analyze_initscripts and ./bin/fll_xserver_discover were
+originally written by "locsmif".
+Copyright Holders:
+	© 2006 M.L. de Boer a.k.a locsmif <locsmif@kanotix.com>
+	© 2007 Michiel de Boer <locsmif@kanotix.com>
+
+Some code and concepts derived from initscripts-sidux-live.
+Copyright Holders: © Klaus Knopper <knopper@knopper.net>
+                   © Jörg Schirottke <master@kanotix.com>
+                   © Stefan Lippers-Hollmann <s.l-h@gmx.net>
+License: GPL
+http://sidux.com/debian/pool/main/i/initscripts-sidux-live/
+
+./debian/fll-live-initscripts.fll-reboot.init was inspired by
+/etc/init.d/umountfs from initscripts (2.86.ds1-38).
+Copyright Holders:
+	Copyright © 1997-2005 Miquel van Smoorenburg <miquels@cistron.nl> and
+	Copyright © 2007-2008 Kel Modderman <kel@otaku42.de>
+	Copyright © 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+the members pkg-sysvinit project.
+License: GPL
+http://alioth.debian.org/projects/pkg-sysvinit/
+
+copy_exec() in ./debian/fll-live-initscripts.fll-reboot.init was shamelessly
+adapted from initramfs-tools.
+Copyright Holders:
+	Copyright © 2005-2006 Adam Conrad
+	Copyright © 2006 Ben Collins
+	Copyright © 2005-2007 David Härdeman
+	Copyright © 2005 Jeff Bailey
+	Copyright © 2005-2007 maximilian attems
+	Copyright © 2005-2006 Scott James Remnant
+	Copyright © 2007-2008 Kel Modderman <kel@otaku42.de>
+	Copyright © 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+License: PUBLIC DOMAIN
+http://git.debian.org/?p=kernel/initramfs-tools.git;a=shortlog
+
+On Debian systems, the complete text of the GNU General Public License,
+version 2, can be found in `/usr/share/common-licenses/GPL-2'.
+
+The Debian packaging is © 2007, Kel Modderman <kel@otaku42.de> and
+is licensed under the GPL-2, see above.

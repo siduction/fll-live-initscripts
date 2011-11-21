@@ -1,0 +1,112 @@
+#!/bin/sh
+
+set -e
+
+# This script can be called in the following ways:
+#
+# After the package was installed:
+#       <postinst> configure <old-version>
+#
+#
+# If prerm fails during upgrade or fails on failed upgrade:
+#       <old-postinst> abort-upgrade <new-version>
+#
+# If prerm fails during deconfiguration of a package:
+#       <postinst> abort-deconfigure in-favour <new-package> <version>
+#                  removing <old-package> <version>
+#
+# If prerm fails during replacement due to conflict:
+#       <postinst> abort-remove in-favour <new-package> <version>
+
+chrooted() {
+	# borrowed from udev's postinst
+	if [ "$(stat -c %d/%i /)" = "$(stat -Lc %d/%i /proc/1/root 2>/dev/null)" ]; then
+		# the device number/inode pair of / is the same as that of
+		# /sbin/init's root, so we're *not* in a chroot and hence
+		# return false.
+		return 1
+	fi
+	return 0
+}
+
+override_dm_lsb_defaults() {
+	dmstart='5'
+	dmstop='0 1 2 3 4 6'
+
+	# Dump the LSB header to insserv override file
+	sed -n '/^### BEGIN INIT INFO/,/^### END INIT INFO/p' ${1} > ${2}
+
+	# Override Default-Start and Default-Stop
+	sed -i -e 's/^\(# Default-Start:[[:space:]]\+\).*/\1'"${dmstart}"'/' \
+	       -e 's/^\(# Default-Stop:[[:space:]]\+\).*/\1'"${dmstop}"'/'   \
+		${2}
+
+	echo '# Managed by the distro-defaults package.' >> ${2}
+}
+
+do_override() {
+	# Usage: do_override kdm 5
+	[ -s /etc/init.d/${1} ] || return 0
+
+	echo "distro-defaults: overriding LSB init info for ${1} ..." 1>&2
+	override_dm_lsb_defaults /etc/init.d/${1} /etc/insserv/overrides/${1}
+}
+
+purge_conffile() {
+	rm -f ${1}
+}
+
+case "$1" in
+	configure)
+		for dm in gdm3 kdm slim lightdm lxdm wdm xdm; do			
+			do_override "${dm}"
+		done
+
+		# gdm is no more
+		if [ -f /etc/insserv/overrides/gdm ]; then
+			purge_conffile /etc/insserv/overrides/gdm
+		fi
+
+		# Bug #487196 has been fixed in util-linux, remove now 
+		# obsolete LSB overrides
+		if [ -f /etc/insserv/overrides/hwclock.sh ]; then
+			purge_conffile /etc/insserv/overrides/hwclock.sh
+		fi
+
+		if [ -f /etc/insserv/overrides/hwclockfirst.sh ]; then
+			purge_conffile /etc/insserv/overrides/hwclockfirst.sh
+		fi
+
+		if [ ! -f /etc/apt/sources.list ] && chrooted; then
+			echo 'distro-defaults: creating /etc/apt/sources.list ...' 1>&2
+			cat > /etc/apt/sources.list \
+<<EOF
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# See sources.list(5) for more information, especialy remember that you can   #
+# only use http, ftp or file URIs, CDROMs are managed through apt-cdrom.      #
+#                                                                             #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Please use /etc/apt/sources.list.d/ instead of this file and create a       #
+# separate *.list configuration file for each repository, containing the      #
+# actual deb/deb-src desired suites and components for that repository.       #
+#                                                                             #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+EOF
+		fi
+		;;
+	triggered)
+		shift
+		for interest in "${@}"; do
+			do_override "${interest#/etc/init.d/}"
+		done
+		;;
+	abort-upgrade|abort-deconfigure|abort-remove)
+		;;
+	*)
+		echo "$0 called with unknown argument \`$1'" 1>&2
+		exit 1
+		;;
+esac
+
+#DEBHELPER#
+exit 0
