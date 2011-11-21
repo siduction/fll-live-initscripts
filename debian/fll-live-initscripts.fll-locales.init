@@ -37,7 +37,7 @@ fi
 # source distro-defaults, no-op unless in live mode
 ###
 FLL_DISTRO_MODE="installed"
-FLL_DISTRO_NAME="aptosid"
+FLL_DISTRO_NAME="siduction"
 
 if [ -r /etc/default/distro ]; then
 	. /etc/default/distro
@@ -423,7 +423,7 @@ apt_install_lang_clean() {
 }
 
 localize_sources_list() {
-	# deploy load balancing for first generation aptosid push mirrors
+	# deploy load balancing for first generation siduction push mirrors
 	if [ -w /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list ]; then
 #		case "$(mawk 'BEGIN{print int(9 * rand())}')" in
 #			0|1)
