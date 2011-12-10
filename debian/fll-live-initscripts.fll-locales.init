@@ -435,11 +435,7 @@ localize_sources_list() {
 #				;;
 #		esac
 
-<<<<<<< HEAD
 		printf "deb ${FLL_MIRROR} unstable main \n#deb-src ${FLL_MIRROR} unstable main " \
-=======
-		printf "deb ${FLL_MIRROR} unstable main n#deb-src ${FLL_MIRROR} unstable main " \
->>>>>>> 2fefecc26daf17ffa78f47eb1b73d732fdc6ec17
 			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
 	fi
 }
