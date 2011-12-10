@@ -1,3 +1,15 @@
+fll-live-initscripts (3.13.9) unstable; urgency=low
+
+  * fixed a typo in debian/fll-locales.init
+
+ -- siduction builders <packaging@siduction.org>  Sat, 26 Nov 2011 22:13:33 +0100
+
+fll-live-initscripts (3.13.8) unstable; urgency=low
+
+  * fixed debian/fll-locales.init
+
+ -- siduction builders <packaging@siduction.org>  Sat, 26 Nov 2011 21:03:44 +0100
+
 fll-live-initscripts (3.13.7) unstable; urgency=low
 
   * forked package for siduction
