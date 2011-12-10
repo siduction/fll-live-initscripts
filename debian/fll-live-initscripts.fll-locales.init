@@ -426,29 +426,20 @@ localize_sources_list() {
 	# deploy load balancing for first generation siduction push mirrors
 	if [ -w /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list ]; then
 #		case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-#			0|1)
-#				# w3you.com, Strasbourg, France
+#		        1|2)    # Add Mirrordescription here
 				FLL_MIRROR="http://packages.siduction.org/siduction"
 #				;;
 #			2|3)
 #				# Free University Berlin/ spline (Student Project LInux NEtwork), Germany
-#				FLL_MIRROR="http://ftp.spline.de/pub/aptosid/debian/"
-#				;;
-#			4|5)
-#				# Office-Vienna, Vienna, Austria
-#				FLL_MIRROR="http://oscar.aptosid.com/debian/"
-#				;;
-#			6|7)
-#				# Technical University Carolo-Wilhelmina at Brunswick, Germany
-#				FLL_MIRROR="http://oscar.aptosid.com/debian/"
-#				;;
-#			*)
-#				# aptosid.com, webtropia.com, Düsseldorf, Germany
-#				FLL_MIRROR="http://aptosid.com/debian/"
+#				FLL_MIRROR=""
 #				;;
 #		esac
 
+<<<<<<< HEAD
 		printf "deb ${FLL_MIRROR} unstable main \n#deb-src ${FLL_MIRROR} unstable main " \
+=======
+		printf "deb ${FLL_MIRROR} unstable main n#deb-src ${FLL_MIRROR} unstable main " \
+>>>>>>> 2fefecc26daf17ffa78f47eb1b73d732fdc6ec17
 			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
 	fi
 }
