@@ -1,3 +1,5 @@
+DH_VERBOSE=1
+
 DIRS := bin man
 INIT := $(notdir $(wildcard debian/*.init))
 
