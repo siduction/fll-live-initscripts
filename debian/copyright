@@ -5,8 +5,10 @@ The original source can always be found at:
 	http://developer.berlios.de/projects/fullstory
 
 Copyright:
-	Copyright © 2007-2008 Kel Modderman <kel@otaku42.de>
-	Copyright © 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+        2011, Alf Gaida <agaida@siduction.org>
+        2007-2010, Stefan Lippers-Hollmann <s.l-h@gmx.net>
+        2007-2008, Kel Modderman <kel@otaku42.de>
+
 
 ./bin/fll_analyze_initscripts and ./bin/fll_xserver_discover were
 originally written by "locsmif".

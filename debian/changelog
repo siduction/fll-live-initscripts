@@ -1,3 +1,10 @@
+fll-live-initscripts (3.13.8) unstable; urgency=low
+
+  * debian/control changed
+  * debian/copyright still need love 
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 10 Dec 2011 12:44:24 +0100
+
 fll-live-initscripts (3.13.7) unstable; urgency=low
 
   * forked package for siduction
