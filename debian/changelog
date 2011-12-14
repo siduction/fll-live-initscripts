@@ -1,8 +1,18 @@
+fll-live-initscripts (3.13.11) unstable; urgency=low
+
+  * workaround for lightdm by coruja 
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 14 Dec 2011 16:40:56 +0100
+
 fll-live-initscripts (3.13.10) unstable; urgency=low
 
+  [ siduction builders ]
   * merging lost changes and hoping the best 
 
- -- siduction builders <packaging@siduction.org>  Sat, 10 Dec 2011 14:25:22 +0100
+  [ Alf Gaida ]
+  * Merge manuell berichtigt, ready to build 
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 10 Dec 2011 14:39:23 +0100
 
 fll-live-initscripts (3.13.9) unstable; urgency=low
 
