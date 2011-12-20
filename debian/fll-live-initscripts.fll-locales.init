@@ -438,6 +438,8 @@ localize_sources_list() {
 		printf "deb ${FLL_MIRROR} unstable main \n#deb-src ${FLL_MIRROR} unstable main " \
 			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
 	fi
+printf "deb http://cdn.debian.net/debian unstable main \n#deb-src http://cdn.debian.net/debian unstable main " \
+	> /etc/apt/sources.list.d/debian.list
 }
 
 save_locale_variables() {
