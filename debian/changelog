@@ -1,3 +1,9 @@
+fll-live-initscripts (3.13.13) unstable; urgency=low
+
+  * add the fix for the init 3 problem with gdm3/lightdm to fll-xdm
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Tue, 20 Dec 2011 17:54:37 +0100
+
 fll-live-initscripts (3.13.12) unstable; urgency=low
 
   * Non-maintainer upload.
