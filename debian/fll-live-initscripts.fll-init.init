@@ -108,6 +108,12 @@ do_start() {
 		done
 		log_end_msg 0
 	fi
+	###
+	# fix /etc/gpm.conf
+	###
+	if [ ! -f "/dev/psaux" ]; then
+		sed 's/\/dev\/psaux/\/dev\/input\/mice/g' -i /etc/gpm.conf
+	fi
 }
 
 case "${1}" in

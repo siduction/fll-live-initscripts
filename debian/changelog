@@ -1,3 +1,9 @@
+fll-live-initscripts (3.13.15) unstable; urgency=low
+
+  * fix /etc/gpm.conf if /dev/psaux does not exist
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Fri, 23 Dec 2011 16:54:40 +0100
+
 fll-live-initscripts (3.13.14) unstable; urgency=low
 
   * set nodeadkeys as default for german lang
