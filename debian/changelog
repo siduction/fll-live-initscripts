@@ -1,3 +1,9 @@
+fll-live-initscripts (3.13.14) unstable; urgency=low
+
+  * set nodeadkeys as default for german lang
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Fri, 23 Dec 2011 13:44:39 +0100
+
 fll-live-initscripts (3.13.13) unstable; urgency=low
 
   * add the fix for the init 3 problem with gdm3/lightdm to fll-xdm

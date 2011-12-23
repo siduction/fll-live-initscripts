@@ -9,7 +9,7 @@ da_DK.utf8	0		dk,us			Europe/Copenhagen	en_US.utf8
 de_AT.utf8			de,us			Europe/Vienna	de_DE.utf8 en_US.utf8	
 de_BE.utf8			be,de,fr,us			Europe/Brussels	de_DE.utf8 fr_FR.utf8 en_US.utf8	whats sensible?
 de_CH.utf8			ch,us	fr		Europe/Zurich	de_DE.utf8 en_US.utf8	is the fr variant sane?
-de_DE.utf8	0		de,us			Europe/Berlin	US.utf8	
+de_DE.utf8	0		de,us	nodeadkeys	lv3:ralt_switch,compose:menu	Europe/Berlin	US.utf8	
 de_LI.utf8			de,us			Europe/Vaduz	de_DE.utf8 en_US.utf8	
 de_LU.utf8			de,us			Europe/Luxembourg	de_DE.utf8 en_US.utf8	
 el_CY.utf8			gr,us			Europe/Athens	en_US.utf8	
