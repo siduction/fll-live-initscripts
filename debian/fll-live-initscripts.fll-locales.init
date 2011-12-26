@@ -436,6 +436,7 @@ localize_sources_list() {
 			*)	# siduction main mirror
 				FLL_MIRROR="http://packages.siduction.org/"
 		esac
+		rm -f /etc/apt/sources.list.d/siduction-fices.list
 		printf "deb ${FLL_MIRROR}siduction unstable main \n#deb-src ${FLL_MIRROR}siduction unstable main\ndeb ${FLL_MIRROR}fixes unstable main \n#deb-src ${FLL_MIRROR}fixes unstable main" \
 			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
 	fi
