@@ -1,3 +1,9 @@
+fll-live-initscripts (3.13.20) unstable; urgency=low
+
+  * fix a typo in an if-query
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 19:13:45 +0100
+
 fll-live-initscripts (3.13.19) unstable; urgency=low
 
   * check for existence of iceweasel
