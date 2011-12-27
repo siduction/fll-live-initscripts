@@ -490,17 +490,17 @@ save_locale_variables() {
 	done > "/etc/default/${NAME}"
 }
 
-set_accepted_languages()
+set_accepted_lang()
 {
 	###
 	# set the prefered language for websites in iceweasel
 	###
 	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for websites "
 	if [ "${LANG}" = "de_DE.utf8" ];then
-	echo 'user_pref("intl.accept_languages", "de, en, en-us");\n' > /etc/iceweasel/profile/prefs.js
+	echo "user_pref(\"intl.accept_languages\", \"de, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
 	fi
 	if [ "${LANG}" = "pt_PT.utf8" ]; then
-	echo 'user_pref("intl.accept_languages", "pt-br, en, en-us");\n' > /etc/iceweasel/profile/prefs.js
+	echo "user_pref(\"intl.accept_languages\", \"pt-br, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
 	fi
 	log_end_msg "${?}" 
 }
@@ -513,7 +513,7 @@ case "${1}" in
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
-		set_accepted_languages
+		set_accepted_lang
 		;;
 	stop)
 		# no-op
@@ -533,7 +533,7 @@ case "${1}" in
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
-		set_accepted_languages
+		set_accepted_lang
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop|list|localize}" >&2
