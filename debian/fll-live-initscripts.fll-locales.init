@@ -497,10 +497,14 @@ set_accepted_lang()
 	###
 	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for websites "
 	if [ "${LANG}" = "de_DE.utf8" ];then
-	echo "user_pref(\"intl.accept_languages\", \"de, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+		if [ -f "/etc/iceweasel/profile" ]; then
+			echo "user_pref(\"intl.accept_languages\", \"de, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+		fi
 	fi
 	if [ "${LANG}" = "pt_BR.utf8" ]; then
-	echo "user_pref(\"intl.accept_languages\", \"pt-br, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+		if [ -f "/etc/iceweasel/profile" ]; then
+			echo "user_pref(\"intl.accept_languages\", \"pt-br, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+		fi
 	fi
 	log_end_msg "${?}" 
 }
