@@ -1,3 +1,9 @@
+fll-live-initscripts (3.13.18) unstable; urgency=low
+
+  * fix a last typo :(
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 01:54:31 +0100
+
 fll-live-initscripts (3.13.17) unstable; urgency=low
 
   * fix some typos

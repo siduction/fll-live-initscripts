@@ -499,7 +499,7 @@ set_accepted_lang()
 	if [ "${LANG}" = "de_DE.utf8" ];then
 	echo "user_pref(\"intl.accept_languages\", \"de, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
 	fi
-	if [ "${LANG}" = "pt_PT.utf8" ]; then
+	if [ "${LANG}" = "pt_BR.utf8" ]; then
 	echo "user_pref(\"intl.accept_languages\", \"pt-br, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
 	fi
 	log_end_msg "${?}" 
