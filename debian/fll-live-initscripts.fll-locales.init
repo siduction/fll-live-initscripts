@@ -435,8 +435,9 @@ localize_sources_list() {
 				;;
 			*)	# siduction main mirror
 				FLL_MIRROR="http://packages.siduction.org/"
+				;;
 		esac
-		rm -f /etc/apt/sources.list.d/siduction-fices.list
+		rm -f /etc/apt/sources.list.d/siduction-fixes.list
 		printf "deb ${FLL_MIRROR}siduction unstable main \n#deb-src ${FLL_MIRROR}siduction unstable main\ndeb ${FLL_MIRROR}fixes unstable main \n#deb-src ${FLL_MIRROR}fixes unstable main" \
 			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
 	fi
@@ -496,12 +497,12 @@ set_accepted_languages()
 	###
 	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for websites "
 	if [ "${LANG}" = "de_DE.utf8" ];then
-	echo "user_pref("intl.accept_languages", "de, en, en-us");\n" >> /etc/iceweasel/profile/prefs.js
+	echo 'user_pref("intl.accept_languages", "de, en, en-us");\n' > /etc/iceweasel/profile/prefs.js
 	fi
 	if [ "${LANG}" = "pt_PT.utf8" ]; then
-	echo "user_pref("intl.accept_languages", "pt-br, en, en-us");\n" >> /etc/iceweasel/profile/prefs.js
+	echo 'user_pref("intl.accept_languages", "pt-br, en, en-us");\n' > /etc/iceweasel/profile/prefs.js
 	fi
-	og_end_msg "${?}" 
+	log_end_msg "${?}" 
 }
 
 case "${1}" in
@@ -512,7 +513,7 @@ case "${1}" in
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
-		set_accepted_lang
+		set_accepted_languages
 		;;
 	stop)
 		# no-op
@@ -532,7 +533,7 @@ case "${1}" in
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
-		set_accepted_lang
+		set_accepted_languages
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop|list|localize}" >&2

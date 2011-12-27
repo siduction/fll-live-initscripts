@@ -1,3 +1,9 @@
+fll-live-initscripts (3.13.17) unstable; urgency=low
+
+  * fix some typos
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 01:09:56 +0100
+
 fll-live-initscripts (3.13.16) unstable; urgency=low
 
   * added a loadbalancing routine for siduction and debian sources
