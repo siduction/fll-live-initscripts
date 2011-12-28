@@ -1,9 +1,14 @@
-fll-live-initscripts (3.13.20+nmu1) unstable; urgency=low
+fll-live-initscripts (3.13.21) unstable; urgency=low
 
+  [ Sebastian Görgen ]
   * Non-maintainer upload.
   * don't check fstype on generating fstab via fll_fstab_generator fixes #516
 
- -- Sebastian Görgen <zeppo@gmx.net>  Thu, 29 Dec 2011 00:25:06 +0100
+  [ Alf Gaida ]
+  * fixes #516, fixes #517
+  * version bump to a maintainer version
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 29 Dec 2011 00:51:57 +0100
 
 fll-live-initscripts (3.13.20) unstable; urgency=low
 
