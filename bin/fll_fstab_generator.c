@@ -324,12 +324,15 @@ static char* device_file(struct udev_device *device, int disk)
 			mnt = getmntent(fp);
 			if (mnt == NULL)
 				break;
-
-			if (strcmp(fstype, mnt->mnt_type) != 0)
+				
+		/**	
+                        Don't check fstype needed for fuse Filesystems (NTFS-3g for example)
+		        if (strcmp(fstype, mnt->mnt_type) != 0)
 				continue;
-
-			if (strcmp(udev_device_get_devnode(device),
+		**/
+		 if (strcmp(udev_device_get_devnode(device),
 				   mnt->mnt_fsname) == 0) {
+
 				len = strlen(mnt->mnt_dir) + 1;
 				value = malloc(len);
 				if (value == NULL)
