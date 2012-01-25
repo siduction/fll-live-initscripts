@@ -39,7 +39,7 @@ case "$1" in
 	purge)
 		purge_conffile /etc/default/distro
 
-		for file in gdm3 kdm lxdm slim wdm xdm; do
+		for file in gdm3 kdm lxdm slim wdm xdm lightdm; do
 			purge_conffile /etc/insserv/overrides/${file}
 		done
 		;;

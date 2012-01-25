@@ -222,7 +222,7 @@ case "${1}" in
 					fi
 				fi
 				;;
-			xfce*|lxde)
+			xfce*|lxde|razorqt)
 				if [ -n "${LIGHTDM}" ]; then
 					if [ -n "${KDM}" ] || [ -n "${GDM3}" ] || [ -n "${SLIM}" ]; then
 						echo "${LIGHTDM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"

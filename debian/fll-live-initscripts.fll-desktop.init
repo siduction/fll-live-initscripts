@@ -79,6 +79,7 @@ if [ -z "${DESKTOP}" ]; then
 	[ -x "/usr/bin/xfwm4" ] && DESKTOP="xfce"		# third choice
 	[ -x "/usr/bin/metacity" ] && DESKTOP="gnome"		# second choice
 	[ -x "/usr/bin/kwin" ] && DESKTOP="kde"			# first choice, if installed and desktop= is empty
+	[ -x "/usr/bin/openbox" ] && DESKTOP="razorqt"          # seventh choice
 
 	# none of the major desktop environments is installed, don't interfere 
 	# with ordinary priorities.
@@ -109,6 +110,9 @@ do_start() {
 			;;
 		xfce*)
 			WM="/usr/bin/xfwm4"
+			;;
+		razorqt)
+			WM="usr/bin/openbox"
 			;;
 		*)
 			log_action_msg " desktop '${DESKTOP}' is not available"
@@ -141,6 +145,9 @@ do_start() {
 				;;
 			"/usr/bin/openbox")
 				XSESSION="LXDE"
+				;;
+			"/usr/bin/openbox")
+				XSESSION="razorqt"
 				;;
 		esac
 	

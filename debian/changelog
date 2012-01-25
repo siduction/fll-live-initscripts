@@ -1,3 +1,11 @@
+fll-live-initscripts (3.13.21+nmu1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * edited desktop.init, xdm.init, distro-defaults.trigger and distro-
+    defaults.postrm to work with razorqt desktop
+
+ -- Ferdinand Thommes <devil@siduction.org>  Wed, 25 Jan 2012 12:44:00 +0100
+
 fll-live-initscripts (3.13.21) unstable; urgency=low
 
   [ Sebastian Görgen ]
