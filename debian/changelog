@@ -1,3 +1,12 @@
+fll-live-initscripts (3.13.22) unstable; urgency=low
+
+  * bump standards to 3.9.3
+  * bump compat to 9
+  * debhelper (>=9)
+  * .gitignore added
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 21 Mar 2012 13:12:33 +0100
+
 fll-live-initscripts (3.13.21+nmu1) unstable; urgency=low
 
   * Non-maintainer upload.
