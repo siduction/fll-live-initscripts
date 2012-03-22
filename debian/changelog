@@ -1,3 +1,11 @@
+fll-live-initscripts (3.13.23) unstable; urgency=low
+
+  * add source override to prevent lintian complaining about 
+    XSBC-Original-Maintainer
+  * fixes #643 
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 22 Mar 2012 17:58:16 +0100
+
 fll-live-initscripts (3.13.22) unstable; urgency=low
 
   * bump standards to 3.9.3
