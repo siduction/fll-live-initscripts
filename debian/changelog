@@ -1,3 +1,15 @@
+fll-live-initscripts (3.13.25) unstable; urgency=low
+
+  * reworked debian/copyrights to be compatible to dep5
+  * in the case i am to harsh, some of the tales and novels can imho
+    placed in README
+  * bullshit removed: a GPL-Licensed file can *never ever* be PUBLIC
+    DOMAIN.
+  * copyrigth needs a review from someone not involved.
+  * refs #386
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 24 Mar 2012 14:16:31 +0100
+
 fll-live-initscripts (3.13.24) unstable; urgency=low
 
   * add a newline at the last line of debian/distro-defaults.triggers 
