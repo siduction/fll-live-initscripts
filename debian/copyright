@@ -13,26 +13,25 @@ Copyright: 2011-2012 Alf Gaida <agaida@siduction.org>
            2007-2008 Kel Modderman <kel@otaku42.de>
 License: GPL-2.0+
 
-Files: bin/fll_analyze_initscripts, bin/fll_xserver_discover were
+Files: bin/fll_analyze_initscripts, bin/fll_xserver_discover
 Copyright: 2006-2007 Michiel de Boer <locsmif@kanotix.com>
 License: GPL-2.0+
 
 Files: debian/fll-live-initscripts.fll-reboot.init
-Copyright: 1997-2005 Miquel van Smoorenburg <miquels@cistron.nl> and
+Copyright: 1997-2005 Miquel van Smoorenburg <miquels@cistron.nl> 
 	   2007-2008 Kel Modderman <kel@otaku42.de>
            2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
 License: GPL-2.0+
 
 Files: debian/fll-live-initscripts.fll-reboot.init
-Copyright Holders:
-	Copyright © 2005-2006 Adam Conrad
-	Copyright © 2006 Ben Collins
-	Copyright © 2005-2007 David Härdeman
-	Copyright © 2005 Jeff Bailey
-	Copyright © 2005-2007 maximilian attems
-	Copyright © 2005-2006 Scott James Remnant
-	Copyright © 2007-2008 Kel Modderman <kel@otaku42.de>
-	Copyright © 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+Copyright: 2005-2006 Adam Conrad
+	   2006 Ben Collins
+	   2005-2007 David Härdeman
+	   2005 Jeff Bailey
+	   2005-2007 maximilian attems
+	   2005-2006 Scott James Remnant
+	   2007-2008 Kel Modderman <kel@otaku42.de>
+	   2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
 License: GPL-2.0+
 
 License: GPL-2.0+

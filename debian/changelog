@@ -1,3 +1,10 @@
+fll-live-initscripts (3.13.26) unstable; urgency=low
+
+  * final version of debian/copyright 
+  * fixes #386 
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 03 Apr 2012 16:39:39 +0200
+
 fll-live-initscripts (3.13.25) unstable; urgency=low
 
   * reworked debian/copyrights to be compatible to dep5
