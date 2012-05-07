@@ -327,7 +327,7 @@ static char* device_file(struct udev_device *device, int disk)
 				
 		/**	
                         Don't check fstype needed for fuse Filesystems (NTFS-3g for example)
-		        if (strcmp(fstype, mnt->mnt_type) != 0)
+			if (strcmp(fstype, mnt->mnt_type) != 0)
 				continue;
 		**/
 		 if (strcmp(udev_device_get_devnode(device),
