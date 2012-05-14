@@ -1,9 +1,13 @@
-fll-live-initscripts (3.13.26+nmu1) UNRELEASED; urgency=low
+fll-live-initscripts (3.13.26+nmu1) unstable; urgency=low
 
+  [ Ferdinand Thommes ]
   * Non-maintainer upload.
   * fixed typo in fll-desktop.init
+  
+  [ Alf Gaida ]
+  * rebuild closes #701
 
- -- Ferdinand Thommes <devil@siduction.org>  Mon, 14 May 2012 10:55:50 +0200
+ -- Alf Gaida <agaida@siduction.org>  Mon, 14 May 2012 22:56:38 +0200
 
 fll-live-initscripts (3.13.26) unstable; urgency=low
 
