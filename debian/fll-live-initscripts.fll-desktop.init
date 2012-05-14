@@ -112,7 +112,7 @@ do_start() {
 			WM="/usr/bin/xfwm4"
 			;;
 		razorqt)
-			WM="usr/bin/openbox"
+			WM="/usr/bin/openbox"
 			;;
 		*)
 			log_action_msg " desktop '${DESKTOP}' is not available"
@@ -176,7 +176,7 @@ case "${1}" in
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
 		;;
-	kde|gnome|flux*|xfce*|icewm|lxde)
+	kde|gnome|flux*|xfce*|icewm|lxde |razor*)
 		DESKTOP="${1}"
 		do_start
 		;;
