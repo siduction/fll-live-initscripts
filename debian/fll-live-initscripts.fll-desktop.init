@@ -111,7 +111,7 @@ do_start() {
 		xfce*)
 			WM="/usr/bin/xfwm4"
 			;;
-		razorqt)
+		razor*)
 			WM="/usr/bin/openbox"
 			;;
 		*)
