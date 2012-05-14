@@ -1,4 +1,4 @@
-fll-live-initscripts (3.13.26+nmu1) unstable; urgency=low
+fll-live-initscripts (3.14.1) unstable; urgency=low
 
   [ Ferdinand Thommes ]
   * Non-maintainer upload.
@@ -6,8 +6,10 @@ fll-live-initscripts (3.13.26+nmu1) unstable; urgency=low
   
   [ Alf Gaida ]
   * rebuild closes #701
+  * added devil to uploaders
+  * bump version to 3.14
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 14 May 2012 22:56:38 +0200
+ -- Alf Gaida <agaida@siduction.org>  Mon, 14 May 2012 23:00:13 +0200
 
 fll-live-initscripts (3.13.26) unstable; urgency=low
 
