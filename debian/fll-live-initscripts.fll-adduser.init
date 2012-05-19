@@ -79,7 +79,10 @@ add_live_user() {
 	fi
 	
 	log_action_begin_msg " adding user '${FLL_LIVE_USER}'"
-	adduser --disabled-password --gecos "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" >/dev/null
+	adduser --gecos "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" <<EOF
+live
+live
+EOF >/dev/null
 }
 
 hack_sudoers() {
