@@ -82,7 +82,7 @@ add_live_user() {
 	adduser --gecos "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" <<EOF
 live
 live
-EOF >/dev/null
+EOF
 }
 
 hack_sudoers() {
