@@ -4,7 +4,6 @@
 # Provides:          fll-network
 # Required-Start:    mountdevsubfs ifupdown
 # Required-Stop:
-# X-Start-Before:    networking
 # Default-Start:     S
 # Default-Stop:
 # Short-Description: configure ifupdown for detected network devices

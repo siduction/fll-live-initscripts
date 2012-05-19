@@ -1,9 +1,29 @@
 fll-live-initscripts (3.14.5) unstable; urgency=low
 
   * Non-maintainer upload.
-  * fixed autologin settings for lightdm
+  * fix lightdm autologin
 
- -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 13:33:14 +0200
+ -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 13:44:23 +0200
+
+fll-live-initscripts (3.14.4) unstable; urgency=low
+
+  * -# X-Start-Before:    networking
+  * behebt auf jeden Fall den Abhängikeitfehler der Dienst 
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 15 May 2012 11:03:19 +0200
+
+fll-live-initscripts (3.14.3) unstable; urgency=low
+
+  * /debian/fll-live-initscripts.fll-network.init - nix starten 
+ 
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 15 May 2012 02:21:31 +0200
+
+fll-live-initscripts (3.14.2) unstable; urgency=low
+
+  * rebuild, no changes 
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 15 May 2012 01:26:24 +0200
 
 fll-live-initscripts (3.14.1) unstable; urgency=low
 
