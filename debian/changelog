@@ -1,5 +1,12 @@
 fll-live-initscripts (3.14.1) unstable; urgency=low
 
+  * Non-maintainer upload.
+  * fixed autologin settings for lightdm
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 13:33:14 +0200
+
+fll-live-initscripts (3.14.1) unstable; urgency=low
+
   [ Ferdinand Thommes ]
   * Non-maintainer upload.
   * fixed typo in fll-desktop.init

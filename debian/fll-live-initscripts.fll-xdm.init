@@ -140,20 +140,20 @@ setup_lightdm() {
 		-e "s/^\#autologin-user-timeout=0/autologin-user-timeout=0/" \
 			/etc/lightdm/lightdm.conf
 	# temporary workaround to enable autologin
-	sed -i -e "s/^autologin-user-timeout=0/autologin-user-timeout=0\npam-service=lightdm-autologin/" \
-		/etc/lightdm/lightdm.conf
-	cat > /etc/pam.d/lightdm-autologin << EOF
+	#sed -i -e "s/^autologin-user-timeout=0/autologin-user-timeout=0\npam-service=lightdm-autologin/" \
+	#	/etc/lightdm/lightdm.conf
+	#cat > /etc/pam.d/lightdm-autologin << EOF
 #%PAM-1.0
-auth requisite pam_nologin.so
-auth required pam_env.so readenv=1
-auth required pam_env.so readenv=1 envfile=/etc/default/locale
-auth required pam_succeed_if.so user != root quiet_success
-auth required pam_permit.so
-@include common-account
-session required pam_limits.so
-@include common-session
-@include common-password
-EOF
+#auth requisite pam_nologin.so
+#auth required pam_env.so readenv=1
+#auth required pam_env.so readenv=1 envfile=/etc/default/locale
+#auth required pam_succeed_if.so user != root quiet_success
+#auth required pam_permit.so
+#@include common-account
+#session required pam_limits.so
+#@include common-session
+#@include common-password
+#EOF
 }
 
 setup_x_cursor_theme() {
