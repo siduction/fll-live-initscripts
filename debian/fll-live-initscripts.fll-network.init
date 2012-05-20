@@ -91,7 +91,7 @@ write_skel_to_eni() {
 auto lo
 iface lo inet loopback
 EOF
-	cat /etc/polkit-1/localauthority/50-local.d/10-org-freedesktop-network-manager-settings.pkla \
+	cat > /etc/polkit-1/localauthority/50-local.d/10-org-freedesktop-network-manager-settings.pkla \
 <<EOF
 [Allow members of group netdev to create wireless connections]
 Identity=unix-group:netdev

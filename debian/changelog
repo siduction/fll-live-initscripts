@@ -1,3 +1,9 @@
+fll-live-initscripts (3.14.11) unstable; urgency=low
+
+  * fixed a typo in fll-network
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sun, 20 May 2012 18:42:33 +0200
+
 fll-live-initscripts (3.14.10) unstable; urgency=low
 
   * Added a workaround for the NM-problem (root), see http://debianforum.de/forum/viewtopic.php?p=861576#p861576
