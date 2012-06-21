@@ -93,6 +93,9 @@ case "$1" in
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 EOF
 		fi
+
+                # fix for umountfs
+                cp -f /usr/share/distro-defaults/umountfs /etc/init.d
 		;;
 	triggered)
 		shift
