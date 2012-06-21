@@ -1,8 +1,8 @@
-fll-live-initscripts (3.15.1) UNRELEASED; urgency=low
+fll-live-initscripts (3.15.1) unstable; urgency=low
 
   * distro-default.install typo fixed 
 
- -- Alf Gaida <agaida@siduction.org>  Fri, 22 Jun 2012 00:18:24 +0200
+ -- Alf Gaida <agaida@siduction.org>  Fri, 22 Jun 2012 00:25:48 +0200
 
 fll-live-initscripts (3.15.0) unstable; urgency=low
 
