@@ -95,7 +95,7 @@ EOF
 		fi
 
                 # fix for umountfs
-                cp -f /usr/share/distro-defaults/umountfs /etc/init.d
+                cp -f /usr/share/distro-defaults/fixes/umountfs /etc/init.d
 		;;
 	triggered)
 		shift
