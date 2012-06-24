@@ -426,13 +426,12 @@ localize_sources_list() {
 	# deploy load balancing for first generation siduction push mirrors
 	if [ -w /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list ]; then
 		case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-		        0|1)    # Free University Berlin/ spline (Student Project LInux NEtwork), Germany 
-				FLL_MIRROR="ftp://ftp.spline.de/pub/siduction/"
-				;;
-			2|3)
-				# University of Delaware 
-				FLL_MIRROR="ftp://ftp.lug.udel.edu/pub/siduction/"
-				;;
+		        0|1|2|3|4) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany 
+				   FLL_MIRROR="ftp://ftp.spline.de/pub/siduction/"
+				   ;;
+			5|6)       # University of Delaware 
+				   FLL_MIRROR="ftp://ftp.lug.udel.edu/pub/siduction/"
+				   ;;
 			*)	# siduction main mirror
 				FLL_MIRROR="http://packages.siduction.org/"
 				;;
@@ -441,44 +440,11 @@ localize_sources_list() {
 		printf "deb ${FLL_MIRROR}siduction unstable main \n#deb-src ${FLL_MIRROR}siduction unstable main\ndeb ${FLL_MIRROR}fixes unstable main \n#deb-src ${FLL_MIRROR}fixes unstable main" \
 			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
 	fi
+
 	if [ -w /etc/apt/sources.list.d/debian.list ]; then
-		case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-			0)
-				DEB_MIRROR="http://ftp2.de.debian.org/debian"
-				;;
-			1)
-				DEB_MIRROR="http://ftp.at.debian.org/debian"
-				;;
-			2)
-				DEB_MIRROR="http://ftp.nl.debian.org/debian"
-				;;
-			3)
-				DEB_MIRROR="http://ftp.at.debian.org/debian"
-				;;
-			4)
-				DEB_MIRROR="http://ftp.uk.debian.org/debian"
-				;;
-			5)
-				DEB_MIRROR="http://ftp.cz.debian.org/debian"
-				;;
-			6)
-				DEB_MIRROR="http://ftp.nz.debian.org/debian"
-				;;
-			7)
-				DEB_MIRROR="http://ftp.hu.debian.org/debian"
-				;;
-			8)
-				DEB_MIRROR="http://ftp.se.debian.org/debian"
-				;;
-			9)
-				DEB_MIRROR="http://ftp.us.debian.org/debian"
-				;;
-			*)
-				DEB_MIRROR="http://cdn.debian.net/debian"
-				;;
-			esac
+		DEB_MIRROR="http://http.debian.net/debian/"
 		printf "deb ${DEB_MIRROR} unstable main \n#deb-src ${DEB_MIRROR} unstable main" \
-			> /etc/apt/sources.list.d/debian.list
+		        > /etc/apt/sources.list.d/debian.list
 	fi
 }
 
