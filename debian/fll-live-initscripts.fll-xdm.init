@@ -127,9 +127,6 @@ setup_gdm3() {
 
 	if ! grep -q '^picture-options=' /etc/gdm3/greeter.gsettings ; then
 		sed -i '0,/\# picture-options=/s//picture-options=/' /etc/gdm3/greeter.gsettings
-		sed -i "s@picture-options='zoom'@picture-options='${GDM_BACKGROUND_RENDERING_OPTION}'@" /etc/gdm3/greeter.gsettings
-	else
-		sed -i "s@picture-options='zoom'@picture-options='${GDM_BACKGROUND_RENDERING_OPTION}'@" /etc/gdm3/greeter.gsettings
 	fi
 }
 

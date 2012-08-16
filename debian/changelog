@@ -1,3 +1,9 @@
+fll-live-initscripts (3.15.5) unstable; urgency=low
+
+  * removed code for gdm3 background rendering option GDM_BACKGROUND_RENDERING_OPTION
+
+ -- Angelescu Ovidiu <mrhsaacdoh@gmail.com>  Fri, 17 Aug 2012 01:39:15 +0300
+
 fll-live-initscripts (3.15.4) unstable; urgency=low
 
   * gdm3 background
