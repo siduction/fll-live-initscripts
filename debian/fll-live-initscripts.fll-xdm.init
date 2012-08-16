@@ -110,8 +110,27 @@ setup_gdm3() {
 		-e "/^TimedLoginEnable\=.*/d" \
 		-e "/^TimedLogin\=.*/d" \
 		-e "/^TimedLoginDelay\=.*/d" \
-		-e "s/^\(\[daemon\]$\)/\1\nAutomaticLogin\=${FLL_LIVE_USER}\nAutomaticLoginEnable\=true \
-			\nTimedLoginEnable\=true\nTimedLogin\=${FLL_LIVE_USER}\nTimedLoginDelay\=1/" /etc/gdm3/daemon.conf
+		-e "s/^\(\[daemon\]$\)/\1\nAutomaticLogin\=${FLL_LIVE_USER}\nAutomaticLoginEnable\=true\n \
+			\nTimedLoginEnable\=true\nTimedLogin\=${FLL_LIVE_USER}\nTimedLoginDelay\=1/" \
+			/etc/gdm3/daemon.conf
+	# setup GDM3 background
+	if ! grep -q '^\[org.gnome.desktop.background\]' /etc/gdm3/greeter.gsettings ; then
+			sed -i '0,/\# \[org.gnome.desktop.background\]/s//\[org.gnome.desktop.background\]/' /etc/gdm3/greeter.gsettings
+	fi
+
+	if  ! grep  -q '^picture-uri=' /etc/gdm3/greeter.gsettings ; then 
+		sed -i '0,/\# picture-uri=/s//picture-uri=/' /etc/gdm3/greeter.gsettings
+		sed -i "s@picture-uri=.*@picture-uri='file://${FLL_WALLPAPER}.png'@" /etc/gdm3/greeter.gsettings
+	else 
+		sed -i "s@picture-uri=.*@picture-uri='file://${FLL_WALLPAPER}.png'@" /etc/gdm3/greeter.gsettings
+	fi
+
+	if ! grep -q '^picture-options=' /etc/gdm3/greeter.gsettings ; then
+		sed -i '0,/\# picture-options=/s//picture-options=/' /etc/gdm3/greeter.gsettings
+		sed -i "s@picture-options='zoom'@picture-options='${GDM_BACKGROUND_RENDERING_OPTION}'@" /etc/gdm3/greeter.gsettings
+	else
+		sed -i "s@picture-options='zoom'@picture-options='${GDM_BACKGROUND_RENDERING_OPTION}'@" /etc/gdm3/greeter.gsettings
+	fi
 }
 
 setup_slim() {

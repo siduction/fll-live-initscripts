@@ -1,3 +1,9 @@
+fll-live-initscripts (3.15.4) unstable; urgency=low
+
+  * gdm3 background
+
+ -- Angelescu Ovidiu <mrhsaacdoh@gmail.com>  Thu, 16 Aug 2012 17:56:15 +0300
+
 fll-live-initscripts (3.15.3) unstable; urgency=low
 
   * End the debian-mirror-roulette and use http://http.debian.net
