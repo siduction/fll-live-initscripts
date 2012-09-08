@@ -1,19 +1,20 @@
-Format: http://dep.debian.net/deps/dep5
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: fll-live-initscripts
-Source: <ttp://svn.berlios.de/svnroot/repos/fullstory/fll-live-initscripts/trunk/>
+Source: http://chili.siduction.org/projects/siduction/wiki/Fll-live-initscripts
 
 Files: *
-Copyright: 2007-2010, Stefan Lippers-Hollmann <s.l-h@gmx.net>
-           2007-2008, Kel Modderman <kel@otaku42.de>
+Copyright: 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+           2007-2008 Kel Modderman <kel@otaku42.de>
 License: GPL-2.0+
 
 Files: debian/*
-Copyright: 2011-2012 Alf Gaida <agaida@siduction.org>
+Copyright: 2012      Angelescu Ovidiu <convbsd@siduction.net>
+           2011-2012 Alf Gaida <agaida@siduction.org>
            2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
            2007-2008 Kel Modderman <kel@otaku42.de>
 License: GPL-2.0+
 
-Files: bin/fll_analyze_initscripts, bin/fll_xserver_discover
+Files: bin/fll_analyze_initscripts bin/fll_xserver_discover
 Copyright: 2006-2007 Michiel de Boer <locsmif@kanotix.com>
 License: GPL-2.0+
 

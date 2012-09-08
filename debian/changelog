@@ -1,8 +1,14 @@
-fll-live-initscripts (3.15.7) UNRELEASED; urgency=low
+fll-live-initscripts (3.15.7) unstable; urgency=low
 
-  * For nox added test condition in fll-network to not be created pkla file ( in nox we don't use polkit )
+  [ Ovidiu Angelescu ]
+  * For nox added test condition in fll-network to not be created pkla file
+    (in nox we don't use polkit)
 
- -- Ovidiu Angelescu <convbsd@siduction.net>  Sat, 8 Sep 2012 10:45:15 +0300
+  [ Alf Gaida ]
+  * fixes in debian/copyright
+  * ignore warnings about hardening, this should eventually fixed later
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 08 Sep 2012 22:17:46 +0200
 
 fll-live-initscripts (3.15.6) unstable; urgency=low
 
