@@ -300,6 +300,12 @@ set_locale()
 	update-locale "LANG=${LANG}"
 
 	log_end_msg "${?}"
+
+	# mod for rqt
+        if [ -f /usr/bin/setqxkblanguages ]; then
+            echo "qxkb-lang-set: ${LANG}"
+            setqxkblanguages
+        fi
 }
 
 set_console()

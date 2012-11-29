@@ -1,3 +1,15 @@
+fll-live-initscripts (3.15.9) unstable; urgency=low
+
+  * typo removed 
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 29 Nov 2012 17:06:53 +0100
+
+fll-live-initscripts (3.15.8) unstable; urgency=low
+
+  * languagesettings for rqt added 
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 29 Nov 2012 16:29:29 +0100
+
 fll-live-initscripts (3.15.7) unstable; urgency=low
 
   [ Ovidiu Angelescu ]
