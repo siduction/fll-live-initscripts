@@ -461,7 +461,6 @@ cleanup_sources_list() {
 	echo "# debian loadbalancer" > ${target}
 	echo "deb http://http.debian.net/debian/ unstable main" >> ${target}
 	echo "#deb-src http://http.debian.net/debian/ unstable main" >> ${target}
-	fi
 
 	target="/etc/apt/siduction.list.d/siduction.list"
 	echo "# official siduction-lists" > ${target}
