@@ -429,33 +429,32 @@ apt_install_lang_clean() {
 }
 
 cleanup_sources_list() {
-	# deploy load balancing for siduction mirrors
-        # atm we these usable mirrors:
-        #   1) ftp.spline.de
-        #   2) ftp.uni-stuttgart.de
-        #   3) packages.siduction.org
-        # REPOS:
-        #   1) base
-        #   2) experimental - not provided
-        #   3) extra
-        #   4) fixes        - provided directly via packages.siduction.org
-        #   4) razorqt
-        #   5) release      - delete in any poss. way
-	#   5) user         - not provided
-        #   6) xfcenext
-	if [ -w /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list ]; then
-	    case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-	        0|1|2|3) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany 
-		         FLL_MIRROR="http://ftp.spline.de/pub/siduction/"
-		         ;;
-                3|4|5)   # Universtity Stuttgart
-		         FLL_MIRROR="http://ftp.uni-stuttgart.de/siduction/"
-			 ;;
-		*)       # siduction main mirror
-		         FLL_MIRROR="http://packages.siduction.org/"
-		         ;;
-	    esac
-	fi
+# deploy load balancing for siduction mirrors
+# atm we these usable mirrors:
+#   1) ftp.spline.de
+#   2) ftp.uni-stuttgart.de
+#   3) packages.siduction.org
+# REPOS:
+#   1) base
+#   2) experimental - not provided
+#   3) extra
+#   4) fixes        - provided directly via packages.siduction.org
+#   4) razorqt
+#   5) release      - delete in any poss. way
+#   5) user         - not provided
+#   6) xfcenext
+
+	case "$(mawk 'BEGIN{print int(9 * rand())}')" in
+	    0|1|2|3) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany 
+	         FLL_MIRROR="http://ftp.spline.de/pub/siduction/"
+	         ;;
+	    3|4|5)   # Universtity Stuttgart
+	         FLL_MIRROR="http://ftp.uni-stuttgart.de/siduction/"
+	         ;;
+	    *)   # siduction main mirror
+	         FLL_MIRROR="http://packages.siduction.org/"
+	         ;;
+	esac
 
 	target="/etc/apt/sources.list.d/debian.list"
 	echo "# debian loadbalancer" > ${target}
@@ -504,14 +503,14 @@ cleanup_sources_list() {
 
 	repository="/etc/apt/sources.list.d/user.list"
 	rm -f ${repository}
-	echo "#deb ${FLL_MIRROR}user unstable main" > ${target} 
+	echo "#deb ${FLL_MIRROR}user unstable main" >> ${target} 
 	echo "#deb-src ${FLL_MIRROR}user unstable main" >> ${target}
 	echo "" >> ${target}
 
 	repository="/etc/apt/sources.list.d/kdenext.list"
 	if [ -f ${repository} ]; then
 	    rm -f ${repository}
-	    echo "deb ${FLL_MIRROR}kdenext unstable main" > ${target} 
+	    echo "deb ${FLL_MIRROR}kdenext unstable main" >> ${target} 
 	    echo "#deb-src ${FLL_MIRROR}kdenext unstable main" >> ${target}
 	    echo "" >> ${target}
 	fi
@@ -519,7 +518,7 @@ cleanup_sources_list() {
 	repository="/etc/apt/sources.list.d/xfcenext.list"
 	if [ -f ${repository} ]; then
 	    rm -f ${repository}
-	    echo "deb ${FLL_MIRROR}xfcenext unstable main" > ${target} 
+	    echo "deb ${FLL_MIRROR}xfcenext unstable main" >> ${target} 
 	    echo "#deb-src ${FLL_MIRROR}xfcenext unstable main" >> ${target}
 	    echo "" >> ${target}
 	fi

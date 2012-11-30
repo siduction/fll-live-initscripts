@@ -1,3 +1,10 @@
+fll-live-initscripts (3.16.3) unstable; urgency=low
+
+  * siduction-repo dont exist anymore, removed question for it
+  * removed some more moronic typos 
+
+ -- Alf Gaida <agaida@siduction.org>  Fri, 30 Nov 2012 22:32:50 +0100
+
 fll-live-initscripts (3.16.2) unstable; urgency=low
 
   * some typos removed 
