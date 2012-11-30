@@ -1,3 +1,9 @@
+fll-live-initscripts (3.16.1) unstable; urgency=low
+
+  * fll-live-initscripts.fll-locales.init - repo-part rewritten
+
+ -- Alf Gaida <agaida@siduction.org>  Fri, 30 Nov 2012 21:11:27 +0100
+
 fll-live-initscripts (3.15.9) unstable; urgency=low
 
   * typo removed 

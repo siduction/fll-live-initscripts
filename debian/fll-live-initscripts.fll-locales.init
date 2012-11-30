@@ -428,29 +428,107 @@ apt_install_lang_clean() {
 	log_end_msg "${?}"
 }
 
-localize_sources_list() {
-	# deploy load balancing for first generation siduction push mirrors
+cleanup_sources_list() {
+	# deploy load balancing for siduction mirrors
+        # atm we these usable mirrors:
+        #   1) ftp.spline.de
+        #   2) ftp.uni-stuttgart.de
+        #   3) packages.siduction.org
+        # REPOS:
+        #   1) base
+        #   2) experimental - not provided
+        #   3) extra
+        #   4) fixes        - provided directly via packages.siduction.org
+        #   4) razorqt
+        #   5) release      - delete in any poss. way
+	#   5) user         - not provided
+        #   6) xfcenext
 	if [ -w /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list ]; then
-		case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-		        0|1|2|3|4) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany 
-				   FLL_MIRROR="ftp://ftp.spline.de/pub/siduction/"
-				   ;;
-			5|6)       # University of Delaware 
-				   FLL_MIRROR="ftp://ftp.lug.udel.edu/pub/siduction/"
-				   ;;
-			*)	# siduction main mirror
-				FLL_MIRROR="http://packages.siduction.org/"
-				;;
-		esac
-		rm -f /etc/apt/sources.list.d/siduction-fixes.list
-		printf "deb ${FLL_MIRROR}siduction unstable main \n#deb-src ${FLL_MIRROR}siduction unstable main\ndeb ${FLL_MIRROR}fixes unstable main \n#deb-src ${FLL_MIRROR}fixes unstable main" \
-			> /etc/apt/sources.list.d/${FLL_DISTRO_NAME}.list
+	    case "$(mawk 'BEGIN{print int(9 * rand())}')" in
+	        0|1|2|3) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany 
+		         FLL_MIRROR="http://ftp.spline.de/pub/siduction/"
+		         ;;
+                3|4|5)   # Universtity Stuttgart
+		         FLL_MIRROR="http://ftp.uni-stuttgart.de/siduction/"
+			 ;;
+		*)       # siduction main mirror
+		         FLL_MIRROR="http://packages.siduction.org/"
+		         ;;
+	    esac
 	fi
 
-	if [ -w /etc/apt/sources.list.d/debian.list ]; then
-		DEB_MIRROR="http://http.debian.net/debian/"
-		printf "deb ${DEB_MIRROR} unstable main \n#deb-src ${DEB_MIRROR} unstable main" \
-		        > /etc/apt/sources.list.d/debian.list
+	target="/etc/apt/sources.list.d/debian.list"
+	echo "# debian loadbalancer" > ${target}
+	echo "deb http://http.debian.net/debian/ unstable main" >> ${target}
+	echo "#deb-src http://http.debian.net/debian/ unstable main" >> ${target}
+	fi
+
+	target="/etc/apt/siduction.list.d/siduction.list"
+	echo "# official siduction-lists" > ${target}
+	repository="/etc/apt/sources.list.d/base.list"
+	rm -f ${repository}
+	echo "deb ${FLL_MIRROR}base unstable main" >> ${target} 
+	echo "#deb-src ${FLL_MIRROR}base unstable main" >> ${target}
+	echo "" >> ${target}
+
+	repository="/etc/apt/sources.list.d/extra.list"
+	if [ -f ${repository} ]; then
+	    rm -f ${repository}
+	    echo "deb ${FLL_MIRROR}extra unstable main" >> ${target} 
+	    echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
+	    echo "" >> ${target}
+	fi
+
+	repository="/etc/apt/sources.list.d/fixes.list"
+	if [ -f ${repository} ]; then
+	    rm -f ${repository}
+	    echo "deb ${FLL_MIRROR}fixes unstable main" >> ${target} 
+	    echo "#deb-src ${FLL_MIRROR}fixes unstable main" >> ${target}
+	    echo "" >> ${target}
+	fi
+	repository="/etc/apt/sources.list.d/razorqt.list"
+	if [ -f ${repository} ]; then
+	    rm -f ${repository}
+	    echo "deb ${FLL_MIRROR}razorqt unstable main" >> ${target} 
+	    echo "#deb-src ${FLL_MIRROR}razorqt unstable main" >> ${target}
+	fi
+
+
+	# misc lists 
+	target="/etc/apt/siduction.list.d/misc.list"
+	echo "# misc. siduction-lists" > ${target}
+	repository="/etc/apt/sources.list.d/experimental.list"
+	rm -f ${repository}
+	echo "#deb ${FLL_MIRROR}experimental unstable main" >> ${target} 
+	echo "#deb-src ${FLL_MIRROR}experimental unstable main" >> ${target}
+	echo "" >> ${target}
+
+	repository="/etc/apt/sources.list.d/user.list"
+	rm -f ${repository}
+	echo "#deb ${FLL_MIRROR}user unstable main" > ${target} 
+	echo "#deb-src ${FLL_MIRROR}user unstable main" >> ${target}
+	echo "" >> ${target}
+
+	repository="/etc/apt/sources.list.d/kdenext.list"
+	if [ -f ${repository} ]; then
+	    rm -f ${repository}
+	    echo "deb ${FLL_MIRROR}kdenext unstable main" > ${target} 
+	    echo "#deb-src ${FLL_MIRROR}kdenext unstable main" >> ${target}
+	    echo "" >> ${target}
+	fi
+	
+	repository="/etc/apt/sources.list.d/xfcenext.list"
+	if [ -f ${repository} ]; then
+	    rm -f ${repository}
+	    echo "deb ${FLL_MIRROR}xfcenext unstable main" > ${target} 
+	    echo "#deb-src ${FLL_MIRROR}xfcenext unstable main" >> ${target}
+	    echo "" >> ${target}
+	fi
+
+	# delete release.list
+	repository="/etc/apt/sources.list.d/release.list"
+	if [ -f ${repository} ]; then
+	    rm -f ${repository}
 	fi
 }
 
@@ -487,7 +565,7 @@ case "${1}" in
 		set_locale
 		set_console
 		apt_install_lang
-		localize_sources_list
+		cleanup_sources_list
 		save_locale_variables
 		set_accepted_lang
 		;;
