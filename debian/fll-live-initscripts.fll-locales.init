@@ -462,7 +462,7 @@ cleanup_sources_list() {
 	echo "deb http://http.debian.net/debian/ unstable main" >> ${target}
 	echo "#deb-src http://http.debian.net/debian/ unstable main" >> ${target}
 
-	target="/etc/apt/siduction.list.d/siduction.list"
+	target="/etc/apt/sources.list.d/siduction.list"
 	echo "# official siduction-lists" > ${target}
 	repository="/etc/apt/sources.list.d/base.list"
 	rm -f ${repository}
@@ -494,7 +494,7 @@ cleanup_sources_list() {
 
 
 	# misc lists 
-	target="/etc/apt/siduction.list.d/misc.list"
+	target="/etc/apt/sources.list.d/misc.list"
 	echo "# misc. siduction-lists" > ${target}
 	repository="/etc/apt/sources.list.d/experimental.list"
 	rm -f ${repository}
