@@ -1,3 +1,9 @@
+fll-live-initscripts (3.16.4) unstable; urgency=low
+
+  * rebuild after final checks, closes #994
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 01 Dec 2012 09:59:19 +0100
+
 fll-live-initscripts (3.16.3) unstable; urgency=low
 
   * siduction-repo dont exist anymore, removed question for it
