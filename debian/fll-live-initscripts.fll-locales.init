@@ -544,16 +544,55 @@ set_accepted_lang()
 	# set the prefered language for websites in iceweasel
 	###
 	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for websites "
-	if [ "${LANG}" = "de_DE.utf8" ];then
+	case "${LANG}" in
+            "de_DE.utf8") 
 		if [ -e "/etc/iceweasel/profile" ]; then
-			echo "user_pref(\"intl.accept_languages\", \"de, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+		    echo "user_pref(\"intl.accept_languages\", \"de, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
 		fi
-	fi
-	if [ "${LANG}" = "pt_BR.utf8" ]; then
+                ;;
+            "en_GB.utf8")
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+            "en_US.utf8")
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"en-us, en\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+            "it_IT.utf8")
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"it, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+            "pl_PL.utf8")
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"pl, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+            "pt_BR.utf8")
 		if [ -e "/etc/iceweasel/profile" ]; then
-			echo "user_pref(\"intl.accept_languages\", \"pt-br, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+		    echo "user_pref(\"intl.accept_languages\", \"pt-br, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
 		fi
-	fi
+                ;;
+            "pt_PT.utf8")
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"pt-pt, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+            "ro_RO.utf8")
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"ro, en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+
+            *)
+                if [ -e "/etc/iceweasel/profile" ]; then
+                    echo "user_pref(\"intl.accept_languages\", \"en, en-us\");\n" > /etc/iceweasel/profile/prefs.js
+                fi
+                ;;
+
+        esac
 	log_end_msg "${?}" 
 }
 
