@@ -1,3 +1,9 @@
+fll-live-initscripts (3.16.6) UNRELEASED; urgency=low
+
+  * removed fll-xdm because now it's in pyfll 700-x-siduction.postinst
+
+ -- Ovidiu Angelescu <convbsd@siduction.net>  Thu, 04 April 2013 21:59:54 +0300
+
 fll-live-initscripts (3.16.5) unstable; urgency=low
 
   * set_accepted_lang() for distribution languages
