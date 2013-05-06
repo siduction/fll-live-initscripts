@@ -1,3 +1,15 @@
+fll-live-initscripts (3.16.8) unstable; urgency=low
+
+  * fix for qxkb part 2, closes #1179 
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 06 May 2013 02:35:57 +0200
+
+fll-live-initscripts (3.16.7) unstable; urgency=low
+
+  * fix for qxkb part 1 
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 06 May 2013 00:43:24 +0200
+
 fll-live-initscripts (3.16.6) unstable; urgency=low
 
   [ Ovidiu Angelescu ]

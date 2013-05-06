@@ -302,10 +302,11 @@ set_locale()
 	log_end_msg "${?}"
 
 	# mod for rqt
-        if [ -f /usr/bin/setqxkblanguages ]; then
-            echo "qxkb-lang-set: ${LANG}"
-            setqxkblanguages
-        fi
+    if [ -f /usr/bin/setqxkblanguages ]; then
+        echo "qxkb-lang-set: ${LANG}"
+        setqxkblanguages
+        find /home -name qxkb.cfg -exec cp /etc/skel/.config/qxkb.cfg {} \;
+    fi
 }
 
 set_console()
