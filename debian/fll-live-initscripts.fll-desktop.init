@@ -80,6 +80,7 @@ if [ -z "${DESKTOP}" ]; then
 	[ -x "/usr/bin/metacity" ] && DESKTOP="gnome"		# second choice
 	[ -x "/usr/bin/kwin" ] && DESKTOP="kde"			# first choice, if installed and desktop= is empty
 	[ -x "/usr/bin/razor-session" ] && DESKTOP="razorqt"          # seventh choice
+	[ -x "/usr/bin/cinnamon" ] && DESKTOP="cinnamon" # eight choice
 
 	# none of the major desktop environments is installed, don't interfere 
 	# with ordinary priorities.
@@ -93,6 +94,9 @@ do_start() {
 	log_daemon_msg "${NAME}"
 
 	case "${DESKTOP}" in 
+		cinnamon)
+			WM="/usr/bin/gnome-session-cinnamon"
+			;;
 		flux*)
 			WM="/usr/bin/startfluxbox"
 			;;
@@ -149,6 +153,9 @@ do_start() {
 			"/usr/bin/rator-session")
 				XSESSION="razor"
 				;;
+			"/usr/bin/gnome-session-cinnamon")
+				XSESSION="cinnamon"
+				;;
 		esac
 	
 		log_action_begin_msg " setting up window manager '${WM}'"
@@ -182,7 +189,7 @@ case "${1}" in
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
 		;;
-	kde|gnome|flux*|xfce*|icewm|lxde |razor*)
+	cinnamon|kde|gnome|flux*|xfce*|icewm|lxde |razor*)
 		DESKTOP="${1}"
 		do_start
 		;;

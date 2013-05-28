@@ -1,3 +1,9 @@
+fll-live-initscripts (3.16.9) UNRELEASED; urgency=low
+
+  * added cinnamon support in fll-desktop.init
+
+ -- Ovidiu Angelescu <convbsd@siduction.org>  Mon, 27 May 2013 22:48:57 +0300
+
 fll-live-initscripts (3.16.8) unstable; urgency=low
 
   * fix for qxkb part 2, closes #1179 
