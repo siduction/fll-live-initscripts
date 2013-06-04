@@ -2,8 +2,8 @@ Source: fll-live-initscripts
 Section: misc
 Priority: optional
 Maintainer: Alf Gaida <agaida@siduction.org>
-Uploaders: Ferdinand Thommes <devil@siduction.org>
-XBSC-Original-Maintainer: Kel Modderman <kel@otaku42.de>
+Uploaders: Ferdinand Thommes <devil@siduction.org>,
+ Angelescu Ovidiu <convbsd@siduction.org>
 Build-Depends: debhelper (>= 9),
  asciidoc,
  docbook,
@@ -16,10 +16,9 @@ Build-Depends: debhelper (>= 9),
  libblkid-dev,
  libudev-dev,
  libxml2-utils
-Standards-Version: 3.9.3
+Standards-Version: 3.9.4
 Vcs-Git: git://git.siduction.org/packages/siduction-repository/fll-live-initscripts
 Vcs-Browser: http://git.siduction.org/?p=packages/siduction-repository/fll-live-initscripts.git 
-Homepage: http://svn.berlios.de/wsvn/fullstory/fll-live-initscripts/trunk/
 
 Package: distro-defaults
 Architecture: all
