@@ -1,8 +1,12 @@
-fll-live-initscripts (3.16.9) UNRELEASED; urgency=low
+fll-live-initscripts (3.16.9) unstable; urgency=low
 
+  [ Ovidiu Angelescu ]
   * added cinnamon support in fll-desktop.init
 
- -- Ovidiu Angelescu <convbsd@siduction.org>  Mon, 27 May 2013 22:48:57 +0300
+  [ Alf Gaida ]
+  * rebuild refs #1241 
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 04 Jun 2013 22:05:04 +0200
 
 fll-live-initscripts (3.16.8) unstable; urgency=low
 
