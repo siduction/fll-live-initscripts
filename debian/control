@@ -7,22 +7,22 @@ Uploaders: Ferdinand Thommes <devil@siduction.org>,
 Build-Depends: debhelper (>= 9),
  asciidoc,
  docbook,
- gengetopt,
- xsltproc,
  docbook-xml,
  docbook-xsl,
  devscripts,
+ gengetopt,
  pkg-config,
  libblkid-dev,
  libudev-dev,
- libxml2-utils
+ libxml2-utils,
+ xsltproc,
 Standards-Version: 3.9.4
 Vcs-Git: git://git.siduction.org/packages/siduction-repository/fll-live-initscripts
 Vcs-Browser: http://git.siduction.org/?p=packages/siduction-repository/fll-live-initscripts.git 
 
 Package: distro-defaults
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends},
 Description: set various default options
  This seemingly empty package has much influence on the system and update
  behaviour of the fll live Linux utilities. It's configuration data is
@@ -30,7 +30,7 @@ Description: set various default options
 
 Package: fll-live-initscripts
 Architecture: all
-Depends: ${misc:Depends}, 
+Depends: ${misc:Depends},
  adduser,
  console-setup,
  cpufrequtils,
@@ -40,7 +40,7 @@ Depends: ${misc:Depends},
  ifplugd,
  ceni,
  keyboard-configuration,
- lsb-base
+ lsb-base,
 Recommends: tzdata
 Description: fll live media sysv initscripts
  A set of initscripts suitable for managing the SysV-Init boot sequence of the
@@ -51,12 +51,12 @@ Description: fll live media sysv initscripts
 
 Package: fll-live-xorgconfig
 Architecture: all
-Depends: ${misc:Depends}, 
+Depends: ${misc:Depends},
  distro-defaults,
  lsb-base,
  perl,
  libswitch-perl,
- xserver-xorg-core
+ xserver-xorg-core,
 Recommends: kdm | gdm3 | lightdm (>= 1.0.2) | slim,
  xserver-xorg-input-vmmouse (>> 12.6.3)
 Description: fll live media xorg related tools
@@ -68,8 +68,8 @@ Description: fll live media xorg related tools
 Package: fll-live-utils
 Architecture: any
 Depends: ${shlibs:Depends},
- ${misc:Depends}, 
- udev
+ ${misc:Depends},
+ udev,
 Description: fll live utilities
  A set of tools for use by fll-live-initscripts.
  .

@@ -1,3 +1,10 @@
+fll-live-initscripts (2013.08.25) unstable; urgency=low
+
+  * new numbering
+  * fll-login - senseless 'hit enter' removed
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 25 Aug 2013 13:24:03 +0200
+
 fll-live-initscripts (3.16.10) unstable; urgency=low
 
   * removed old debris (fullstory-link and XBSC-Orig.-Maintainer

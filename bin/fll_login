@@ -3,33 +3,33 @@
 [ -s /etc/default/distro ] && . /etc/default/distro
 
 case "${lang}" in
-	cs_*) p="Stiskněte prosím Enter pro aktivaci této konzole." ;;
-	da_*) p="For at aktivere denne konsol, tast venligst retur." ;;
-	de_*) p="Bitte drücken Sie die Eingabetaste, um diese Konsole zu aktivieren." ;;
-	es_*) p="Por favor, pulse Intro para activar esta consola." ;;
-	it_*) p="Premere Invio per attivare questo terminale." ;;
-	ja_*) p="このコンソールをアクティブにするためEnterを押してください" ;;
-	nl_*) p="Druk op Enter om deze console te activeren." ;;
-	pl_*) p="Naciśnij Enter aby aktywować tę konsolę." ;;
-	pt_*) p="Por favor, pressione a tecla Enter para activar esta consola." ;;
-	ro_*) p="Vă rog, apăsți tasta Enter pentru a activa această consolă." ;;
-	ru_*) p="Нажмите Enter, чтобы активировать эту консоль." ;;
-	*)    p="Please press Enter to activate this console." ;;
+#    cs_*) p="Stiskněte prosím Enter pro aktivaci této konzole." ;;
+#    da_*) p="For at aktivere denne konsol, tast venligst retur." ;;
+    de_*) p="Autologin als" ;;
+#    es_*) p="Por favor, pulse Intro para activar esta consola." ;;
+#    it_*) p="Premere Invio per attivare questo terminale." ;;
+#    ja_*) p="このコンソールをアクティブにするためEnterを押してください" ;;
+#    nl_*) p="Druk op Enter om deze console te activeren." ;;
+#    pl_*) p="Naciśnij Enter aby aktywować tę konsolę." ;;
+#    pt_*) p="Por favor, pressione a tecla Enter para activar esta consola." ;;
+#    ro_*) p="Vă rog, apăsți tasta Enter pentru a activa această consolă." ;;
+#    ru_*) p="Нажмите Enter, чтобы активировать эту консоль." ;;
+    *)    p="Autologin as" ;;
 esac
 
 # Let user know this shell is no longer activatable when fll_login exits
 trap "echo ; echo ${0##*/} Terminated ; exit" TERM
 
-read -p "${p} " nothing
-
 if getent passwd "${FLL_LIVE_USER}" >/dev/null 2>&1; then
-	FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
-	if [ ! -e "${FLL_LIVE_USER_HOME}/.hushlogin" ]; then
-		:> 	"${FLL_LIVE_USER_HOME}/.hushlogin"
-		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER}" \
-			"${FLL_LIVE_USER_HOME}/.hushlogin"
-	fi
-	exec /bin/login -f "${FLL_LIVE_USER}"
+    FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
+    if [ ! -e "${FLL_LIVE_USER_HOME}/.hushlogin" ]; then
+        :> "${FLL_LIVE_USER_HOME}/.hushlogin"
+        chown "${FLL_LIVE_USER}:${FLL_LIVE_USER}" \
+	      "${FLL_LIVE_USER_HOME}/.hushlogin"
+    fi
+    echo "${p} ${FLL_LIVE_USER}"
+    exec /bin/login -f "${FLL_LIVE_USER}"
 else
-	exec /bin/login -f root
+    echo "Autologin as root"
+    exec /bin/login -f root
 fi
