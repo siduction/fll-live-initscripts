@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.01.09) unstable; urgency=medium
+
+  * version bump (used for fll-live-xorgconfig)
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 09 Jan 2014 21:28:06 +0100
+
 fll-live-initscripts (2013.12.11) unstable; urgency=medium
 
   * bump version to date-based
