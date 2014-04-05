@@ -301,7 +301,7 @@ set_locale()
 
 	log_end_msg "${?}"
 
-	# mod for rqt
+	# mod for rqt and lxqt
     if [ -f /usr/bin/setqxkblanguages ]; then
         echo "qxkb-lang-set: ${LANG}"
         setqxkblanguages
