@@ -1,3 +1,10 @@
+fll-live-initscripts (2014.01.10) unstable; urgency=medium
+
+  * version bumped
+  * few dependencies between the packages 
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 09 Jan 2014 23:26:23 +0100
+
 fll-live-initscripts (2014.01.09) unstable; urgency=medium
 
   * version bump (used for fll-live-xorgconfig)

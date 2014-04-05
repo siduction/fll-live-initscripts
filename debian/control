@@ -36,9 +36,9 @@ Depends:
  adduser,
  console-setup,
  cpufrequtils,
- distro-defaults,
+ distro-defaults (= ${source:Version}),
  eject,
- fll-live-utils,
+ fll-live-utils (=${source:Version}),
  ifplugd,
  ceni,
  keyboard-configuration,
@@ -56,7 +56,7 @@ Package: fll-live-xorgconfig
 Architecture: all
 Depends: 
  ${misc:Depends},
- distro-defaults,
+ distro-defaults (= ${source:Version}), 
  lsb-base,
  perl,
  libswitch-perl,
