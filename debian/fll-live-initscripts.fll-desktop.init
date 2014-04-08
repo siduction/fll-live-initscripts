@@ -75,13 +75,13 @@ if [ -z "${DESKTOP}" ]; then
 	[ -x "/usr/bin/icewm" ] && DESKTOP="icewm"		# sixth choice
 	[ -x "/usr/bin/startfluxbox" ] && DESKTOP="fluxbox"	# fifth choice
 	[ -x "/usr/bin/startlxde" ] && \
-	[ -x "/usr/bin/openbox" ] && DESKTOP="lxde"	# fourth choice
+	[ -x "/usr/bin/openbox" ] && DESKTOP="lxde"	        # fourth choice
 	[ -x "/usr/bin/xfwm4" ] && DESKTOP="xfce"		# third choice
 	[ -x "/usr/bin/metacity" ] && DESKTOP="gnome"		# second choice
 	[ -x "/usr/bin/kwin" ] && DESKTOP="kde"			# first choice, if installed and desktop= is empty
-	[ -x "/usr/bin/razor-session" ] && DESKTOP="razorqt"          # seventh choice
-	[ -x "/usr/bin/cinnamon" ] && DESKTOP="cinnamon" # eight choice
-
+	[ -x "/usr/bin/razor-session" ] && DESKTOP="razorqt"    # seventh choice
+	[ -x "/usr/bin/cinnamon" ] && DESKTOP="cinnamon"        # eight choice
+        [ -x "/usr/bin/lxqt-session" ] && DESKTOP="lxqt   "     # nineth choice
 	# none of the major desktop environments is installed, don't interfere 
 	# with ordinary priorities.
 	[ -z "${DESKTOP}" ] && exit 0
@@ -109,7 +109,7 @@ do_start() {
 		kde)
 			WM="/usr/bin/kwin"
 			;;
-		lxde)	
+		lxde)
 			WM="/usr/bin/openbox"
 			;;
 		xfce*)
@@ -118,6 +118,8 @@ do_start() {
 		razor*)
 			WM="/usr/bin/razor-session"
 			;;
+                lxqt*)  WM="/usr/bin/lxqt-session"
+                        ;;
 		*)
 			log_action_msg " desktop '${DESKTOP}' is not available"
 			log_end_msg 0
@@ -150,28 +152,38 @@ do_start() {
 			"/usr/bin/openbox")
 				XSESSION="LXDE"
 				;;
-			"/usr/bin/rator-session")
+			"/usr/bin/razor-session")
 				XSESSION="razor"
 				;;
+                        "/usr/bin/lxqt-session")
+                                XSESSION="lxqt"
+                                ;;
 			"/usr/bin/gnome-session-cinnamon")
 				XSESSION="cinnamon"
 				;;
 		esac
-	
+
 		log_action_begin_msg " setting up window manager '${WM}'"
 		echo "[Desktop]"		>  ${FLL_LIVE_USER_HOME}/.dmrc
 		echo "Session=${XSESSION}"	>> ${FLL_LIVE_USER_HOME}/.dmrc
 		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER_GROUP}" "${FLL_LIVE_USER_HOME}/.dmrc"
-			
 		if [ $WM != "/usr/bin/razor-session" ]; then
 		update-alternatives --set x-window-manager "${WM}" >/dev/null
 		log_end_msg "${?}"
 		return 0
-		else
-		update-alternatives --set x-window-manager /usr/bin/openbox >/dev/null
-		log_end_msg "${?}"
-		return 0
+
+                if [ $WM = "/usr/bin/razor-session" ]; then
+                    update-alternatives --set x-window-manager /usr/bin/openbox >/dev/null
+		    log_end_msg "${?}"
+		     return 0
 		fi
+
+                if [ $WM != "/usr/bin/lxqt-session" ]; then
+                    update-alternatives --set x-window-manager /usr/bin/openbox >/dev/null
+                    log_end_msg "${?}"
+                    return 0
+                fi
+
 	else
 		log_action_msg " desktop '${DESKTOP}' is not available"
 		log_end_msg 0
@@ -189,7 +201,7 @@ case "${1}" in
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
 		;;
-	cinnamon|kde|gnome|flux*|xfce*|icewm|lxde |razor*)
+	cinnamon|kde|gnome|flux*|xfce*|icewm|lxde |razor*|lxqt*)
 		DESKTOP="${1}"
 		do_start
 		;;

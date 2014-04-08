@@ -1,3 +1,10 @@
+fll-live-initscripts (2014.04.09) unstable; urgency=medium
+
+  * sessions like rqt 
+  * hope, that will fix the autologin issue
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 09 Apr 2014 01:50:00 +0200
+
 fll-live-initscripts (2014.04.05) unstable; urgency=medium
 
   * comment for lxqt changed 
