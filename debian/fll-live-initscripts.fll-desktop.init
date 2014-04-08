@@ -168,9 +168,10 @@ do_start() {
 		echo "Session=${XSESSION}"	>> ${FLL_LIVE_USER_HOME}/.dmrc
 		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER_GROUP}" "${FLL_LIVE_USER_HOME}/.dmrc"
 		if [ $WM != "/usr/bin/razor-session" ]; then
-		update-alternatives --set x-window-manager "${WM}" >/dev/null
-		log_end_msg "${?}"
-		return 0
+                    update-alternatives --set x-window-manager "${WM}" >/dev/null
+                    log_end_msg "${?}"
+                    return 0
+                fi
 
                 if [ $WM = "/usr/bin/razor-session" ]; then
                     update-alternatives --set x-window-manager /usr/bin/openbox >/dev/null
@@ -183,7 +184,6 @@ do_start() {
                     log_end_msg "${?}"
                     return 0
                 fi
-
 	else
 		log_action_msg " desktop '${DESKTOP}' is not available"
 		log_end_msg 0
