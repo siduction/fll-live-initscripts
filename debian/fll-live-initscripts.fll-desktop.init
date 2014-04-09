@@ -81,7 +81,7 @@ if [ -z "${DESKTOP}" ]; then
 	[ -x "/usr/bin/kwin" ] && DESKTOP="kde"			# first choice, if installed and desktop= is empty
 	[ -x "/usr/bin/razor-session" ] && DESKTOP="razorqt"    # seventh choice
 	[ -x "/usr/bin/cinnamon" ] && DESKTOP="cinnamon"        # eight choice
-        [ -x "/usr/bin/lxqt-session" ] && DESKTOP="lxqt   "     # nineth choice
+        [ -x "/usr/bin/lxqt-session" ] && DESKTOP="lxde-qt"     # nineth choice
 	# none of the major desktop environments is installed, don't interfere 
 	# with ordinary priorities.
 	[ -z "${DESKTOP}" ] && exit 0
@@ -112,13 +112,13 @@ do_start() {
 		lxde)
 			WM="/usr/bin/openbox"
 			;;
-		xfce*)
+		xfce)
 			WM="/usr/bin/xfwm4"
 			;;
-		razor*)
+		razorqt)
 			WM="/usr/bin/razor-session"
 			;;
-                lxqt*)  WM="/usr/bin/lxqt-session"
+                lxde-qt)  WM="/usr/bin/lxqt-session"
                         ;;
 		*)
 			log_action_msg " desktop '${DESKTOP}' is not available"
@@ -156,7 +156,7 @@ do_start() {
 				XSESSION="razor"
 				;;
                         "/usr/bin/lxqt-session")
-                                XSESSION="lxqt"
+                                XSESSION="lxde-qt"
                                 ;;
 			"/usr/bin/gnome-session-cinnamon")
 				XSESSION="cinnamon"
@@ -167,12 +167,6 @@ do_start() {
 		echo "[Desktop]"		>  ${FLL_LIVE_USER_HOME}/.dmrc
 		echo "Session=${XSESSION}"	>> ${FLL_LIVE_USER_HOME}/.dmrc
 		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER_GROUP}" "${FLL_LIVE_USER_HOME}/.dmrc"
-		if [ $WM != "/usr/bin/razor-session" ]; then
-                    update-alternatives --set x-window-manager "${WM}" >/dev/null
-                    log_end_msg "${?}"
-                    return 0
-                fi
-
                 if [ $WM = "/usr/bin/razor-session" ]; then
                     update-alternatives --set x-window-manager /usr/bin/openbox >/dev/null
 		    log_end_msg "${?}"
@@ -184,6 +178,10 @@ do_start() {
                     log_end_msg "${?}"
                     return 0
                 fi
+
+                update-alternatives --set x-window-manager "${WM}" >/dev/null
+                log_end_msg "${?}"
+                return 0
 	else
 		log_action_msg " desktop '${DESKTOP}' is not available"
 		log_end_msg 0
@@ -201,7 +199,7 @@ case "${1}" in
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
 		;;
-	cinnamon|kde|gnome|flux*|xfce*|icewm|lxde |razor*|lxqt*)
+	cinnamon|kde|gnome|flux*|xfce*|icewm|lxde |razorqt|lxde-qt)
 		DESKTOP="${1}"
 		do_start
 		;;

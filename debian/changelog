@@ -1,3 +1,15 @@
+fll-live-initscripts (2014.04.10) unstable; urgency=medium
+
+  * and next, session is no lxde-qt - thats it!
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 10 Apr 2014 00:48:33 +0200
+
+fll-live-initscripts (2014.04.09.1) unstable; urgency=medium
+
+  * next try 
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 09 Apr 2014 03:17:11 +0200
+
 fll-live-initscripts (2014.04.09) unstable; urgency=medium
 
   * sessions like rqt 
