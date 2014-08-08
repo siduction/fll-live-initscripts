@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.08.09) unstable; urgency=medium
+
+  * prepare lxde keyboard setting
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 09 Aug 2014 01:00:07 +0200
+
 fll-live-initscripts (2014.05.07) unstable; urgency=medium
 
   * session is now lxqt

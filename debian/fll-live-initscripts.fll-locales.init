@@ -290,18 +290,20 @@ set_timezone()
 
 set_locale()
 {
-	###
-	# select default locale and configure console-data via debconf
-	###
-	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for '${LANG}'"
-
-	echo "locales locales/default_environment_locale select ${LANG}" | \
-		debconf-set-selections
-	update-locale "LANG=${LANG}"
-
-	log_end_msg "${?}"
-
-	# mod for rqt and lxqt
+    ###
+    # select default locale and configure console-data via debconf
+    ###
+    log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for '${LANG}'"
+    echo "locales locales/default_environment_locale select ${LANG}" | \
+    debconf-set-selections
+    update-locale "LANG=${LANG}"
+    log_end_msg "${?}"
+    # mod for lxde
+    if [ -f /usr/bin/setlxdekblanguages ]; then
+        echo "lxdekb-lang-set ${LANG}"
+        setlxdekblanguages
+    fi
+    # mod for rqt and lxqt
     if [ -f /usr/bin/setqxkblanguages ]; then
         echo "qxkb-lang-set: ${LANG}"
         setqxkblanguages
