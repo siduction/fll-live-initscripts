@@ -112,7 +112,7 @@ do_start() {
         lxde)
             WM="/usr/bin/openbox"
             ;;
-        xfce)
+        xfce*)
             WM="/usr/bin/xfwm4"
             ;;
 	razorqt)
@@ -204,6 +204,10 @@ case "${1}" in
         DESKTOP="${1}"
         do_start
         ;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
+		;;
     *)
         echo "Usage: ${NAME} {start|stop}" >&2
         exit 3

@@ -278,14 +278,14 @@ set_timezone()
 	# hack rcS, make localtime default, unless tz=Etc/UTC or utc=yes
 	###
 	if [ "${TZ}" = "Etc/UTC" ] || [ "${UTC}" = "yes" ]; then
-		[ -w /etc/default/rcS ] && sed -i 's/^UTC=.*/UTC=yes/' /etc/default/rcS
+		printf "0.000000 0 0.000000\n0\nUTC\n" > /etc/adjtime
 	else
 		# debian defaults to UTC=yes, which is rumored to be dual-boot unfriendly
-		[ -w /etc/default/rcS ] && sed -i 's/^UTC=.*/UTC=no/' /etc/default/rcS
-		# update the system clock a'la /lib/udev/rules.d/85-hwclock.rules
-		/sbin/hwclock --rtc=dev/rtc0 --systz --localtime --noadjfile
-	fi
+		printf "0.000000 0 0.000000\n0\nLOCAL\n" > /etc/adjtime
 
+		# update the system clock a'la /lib/udev/rules.d/85-hwclock.rules
+		/sbin/hwclock --rtc=dev/rtc0 --systz --localtime
+	fi
 }
 
 set_locale()
@@ -628,6 +628,10 @@ case "${1}" in
 		localize_sources_list
 		save_locale_variables
 		set_accepted_lang
+		;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop|list|localize}" >&2

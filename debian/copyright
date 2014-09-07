@@ -3,13 +3,14 @@ Upstream-Name: fll-live-initscripts
 Source: http://chili.siduction.org/projects/siduction/wiki/Fll-live-initscripts
 
 Files: *
-Copyright: 2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+Copyright: 2007-2014 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+           2008-2012 Niall Walsh <niallwalsh@users.berlios.de>
            2007-2008 Kel Modderman <kel@otaku42.de>
 License: GPL-2.0+
 
 Files: debian/*
-Copyright: 2012-2013 Angelescu Ovidiu <convbsd@siduction.org>
-           2011-2013 Alf Gaida <agaida@siduction.org>
+Copyright: 2012-2014 Angelescu Ovidiu <convbsd@siduction.org>
+           2011-2014 Alf Gaida <agaida@siduction.org>
            2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
            2007-2008 Kel Modderman <kel@otaku42.de>
 License: GPL-2.0+
@@ -21,7 +22,7 @@ License: GPL-2.0+
 Files: debian/fll-live-initscripts.fll-reboot.init
 Copyright: 1997-2005 Miquel van Smoorenburg <miquels@cistron.nl> 
 	   2007-2008 Kel Modderman <kel@otaku42.de>
-           2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+           2007-2014 Stefan Lippers-Hollmann <s.l-h@gmx.net>
 License: GPL-2.0+
 
 Files: debian/fll-live-initscripts.fll-reboot.init
@@ -32,7 +33,7 @@ Copyright: 2005-2006 Adam Conrad
 	   2005-2007 maximilian attems
 	   2005-2006 Scott James Remnant
 	   2007-2008 Kel Modderman <kel@otaku42.de>
-	   2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+	   2007-2014 Stefan Lippers-Hollmann <s.l-h@gmx.net>
 License: GPL-2.0+
 
 License: GPL-2.0+

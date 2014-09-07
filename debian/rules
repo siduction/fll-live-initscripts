@@ -4,14 +4,19 @@
 	dh ${@}
 
 override_dh_installinit:
+	dh_installinit --no-start --name=fll-adduser
+	dh_installinit --no-start --name=fll-desktop
+	dh_installinit --no-start --name=fll-fstab
+	dh_installinit --no-start --name=fll-locales
+	dh_installinit --no-start --name=fll-nbdclient
+	dh_installinit --no-start --name=fll-network
+	dh_installinit --no-start --name=fll-reboot
+	dh_installinit --no-start --name=fll-shell
+	dh_installinit --no-start --name=fll-snakeoil-cert
+	dh_installinit --no-start --name=fll-xdm
 	dh_installinit
-	dh_installinit --no-start --name=fll-init       -- start 00 S .
-	dh_installinit --no-start --name=fll-locales    -- start 05 S .
-	dh_installinit --no-start --name=fll-fstab      -- start 30 S .
-	dh_installinit --no-start --name=fll-nbdclient  -- start 31 S .
-	dh_installinit --no-start --name=fll-network    -- start 38 S .
-	dh_installinit --no-start --name=fll-adduser    -- start 90 S .
-	dh_installinit --no-start --name=fll-shell      -- start 91 S .
-	dh_installinit --no-start --name=fll-xorgconfig -- start 80 2 3 4 5 .
-	dh_installinit --no-start --name=fll-desktop    -- start 95 2 3 4 5 .
-	dh_installinit --no-start --name=fll-reboot     -- start 90 0 6 .
+
+override_dh_installudev:
+	dh_installudev --name=fll-networking --priority=81
+	dh_installudev
+

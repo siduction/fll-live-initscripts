@@ -85,6 +85,15 @@ if [ -f /proc/cmdline ]; then
 fi
 
 do_start() {
+	if [ -d /sys/firmware/efi ] && [ /sys/fs/pstore/ ]; then
+		log_daemon_msg "${NAME}"; log_action_begin_msg " clean pstore"
+		mount -t pstore -o kmsg_bytes=8000 pstore /sys/fs/pstore && \
+		find /sys/fs/pstore/ -type f -delete
+		log_end_msg "${?}"
+		umount    /sys/fs/pstore 2>/dev/null || \
+		umount -l /sys/fs/pstore 2>/dev/null || :
+	fi
+
 	log_daemon_msg "${NAME}"; log_action_begin_msg " generating /etc/fstab"
 	/usr/sbin/fll_fstab_generator --file /etc/fstab --mkdir --nomounts ${NOSWAP}
 	log_end_msg "${?}"
@@ -104,6 +113,10 @@ case "${1}" in
 	restart|force-reload)
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
+		;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop}" >&2

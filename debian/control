@@ -2,21 +2,20 @@ Source: fll-live-initscripts
 Section: misc
 Priority: optional
 Maintainer: Alf Gaida <agaida@siduction.org>
-Uploaders: Ferdinand Thommes <devil@siduction.org>,
- Angelescu Ovidiu <convbsd@siduction.org>
+Uploaders: Angelescu Ovidiu <convbsd@siduction.org>
 Build-Depends:
   debhelper (>= 9),
  asciidoc,
  docbook,
+ gengetopt,
+ xsltproc,
  docbook-xml,
  docbook-xsl,
  devscripts,
- gengetopt,
  pkg-config,
  libblkid-dev,
  libudev-dev,
  libxml2-utils,
- xsltproc,
 Standards-Version: 3.9.5
 Vcs-Git: git://git.siduction.org/packages/siduction-repository/fll-live-initscripts
 Vcs-Browser: http://git.siduction.org/?p=packages/siduction-repository/fll-live-initscripts.git 
@@ -36,10 +35,13 @@ Depends:
  adduser,
  console-setup,
  cpufrequtils,
- distro-defaults (= ${source:Version}),
+ distro-defaults,
  eject,
- fll-live-utils (=${source:Version}),
+ fll-live-utils,
  ifplugd,
+ ifupdown,
+ iproute2,
+ procps,
  ceni,
  keyboard-configuration,
  lsb-base,
@@ -52,31 +54,12 @@ Description: fll live media sysv initscripts
  This is a FULLSTORY live-only package and must not be installed to an
  ordinary system.
 
-Package: fll-live-xorgconfig
-Architecture: all
-Depends: 
- ${misc:Depends},
- distro-defaults (= ${source:Version}), 
- lsb-base,
- perl,
- libswitch-perl,
- xserver-xorg-core,
-Recommends: 
- kdm | gdm3 | lightdm (>= 1.0.2) | slim,
- xserver-xorg-input-vmmouse (>> 12.6.3)
-Description: fll live media xorg related tools
- A set of scripts to generate a Xorg configuration.
- .
- This is a FULLSTORY live-only package and must not be installed to an
- ordinary system.
-
 Package: fll-live-utils
 Architecture: any
 Depends: 
  ${shlibs:Depends},
  ${misc:Depends},
  udev,
- libudev1,
 Description: fll live utilities
  A set of tools for use by fll-live-initscripts.
  .

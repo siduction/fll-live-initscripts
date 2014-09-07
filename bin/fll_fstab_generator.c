@@ -12,8 +12,7 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License along
- *  with this program; if not, write to the Free Software Foundation, Inc.,
- *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  with this program; if not, see <http://www.gnu.org/licenses>
  *
  */
 
@@ -324,15 +323,12 @@ static char* device_file(struct udev_device *device, int disk)
 			mnt = getmntent(fp);
 			if (mnt == NULL)
 				break;
-				
-		/**	
-                        Don't check fstype needed for fuse Filesystems (NTFS-3g for example)
+
 			if (strcmp(fstype, mnt->mnt_type) != 0)
 				continue;
-		**/
-		 if (strcmp(udev_device_get_devnode(device),
-				   mnt->mnt_fsname) == 0) {
 
+			if (strcmp(udev_device_get_devnode(device),
+				   mnt->mnt_fsname) == 0) {
 				len = strlen(mnt->mnt_dir) + 1;
 				value = malloc(len);
 				if (value == NULL)
@@ -370,12 +366,12 @@ static char* device_file(struct udev_device *device, int disk)
 	if (value == NULL) {
 		if (!disk) {
 			devnode = udev_device_get_devnode(device);
-			len = strlen("/media/");
+			len = strlen("/disks/");
 			len += strlen(basename(devnode)) + 1;
 			value = malloc(len);
 			if (value == NULL)
 				return NULL;
-			res = snprintf(value, len, "/media/%s",
+			res = snprintf(value, len, "/disks/%s",
 				       basename(devnode));
 			if (res < 0 || (size_t) res >= len)
 				return NULL;
@@ -386,7 +382,7 @@ static char* device_file(struct udev_device *device, int disk)
 			partition = udev_device_get_sysattr_value(device,
 								  "partition");
 			if (partition != NULL) {
-				len = strlen("/media/disk");
+				len = strlen("/disks/disk");
 				if (disk < 10)
 					len += 1;
 				else if (disk < 100)
@@ -398,7 +394,7 @@ static char* device_file(struct udev_device *device, int disk)
 				if (value == NULL)
 					return NULL;
 				res = snprintf(value, len,
-					       "/media/disk%dpart%s",
+					       "/disks/disk%dpart%s",
 					       disk, partition);
 				if (res < 0 || (size_t) res >= len)
 					return NULL;
@@ -406,7 +402,7 @@ static char* device_file(struct udev_device *device, int disk)
 					value[len - 1] = '\0';
 			}
 			else {
-				len = strlen("/media/disk");
+				len = strlen("/disks/disk");
 				if (disk < 10)
 					len += 1;
 				else if (disk < 100)
@@ -417,7 +413,7 @@ static char* device_file(struct udev_device *device, int disk)
 				value = malloc(len);
 				if (value == NULL)
 					return NULL;
-				res = snprintf(value, len, "/media/disk%d",
+				res = snprintf(value, len, "/disks/disk%d",
 					       disk);
 				if (res < 0 || (size_t) res >= len)
 					return NULL;
@@ -466,7 +462,7 @@ static char* device_mntops(struct udev_device *device, char *fstype, char *dir)
 		else if (strcmp(fstype, "msdos") == 0)
 			str = "users,rw,quiet,umask=000,iocharset=utf8";
 		else if (strcmp(fstype, "vfat") == 0)
-			str = "users,rw,quiet,umask=000,shortname=lower";
+			str = "users,rw,quiet,umask=000";
 		else if (strcmp(fstype, "hfsplus") == 0)
 			str = "users,ro,exec";
 		else

@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# ifup hook script for fll
+#
+# This file is part of the fll-live-initscripts package
+#
+# Copyright © 2012 Niall Walsh <niallwalsh@users.berlios.de>
+# License: GPLv2+
+
+grep -q nonetwork /proc/cmdline && exit 0
+
+# no-op when lo or "--all" come up, we want a real iface up
+( [ "${IFACE}" = "lo" ] || [ "${IFACE}" = "--all" ] ) && exit 0
+
+if [ -e "/run/fll/ifup" ]; then
+	exit 0
+else
+	# make sure no other iface manages to race in
+	echo ${IFACE} >> /run/fll/ifup
+	ifirst=$(head -n 1 /run/fll/ifup)
+	if [ "${ifirst}" != "${IFACE}" ] ; then
+		sed -i '/'${IFACE}'/d' /run/fll/ifup
+		exit 0
+	fi
+fi
+
+# check if our net.agent added this interface
+ifours() {
+	[ -e "/run/fll/ifup.${1}" ] && grep -q fll /run/fll/ifup.${1} && return 0
+	return 1
+}
+
+# drop the interface and remove it's allow-hotplug if we added it
+ifdel() {
+	ifours ${1} && sed -i '/iface '${1}' inet dhcp/d' /etc/network/interfaces
+	ip link set ${1} down && rm /run/fll/ifup.${1}
+}
+
+ifours ${IFACE} && \
+sed -i -e 's|iface '${IFACE}' inet dhcp|allow-hotplug '${IFACE}'\n&|' /etc/network/interfaces
+
+# stop other attempts made by our udev agent to ifup
+for d in /run/fll/ifup.* ; do
+	[ -e "${d}" ] && [ "${d}" != "/run/fll/ifup.${IFACE}" ] && ifdel ${d##*/ifup\.}
+done
+
+:
+

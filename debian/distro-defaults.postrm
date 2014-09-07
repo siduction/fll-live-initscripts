@@ -29,19 +29,11 @@ set -e
 # If preinst fails during upgrade:
 #       <new-postrm> abort-upgrade <old-version>
 
-purge_conffile() {
-	rm -f ${1}
-}
-
 case "$1" in
 	remove)
 		;;
 	purge)
-		purge_conffile /etc/default/distro
-
-		for file in gdm3 kdm lxdm slim wdm xdm lightdm; do
-			purge_conffile /etc/insserv/overrides/${file}
-		done
+		rm -f /etc/default/distro
 		;;
 	upgrade|failed-upgrade|disappear)
 		;;

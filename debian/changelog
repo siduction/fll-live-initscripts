@@ -1,3 +1,34 @@
+fll-live-initscripts (2014.09.08) unstable; urgency=medium
+
+  * reactivate distro-defaults.install
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 07 Sep 2014 01:26:01 +0200
+
+fll-live-initscripts (2014.09.07) unstable; urgency=medium
+
+  * Merge from fullstory;
+  * generate fstab mounts in /disks instead of /media.
+  * move fll-init into the initramfs.
+  * drop insserv overrides for various display managers, this isn't functional
+    under system; clean up dpkg-triggers.
+  * drop fll-xorgconfig.
+  * fix lintian problems with the new fll-network initscript:
+    - init.d-script-missing-dependency-on-remote_fs
+    - init.d-script-should-depend-on-virtual-facility ($network)
+  * rework networking
+    - do not exec from fll.net.agent
+    - add fll-network init to create flag when networking has run and
+      re-run fll.net.agent directly on previously seen interfaces
+    - 000fll ends with : so teardown tests do not make it appear to fail
+  * fix typo triggering init.d-script-does-not-provide-itself.
+  * add fll-snakeoil-cert.init.
+  * sort dh_installinit calls.
+  * guard sysfs check for virtual machines.
+  * don't prompt for ejecting in a virtual machine, unless explicitly
+    requested ("doprompt" cheatcode).
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 07 Sep 2014 00:20:27 +0200
+
 fll-live-initscripts (2014.08.09) unstable; urgency=medium
 
   * prepare lxde keyboard setting

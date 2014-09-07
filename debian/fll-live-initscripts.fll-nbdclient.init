@@ -93,7 +93,7 @@ case "${1}" in
 		FLL_MOUNT=$(fll_get_mnt)
 		FLL_DEV=$(mount | awk '$3 == "'${FLL_MOUNT}'" { print $1 }')
 		FLL_DEV=${FLL_DEV#/dev/}
-		/sbin/nbd-client -c ${FLL_DEV%p*} >> /lib/init/rw/sendsigs.omit.d/fll-live-initscripts
+		/sbin/nbd-client -c ${FLL_DEV%p*} >> /run/sendsigs.omit.d/fll-live-initscripts
 		log_end_msg "${?}"
 		;;
 	stop)
@@ -101,6 +101,10 @@ case "${1}" in
 	restart|force-reload)
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
+		;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop}" >&2

@@ -1,6 +1,0 @@
-Section "Device"
-	Identifier	"Device 0"
-	Driver		"@@DRIVER@@"
-	BoardName	"@@BOARDNAME@@"
-	BusID		"@@BUSID@@"
-EndSection

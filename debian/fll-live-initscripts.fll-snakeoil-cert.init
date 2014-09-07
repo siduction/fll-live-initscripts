@@ -1,20 +1,22 @@
 #!/bin/sh
 
 ### BEGIN INIT INFO
-# Provides:          fll-shell
-# Required-Start:    fll-adduser
+# Provides:          fll-snakeoil-cert
+# Required-Start:    mountdevsubfs
 # Required-Stop:
+# Should-Start:      $network
+# Should-Stop:
 # Default-Start:     S
 # Default-Stop:
-# Short-Description: configure shell
-# Description:       Populate /root/.bash* for a more comfortable root shell
-#                    login. Preset some shell application settings.
+# Short-Description: generate unique SSL snakeoil certs
+# Description:       The purpose of fll-ssl-cert-snakeoil is to ensure unique
+#                    (snakeoil) SSL certificates.
 ### END INIT INFO
 
 ###
 # F.U.L.L.S.T.O.R.Y init script
 #
-# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# Copyright: (C) 2014, Stefan Lippers-Hollmann <s.l-h@gmx.de>
 # License:   GPLv2
 #
 # F.U.L.L.S.T.O.R.Y Project Homepage:
@@ -22,7 +24,11 @@
 ###
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-NAME="fll-shell"
+NAME="fll-ssl-cert-snakeoil"
+
+if [ ! -x /usr/sbin/make-ssl-cert ]; then
+	exit 0
+fi
 
 ###
 # source distro-defaults, no-op unless in live mode
@@ -44,7 +50,6 @@ fi
 
 ###
 # source lsb functions
-
 ###
 . /lib/lsb/init-functions
 
@@ -68,23 +73,12 @@ if [ -f /proc/cmdline ]; then
 	done
 fi
 
-do_start() {
-	for file in '.bash_logout' '.bash_profile' '.bashrc' '.profile'; do
-		if [ -f /etc/skel/${file} ] && [ ! -f /root/${file} ]; then
-			cp /etc/skel/${file} /root/${file}
-		fi
-	done
-
-	:> /root/.hushlogin
-
-	if [ -w /etc/pam.d/login ]; then
-		sed -i '/^[^#].*pam_lastlog\.so/s/^/# /' /etc/pam.d/login
-	fi
-}
-
 case "${1}" in
 	start)
-		do_start
+		log_daemon_msg "${NAME}"
+		log_action_begin_msg " generate unique SSL snakeoil certs"
+		make-ssl-cert generate-default-snakeoil --force-overwrite
+		log_end_msg "${?}"
 		;;
 	stop)
 		;;
@@ -97,7 +91,7 @@ case "${1}" in
 		exit 0
 		;;
 	*)
-		echo "Usage: ${NAME} {start|stop|restart|force-reload}" >&2
+		echo "Usage: ${NAME} {start|stop}" >&2
 		exit 3
 		;;
 esac

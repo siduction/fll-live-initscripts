@@ -29,37 +29,10 @@ chrooted() {
 	return 0
 }
 
-override_dm_lsb_defaults() {
-	dmstart='5'
-	dmstop='0 1 2 3 4 6'
-
-	# Dump the LSB header to insserv override file
-	sed -n '/^### BEGIN INIT INFO/,/^### END INIT INFO/p' ${1} > ${2}
-
-	# Override Default-Start and Default-Stop
-	sed -i -e 's/^\(# Default-Start:[[:space:]]\+\).*/\1'"${dmstart}"'/' \
-	       -e 's/^\(# Default-Stop:[[:space:]]\+\).*/\1'"${dmstop}"'/'   \
-		${2}
-
-	echo '# Managed by the distro-defaults package.' >> ${2}
-}
-
-do_override() {
-	# Usage: do_override kdm 5
-	[ -s /etc/init.d/${1} ] || return 0
-
-	echo "distro-defaults: overriding LSB init info for ${1} ..." 1>&2
-	override_dm_lsb_defaults /etc/init.d/${1} /etc/insserv/overrides/${1}
-}
-
-purge_conffile() {
-	rm -f ${1}
-}
-
 case "$1" in
 	configure)
-		for dm in gdm3 kdm slim lightdm lxdm wdm xdm; do			
-			do_override "${dm}"
+		for file in gdm3 kdm lightdm lxdm slim wdm xdm; do
+				rm -f "/etc/insserv/overrides/${file}"
 		done
 
 		# gdm is no more
@@ -98,10 +71,6 @@ EOF
                 cp -f /usr/share/distro-defaults/fixes/umountfs /etc/init.d
 		;;
 	triggered)
-		shift
-		for interest in "${@}"; do
-			do_override "${interest#/etc/init.d/}"
-		done
 		;;
 	abort-upgrade|abort-deconfigure|abort-remove)
 		;;

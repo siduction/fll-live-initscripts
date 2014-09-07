@@ -18,7 +18,8 @@
 ###
 # F.U.L.L.S.T.O.R.Y init script
 #
-# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# Copyright: (C) 2007-2008, Kel Modderman <kel@otaku42.de>
+# Copyright: (C) 2008-2014, Stefan Lippers-Hollmann <s.l-h@gmx.de>
 # License:   GPLv2
 #
 # F.U.L.L.S.T.O.R.Y Project Homepage:
@@ -51,11 +52,30 @@ fi
 ###
 . /lib/lsb/init-functions
 
+###
+# don't prompt for ejecting in a virtual machine, unless overriden
+###
+if [ -r /sys/devices/virtual/dmi/id/bios_vendor ]; then
+	case "$(head -n1 /sys/devices/virtual/dmi/id/bios_vendor)" in
+		"Bochs")
+			# qemu/ kvm
+			NOPROMPT="1"
+			;;
+		"innotek GmbH")
+			# VirtualBox
+			NOPROMPT="1"
+			;;
+	esac
+fi
+
 if [ -f /proc/cmdline ]; then
 	for param in $(cat /proc/cmdline); do
 		case "${param}" in
 			noeject|toram)
 				NOEJECT="1"
+				;;
+			doprompt)
+				unset NOPROMPT
 				;;
 			noprompt)
 				NOPROMPT="1"
@@ -105,46 +125,40 @@ do_umount() {
 	#
 	# live hack: any command after this point must be prefixed with ${BINDIR}
 	#
+	UMOUNT_V=""
+	if [ "$VERBOSE" != no ] ; then
+		UMOUNT_V="-v"
+	fi
 	if [ "$UNION_MTPTS" ]
 	then
-		if [ "$VERBOSE" = no ]
-		then
-			echo "Unmounting union filesystems."
-			umount -l -n -f -d $UNION_MTPTS
-			[ "$?" -eq 0 ] || echo "\"umount -l -n -f -d $UNION_MTPTS\" returned $?"
-		else
-			echo "Will now unmount union filesystems."
-			umount -l -n -f -v -d $UNION_MTPTS
-			[ "$?" -eq 0 ] || echo "\"umount -l -n -f -v -d $UNION_MTPTS\" returned $?"
-		fi
+		echo "Unmounting union filesystems."
+		for MTPT in $UNION_MTPTS ; do
+			case "$MTPT" in
+				/)
+					# umount / and it's game-over
+					mount -o remount,ro $MTPT
+					[ "$?" -eq 0 ] || echo  "\"mount -o remount,ro $MTPT\" returned $?"
+					;;
+				*)
+					umount -l -n -f -d $UMOUNT_V $UNION_MTPTS
+					[ "$?" -eq 0 ] || echo "\"umount -l -n -f -d $UMOUNT_V $UNION_MTPTS\" returned $?"
+					;;
+			esac
+		done
 	fi
 
 	if [ "$SQSH_MTPTS" ]
 	then
-		if [ "$VERBOSE" = no ]
-		then
-			echo "Unmounting squashfs filesystems."
-			umount -l -n -f -d $SQSH_MTPTS
-			[ "$?" -eq 0 ] || echo "\"umount -l -n -f -d $SQSH_MTPTS\" returned $?"
-		else
-			echo "Will now unmount squashfs filesystems."
-			umount -l -n -f -v -d $SQSH_MTPTS
-			[ "$?" -eq 0 ] || echo "\"umount -l -n -f -v -d $SQSH_MTPTS\" returned $?"
-		fi
+		echo "Unmounting squashfs filesystems."
+		umount -l -n -f -d $UMOUNT_V $SQSH_MTPTS
+		[ "$?" -eq 0 ] || echo "\"umount -l -n -f -d $UMOUNT_V $SQSH_MTPTS\" returned $?"
 	fi
 
 	if [ "$LIVE_MTPTS" ]
 	then
-		if [ "$VERBOSE" = no ]
-		then
-			echo "Unmounting live filesystems."
-			umount -l -n -f -d $LIVE_MTPTS
-			[ "$?" -eq 0 ] || echo "\"umount -l -n -f -d $LIVE_MTPTS\" returned $?"
-		else
-			echo "Will now unmount live filesystems."
-			umount -l -n -f -v -d $LIVE_MTPTS
-			[ "$?" -eq 0 ] || echo "\"umount -l -n -f -v -d $LIVE_MTPTS\" returned $?"
-		fi
+		echo "Unmounting live filesystems."
+		umount -l -n -f -d $UMOUNT_V $LIVE_MTPTS
+		[ "$?" -eq 0 ] || echo "\"umount -l -n -f -d $UMOUNT_V $LIVE_MTPTS\" returned $?"
 	fi
 }
 ###############################################################################
@@ -291,6 +305,10 @@ case "${1}" in
 	stop)
 		# live-hack, umount and eject
 		do_stop
+		;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop}" >&2

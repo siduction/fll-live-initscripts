@@ -1,8 +1,0 @@
-interest /etc/init.d/gdm3
-interest /etc/init.d/xdm
-interest /etc/init.d/kdm
-interest /etc/init.d/lxdm
-interest /etc/init.d/slim
-interest /etc/init.d/wdm
-interest /etc/init.d/xdm
-interest /etc/init.d/lightdm

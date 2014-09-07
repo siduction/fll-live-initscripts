@@ -9,7 +9,7 @@ da_DK.utf8	0		dk,us			Europe/Copenhagen	en_US.utf8
 de_AT.utf8			de,us			Europe/Vienna	de_DE.utf8 en_US.utf8	
 de_BE.utf8			be,de,fr,us			Europe/Brussels	de_DE.utf8 fr_FR.utf8 en_US.utf8	whats sensible?
 de_CH.utf8			ch,us	fr		Europe/Zurich	de_DE.utf8 en_US.utf8	is the fr variant sane?
-de_DE.utf8	0		de,us	nodeadkeys	lv3:ralt_switch,compose:menu	Europe/Berlin	US.utf8	
+de_DE.utf8	0		de,us			Europe/Berlin	US.utf8
 de_LI.utf8			de,us			Europe/Vaduz	de_DE.utf8 en_US.utf8	
 de_LU.utf8			de,us			Europe/Luxembourg	de_DE.utf8 en_US.utf8	
 el_CY.utf8			gr,us			Europe/Athens	en_US.utf8	
@@ -62,14 +62,14 @@ ga_IE.utf8	0		ie,gb,us			Europe/Dublin	en_IE.utf8 en_GB.utf8 en_US.utf8
 he_IL.utf8	0		il,us			Asia/Jerusalem	en_US.utf8	, must be saner then us?
 hr_HR.utf8	0		hr,us			Europe/Zagreb	en_US.utf8	
 hu_HU.utf8	0		hu,us			Europe/Budapest	en_US.utf8	
-is_IS	0		is,us			Atlantic/Reykjavik	en_US.utf8	
+is_IS.utf8	0		is,us			Atlantic/Reykjavik	en_US.utf8
 it_CH.utf8			it,de,fr,us			Europe/Zurich	it_IT.utf8 en_US.utf8	
 it_IT.utf8	0		it,us			Europe/Rome	en_US.utf8	
 ja_JP.utf8	0		jp,us			Asia/Tokyo	en_US.utf8	
 ko_KR.utf8	0		kr,us			Asia/Seoul	en_US.utf8	
 nb_NO.utf8	0		no,us			Europe/Oslo	nb_NO.utf8 en_US.utf8	
 nl_AW.utf8			us,nl			America/Aruba	nl_NL.utf8 en_US.utf8	us seems “sane”
-nl_BE.utf8	0		be,fr,us			Europe/Brussels	nl_NL.utf8 en_US.utf8	
+nl_BE.utf8			be,fr,us			Europe/Brussels	nl_NL.utf8 en_US.utf8
 nl_NL.utf8	0		us,nl			Europe/Amsterdam	en_US.utf8	
 nn_NO.utf8	0		no,us			Europe/Oslo	nn_NO.utf8 en_US.utf8	
 pl_PL.utf8	0		pl,us			Europe/Warsaw	en_US.utf8	
@@ -80,13 +80,14 @@ ru_RU.utf8	0		ru,us			Europe/Moscow	en_US.utf8
 ru_UA.utf8			ru,us			Europe/Kiev	en_US.utf8	
 se_FI.utf8			fi,no,se,us	fi		Europe/Helsinki	fi_FI.utf8 en_US.utf8	
 se_NO.utf8			no,fi,se,us	smi		Europe/Oslo	nn_NO.utf8 en_US.utf8	
-se_SE.utf8			se,fi,no,us	smi		Europe/Stockholm	sv_SE.utf8 en_US.utf8	
+se_SE.utf8	0		se,fi,no,us	smi		Europe/Stockholm	sv_SE.utf8 en_US.utf8
 sk_SK.utf8	0		sk,us			Europe/Bratislava	en_US.utf8	
 sl_SI.utf8	0		si,us			Europe/Ljubljana	en_US.utf8	#CONSOLEFONT=iso02g
 sv_FI.utf8			se,fi,us	basic		Europe/Helsinki	en_US.utf8	
 sv_SE.utf8	0		se,us	basic		Europe/Stockholm	en_US.utf8	not built
 tr_CY.utf8			tr,us			Europe/Istanbul	en_US.utf8	
 tr_TR.utf8	0		tr,us			Europe/Istanbul	en_US.utf8	
+uk_UA.utf8	0		ua,ru,us			Europe/Kiev	en_US.utf8
 zh_CN.utf8	0		us			Asia/Shaghai	zh_TW en_US.utf8	
 zh_HK.utf8			us			Asia/Hong_Kong	zh_CH en_US.utf8	
 zh_SG.utf8			us			Asia/Singapore	zh_CH en_US.utf8	

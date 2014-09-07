@@ -1,4 +1,0 @@
-Section "ServerLayout"
-	Identifier	"Xorg Configured"
-	Screen		"Screen 0"
-EndSection

@@ -1,3 +1,5 @@
 fll                                  lib/init
-share/fll-live-initscripts/fdi/*.fdi usr/share/hal/fdi/policy/20thirdparty
 share/fll-live-initscripts/locales*  usr/share/fll-live-initscripts/
+networking/000fll                    etc/network/if-up.d/
+networking/fll.net.agent             lib/udev/
+
