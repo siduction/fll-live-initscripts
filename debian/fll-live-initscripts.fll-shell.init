@@ -2,7 +2,7 @@
 
 ### BEGIN INIT INFO
 # Provides:          fll-shell
-# Required-Start:    fll-adduser
+# Required-Start:
 # Required-Stop:
 # Default-Start:     S
 # Default-Stop:

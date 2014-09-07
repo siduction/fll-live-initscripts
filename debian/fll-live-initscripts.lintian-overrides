@@ -1,7 +1,5 @@
 # we depend on fll-live-initramfs, which implies $remote_fs by definition; at
 # the same time insserv dependency resolution needs to remain simple
-fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-adduser: required-start
-fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-desktop: required-start
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-fstab: required-start
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-locales: required-start
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-nbdclient: required-start
@@ -9,7 +7,6 @@ fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/f
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-reboot: required-stop
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-shell: required-start
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-snakeoil-cert: required-start
-fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-xdm: required-start
 
 # fll-reboot needs to replace sysvinit's reboot, therefore we indeed don't stop
 # in runlevel 1.

@@ -1,3 +1,2 @@
 bin/fll_blockdev_detect     usr/sbin
 bin/fll_fstab_generator     usr/sbin
-bin/fll_login               usr/bin

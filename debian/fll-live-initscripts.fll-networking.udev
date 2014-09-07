@@ -1,2 +1,0 @@
-SUBSYSTEM=="net",			RUN+="fll.net.agent"
-

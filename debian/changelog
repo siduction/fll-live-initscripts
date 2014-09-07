@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.09.1) UNRELEASED; urgency=medium
+
+  * removed unused/duplicate code
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Sun, 07 Sep 2014 12:40:36 +0200
+
 fll-live-initscripts (2014.09.09) unstable; urgency=medium
 
   * initscripts should not handle networking

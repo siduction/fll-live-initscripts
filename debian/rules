@@ -4,19 +4,11 @@
 	dh ${@}
 
 override_dh_installinit:
-	dh_installinit --no-start --name=fll-adduser
-	dh_installinit --no-start --name=fll-desktop
 	dh_installinit --no-start --name=fll-fstab
 	dh_installinit --no-start --name=fll-locales
 	dh_installinit --no-start --name=fll-nbdclient
-	# dh_installinit --no-start --name=fll-network
 	dh_installinit --no-start --name=fll-reboot
 	dh_installinit --no-start --name=fll-shell
 	dh_installinit --no-start --name=fll-snakeoil-cert
-	dh_installinit --no-start --name=fll-xdm
 	dh_installinit
-
-#override_dh_installudev:
-#	dh_installudev --name=fll-networking --priority=81
-#	dh_installudev
 
