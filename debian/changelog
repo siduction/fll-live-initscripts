@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.09) unstable; urgency=medium
+
+  * initscripts should not handle networking
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 07 Sep 2014 12:40:36 +0200
+
 fll-live-initscripts (2014.09.08) unstable; urgency=medium
 
   * reactivate distro-defaults.install
