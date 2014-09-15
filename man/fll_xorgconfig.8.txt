@@ -1,0 +1,115 @@
+FLL_XORGCONFIG(8)
+=================
+Kel Modderman <kel@otaku42.de>
+
+
+NAME
+----
+fll_xorgconfig - FULLSTORY live X.org configuration framework
+
+
+SYNOPSIS
+--------
+'fll_xorgconfig' [OPTIONS]
+
+
+DESCRIPTION
+-----------
+fll_xorgconfig(8) provides a framework for generating a valid xorg.conf(5) for
+the local system.
+
+Templates for various Sections of xorg.conf are manipulated and put together
+based on what options are given.
+
+
+OPTIONS
+-------
+--output '/path/to/xorg.conf'::
+	Alternative path to xorg.conf file.
+	Default: '/etc/X11/xorg.conf'
+
+--templates '/path/to/templates/dir'::
+	Alternative path to templates directory.
+
+--verbose, --debug::
+	Print debug output.
+
+--boardname 'string'::
+	String describing VGA hardware.
+
+--busid 'string'::
+	PCI BusId string to be used in 'Device' section.
+
+--driver 'string'::
+	X.org driver string to be used in 'Device' section.
+	Default: "vesa"
+
+--colordepth 'integer'::
+	Default colour depth to be used in 'Monitor' section.
+	Default: 24
+
+--modelname 'string'::
+	String describing monitor hardware.
+
+--modelines, --no-modelines::
+	To use, or not to use, provided GTF Modeline library.
+	Default: true
+
+--modes 'string'::
+	String of space separated screen Modes.
+	Default: "1024x768 800x600 640x480"
+
+--horizsync 'string'::
+	String containing Horizontal synchronisation range.
+	Default: "28-96".
+
+--vertrefresh 'string'::
+	String containing Vertical refresh range.
+	Default: "50-75"
+
+--xrandr::
+	Turn on method of configuration for RandR 1.2 aware drivers. This
+	results in a much smaller configuration file, as the driver is
+	(hopefully) able to select the correct mode of operation for the
+	attached monitor.
+	Default: false
+
+--mode 'string'::
+	String to be used as the value of the 'PreferredMode' option of the
+	'Device' section. This is only used when '--xrandr' option is true.
+
+--rate 'string'::
+	String that represents preferred rate. Only useful when used with the
+	'--mode' option. It causes fll_xorgconfig(8) to generate a GTF modeline
+	to be used in conjuntion with the 'PreferredMode' option of the 'Device'
+	section.
+
+--virtual 'string'::
+	String to be used as the value of the 'Virtual' option of the 'Monitor'
+	section. This is only used when '--xrandr' option is true.
+
+--composite::
+	To use, or not to use, 'Composite' extensions of the Xserver.
+	Defaults: false
+
+
+SEE ALSO
+--------
+xorg.conf(5), gtf(1)
+
+
+AUTHOR
+------
+Kel Modderman <kel@otaku42.de>
+
+
+RESOURCES
+---------
+FULLSTORY Homepage: http://developer.berlios.de/projects/fullstory/[]
+
+
+COPYING
+-------
+Copyright \(C) 2007 Kel Modderman. Free use of this software is
+granted under the terms of the GNU General Public License (GPL)
+version 2, or at your choice, any later version.

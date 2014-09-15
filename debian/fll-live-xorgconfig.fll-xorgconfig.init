@@ -1,0 +1,271 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          fll-xorgconfig
+# Required-Start:
+# Required-Stop:
+# X-Start-Before:    gdm3 kdm lxdm slim wdm xdm
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: configure Xorg xserver
+# Description:       The script is intended to configure the
+#                    Xorg xserver for use.
+### END INIT INFO
+
+###
+# F.U.L.L.S.T.O.R.Y init script
+#
+# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# http://developer.berlios.de/projects/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-xorgconfig"
+DPKG_ARCH="$(dpkg --print-architecture)"
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+if [ ! -x /usr/sbin/fll_xorgconfig ]; then
+	exit 0
+fi
+
+###
+# source lsb functions
+###
+. /lib/lsb/init-functions
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			noxrandr)
+				XNOXRANDR="1"
+				;;
+			nomodelines|noml)
+				XNOMODELINES="1"
+				;;
+			xdepth=*|depth=*)
+				XDEPTH="${param#*depth=}"
+				;;
+			xhrefresh=*|hsync=*)
+				XHORIZSYNC="${param#*=}"
+				;;
+			xdriver=*|xmodule=*)
+				XMODULE="${param#x*=}"
+				;;
+			xrate=*|rate=*)
+				XRATE="${param#*rate=}"
+				;;
+			xrandr)
+				XFORCERANDR="1"
+				;;
+			xscreen=*|screen=*|xmode=*|mode=*)
+				XMODES="${param#*=}"
+				;;
+			xvrefresh=*|vsync=*)
+				XVERTREFRESH="${param#*=}"
+				;;
+			vesa)
+				XMODULE="vesa"
+				;;
+		esac
+	done
+fi
+
+###
+# functions...
+###
+xserver_has_xrandr() {
+	if [ "${XFORCERANDR}" ]; then
+		# force xrandr style configuration
+		return 0
+	elif [ "${XNOXRANDR}" ]; then
+		# force legacy style configuration
+		return 1
+	fi
+
+	# http://wiki.debian.org/XStrikeForce/HowToRandR12
+	# As of today (20071015), the following drivers/boards support RandR 1.2:
+	#  * the Intel driver on all boards (since 1.9.91)
+	#  * the NV driver on G80 boards (since 2.0.95)
+	#  * the ATI driver on r200/r300/r400 boards (since 6.7.191)
+	#  * the MGA driver on all boards (since 1.9.99)
+
+	# xserver driver
+	# DRIVER="${1}"
+	# device id of VGA hardware (lower case)
+	# DEVICE="${2}"
+	
+	case "${1}" in
+		ati|radeon)
+			return 0
+			;;
+		intel)
+			return 0
+			;;
+		mga)
+			return 0
+			;;
+		radeonhd)
+			return 0
+			;;
+		*)
+			return 1
+			;;
+	esac
+}
+
+do_start() {
+	log_daemon_msg "${NAME}"
+
+	# if there are no cheatcodes, we have nothing to do
+	if [ -z "${XNOXRANDR}" ] && \
+	   [ -z "${XNOMODELINES}" ] && \
+	   [ -z "${XDEPTH}" ] && \
+	   [ -z "${XHORIZSYNC}" ] && \
+	   [ -z "${XMODULE}" ] && \
+	   [ -z "${XRATE}" ] && \
+	   [ -z "${XFORCERANDR}" ] && \
+	   [ -z "${XMODES}" ] && \
+	   [ -z "${XVERTREFRESH}" ]; then
+		[ -f /etc/X11/xorg.conf ] && rm /etc/X11/xorg.conf
+		log_action_begin_msg " no cheatcodes detected, deferring X detection to X.org"
+		log_end_msg 0
+
+		exit 0
+	fi
+
+	if [ "${VERBOSE}" = "yes" ]; then
+		XCFG_OPTS="${XCFG_OPTS} --verbose"
+	fi
+
+	log_daemon_msg "${NAME}"
+
+	if [ "${XMODULE}" ]; then
+		log_progress_msg "driver: ${XMODULE}"
+		XCFG_OPTS="${XCFG_OPTS} --driver '${XMODULE}'"
+	fi
+
+	log_end_msg 0
+	
+	if xserver_has_xrandr "${XMODULE}"; then
+		# driver is randr1.2 aware - let the xserver try its best
+		# ... to do the right thing
+		XCFG_OPTS="${XCFG_OPTS} --xrandr"
+		
+		if [ "${XMODES}" ]; then
+			XCFG_OPTS="${XCFG_OPTS} --mode '${XMODES}'"
+		fi
+
+		# warn about override semantic difference
+		if [ "${XVERTREFRESH}" ] && [ -z "${XRATE}" ]; then
+			log_warning_msg "ignoring vsync=${XVERTREFRESH}"
+		fi
+
+		if [ "${XRATE}" ]; then
+			XCFG_OPTS="${XCFG_OPTS} --rate '${XRATE}'"
+		fi
+	else
+		log_daemon_msg "${NAME}"
+		log_action_begin_msg " default monitor settings"
+		
+		if [ "${XMODES}" ]; then
+			# cheatcode
+			log_progress_msg "res(*): ${XMODES}"
+			XCFG_OPTS="${XCFG_OPTS} --modes '${XMODES}'"
+		fi
+		
+		if [ "${XHORIZSYNC}" ]; then
+			# cheatcode
+			XHORIZSYNC_MIN="${XHORIZSYNC%%-*}"
+			XHORIZSYNC_MAX="${XHORIZSYNC##*-}"
+
+			if [ "${XHORIZSYNC_MIN}" = "${XHORIZSYNC}" ]; then
+				XHORIZSYNC_MIN="28"
+			fi
+
+			log_progress_msg "hfreq(*): ${XHORIZSYNC_MIN}-${XHORIZSYNC_MAX} kHz"
+			XCFG_OPTS="${XCFG_OPTS} --horizsync '${XHORIZSYNC_MIN}-${XHORIZSYNC_MAX}'"
+		fi
+
+		# warn about override semantic difference
+		if [ "${XRATE}" ] && [ -z "${XVERTREFRESH}" ]; then
+			log_warning_msg "ignoring xrate=${XRATE}"
+		fi			
+		
+		if [ "${XVERTREFRESH}" ]; then
+			# cheatcode
+			XVERTREFRESH_MIN="${XVERTREFRESH%%-*}"
+			XVERTREFRESH_MAX="${XVERTREFRESH##*-}"
+
+			if [ "${XVERTREFRESH_MIN}" = "${XVERTREFRESH}" ]; then
+				XVERTREFRESH_MIN="50"
+			fi
+
+			log_progress_msg "vfreq(*): ${XVERTREFRESH_MIN}-${XVERTREFRESH_MAX} Hz"
+			XCFG_OPTS="${XCFG_OPTS} --vertrefresh '${XVERTREFRESH_MIN}-${XVERTREFRESH_MAX}'"
+		fi
+
+		# cheatcode
+		if [ "${XNOMODELINES}" ]; then
+			XCFG_OPTS="${XCFG_OPTS} --no-modelines"
+		fi
+
+		log_end_msg 0
+	fi
+
+	# force colordepth of 16 for vesa, this helps with antiquated
+	# graphics chipsets.
+	if [ "${XDEPTH}" ]; then
+		XCFG_OPTS="${XCFG_OPTS} --colordepth '${XDEPTH}'"
+	elif [ "${XMODULE}" = "vesa" ]; then
+		XCFG_OPTS="${XCFG_OPTS} --colordepth 16"
+	fi
+
+	# write the configuration to file
+	eval "/usr/sbin/fll_xorgconfig ${XCFG_OPTS}"
+}
+
+case "${1}" in
+	start)
+		do_start
+		;;
+	stop)
+		;;
+	restart|force-reload)
+		echo "Error: argument '${1}' not supported" >&2
+		exit 3
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop}" >&2
+		exit 3
+		;;
+esac
+
+:

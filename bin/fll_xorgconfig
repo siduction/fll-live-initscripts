@@ -1,0 +1,380 @@
+#!/usr/bin/perl
+#
+# Copyright (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this package; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+# MA 02110-1301, USA.
+#
+# On Debian GNU/Linux systems, the text of the GPL license can be
+# found in /usr/share/common-licenses/GPL.
+
+# Much information can be taken from:
+# http://wiki.debian.org/XStrikeForce/XSFTODO
+
+use warnings;
+use strict;
+use autouse 'Data::Dumper' => qw(Dumper);
+use File::Find;
+use FindBin qw($Bin);
+use Getopt::Long;
+use Tie::File;
+use Switch 'Perl6';
+
+###########################################################
+# global vars
+my $verbosity = 0;
+my $xorg_conf = '/etc/X11/xorg.conf';
+my $xorg_tmpl = "$Bin/../share/fll-live-xorgconfig/templates";
+
+# used for counting line numbers
+my $n;
+
+# the array to be tied to xorg.conf
+my @x;
+
+# the x config structure, provide defaults here. overridden by GetOptions down below
+my %x = (
+
+	# global variable refs
+	'output'    => \$xorg_conf,
+	'templates' => \$xorg_tmpl,
+	'verbose'   => \$verbosity,
+
+	# screen
+	'colordepth' => '24',
+
+	# monitor
+	'modes'       => '1024x768 800x600 640x480',
+	'modelines'   => 1,
+	'modelname'   => 'Default Monitor',
+	'horizsync'   => '28-96',
+	'vertrefresh' => '50-75',
+
+	# extensions
+	'composite' => 0,
+);
+
+###########################################################
+# internal functions
+
+# debugging function
+sub dbg {
+	return unless $verbosity;
+
+	# dump references, print everything else
+	for (@_) {
+		next unless defined;
+
+		if (ref) {
+			print STDERR Dumper($_);
+		}
+		else {
+			print STDERR "$_\n";
+		}
+	}
+}
+
+sub gtf_modelines {
+	my @ml;
+
+	# if no args are given to function, return a Modeline for each
+	# element of our mode/frequency library
+	my @f = @_ == 3 ? [ @_ ] : (
+		[ 640,  350,  85  ], [ 640,  400,  85  ], [ 640,  480,  60  ],
+		[ 640,  480,  72  ], [ 640,  480,  75  ], [ 640,  480,  85  ],
+		[ 640,  480,  100 ], [ 720,  400,  85  ], [ 768,  576,  60  ],
+		[ 768,  576,  72  ], [ 768,  576,  75  ], [ 768,  576,  85  ],
+		[ 768,  576,  100 ], [ 800,  600,  56  ], [ 800,  600,  60  ],
+		[ 800,  600,  72  ], [ 800,  600,  75  ], [ 800,  600,  85  ],
+		[ 800,  600,  100 ], [ 1024, 600,  60  ], [ 1024, 768,  60  ],
+		[ 1024, 768,  70  ], [ 1024, 768,  75  ], [ 1024, 768,  85  ],
+		[ 1024, 768,  100 ], [ 1152, 864,  75  ], [ 1152, 864,  60  ],
+		[ 1152, 864,  85  ], [ 1152, 864,  100 ], [ 1152, 900,  77  ],
+		[ 1152, 900,  66  ], [ 1280, 768,  60  ], [ 1280, 800,  60  ],
+		[ 1280, 960,  60  ], [ 1280, 960,  72  ], [ 1280, 960,  75  ],
+		[ 1280, 960,  85  ], [ 1280, 960,  100 ], [ 1280, 1024, 60  ],
+		[ 1280, 1024, 67  ], [ 1280, 1024, 75  ], [ 1280, 1024, 76  ],
+		[ 1280, 1024, 85  ], [ 1280, 1024, 100 ], [ 1368, 768,  60  ],
+		[ 1440, 900,  60  ], [ 1400, 1050, 60  ], [ 1400, 1050, 72  ],
+		[ 1400, 1050, 75  ], [ 1400, 1050, 85  ], [ 1400, 1050, 100 ],
+		[ 1440, 900,  60  ], [ 1600, 1200, 60  ], [ 1600, 1200, 65  ],
+		[ 1600, 1200, 70  ], [ 1600, 1200, 75  ], [ 1600, 1200, 85  ],
+		[ 1600, 1200, 100 ], [ 1680, 1050, 60  ], [ 1792, 1344, 60  ],
+		[ 1792, 1344, 75  ], [ 1856, 1392, 60  ], [ 1856, 1392, 75  ],
+		[ 1920, 1200, 60  ], [ 1920, 1440, 60  ], [ 1920, 1440, 75  ],
+	);
+
+	for (@f) {
+		open(my $fh, '-|', '/usr/bin/gtf', @{ $_ })
+			or die "cannot compute modeline with gtf: $!\n";
+		while (<$fh>) {
+			chomp;
+			next unless /^\s+(#|Modeline)/;
+			s/^\s+/\t/;
+
+			# strip the frequency marker for legacy Modeline entries
+			# keep the marker for PrefferredMode entry (xrandr1.2)
+			s/Modeline "(\d+x\d+)_[\d\.]+"/Modeline "$1"/ unless $x{'xrandr'};
+			push(@ml, $_);
+		}
+		close($fh);
+	}
+
+	return @ml;
+}
+
+sub get_template {
+	my $file = shift;
+	my @template;
+
+	dbg "looking for template: $file";
+
+	find(
+		sub {
+			return if $File::Find::name =~ m|/\.svn/|;
+			return unless -T $File::Find::name;
+			if ($_ eq $file) {
+				dbg "reading template: $file";
+				
+				open(my $fh, '<', $File::Find::name)
+					or die "cannot open template for reading: $!\n";
+				@template = <$fh>;
+				close($fh);
+			}
+		},
+		$xorg_tmpl
+	);
+
+	chomp(@template);
+	return @template;
+}
+
+# I have observed the Xserver using 1680x1200 when Modes
+# looked like:
+#     Modes "1680x1050" "1600x1200" "1400x1050" ...
+#
+# Take the preferred resolution (first, or left most) as
+# returned by xresprobe and calculate its X and Y axes.
+#
+# Remove any mode in the remaining list with X or Y values
+# greater than that of the preferred resolution.
+#
+# given:
+#     "1680x1050 1600x1200 1400x1050 1280x1024 ..."
+# return:
+#     "1680x1050 1400x1050 1280x1024 ..."
+#
+sub sanitize_modes {
+	my @modes = split(/\s+/, shift);
+	my ($x_max, $y_max) = split(/x/, $modes[0]);
+	dbg "MAX $x_max, $y_max";
+
+	for my $count (1..$#{modes}) {
+		last unless $modes[$count];
+		
+		my ($x_now, $y_now) = split(/x/, $modes[$count]);
+		dbg "NOW $x_now, $y_now";
+		
+		if ($x_now > $x_max or $y_now > $y_max) {
+			dbg "REM $modes[$count]";
+			splice(@modes, $count, 1);
+			redo;
+		}
+	}
+
+	return "@modes";
+}
+
+###########################################################
+# process cli args
+GetOptions(
+	\%x,
+
+	# mkxorgconfig control
+	'output=s',
+	'templates=s',
+	'verbose|debug',
+
+	# device
+	'boardname=s',
+	'busid=s',
+	'driver=s',
+
+	# monitor
+	'colordepth=i',
+	'modelname=s',
+	'modelines!',
+	'modes=s',
+	'horizsync=s',
+	'vertrefresh=s',
+
+	# xrandr
+	'xrandr',
+	'mode=s',
+	'rate=s',
+	'virtual=s',
+
+	# extensions
+	'composite',
+);
+
+dbg \%x;
+
+# sanitize/postprocess input
+for my $key (keys %x) {
+	my $invalid;
+
+	given ($key) {
+		when 'colordepth' {
+			$x{$key} =~ /^(8|15|16|24)$/ or $invalid = $key;
+		}
+		when 'composite' {
+			$x{$key} = $x{$key} ? 'on' : 'off';
+		}
+		when 'mode' {
+			$x{$key} =~ /^\d+x\d+$/ or $invalid = $key;
+		}
+		when 'modes' {
+			for (split /\s+/, $x{$key}) {
+				unless (/^\d+x\d+$/) {
+					$invalid = $key;
+					last;
+				}
+			}
+			if (not $invalid) {
+				$x{$key} = sanitize_modes($x{$key});
+			}
+		}
+		when 'rate' {
+			$x{$key} =~ /^\d+(\.\d+)?$/ or $invalid = $key;
+		}
+		when 'virtual' {
+			$x{$key} =~ /^\d+\s+\d+$/ or $invalid = $key;
+		}
+	}
+
+	$invalid and warn "W: invalid --$invalid value: " . $x{$invalid} . "\n";
+}
+
+###########################################################
+# read in the templates
+my @heading      = get_template('heading');
+my @serverlayout = get_template('serverlayout');
+my @serverflags  = get_template('serverflags');
+my @monitor      = get_template('monitor');
+my @device       = ($x{'driver'} or $x{'busid'} or $x{'boardname'}) ? get_template('device') : undef;
+my @screen       = get_template('screen');
+my @extensions   = get_template('extensions');
+
+###########################################################
+# monitor settings
+if ($x{'xrandr'}) {
+	# http://bgoglin.livejournal.com/10423.html
+	# force mode/resolution for self modesetting driver
+	if ($x{'mode'}) {
+		my @prefmode;
+		if ($x{'rate'}) {
+			# get Modeline from gtf, compute gtf args
+			my ($x_axis, $y_axis) = split 'x', $x{'mode'};
+			@prefmode = gtf_modelines($x_axis, $y_axis, $x{'rate'});
+
+			# match Modeline mode_freq marker that gtf outputs
+			for (@prefmode) {
+				if (m/^\s+Modeline\s+"(.+)"\s+/) {
+					push(@prefmode, "\tOption\t\t\"PreferredMode\"\t\t\"$1\"");
+					last;
+				}
+			}
+		}
+		else {
+			push(@prefmode, "\tOption\t\t\"PreferredMode\"\t\t\"" . $x{'mode'} . "\"");
+		}
+
+		dbg \@prefmode;
+		splice(@monitor, -1, 0, @prefmode);
+	}
+
+	# http://bgoglin.livejournal.com/10214.html
+	# * drop ModeLine, HorizSync and VertRefresh from the Monitor section
+	delete $x{'horizsync'};
+	delete $x{'vertrefresh'};
+
+	# * drop Modes line from the Display subsection
+	# the Virual option would go in place of the Modes option for xrandr1.2 style
+	# Virtual specifies the dimensions of a large virtual screen in which you may
+	# configure two sub-screens (dual monitor)
+	$x{'modes'} = $x{'virtual'} ? "Virtual\t" . $x{'virtual'} : undef;
+}
+else {
+	# wrap each mode in quotation marks
+	($x{'modes'} = "Modes\t" . $x{'modes'}) =~ s/(\d+x\d+)/"$1"/g;
+
+	# slice our Modeline library into the monitor section
+	if ($x{'modelines'}) {
+		# add large modeline table for legacy config
+		splice(@monitor, -1, 0, gtf_modelines);
+	}
+}
+
+###########################################################
+# tie @x to $xorg_conf, $x_o is the control object
+my $x_o = tie(@x, "Tie::File", $xorg_conf)
+	or die "Cannot open $xorg_conf for writing: $!\n";
+
+# lock it for writing
+$x_o->flock;
+
+# write the config
+@x = (
+	@heading,
+	@serverlayout,
+	@serverflags,
+	@device,
+	@monitor,
+	@screen,
+	@extensions,
+);
+
+###########################################################
+# post-process xorg.conf, substitute markers
+$n = 0;
+XCONF: while (defined $x[$n]) {
+	my $line = \$x[$n];
+	dbg "$n: " . ${ $line };
+
+	given (${ $line }) {
+		# substitute placeholders
+		when m/@@\w+@@/ {
+			if (${ $line } =~ m/@@(\w+)@@/ and $x{ lc($1) }) {
+				dbg "Modifying line '$n': $1 => " . $x{ lc($1) };
+				my $sub = $x{ lc($1) };
+				${ $line } =~ s/@@\w+@@/$sub/;
+			}
+			else {
+				dbg "Removing line '$n'";
+				splice(@x, $n, 1);
+				redo XCONF if $x[$n];
+			}
+		}
+		# beautify, seperate each section with blank line
+		when m/^EndSection$/ {
+			dbg "Adding whitespace";
+			splice(@x, ++$n, 0, '');
+		}
+	}
+}
+continue {
+	$n++;
+}

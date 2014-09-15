@@ -38,6 +38,7 @@ Depends:
  distro-defaults,
  eject,
  fll-live-utils,
+ fll-live-xorgconfig,
  ifplugd,
  ifupdown,
  iproute2,
@@ -64,4 +65,22 @@ Description: fll live utilities
  A set of tools for use by fll-live-initscripts.
  .
  This is a FULLSTORY live-only package and should not be installed to an
+ ordinary system.
+
+Package: fll-live-xorgconfig
+Architecture: all
+Depends: 
+ ${misc:Depends},
+ distro-defaults (= ${source:Version}), 
+ lsb-base,
+ perl,
+ libswitch-perl,
+ xserver-xorg-core,
+Recommends: 
+ kdm | gdm3 | lightdm (>= 1.0.2) | slim,
+ xserver-xorg-input-vmmouse (>> 12.6.3)
+Description: fll live media xorg related tools
+ A set of scripts to generate a Xorg configuration.
+ .
+ This is a FULLSTORY live-only package and must not be installed to an
  ordinary system.
