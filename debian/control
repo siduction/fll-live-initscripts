@@ -38,7 +38,6 @@ Depends:
  distro-defaults,
  eject,
  fll-live-utils,
- fll-live-xorgconfig,
  ifplugd,
  ifupdown,
  iproute2,

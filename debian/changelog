@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.22) unstable; urgency=medium
+
+  * removed fll-live-xorgconfig depend from fll-live-initscripts
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Mon, 22 Sep 2014 01:06:57 +0300
+
 fll-live-initscripts (2014.09.16) unstable; urgency=medium
 
   * readded fll-live-xorgconfig
