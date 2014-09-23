@@ -1,0 +1,11 @@
+[Unit]
+Description=Generate xorg.conf when siduction cheatcodes for X are detected
+After=syslog.target
+ConditionPathExists=/usr/share/fll-live-xorgconfig/fll-xorgconfig
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/fll-live-xorgconfig/fll-xorgconfig start
+
+[Install]
+WantedBy=multi-user.target
