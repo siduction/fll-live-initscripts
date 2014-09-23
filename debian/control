@@ -6,6 +6,7 @@ Uploaders: Angelescu Ovidiu <convbsd@siduction.org>
 Build-Depends:
   debhelper (>= 9),
  asciidoc,
+ dh-systemd,
  docbook,
  gengetopt,
  xsltproc,

@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.23.1) unstable; urgency=medium
+
+  *  added in control dh-systemd depend
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 23 Sep 2014 23:47:50 +0300
+
 fll-live-initscripts (2014.09.23) unstable; urgency=medium
 
   *  fll-live-xorgconfig using systemd service
