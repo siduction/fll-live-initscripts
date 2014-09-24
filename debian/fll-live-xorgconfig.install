@@ -1,3 +1,3 @@
 bin/fll_xorgconfig				usr/sbin/
 share/fll-live-xorgconfig/templates		usr/share/fll-live-xorgconfig/
-inits/fll-xorgconfig		usr/share/fll-live-xorgconfig/
+share/fll-live-xorgconfig/*		usr/share/fll-live-xorgconfig/

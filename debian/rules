@@ -2,13 +2,3 @@
 
 %:
 	dh $@ --with systemd
-
-override_dh_installinit:
-	dh_installinit --no-start --name=fll-fstab
-	dh_installinit --no-start --name=fll-locales
-	dh_installinit --no-start --name=fll-nbdclient
-	dh_installinit --no-start --name=fll-reboot
-	dh_installinit --no-start --name=fll-shell
-	dh_installinit --no-start --name=fll-snakeoil-cert
-	dh_installinit
-

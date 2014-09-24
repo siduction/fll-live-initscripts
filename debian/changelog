@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.24.1) unstable; urgency=medium
+
+  *  preliminary fll-live-initscripts with systemd service integration
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Wed, 24 Sep 2014 16:47:43 +0300
+
 fll-live-initscripts (2014.09.24) unstable; urgency=medium
 
   *  added fll-live-initscripts as a depend for fll-live-xorgconfig
