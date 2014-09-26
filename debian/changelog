@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.26) unstable; urgency=medium
+
+  *  changed fll-live-xorgconfig service file
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Fri, 26 Sep 2014 05:02:16 +0300
+
 fll-live-initscripts (2014.09.24.1) unstable; urgency=medium
 
   *  preliminary fll-live-initscripts with systemd service integration
