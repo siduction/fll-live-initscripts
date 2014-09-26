@@ -1,6 +1,6 @@
 [Unit]
 Description=Generate xorg.conf when siduction cheatcodes for X are detected
-Before=lightdm.service
+Before=display-manager.service
 ConditionPathExists=/usr/share/fll-live-xorgconfig/
 
 [Service]
