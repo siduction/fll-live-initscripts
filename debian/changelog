@@ -1,3 +1,10 @@
+fll-live-initscripts (2014.09.27) unstable; urgency=medium
+
+  * some sorting in service files
+  * dh_installinit override
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 28 Sep 2014 00:21:13 +0200
+
 fll-live-initscripts (2014.09.26) unstable; urgency=medium
 
   *  changed fll-live-xorgconfig service file
