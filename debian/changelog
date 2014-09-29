@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.09.29) unstable; urgency=medium
+
+  * service fixed by musca 
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 29 Sep 2014 22:41:31 +0200
+
 fll-live-initscripts (2014.09.28) unstable; urgency=medium
 
   * typo in fll-live.initscripts.service fixed 
