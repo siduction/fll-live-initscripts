@@ -17,4 +17,4 @@ ExecStop=/usr/share/fll-live-initscripts/fll-fstab stop ;\
          /usr/share/fll-live-initscripts/fll-snakeoil-cert stop
 
 [Install]
-WantedBy=basic.target
+WantedBy=multi-user.target
