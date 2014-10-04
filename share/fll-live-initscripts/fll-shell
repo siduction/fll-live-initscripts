@@ -60,7 +60,7 @@ if [ -f /proc/cmdline ]; then
 	for param in $(cat /proc/cmdline); do
 		case "${param}" in
 			flldebug=*)
-				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+				if [ "${param#flldebug=}" = "${NAME}" ] || [ "${param#flldebug=}" = "all" ]; then
 					fll_redirect
 				fi
 				;;
@@ -84,7 +84,9 @@ do_start() {
 
 case "${1}" in
 	start)
+		log_daemon_msg "${NAME}"
 		do_start
+		log_end_msg "${?}"
 		;;
 	stop)
 		;;

@@ -296,7 +296,9 @@ do_stop() {
 
 case "${1}" in
 	start)
+		log_daemon_msg "${NAME}"
 		# no-op
+		log_end_msg "${?}"
 		;;
 	restart|reload|force-reload)
 		echo "Error: argument '${1}' not supported" >&2
