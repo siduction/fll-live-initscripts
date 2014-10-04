@@ -1,9 +1,9 @@
-fll-live-initscripts (2014.10.04) UNRELEASED; urgency=medium
+fll-live-initscripts (2014.10.04) unstable; urgency=medium
 
   * readded debugging capabilities to fll-* scripts
   * changed fll-live-initscripts service 
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Sat, 04 Oct 2014 22:11:22 +0300
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Sat, 04 Oct 2014 22:18:35 +0300
 
 fll-live-initscripts (2014.09.29) unstable; urgency=medium
 
