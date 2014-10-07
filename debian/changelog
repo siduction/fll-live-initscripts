@@ -1,3 +1,17 @@
+fll-live-initscripts (2014.10.07.2) unstable; urgency=medium
+
+  * changed fll-live-initscripts service to work F2 in multi-user mode
+    (third attempt)
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 07 Oct 2014 17:31:17 +0300
+
+fll-live-initscripts (2014.10.07.1) unstable; urgency=medium
+
+  * changed fll-live-initscripts service to work F2 in multi-user mode
+    (second attempt)
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 07 Oct 2014 16:37:17 +0300
+
 fll-live-initscripts (2014.10.07) unstable; urgency=medium
 
   * changed fll-live-initscripts service to work F2 in multi-user mode
