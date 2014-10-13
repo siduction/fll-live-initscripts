@@ -1,11 +1,11 @@
 fll                                  lib/init
 share/fll-live-initscripts/locales*  usr/share/fll-live-initscripts/
 share/fll-live-initscripts/fll-*     usr/share/fll-live-initscripts/
-debian/fll-fstab.service             lib/systemd/system
-debian/fll-live-reboot.service       lib/systemd/system
-debian/fll-locales.service           lib/systemd/system
-debian/fll-ndbdclient.service        lib/systemd/system
-debian/fll-shell.service             lib/systemd/system
-debian/fll-snakeoil-cert.service     lib/systemd/system
+system/fll-fstab.service             lib/systemd/system/
+system/fll-live-reboot.service       lib/systemd/system/
+system/fll-locales.service           lib/systemd/system/
+system/fll-ndbdclient.service        lib/systemd/system/
+system/fll-shell.service             lib/systemd/system/
+system/fll-snakeoil-cert.service     lib/systemd/system/
 
 

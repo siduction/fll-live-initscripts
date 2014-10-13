@@ -331,7 +331,7 @@ EOF
 		-e "s/^\(XKBOPTIONS\=\).*/\1\"${XKBOPTIONS}\"/" \
 			/etc/default/keyboard
 
-	setupcon --save-only
+	setupcon -v
 	udevadm trigger --property-match=ID_INPUT_KEYBOARD=1
 }
 

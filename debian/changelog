@@ -1,3 +1,15 @@
+fll-live-initscripts (2014.10.14) unstable; urgency=medium
+
+  * cleanup
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 14 Oct 2014 01:51:50 +0200
+
+fll-live-initscripts (2014.10.13.3) unstable; urgency=medium
+
+  * setupcon without --save-only
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 19:50:40 +0200
+
 fll-live-initscripts (2014.10.13.2) unstable; urgency=medium
 
   * fll-locales wanted by getty.target
