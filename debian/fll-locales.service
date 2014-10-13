@@ -1,6 +1,6 @@
 [Unit]
 Description=Siduction systemd services for fll-live-initscripts
-Before=console-setup.service
+Before=getty.service
 ConditionPathExists=/usr/share/fll-live-initscripts/
 
 [Service]
@@ -8,4 +8,4 @@ Type=oneshot
 ExecStart=/usr/share/fll-live-initscripts/fll-locales start
 
 [Install]
-WantedBy=sysinit.target
+WantedBy=getty.target

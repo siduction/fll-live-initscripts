@@ -7,4 +7,4 @@ Type=oneshot
 ExecStart=/usr/share/fll-live-initscripts/fll-snakeoil-cert start
 
 [Install]
-WantedBy=sysinit.target
+WantedBy=basic.target
