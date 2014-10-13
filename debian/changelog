@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.10.13.2) unstable; urgency=medium
+
+  * fll-locales wanted by getty.target
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 16:55:57 +0200
+
 fll-live-initscripts (2014.10.13.1) unstable; urgency=medium
 
   * fll-locales wanted by multiuser.target
