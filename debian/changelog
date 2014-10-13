@@ -1,3 +1,10 @@
+fll-live-initscripts (2014.10.11) unstable; urgency=medium
+
+  * next attempt for F2
+  * split fll-live-initscripts.service, fll-locales before console-setup.service
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 02:21:22 +0200
+
 fll-live-initscripts (2014.10.07.2) unstable; urgency=medium
 
   * changed fll-live-initscripts service to work F2 in multi-user mode
