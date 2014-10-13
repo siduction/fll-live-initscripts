@@ -1,3 +1,10 @@
+fll-live-initscripts (2014.10.12) unstable; urgency=medium
+
+  * first refinement - really install the service-files :)
+  * new standards 3.9.6 
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 02:45:01 +0200
+
 fll-live-initscripts (2014.10.11) unstable; urgency=medium
 
   * next attempt for F2

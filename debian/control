@@ -17,7 +17,7 @@ Build-Depends:
  libblkid-dev,
  libudev-dev,
  libxml2-utils,
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Vcs-Git: git://git.siduction.org/packages/siduction-repository/fll-live-initscripts
 Vcs-Browser: http://git.siduction.org/?p=packages/siduction-repository/fll-live-initscripts.git 
 
