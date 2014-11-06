@@ -1,3 +1,4 @@
+bin/set*                             usr/bin
 fll                                  lib/init
 share/fll-live-initscripts/locales*  usr/share/fll-live-initscripts/
 share/fll-live-initscripts/fll-*     usr/share/fll-live-initscripts/
