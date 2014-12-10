@@ -1,4 +1,5 @@
 DIRS := bin man
+INIT := $(notdir $(wildcard debian/*.init))
 
 all: $(DIRS:%=all-%)
 all-%:
@@ -10,7 +11,7 @@ clean-%:
 
 distclean: clean
 
-test: 
+test: $(INIT:%=test-%)
 test-%:
 	$(info checking $* ...)
 	@dash -n debian/$*

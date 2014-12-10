@@ -1,3 +1,9 @@
+fll-live-initscripts (2014.12.10) unstable; urgency=medium
+
+  * merge upstream
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 10 Dec 2014 22:54:50 +0100
+
 fll-live-initscripts (2014.11.06) unstable; urgency=medium
 
   * setlxdelanguages -> setlxdekblanguages
