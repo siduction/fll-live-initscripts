@@ -1,46 +1,49 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: fll-live-initscripts
-Source: http://chili.siduction.org/projects/siduction/wiki/Fll-live-initscripts
+Upstream-Contact: Stefan Lippers-Hollmann <s.l-h@gmx.de>
+Source: git://github.com/fullstory/fll-live-initscripts.git
 
 Files: *
-Copyright: 2007-2014 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+Copyright: 2007-2008 Kel Modderman <kel@otaku42.de>
+           2007-2015 Stefan Lippers-Hollmann <s.l-h@gmx.net>
            2008-2012 Niall Walsh <niallwalsh@users.berlios.de>
-           2007-2008 Kel Modderman <kel@otaku42.de>
-License: GPL-2.0+
+License: GPL-2.0
+Comment:
+ Some code and concepts derived from initscripts-sidux-live.
+ Copyright: Klaus Knopper <knopper@knopper.net>
+            Jörg Schirottke <master@kanotix.com>
+            Stefan Lippers-Hollmann <s.l-h@gmx.net>
+ debian/fll-live-initscripts.fll-reboot.init was inspired by
+ /etc/init.d/umountfs from initscripts (2.86.ds1-38).
+ Copyright: 1997-2005, Miquel van Smoorenburg <miquels@cistron.nl>
+	    2007-2008, Kel Modderman <kel@otaku42.de>
+	    2007-2015, Stefan Lippers-Hollmann <s.l-h@gmx.net>
+ the members pkg-sysvinit project.
+ .
+ copy_exec() in ./debian/fll-live-initscripts.fll-reboot.init was shamelessly
+ adapted from initramfs-tools.
+ Copyright: 2005-2006, Adam Conrad
+	    2006, Ben Collins
+	    2005-2007, David Härdeman
+	    2005, Jeff Bailey
+	    2005-2007, Maximilian Attems
+	    2005-2006, Scott James Remnant
+	    2007-2008, Kel Modderman <kel@otaku42.de>
+	    2007-2015 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+
 
 Files: debian/*
 Copyright: 2012-2014 Angelescu Ovidiu <convbsd@siduction.org>
            2011-2014 Alf Gaida <agaida@siduction.org>
            2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
            2007-2008 Kel Modderman <kel@otaku42.de>
-License: GPL-2.0+
+License: GPL-2.0
 
-Files: bin/fll_analyze_initscripts bin/fll_xserver_discover
-Copyright: 2006-2007 Michiel de Boer <locsmif@kanotix.com>
-License: GPL-2.0+
 
-Files: debian/fll-live-initscripts.fll-reboot.init
-Copyright: 1997-2005 Miquel van Smoorenburg <miquels@cistron.nl> 
-	   2007-2008 Kel Modderman <kel@otaku42.de>
-           2007-2014 Stefan Lippers-Hollmann <s.l-h@gmx.net>
-License: GPL-2.0+
-
-Files: debian/fll-live-initscripts.fll-reboot.init
-Copyright: 2005-2006 Adam Conrad
-	   2006 Ben Collins
-	   2005-2007 David Härdeman
-	   2005 Jeff Bailey
-	   2005-2007 maximilian attems
-	   2005-2006 Scott James Remnant
-	   2007-2008 Kel Modderman <kel@otaku42.de>
-	   2007-2014 Stefan Lippers-Hollmann <s.l-h@gmx.net>
-License: GPL-2.0+
-
-License: GPL-2.0+
+License: GPL-2.0
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
+ the Free Software Foundation; version 2 of the License.
  .
  This package is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of

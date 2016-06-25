@@ -1,12 +1,8 @@
 bin/set*                             usr/bin
 fll                                  lib/init
 share/fll-live-initscripts/locales*  usr/share/fll-live-initscripts/
-share/fll-live-initscripts/fll-*     usr/share/fll-live-initscripts/
-system/fll-fstab.service             lib/systemd/system/
-system/fll-live-reboot.service       lib/systemd/system/
-system/fll-locales.service           lib/systemd/system/
-system/fll-ndbdclient.service        lib/systemd/system/
-system/fll-shell.service             lib/systemd/system/
-system/fll-snakeoil-cert.service     lib/systemd/system/
+networking/fll-networkd-one          usr/share/fll-live-initscripts/
+networking/dhcp.network              etc/systemd/network/
 
-
+bin/fll_xorgconfig				usr/sbin/
+share/fll-live-xorgconfig/templates		usr/share/fll-live-xorgconfig/

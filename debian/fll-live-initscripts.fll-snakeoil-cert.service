@@ -1,0 +1,15 @@
+[Unit]
+Description=generate unique SSL snakeoil certs
+Documentation=man:make-ssl-cert(8)
+DefaultDependencies=no
+Before=systemd-networkd.service network.service fll-locales.service
+
+[Service]
+Environment=DEBIAN_FRONTEND=noninteractive
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/make-ssl-cert generate-default-snakeoil --force-overwrite
+
+[Install]
+WantedBy=network.target
+

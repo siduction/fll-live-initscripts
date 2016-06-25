@@ -1,0 +1,3 @@
+[org.gnome.libgnomekbd.keyboard]
+layouts=[@LAYOUTS@]
+

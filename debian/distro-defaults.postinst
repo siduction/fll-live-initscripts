@@ -35,21 +35,6 @@ case "$1" in
 				rm -f "/etc/insserv/overrides/${file}"
 		done
 
-		# gdm is no more
-		if [ -f /etc/insserv/overrides/gdm ]; then
-			purge_conffile /etc/insserv/overrides/gdm
-		fi
-
-		# Bug #487196 has been fixed in util-linux, remove now 
-		# obsolete LSB overrides
-		if [ -f /etc/insserv/overrides/hwclock.sh ]; then
-			purge_conffile /etc/insserv/overrides/hwclock.sh
-		fi
-
-		if [ -f /etc/insserv/overrides/hwclockfirst.sh ]; then
-			purge_conffile /etc/insserv/overrides/hwclockfirst.sh
-		fi
-
 		if [ ! -f /etc/apt/sources.list ] && chrooted; then
 			echo 'distro-defaults: creating /etc/apt/sources.list ...' 1>&2
 			cat > /etc/apt/sources.list \
@@ -66,9 +51,6 @@ case "$1" in
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 EOF
 		fi
-
-                # fix for umountfs
-                cp -f /usr/share/distro-defaults/fixes/umountfs /etc/init.d
 		;;
 	triggered)
 		;;

@@ -1,8 +1,21 @@
 #!/usr/bin/make -f
-#export DH_VERBOSE=1
-
 
 %:
-	dh $@ --with systemd
+	dh ${@} --parallel --with=systemd
 
 override_dh_installinit:
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-adduser
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-fstab
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-locales
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-reboot
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-xdm
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-xorgconfig
+	dh_installinit
+
+override_dh_systemd_enable:
+	# dh_systemd_enable --package=fll-live-initscripts --name=fll-networkd-one
+	dh_systemd_enable --package=fll-live-initscripts --name=fll-snakeoil-cert
+
+override_dh_systemd_start:
+	# dh_systemd_start --package=fll-live-initscripts --no-start fll-networkd-one.service
+	dh_systemd_start --package=fll-live-initscripts --no-start fll-snakeoil-cert.service

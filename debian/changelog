@@ -1,624 +1,498 @@
-fll-live-initscripts (2014.12.10) unstable; urgency=medium
+fll-live-initscripts (4.3.6) UNRELEASED; urgency=medium
 
-  * merge upstream
+  * NOT RELEASED YET
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 10 Dec 2014 22:54:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Mar 2016 06:34:33 +0100
 
-fll-live-initscripts (2014.11.06) unstable; urgency=medium
+fll-live-initscripts (4.3.5) unstable; urgency=medium
 
-  * setlxdelanguages -> setlxdekblanguages
-  * sed fixed in setlxdekblanguages 
-  * fix keyboard variants
+  * move sddm hacking above the success message.
+  * move display manager setup into its own function, setup_dm().
+  * refactor the selection of the default window manager into the  setup_wm()
+    function.
+  * add overlay/ overlayfs as a known unioning filesystem.
+  * fll-reboot: minor coding style fixes.
+  * fll-locales: minor coding style fixes, strictly whitespace-only.
+  * refactor fll-shell into fll-adduser.
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 05 Nov 2014 23:49:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Mar 2016 06:34:22 +0100
 
-fll-live-initscripts (2014.10.14) unstable; urgency=medium
+fll-live-initscripts (4.3.4) unstable; urgency=medium
 
-  * cleanup
+  * drop trailing whitespace.
+  * fll-xdm: don't exit prematurely, after fll-desktop and fll-xdm have been
+    merged.
+  * drop now obsolete linitian override.
 
- -- Alf Gaida <agaida@siduction.org>  Tue, 14 Oct 2014 01:51:50 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Mar 2016 04:11:24 +0100
 
-fll-live-initscripts (2014.10.13.3) unstable; urgency=medium
+fll-live-initscripts (4.3.3) unstable; urgency=medium
 
-  * setupcon without --save-only
+  * drop dpi= cheatcode, it's not supported by any current release DM anyways.
+  * drop explicit display manager selection based on the preferences made by
+    different desktop environments, we have never used this code and even in
+    its absence, any display manager must be able to start any desktop
+    environment or there would be bugs to squash.
+  * simplify WM/ XSESSION definitions.
+  * drop nbd support for the time being, it hasn't supported by pyfll for a
+    while.
+  * fix F.U.L.L.S.T.O.R.Y. homepage URL.
+  * fll-adduser: drop fake dependencies on keyboard-setup and console-setup.
+  * simplify boot ordering interdependencies by moving fll-xdm to runlevel S
+    as well.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 19:50:40 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Mar 2016 03:19:57 +0100
 
-fll-live-initscripts (2014.10.13.2) unstable; urgency=medium
+fll-live-initscripts (4.3.2) unstable; urgency=medium
 
-  * fll-locales wanted by getty.target
+  * fix fll-live-initscripts removal, by "starting" fll-reboot in runlevels
+    1-5, in order to beat insserv's new heuristics.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 16:55:57 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 09 Dec 2015 23:33:49 +0100
 
-fll-live-initscripts (2014.10.13.1) unstable; urgency=medium
+fll-live-initscripts (4.3.1) unstable; urgency=medium
 
-  * fll-locales wanted by multiuser.target
+  * fix if clauses.
+  * fix case sensitive lxqt XSESSION information.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 16:34:06 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 27 Nov 2015 01:23:47 +0100
 
-fll-live-initscripts (2014.10.13) unstable; urgency=medium
+fll-live-initscripts (4.3.0) unstable; urgency=medium
 
-  * wanted by basic.target
+  * fix lightdm autologin.
+  * add support for lxdm autologin.
+  * add support for lxqt.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 15:57:20 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 27 Nov 2015 00:43:15 +0100
 
-fll-live-initscripts (2014.10.12) unstable; urgency=medium
+fll-live-initscripts (4.2.3) unstable; urgency=medium
 
-  * first refinement - really install the service-files :)
-  * new standards 3.9.6 
+  * rebuild with gcc-5.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 02:45:01 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 31 Jul 2015 23:46:13 +0200
 
-fll-live-initscripts (2014.10.11) unstable; urgency=medium
+fll-live-initscripts (4.2.2) unstable; urgency=medium
 
-  * next attempt for F2
-  * split fll-live-initscripts.service, fll-locales before console-setup.service
+  * stop configuring special wallpapers for kdm, we don't ship kdm themes
+    anymore.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 13 Oct 2014 02:21:22 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 21 Jul 2015 00:15:20 +0200
 
-fll-live-initscripts (2014.10.07.2) unstable; urgency=medium
+fll-live-initscripts (4.2.1) unstable; urgency=medium
 
-  * changed fll-live-initscripts service to work F2 in multi-user mode
-    (third attempt)
+  * drop pstore nuking, this has been part of our last release already and
+    all associated issues should be sorted by now, given that efibootmgr is
+    called semi-regularly. Modern kernels don't dump oopses to pstore anymore,
+    so either the local hardware has no problems with EFI variable garbage
+    collection or it would have blown up ages ago, so avoid potentially risky
+    pstore manipulation on each live boot.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 07 Oct 2014 17:31:17 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 13 Jul 2015 04:43:55 +0200
 
-fll-live-initscripts (2014.10.07.1) unstable; urgency=medium
+fll-live-initscripts (4.2.0) unstable; urgency=medium
 
-  * changed fll-live-initscripts service to work F2 in multi-user mode
-    (second attempt)
+  * update for KDE5.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 07 Oct 2014 16:37:17 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 12 Jul 2015 02:24:09 +0200
 
-fll-live-initscripts (2014.10.07) unstable; urgency=medium
+fll-live-initscripts (4.1.36) unstable; urgency=medium
 
-  * changed fll-live-initscripts service to work F2 in multi-user mode
-    (first attempt)
+  * fix brown paper b[au]g when defining setup_sddm().
+  * sort setup_* functions.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 07 Oct 2014 15:48:49 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 02 Jul 2015 22:16:07 +0200
 
-fll-live-initscripts (2014.10.04) unstable; urgency=medium
+fll-live-initscripts (4.1.35) unstable; urgency=medium
 
-  * readded debugging capabilities to fll-* scripts
-  * changed fll-live-initscripts service 
+  * merge fll-xdm and fll-desktop.
+  * add support for sddm auto-login.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Sat, 04 Oct 2014 22:18:35 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 02 Jul 2015 22:04:14 +0200
 
-fll-live-initscripts (2014.09.29) unstable; urgency=medium
+fll-live-initscripts (4.1.34) unstable; urgency=medium
 
-  * service fixed by musca 
+  * networkd-one: systemd-wait-online is not enough, check route also.
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 29 Sep 2014 22:41:31 +0200
+ -- Niall Walsh <niallwalsh@celtux.org>  Sat, 20 Jun 2015 04:31:04 +0100
 
-fll-live-initscripts (2014.09.28) unstable; urgency=medium
+fll-live-initscripts (4.1.33) unstable; urgency=medium
 
-  * typo in fll-live.initscripts.service fixed 
+  * fstab_generator: get DEVTYPE property as match_property seems to be broken.
 
- -- Alf Gaida <agaida@siduction.org>  Sun, 28 Sep 2014 18:22:20 +0200
+ -- Niall Walsh <niallwalsh@celtux.org>  Wed, 17 Jun 2015 20:17:59 +0100
 
-fll-live-initscripts (2014.09.27) unstable; urgency=medium
+fll-live-initscripts (4.1.32) unstable; urgency=medium
 
-  * some sorting in service files
-  * dh_installinit override
+  * default systemd-resolved based configuration for DHCP based networks to
+    UseDomains=yes, depend on systemd-sysv (>= 217-2~) accordingly.
 
- -- Alf Gaida <agaida@siduction.org>  Sun, 28 Sep 2014 00:21:13 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 21 May 2015 05:54:55 +0200
 
-fll-live-initscripts (2014.09.26) unstable; urgency=medium
+fll-live-initscripts (4.1.31) unstable; urgency=medium
 
-  *  changed fll-live-xorgconfig service file
+  * run fll-snakeoil before fll-locales to avoid debconf locking
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Fri, 26 Sep 2014 05:02:16 +0300
+ -- Niall Walsh <niallwalsh@celtux.org>  Thu, 19 Feb 2015 19:38:06 +0000
 
-fll-live-initscripts (2014.09.24.1) unstable; urgency=medium
+fll-live-initscripts (4.1.30) unstable; urgency=medium
 
-  *  preliminary fll-live-initscripts with systemd service integration
+  * drop explicit dependencies on ifplugd, ifupdown and iproute2, neither are
+    (strictly) required anymore.
+  * avoid deprecated blkid APIs.
+  * allow parallel building.
+  * explicitly specify the package debhelper is supposed to work on.
+  * add systemd unit replacing fll-snakeoil-cert.init.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Wed, 24 Sep 2014 16:47:43 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 18 Feb 2015 23:43:27 +0100
 
-fll-live-initscripts (2014.09.24) unstable; urgency=medium
+fll-live-initscripts (4.1.29) unstable; urgency=medium
 
-  *  added fll-live-initscripts as a depend for fll-live-xorgconfig
+  * drop versioned dependency on dh-systemd, it's provided in stable.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Wed, 24 Sep 2014 00:23:47 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 04 Jan 2015 01:37:15 +0100
 
-fll-live-initscripts (2014.09.23.1) unstable; urgency=medium
+fll-live-initscripts (4.1.28) unstable; urgency=medium
 
-  *  added in control dh-systemd depend
+  * bump standards version to 3.9.6, no changes necessary.
+  * convert to machine readable copyright.
+  * move fll-networkd-one to /usr/share/fll-live-initscripts/, it's not meant
+    to be used by hand.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 23 Sep 2014 23:47:50 +0300
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 08 Dec 2014 04:24:08 +0100
 
-fll-live-initscripts (2014.09.23) unstable; urgency=medium
+fll-live-initscripts (4.1.27) unstable; urgency=medium
 
-  *  fll-live-xorgconfig using systemd service
+  * pickup liveapt i18n from secondary squashfs.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 23 Sep 2014 23:15:00 +0300
+ -- Niall Walsh <niallwalsh@celtux.org>  Mon, 08 Dec 2014 03:17:21 +0000
 
-fll-live-initscripts (2014.09.22) unstable; urgency=medium
+fll-live-initscripts (4.1.26) unstable; urgency=medium
 
-  * removed fll-live-xorgconfig depend from fll-live-initscripts
+  * fstab_generator: fixup devmapper device handling.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Mon, 22 Sep 2014 01:06:57 +0300
+ -- Niall Walsh <niallwalsh@celtux.org>  Mon, 10 Nov 2014 22:03:14 +0000
 
-fll-live-initscripts (2014.09.16) unstable; urgency=medium
+fll-live-initscripts (4.1.25) unstable; urgency=medium
 
-  * readded fll-live-xorgconfig
+  * change hwclock calls to match /lib/udev/hwclock
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 16 Sep 2014 01:08:32 +0300
+ -- Niall Walsh <niallwalsh@celtux.org>  Tue, 28 Oct 2014 17:18:58 +0000
 
-fll-live-initscripts (2014.09.09.1) unstable; urgency=medium
+fll-live-initscripts (4.1.24) unstable; urgency=medium
 
-  * removed unused/duplicate code
+  * write networkd config in /etc not /run so it carries to install.
+  * some style/comment improvements for the perl fll-networkd-one program.
 
- -- Angelescu Ovidiu <convbsd@siduction.org>  Sun, 07 Sep 2014 21:39:30 +0300
+ -- Niall Walsh <niallwalsh@celtux.org>  Thu, 09 Oct 2014 16:13:48 +0100
 
-fll-live-initscripts (2014.09.09) unstable; urgency=medium
+fll-live-initscripts (4.1.23) unstable; urgency=medium
 
-  * initscripts should not handle networking
+  * stop stopping or enabling networkd.
 
- -- Alf Gaida <agaida@siduction.org>  Sun, 07 Sep 2014 12:40:36 +0200
+ -- Niall Walsh <niallwalsh@celtux.org>  Tue, 07 Oct 2014 00:05:55 +0100
 
-fll-live-initscripts (2014.09.08) unstable; urgency=medium
+fll-live-initscripts (4.1.22) unstable; urgency=medium
 
-  * reactivate distro-defaults.install
+  * replace udev/ifup networking code with networkd based setup.
 
- -- Alf Gaida <agaida@siduction.org>  Sun, 07 Sep 2014 01:26:01 +0200
+ -- Niall Walsh <niallwalsh@celtux.org>  Sun, 05 Oct 2014 17:21:37 +0100
 
-fll-live-initscripts (2014.09.07) unstable; urgency=medium
+fll-live-initscripts (4.1.21) unstable; urgency=medium
 
-  * Merge from fullstory;
   * generate fstab mounts in /disks instead of /media.
+
+ -- Niall Walsh <niallwalsh@celtux.org>  Fri, 05 Sep 2014 02:04:44 +0100
+
+fll-live-initscripts (4.1.20) unstable; urgency=medium
+
   * move fll-init into the initramfs.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 30 Aug 2014 23:03:52 +0200
+
+fll-live-initscripts (4.1.19) unstable; urgency=medium
+
   * drop insserv overrides for various display managers, this isn't functional
     under system; clean up dpkg-triggers.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 13 Aug 2014 04:37:27 +0200
+
+fll-live-initscripts (4.1.18) unstable; urgency=medium
+
   * drop fll-xorgconfig.
   * fix lintian problems with the new fll-network initscript:
     - init.d-script-missing-dependency-on-remote_fs
     - init.d-script-should-depend-on-virtual-facility ($network)
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 13 Aug 2014 04:23:39 +0200
+
+fll-live-initscripts (4.1.17) unstable; urgency=medium
+
   * rework networking
     - do not exec from fll.net.agent
     - add fll-network init to create flag when networking has run and
       re-run fll.net.agent directly on previously seen interfaces
     - 000fll ends with : so teardown tests do not make it appear to fail
+
+ -- Niall Walsh <niallwalsh@celtux.org>  Tue, 12 Aug 2014 14:21:32 +0100
+
+fll-live-initscripts (4.1.16) unstable; urgency=medium
+
+  * rebuild with gcc-4.9.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 12 Jun 2014 02:54:46 +0200
+
+fll-live-initscripts (4.1.15) unstable; urgency=medium
+
+  * debian/control: switch Vcs tags to github.
   * fix typo triggering init.d-script-does-not-provide-itself.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 13 Apr 2014 22:32:39 +0200
+
+fll-live-initscripts (4.1.14) unstable; urgency=medium
+
   * add fll-snakeoil-cert.init.
   * sort dh_installinit calls.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 02 Mar 2014 17:59:51 +0100
+
+fll-live-initscripts (4.1.13) unstable; urgency=medium
+
   * guard sysfs check for virtual machines.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Feb 2014 23:11:36 +0100
+
+fll-live-initscripts (4.1.12) unstable; urgency=low
+
+  * bump standards version to 3.9.5, no changes necessary.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Feb 2014 22:02:24 +0100
+
+fll-live-initscripts (4.1.11) unstable; urgency=low
+
   * don't prompt for ejecting in a virtual machine, unless explicitly
     requested ("doprompt" cheatcode).
 
- -- Alf Gaida <agaida@siduction.org>  Sun, 07 Sep 2014 00:20:27 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Feb 2014 21:58:58 +0100
 
-fll-live-initscripts (2014.08.09) unstable; urgency=medium
+fll-live-initscripts (4.1.10) unstable; urgency=low
 
-  * prepare lxde keyboard setting
+  * stop hardcoding init sequencing.
 
- -- Alf Gaida <agaida@siduction.org>  Sat, 09 Aug 2014 01:00:07 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 14 Nov 2013 19:37:57 +0100
 
-fll-live-initscripts (2014.05.07) unstable; urgency=medium
+fll-live-initscripts (4.1.9) unstable; urgency=low
 
-  * session is now lxqt
+  * drop obsolete hal configuration (10-disable-swsusp.fdi).
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 07 May 2014 16:54:17 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 05 Nov 2013 00:30:39 +0100
 
-fll-live-initscripts (2014.04.10) unstable; urgency=medium
+fll-live-initscripts (4.1.8) unstable; urgency=low
 
-  * and next, session is no lxde-qt - thats it!
+  * fix distro-defaults triggers:
+    - drop duplicate xdm trigger.
+    - add trigger for lightdm.
+  * make lintian a little happier:
+    - W: init.d-script-does-not-source-init-functions fll-shell
 
- -- Alf Gaida <agaida@siduction.org>  Thu, 10 Apr 2014 00:48:33 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Nov 2013 14:22:24 +0100
 
-fll-live-initscripts (2014.04.09.1) unstable; urgency=medium
+fll-live-initscripts (4.1.7) unstable; urgency=low
 
-  * next try 
+  * drop obsolete upgrade compatibility code:
+    - hwclockfirst.sh is fixed since 2009.
+    - gdm (v2) is no more.
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 09 Apr 2014 03:17:11 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Nov 2013 14:11:37 +0100
 
-fll-live-initscripts (2014.04.09) unstable; urgency=medium
+fll-live-initscripts (4.1.6) unstable; urgency=low
 
-  * sessions like rqt 
-  * hope, that will fix the autologin issue
+  * drop kvm override for xserver-xorg-video-modesetting, it's no longer
+    required and actively harmful with the current versions.
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 09 Apr 2014 01:50:00 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 01 Oct 2013 01:42:38 +0200
 
-fll-live-initscripts (2014.04.05) unstable; urgency=medium
+fll-live-initscripts (4.1.5) unstable; urgency=low
 
-  * comment for lxqt changed 
+  * rebuild with gcc-4.8.
 
- -- Alf Gaida <agaida@siduction.org>  Sat, 05 Apr 2014 16:57:06 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 Jun 2013 19:15:59 +0200
 
-fll-live-initscripts (2014.01.10) unstable; urgency=medium
+fll-live-initscripts (4.1.4) unstable; urgency=low
 
-  * version bumped
-  * few dependencies between the packages 
+  * s/iproute/&2/
 
- -- Alf Gaida <agaida@siduction.org>  Thu, 09 Jan 2014 23:26:23 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 24 May 2013 02:26:26 +0200
 
-fll-live-initscripts (2014.01.09) unstable; urgency=medium
+fll-live-initscripts (4.1.3) unstable; urgency=low
 
-  * version bump (used for fll-live-xorgconfig)
+  * fix mirror selection.
 
- -- Alf Gaida <agaida@siduction.org>  Thu, 09 Jan 2014 21:28:06 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 05 May 2013 04:56:55 +0200
 
-fll-live-initscripts (2013.12.11) unstable; urgency=medium
+fll-live-initscripts (4.1.2) unstable; urgency=low
 
-  * bump version to date-based
-  * explicitly use libudev1 as dependency
-  * bump standardes to 3.9.5
+  * temporarily drop oscar and spline.
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 11 Dec 2013 23:08:28 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 04 May 2013 19:55:57 +0200
 
-fll-live-initscripts (2013.08.25) unstable; urgency=low
+fll-live-initscripts (4.1.1) unstable; urgency=low
 
-  * new numbering
-  * fll-login - senseless 'hit enter' removed
+  * don't mount vfat partitions with shortname=lower.
 
- -- Alf Gaida <agaida@siduction.org>  Sun, 25 Aug 2013 13:24:03 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 03 May 2013 01:20:02 +0200
 
-fll-live-initscripts (3.16.10) unstable; urgency=low
+fll-live-initscripts (4.1.0) unstable; urgency=low
 
-  * removed old debris (fullstory-link and XBSC-Orig.-Maintainer
-  * unused lintian-overrides removed
+  * fll-fstab.init: unconditionally clean up pstore when booting in efi mode.
+    efivars storage pressure (more than 50% full), due to stale boot- or 
+    crashlogs, created by previous kernels breaks further changes (efibootmgr).
+  * fll-init.init: drop noagp|agp=no cheatcodes, those shouldn't apply anymore
+    and tend to break more than they might have fixed (normal blacklists remain
+    available).
 
- -- Alf Gaida <agaida@siduction.org>  Tue, 04 Jun 2013 22:19:52 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 18 Apr 2013 22:07:26 +0200
 
-fll-live-initscripts (3.16.9) unstable; urgency=low
+fll-live-initscripts (4.0.8) unstable; urgency=low
 
-  [ Ovidiu Angelescu ]
-  * added cinnamon support in fll-desktop.init
+  * make lintian a little happier and enable hardening:
+    - W: hardening-no-fortify-functions usr/sbin/fll_blockdev_detect
+    - W: hardening-no-fortify-functions usr/sbin/fll_fstab_generator
+    - W: hardening-no-relro usr/sbin/fll_blockdev_detect
+    - W: hardening-no-relro usr/sbin/fll_fstab_generator
 
-  [ Alf Gaida ]
-  * rebuild refs #1241 
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Jan 2013 02:49:22 +0100
 
- -- Alf Gaida <agaida@siduction.org>  Tue, 04 Jun 2013 22:05:04 +0200
+fll-live-initscripts (4.0.7) unstable; urgency=low
 
-fll-live-initscripts (3.16.8) unstable; urgency=low
+  * bump standards version to 3.9.4, no changes necessary.
+  * update FSF postal address to be URLs.
 
-  * fix for qxkb part 2, closes #1179 
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Jan 2013 02:36:41 +0100
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 06 May 2013 02:35:57 +0200
+fll-live-initscripts (4.0.6) unstable; urgency=low
 
-fll-live-initscripts (3.16.7) unstable; urgency=low
+  * drop versioned breaks on initscripts.
 
-  * fix for qxkb part 1 
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 06 Aug 2012 00:26:08 +0200
 
- -- Alf Gaida <agaida@siduction.org>  Mon, 06 May 2013 00:43:24 +0200
+fll-live-initscripts (4.0.5) unstable; urgency=low
 
-fll-live-initscripts (3.16.6) unstable; urgency=low
+  * fix typo.
 
-  [ Ovidiu Angelescu ]
-  * removed fll-xdm because now it's in pyfll 700-x-siduction.postinst
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 17 Jul 2012 15:07:52 +0200
 
-  [ Alf Gaida ]
-  * rebuild 
+fll-live-initscripts (4.0.4) unstable; urgency=low
 
- -- Alf Gaida <agaida@siduction.org>  Sat, 06 Apr 2013 03:49:38 +0200
+  * support kvm modesetting.
 
-fll-live-initscripts (3.16.5) unstable; urgency=low
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 17 Jul 2012 14:45:44 +0200
 
-  * set_accepted_lang() for distribution languages
-    refs #1031 
+fll-live-initscripts (4.0.3) unstable; urgency=low
 
- -- Alf Gaida <agaida@siduction.org>  Sat, 08 Dec 2012 01:24:54 +0100
+  * restore dev/console redirects and drop early test of /dev/cdrom.
+  * don't umount the aufs on /, just remount it ro.
+  * drop the duplicated VERBOSE stuff and just use a verbose var to add the -v.
 
-fll-live-initscripts (3.16.4) unstable; urgency=low
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 07 Jul 2012 22:24:33 +0200
 
-  * rebuild after final checks, closes #994
+fll-live-initscripts (4.0.2) unstable; urgency=low
 
- -- Alf Gaida <agaida@siduction.org>  Sat, 01 Dec 2012 09:59:19 +0100
+  [ Stefan Lippers-Hollmann ]
+  * drop linitian override for no longer existing fll-network init script.
 
-fll-live-initscripts (3.16.3) unstable; urgency=low
+  [ Niall Walsh ]
+  * fll-xdm gdm3: newline after AutomaticLoginEnable=true to kill whitespace
+  * move 000fll and fll.net.agent into a networking folder in source package
 
-  * siduction-repo dont exist anymore, removed question for it
-  * removed some more moronic typos 
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 02 Jul 2012 21:30:12 +0200
 
- -- Alf Gaida <agaida@siduction.org>  Fri, 30 Nov 2012 22:32:50 +0100
+fll-live-initscripts (4.0.1) unstable; urgency=low
 
-fll-live-initscripts (3.16.2) unstable; urgency=low
+  * fix rtc timezone settings for initscripts >= 2.88dsf-25.
+  * use printf instead of multi-line echoes.
 
-  * some typos removed 
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 11 Jun 2012 03:45:38 +0200
 
- -- Alf Gaida <agaida@siduction.org>  Fri, 30 Nov 2012 21:39:50 +0100
+fll-live-initscripts (4.0.0) unstable; urgency=low
 
-fll-live-initscripts (3.16.1) unstable; urgency=low
+  [ Stefan Lippers-Hollmann ]
+  * drop cirrus-kvm overrides.
+  * add ifupdown and iproute to dependencies.
 
-  * fll-live-initscripts.fll-locales.init - repo-part rewritten
+  [ Niall Walsh ]
+  * drop fll-network, replace with fll.net.agent for udev and if-up.d/000fll
 
- -- Alf Gaida <agaida@siduction.org>  Fri, 30 Nov 2012 21:11:27 +0100
-
-fll-live-initscripts (3.15.9) unstable; urgency=low
-
-  * typo removed 
-
- -- Alf Gaida <agaida@siduction.org>  Thu, 29 Nov 2012 17:06:53 +0100
-
-fll-live-initscripts (3.15.8) unstable; urgency=low
-
-  * languagesettings for rqt added 
-
- -- Alf Gaida <agaida@siduction.org>  Thu, 29 Nov 2012 16:29:29 +0100
-
-fll-live-initscripts (3.15.7) unstable; urgency=low
-
-  [ Ovidiu Angelescu ]
-  * For nox added test condition in fll-network to not be created pkla file
-    (in nox we don't use polkit)
-
-  [ Alf Gaida ]
-  * fixes in debian/copyright
-  * ignore warnings about hardening, this should eventually fixed later
-
- -- Alf Gaida <agaida@siduction.org>  Sat, 08 Sep 2012 22:17:46 +0200
-
-fll-live-initscripts (3.15.6) unstable; urgency=low
-
-  * moved code for gdm3 background to desktop-defaults-gnome
-
- -- Angelescu Ovidiu <mrhsaacdoh@gmail.com>  Fri, 19 Aug 2012 01:22:15 +0300
-
-fll-live-initscripts (3.15.5) unstable; urgency=low
-
-  * removed code for gdm3 background rendering option GDM_BACKGROUND_RENDERING_OPTION
-
- -- Angelescu Ovidiu <mrhsaacdoh@gmail.com>  Fri, 17 Aug 2012 01:39:15 +0300
-
-fll-live-initscripts (3.15.4) unstable; urgency=low
-
-  * gdm3 background
-
- -- Angelescu Ovidiu <mrhsaacdoh@gmail.com>  Thu, 16 Aug 2012 17:56:15 +0300
-
-fll-live-initscripts (3.15.3) unstable; urgency=low
-
-  * End the debian-mirror-roulette and use http://http.debian.net
-  * Weigth our mirrors different. 60 % spline, 20 % delaware, 20 % p.s.o 
-  * fixes #668
-
- -- Alf Gaida <agaida@siduction.org>  Sun, 24 Jun 2012 17:56:15 +0200
-
-fll-live-initscripts (3.15.2) unstable; urgency=low
-
-  * noch nen typo
-
- -- Alf Gaida <agaida@siduction.org>  Fri, 22 Jun 2012 00:42:14 +0200
-
-fll-live-initscripts (3.15.1) unstable; urgency=low
-
-  * distro-default.install typo fixed 
-
- -- Alf Gaida <agaida@siduction.org>  Fri, 22 Jun 2012 00:25:48 +0200
-
-fll-live-initscripts (3.15.0) unstable; urgency=low
-
-  * fix umountfs //its a really dirty hack
-
- -- Alf Gaida <agaida@siduction.org>  Thu, 21 Jun 2012 23:25:33 +0200
-
-fll-live-initscripts (3.14.11) unstable; urgency=low
-
-  * fixed a typo in fll-network
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sun, 20 May 2012 18:42:33 +0200
-
-fll-live-initscripts (3.14.10) unstable; urgency=low
-
-  * Added a workaround for the NM-problem (root), see http://debianforum.de/forum/viewtopic.php?p=861576#p861576
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sun, 20 May 2012 18:00:23 +0200
-
-fll-live-initscripts (3.14.9) unstable; urgency=low
-
-  * fixed autologin for razorqt.
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 20:17:05 +0200
-
-fll-live-initscripts (3.14.8) unstable; urgency=low
-
-  * fixed a typo
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 16:46:37 +0200
-
-fll-live-initscripts (3.14.7) unstable; urgency=low
-
-  * set password "live" user siducer.
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 16:09:07 +0200
-
-fll-live-initscripts (3.14.6) unstable; urgency=low
-
-  * realy fix lightdm autologin
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 15:21:49 +0200
-
-fll-live-initscripts (3.14.5) unstable; urgency=low
-
-  * Non-maintainer upload.
-  * fix lightdm autologin
-
- -- Torsten Wohlfarth <towo@siduction.org>  Sat, 19 May 2012 13:44:23 +0200
-
-fll-live-initscripts (3.14.4) unstable; urgency=low
-
-  * -# X-Start-Before:    networking
-  * behebt auf jeden Fall den Abhängikeitfehler der Dienst 
-
- -- Alf Gaida <agaida@siduction.org>  Tue, 15 May 2012 11:03:19 +0200
-
-fll-live-initscripts (3.14.3) unstable; urgency=low
-
-  * /debian/fll-live-initscripts.fll-network.init - nix starten 
- 
-
- -- Alf Gaida <agaida@siduction.org>  Tue, 15 May 2012 02:21:31 +0200
-
-fll-live-initscripts (3.14.2) unstable; urgency=low
-
-  * rebuild, no changes 
-
- -- Alf Gaida <agaida@siduction.org>  Tue, 15 May 2012 01:26:24 +0200
-
-fll-live-initscripts (3.14.1) unstable; urgency=low
-
-  [ Ferdinand Thommes ]
-  * Non-maintainer upload.
-  * fixed typo in fll-desktop.init
-  
-  [ Alf Gaida ]
-  * rebuild closes #701
-  * added devil to uploaders
-  * bump version to 3.14
-
- -- Alf Gaida <agaida@siduction.org>  Mon, 14 May 2012 23:00:13 +0200
-
-fll-live-initscripts (3.13.26) unstable; urgency=low
-
-  * final version of debian/copyright 
-  * fixes #386 
-
- -- Alf Gaida <agaida@siduction.org>  Tue, 03 Apr 2012 16:39:39 +0200
-
-fll-live-initscripts (3.13.25) unstable; urgency=low
-
-  * reworked debian/copyrights to be compatible to dep5
-  * in the case i am to harsh, some of the tales and novels can imho
-    placed in README
-  * bullshit removed: a GPL-Licensed file can *never ever* be PUBLIC
-    DOMAIN.
-  * copyrigth needs a review from someone not involved.
-  * refs #386
-
- -- Alf Gaida <agaida@siduction.org>  Sat, 24 Mar 2012 14:16:31 +0100
-
-fll-live-initscripts (3.13.24) unstable; urgency=low
-
-  * add a newline at the last line of debian/distro-defaults.triggers 
-
- -- Alf Gaida <agaida@siduction.org>  Thu, 22 Mar 2012 19:57:53 +0100
-
-fll-live-initscripts (3.13.23) unstable; urgency=low
-
-  * add source override to prevent lintian complaining about 
-    XSBC-Original-Maintainer
-  * fixes #643 
-
- -- Alf Gaida <agaida@siduction.org>  Thu, 22 Mar 2012 17:58:16 +0100
-
-fll-live-initscripts (3.13.22) unstable; urgency=low
-
-  * bump standards to 3.9.3
-  * bump compat to 9
-  * debhelper (>=9)
-  * .gitignore added
-
- -- Alf Gaida <agaida@siduction.org>  Wed, 21 Mar 2012 13:12:33 +0100
-
-fll-live-initscripts (3.13.21+nmu1) unstable; urgency=low
-
-  * Non-maintainer upload.
-  * edited desktop.init, xdm.init, distro-defaults.trigger and distro-
-    defaults.postrm to work with razorqt desktop
-
- -- Ferdinand Thommes <devil@siduction.org>  Wed, 25 Jan 2012 12:44:00 +0100
-
-fll-live-initscripts (3.13.21) unstable; urgency=low
-
-  [ Sebastian Görgen ]
-  * Non-maintainer upload.
-  * don't check fstype on generating fstab via fll_fstab_generator fixes #516
-
-  [ Alf Gaida ]
-  * fixes #516, fixes #517
-  * version bump to a maintainer version
-
- -- Alf Gaida <agaida@siduction.org>  Thu, 29 Dec 2011 00:51:57 +0100
-
-fll-live-initscripts (3.13.20) unstable; urgency=low
-
-  * fix a typo in an if-query
-
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 19:13:45 +0100
-
-fll-live-initscripts (3.13.19) unstable; urgency=low
-
-  * check for existence of iceweasel
-
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 12:38:47 +0100
-
-fll-live-initscripts (3.13.18) unstable; urgency=low
-
-  * fix a last typo :(
-
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 01:54:31 +0100
-
-fll-live-initscripts (3.13.17) unstable; urgency=low
-
-  * fix some typos
-
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 01:09:56 +0100
-
-fll-live-initscripts (3.13.16) unstable; urgency=low
-
-  * added a loadbalancing routine for siduction and debian sources
-  * add a fix for installer language in iceweasel
-
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 27 Dec 2011 00:13:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 11 Jun 2012 00:39:18 +0200
 
 fll-live-initscripts (3.13.15) unstable; urgency=low
 
-  * fix /etc/gpm.conf if /dev/psaux does not exist
+  * actually comment out eject stuff (ooops)
+  * comment out some more late /dev/console redirects
 
- -- Torsten Wohlfarth <towo@siduction.org>  Fri, 23 Dec 2011 16:54:40 +0100
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 26 Mar 2012 15:44:19 +0100
 
 fll-live-initscripts (3.13.14) unstable; urgency=low
 
-  * set nodeadkeys as default for german lang
+  * Revert 3.13.13 change to use random /run/fll-reboot.XXXXX
+  * check for /fll-cdrom early when we actually might have it
+  * remove call to eject and update prompt text
+  * drop [<>] /dev/console around prompt as it does not work now
 
- -- Torsten Wohlfarth <towo@siduction.org>  Fri, 23 Dec 2011 13:44:39 +0100
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sun, 25 Mar 2012 23:39:59 +0100
 
 fll-live-initscripts (3.13.13) unstable; urgency=low
 
-  * add the fix for the init 3 problem with gdm3/lightdm to fll-xdm
+  * use random /run/fll-reboot.XXXXX to store reboot helpers on tmpfs.
 
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 20 Dec 2011 17:54:37 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 25 Mar 2012 23:09:45 +0200
 
 fll-live-initscripts (3.13.12) unstable; urgency=low
 
-  * Non-maintainer upload.
-  * add a rewrite of /etc/apt/sources.list.d/debian.list 
+  * bump standards version to 3.9.3, no changes necessary.
 
- -- Torsten Wohlfarth <towo@siduction.org>  Tue, 20 Dec 2011 16:04:44 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 23 Feb 2012 16:20:19 +0100
 
 fll-live-initscripts (3.13.11) unstable; urgency=low
 
-  * workaround for lightdm by coruja 
+  * make lintian a little happier:
+    - init.d-script-does-not-implement-optional-option
+      - etc/init.d/fll-adduser status
+      - etc/init.d/fll-desktop status
+      - etc/init.d/fll-fstab status
+      - etc/init.d/fll-init status
+      - etc/init.d/fll-nbdclient status
+      - etc/init.d/fll-reboot status
+      - etc/init.d/fll-shell status
+      - etc/init.d/fll-xdm status
+      - etc/init.d/fll-xorgconfig status
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 14 Dec 2011 16:40:56 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Jan 2012 01:19:30 +0100
 
 fll-live-initscripts (3.13.10) unstable; urgency=low
 
-  [ siduction builders ]
-  * merging lost changes and hoping the best 
+  * switch to compat level 9.
 
-  [ Alf Gaida ]
-  * Merge manuell berichtigt, ready to build 
-
- -- Alf Gaida <agaida@siduction.org>  Sat, 10 Dec 2011 14:39:23 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Jan 2012 01:13:19 +0100
 
 fll-live-initscripts (3.13.9) unstable; urgency=low
 
-  * fixed a typo in debian/fll-locales.init
+  * keyboard for uk_UA should be ua not uk.
 
- -- siduction builders <packaging@siduction.org>  Sat, 26 Nov 2011 22:13:33 +0100
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 30 Dec 2011 15:27:29 +0000
 
 fll-live-initscripts (3.13.8) unstable; urgency=low
 
-  * fixed debian/fll-locales.init
+  * move nbd sendsigs file to /run instead of /lib/init/rw
+  * uk_UA support in locales.csv
+  * small fixups in locales.csv (is utf8, nl_BE not default, se_SE is default)
 
- -- siduction builders <packaging@siduction.org>  Sat, 26 Nov 2011 21:03:44 +0100
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 23 Dec 2011 18:25:43 +0000
 
 fll-live-initscripts (3.13.7) unstable; urgency=low
 
-  * forked package for siduction
+  * re-instate kvm specific override to force vesa for kvm.
 
- -- siduction builders <packaging@siduction.org>  Mon, 21 Nov 2011 21:23:00 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 22 Dec 2011 22:19:47 +0100
 
 fll-live-initscripts (3.13.6) unstable; urgency=low
 

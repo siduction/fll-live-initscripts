@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+use strict;
+
+my $path = '/etc/systemd/network';
+my $network = "${path}/dhcp.network";
+
+# just bail silently instantly if network does not exist
+# this means we have already run successfully
+-e $network || exit;
+
+# open pipe from journalctl for networkd dhcp_lease_acquired
+open(JRNL, '-|', '/bin/journalctl',
+  '-o', 'verbose',
+  '_SYSTEMD_UNIT=systemd-networkd.service',
+  'CODE_FUNCTION=dhcp_lease_acquired'
+)|| die "failed to open journalctl: $!";
+
+# process the pipe output to get
+#   the last interface seen
+#   the interfaces in order first seen
+my $last;
+my @seen;
+LINE: while (my $line = <JRNL>)
+{
+  chomp($line);
+  next LINE unless ($line =~ s/^\s*INTERFACE=(.+?)\s*$/$1/);
+  my @found = grep(/^${line}$/, @seen);
+  push(@seen, $line) if (@found == 0);
+  $last = $line;
+}
+close(JRNL);
+
+my $route;
+# if we have not aquired a lease
+if (length($last)==0) {
+  open(IP, '-|', '/bin/ip', 'route', 'list')||die "failed to open pipe from /bin/ip: $!";
+  $route=<IP>;
+  close(IP);
+  if (length($route)==0) {
+    # no dhcp or route so just exit 
+    exit(0);
+  }
+}
+
+unlink($network);
+print STDERR "lease or route acquired so removed dhcp.network\n";
+
+# no $last means we got a route elsewhere so we are done
+exit if (length($last)==0);
+
+# ip flush all seen except last
+LINE: foreach my $line (@seen) {
+  next LINE if $line =~ /^${last}$/;
+  print STDERR "flush address for $line\n";
+  system('/sbin/ip', 'address', 'flush', 'dev', $line);
+}
+
+# write the networkd config for last
+$network = "${path}/${last}.network";
+open('NETW', '>', $network) || die "failed to open ${network} for writing: $!";
+print NETW "[Match]\nName=${last}\n\n[Network]\nDHCP=both\n\n[DHCP]\nUseDomains=yes\n";
+close(NETW);
+print STDERR "wrote ${network}\n";
+

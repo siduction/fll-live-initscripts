@@ -1,5 +1,17 @@
 #!/bin/sh
 
+### BEGIN INIT INFO
+# Provides:          fll-xorgconfig
+# Required-Start:
+# Required-Stop:
+# X-Start-Before:    gdm3 kdm lxdm slim sddm wdm xdm
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: configure Xorg xserver
+# Description:       The script is intended to configure the
+#                    Xorg xserver for use.
+### END INIT INFO
+
 ###
 # F.U.L.L.S.T.O.R.Y init script
 #
@@ -13,6 +25,25 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 NAME="fll-xorgconfig"
 DPKG_ARCH="$(dpkg --print-architecture)"
+
+touch /.xorgconfig-was-here
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+if [ ! -x /usr/sbin/fll_xorgconfig ]; then
+	exit 0
+fi
 
 ###
 # source lsb functions
@@ -31,7 +62,7 @@ if [ -f /proc/cmdline ]; then
 	for param in $(cat /proc/cmdline); do
 		case "${param}" in
 			flldebug=*)
-				if [ "${param#flldebug=}" = "${NAME}" ] || [ "${param#flldebug=}" = "all" ]; then
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
 					fll_redirect
 				fi
 				;;
@@ -232,6 +263,10 @@ case "${1}" in
 	restart|force-reload)
 		echo "Error: argument '${1}' not supported" >&2
 		exit 3
+		;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
 		;;
 	*)
 		echo "Usage: ${NAME} {start|stop}" >&2

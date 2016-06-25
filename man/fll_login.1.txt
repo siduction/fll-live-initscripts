@@ -37,7 +37,7 @@ Kel Modderman <kel@otaku42.de>
 
 RESOURCES
 ---------
-FULLSTORY Homepage: http://developer.berlios.de/projects/fullstory/[]
+FULLSTORY Homepage: https://github.com/fullstory/[]
 
 
 COPYING

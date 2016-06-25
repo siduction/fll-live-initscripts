@@ -15,20 +15,20 @@ case $LANG in
     de_DE.utf8)
         sed -e "s/@VARIANTSLIST@/,/" \
             -e "s/@LAYOUTSLIST@/de,us/" \
-            /usr/share/siduction-settings-lxde-*/etc/xdg/lxpanel/LXDE/panels/panel \
+            /usr/share/*-lxde-settings/etc/xdg/lxpanel/LXDE/panels/panel \
             > /etc/xdg/lxpanel/LXDE/panels/panel
         ;;
     en_US.utf8)
         sed -e "s/@VARIANTSLIST@/,/" \
             -e "s/@LAYOUTSLIST@/us,de/" \
-            /usr/share/siduction-settings-lxde-*/etc/xdg/lxpanel/LXDE/panels/panel \
+            /usr/share/*-lxde-settings/etc/xdg/lxpanel/LXDE/panels/panel \
             > /etc/xdg/lxpanel/LXDE/panels/panel
         ;;
     *)
         XLANG=${LANG:0:2}
         sed -e "s/@VARIANTSLIST@/,/" \
             -e "s/@LAYOUTSLIST@/${XLANG},us/" \
-            /usr/share/siduction-settings-lxde-*/etc/xdg/lxpanel/LXDE/panels/panel \
+            /usr/share/*-lxde-settings/etc/xdg/lxpanel/LXDE/panels/panel \
             > /etc/xdg/lxpanel/LXDE/panels/panel
         ;;
 esac

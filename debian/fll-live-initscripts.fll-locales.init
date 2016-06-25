@@ -1,0 +1,554 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          fll-locales
+# Required-Start:    mountdevsubfs
+# Required-Stop:
+# X-Start-Before:    keyboard-setup
+# X-Interactive:     true
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: live media locale autoconfigurator
+# Description:       The purpose of fll-locales is to calculate required
+#                    strings to configure the locale settings of system
+#                    according to given lang= string.
+### END INIT INFO
+
+###
+# F.U.L.L.S.T.O.R.Y init script
+#
+# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+#            (C) 2008 Michael Deelwater <michael.deelwater@googlemail.com>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# https://github.com/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-locales"
+
+if [ "${1}" = "list" ]; then
+	sed -n 's![ \t]\+\([a-z-]\+\)|\?\([a-z]\+\)\?).*### [A-Z][A-Z] \(.\+\) kb:\(.\+\) ###!\1, \3,\4!p' "${0}"
+	exit 0
+fi
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+FLL_DISTRO_NAME="siduction"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	[ -n "${FLL_LANG}" ] || exit 0
+fi
+
+###
+# VERBOSE setting and other rcS variables
+###
+#. /lib/init/vars.sh
+
+###
+# source lsb functions
+###
+. /lib/lsb/init-functions
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# source LANG functions
+###
+. /usr/share/fll-live-initscripts/locales
+
+###
+# some console-setup defaults
+###
+CHARMAP="UTF-8"
+CODESET="Uni2"
+# Debian agrees that Terminus doesn't look great enough to be default
+# http://bugs.debian.org/497331
+FONTFACE="VGA"
+# Keep the default size of 16 here to avoid clearing VT 1/2 way through
+# bootup sequence
+FONTSIZE="16"
+
+###
+# some keyboard-configuration defaults
+###
+XKBMODEL="linux"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_switch,compose:lwin,grp:alt_shift_toggle"
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			lang=*)
+				LANGUAGE=$(awk 'BEGIN{ print tolower("'"${param#lang=}"'") }')
+				;;
+			utc=yes)
+				UTC="yes"
+				;;
+			utc|gmt)
+				CUSTOM_TZ="Etc/UTC"
+				;;
+			tz=*)
+				CUSTOM_TZ="${param#tz=}"
+				;;
+			noaptlang)
+				NOAPTLANG="yes"
+				;;
+			image_dir=*)
+				FLL_IMAGE_DIR="${param#image_dir=}"
+				FLL_IMAGE_LOCATION="${FLL_IMAGE_DIR}/${FLL_IMAGE_FILE}"
+				;;
+			image_name=*)
+				FLL_IMAGE_FILE="${param#image_name=}"
+				FLL_IMAGE_LOCATION="${FLL_IMAGE_DIR}/${FLL_IMAGE_FILE}"
+				;;
+			xkboptions=*)
+				KBOPTIONS="${param#xkboptions=}"
+				;;
+			keytable=*)
+				KEYTABLE="${param#keytable=}"
+				;;
+			xkbmodel=*)
+				KBMODEL="${param#xkbmodel=}"
+				;;
+			xkbvariant=*)
+				KBVARIANT="${param#xkbvariant=}"
+				;;
+		esac
+	done
+fi
+
+###
+# allow FLL_LANG environment variable to trump
+###
+if [ -n "${FLL_LANG}" ]; then
+	LANGUAGE="${FLL_LANG}"
+fi
+
+###
+# lang cheatcode can optionally be made of two dash-separated parts ll-cc
+# ll -> language code
+# cc -> demographic code
+###
+LANG_CODE=${LANGUAGE%%[-_]*}
+DEMO_CODE="$(echo ${LANGUAGE##*[-_]} | awk '{print toupper($1)}')"
+
+LANGS=$(locale -a)
+LANG=""
+
+# First check if they entered a built in lang
+for LOCALE in ${LANGS}; do
+	[ "${LOCALE}" = "${LANG_CODE}_${DEMO_CODE}.utf8" ] && LANG="${LOCALE}" && break
+
+	# match the language to find the default and possible locales
+	case "${LOCALE}" in
+		${LANG_CODE}_*)
+			[ -z "${LANG_POSS}" ] && LANG_POSS="${LOCALE}"
+			fll_locale_default ${LOCALE} && LANG_DEF="${LOCALE}"
+			;;
+	esac
+done
+
+# See if we have some knowledge on how to setup the requested locale
+if [ -z "${LANG}" ]; then
+	for LOCALE in fll_locale_cheats; do
+		[ "${LOCALE}" = "${LANG_CODE}_${DEMO_CODE}.utf8" ] && \
+			fll_locale_lang ${LOCALE} && break
+	done
+fi
+
+# Ok just fallback to the default language, or whatever we know about or en_US
+if [ -z "$LANG" ]; then
+	if [ -n "${LANG_DEF}" ]; then
+		LANG="${LANG_DEF}"
+	else
+		if [ -n "${LANG_POSS}" ]; then
+			LANG="${LANG_POSS}"
+		else
+			LANG="en_US.utf8"
+		fi
+	fi
+fi
+export LANG
+
+###
+# if demographic code was ommitted, extract default demo_code from LANG
+###
+if [ -z "${DEMO_CODE}" ]; then
+	LANG_CHECK="${LANG%%.*}"
+	DEMO_CODE="${LANG_CHECK##*_}"
+fi
+
+#set tz, mirror, xkb via fll_locale_demo
+if [ "${LANG}" = "${LANG_CODE}_${DEMO_CODE}.utf8" ]; then
+	fll_locale_demo ${LANG}
+else
+	# We've altered their LANG
+	fll_locale_cheats
+	for LOCALE in ${FLL_LOCALE_CHEATS}; do
+		# if we have their locale
+		if [ "${LOCALE}" = "${LANG_CODE}_${DEMO_CODE}.utf8" ]; then
+			DEMO="${LOCALE}"
+			break
+		fi
+
+		# if we have a locale in their country
+		if [ "${LOCALE#*_}" = "${DEMO_CODE}.utf8" ]; then
+			[ -z "${DEMO_POSS}" ] && DEMO_POSS="${LOCALE}"
+		fi
+	done
+
+	# if it's not a country we know about fallback to default 00_00
+	if [ -z "${DEMO}" ]; then
+		if [ -n "${DEMO_POSS}" ]; then
+			DEMO="${DEMO_POSS}"
+		else
+			DEMO="00_00.utf8"
+		fi
+	fi
+
+	fll_locale_demo ${DEMO}
+fi
+
+###
+# allow CUSTOM_TZ to override above TZ definitions
+###
+if [ -n "${CUSTOM_TZ}" ]; then
+	case "${CUSTOM_TZ}" in
+		utc|UTC)
+			CUSTOM_TZ="Etc/UTC"
+			;;
+	esac
+	[ -f "/usr/share/zoneinfo/${CUSTOM_TZ}" ] && TZ="${CUSTOM_TZ}"
+fi
+
+###
+# allow KEYTABLE to update above XKBLAYOUT settings
+###
+if [ -n "${KEYTABLE}" ]; then
+	XKBLAYOUT="${KEYTABLE}"
+fi
+
+###
+# allow KBOPTIONS to update above XKBOPTIONS settings
+###
+if [ -n "${KBOPTIONS}" ]; then
+	XKBOPTIONS="${KBOPTIONS}"
+fi
+
+###
+# allow KBMODEL to update above XKBMODEL settings
+###
+if [ -n "${KBMODEL}" ]; then
+	XKBMODEL="${KBMODEL}"
+fi
+
+###
+# allow KBVARIANT to update above XKBVARIANT settings
+###
+if [ -n "${KBVARIANT}" ]; then
+	XKBVARIANT="${KBVARIANT}"
+fi
+
+set_timezone()
+{
+	###
+	# configure timezone, fallback to UTC
+	###
+	[ -f "/usr/share/zoneinfo/${TZ}" ] || TZ="Etc/UTC"
+	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring timezone data for '${TZ}'"
+	echo "${TZ}" > /etc/timezone
+	rm -f /etc/localtime && cp -f "/usr/share/zoneinfo/${TZ}" /etc/localtime
+	log_end_msg "${?}"
+
+	###
+	# hack rcS, make localtime default, unless tz=Etc/UTC or utc=yes
+	###
+	if [ "${TZ}" = "Etc/UTC" ] || [ "${UTC}" = "yes" ]; then
+		printf "0.000000 0 0.000000\n0\nUTC\n" > /etc/adjtime
+	else
+		# debian defaults to UTC=yes, which is rumored to be dual-boot unfriendly
+		printf "0.000000 0 0.000000\n0\nLOCAL\n" > /etc/adjtime
+
+		# update the system clock a'la /lib/udev/rules.d/85-hwclock.rules
+		/sbin/hwclock --rtc=/dev/rtc0 --systz
+		/sbin/hwclock --rtc=/dev/rtc0 --hctosys
+	fi
+}
+
+set_locale()
+{
+	###
+	# select default locale and configure console-data via debconf
+	###
+	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for '${LANG}'"
+
+	echo "locales locales/default_environment_locale select ${LANG}" | \
+		debconf-set-selections
+	update-locale "LANG=${LANG}"
+
+	log_end_msg "${?}"
+
+    # mod for lxde
+    if [ -f /usr/bin/setlxdekblanguages ]; then
+        echo "lxdekb-lang-set ${LANG}"
+        setlxdekblanguages
+    fi
+    case ${FLL_FLAVOUR} in
+        cinnamon)
+            echo "cinnamon setgconfschemas"
+            setgconfschemas;
+            ;;
+        gnome)
+            echo "gnome setgconfschemas"
+            setgconfschemas;
+            ;;
+        lxde)
+            echo "lxde set languages"
+            ;;
+        lxqt)
+            echo "lxqt set languages"
+            ;;
+        mate)
+            ;;
+        kde)
+            ;;
+        xorg)
+            ;;
+        xfce)
+            echo "xfce set languages"
+            ;;
+    esac
+
+}
+
+set_console()
+{
+	# write configuration: console-setup
+	cat > /etc/default/console-setup <<EOF
+ACTIVE_CONSOLES="/dev/tty[1-6]"
+CHARMAP="${CHARMAP}"
+CODESET="${CODESET}"
+FONTFACE="${FONTFACE}"
+FONTSIZE="${FONTSIZE}"
+EOF
+
+	# write configuration: keyboard-configuration
+	# only set one layout
+	# FIXME: investigate debconfsettings!
+	sed -i	-e "s/^\(XKBMODEL\=\).*/\1\"${XKBMODEL}\"/" \
+		-e "s/^\(XKBLAYOUT\=\).*/\1\"${XKBLAYOUT%%,*}\"/" \
+		-e "s/^\(XKBVARIANT\=\).*/\1\"${XKBVARIANT}\"/" \
+		-e "s/^\(XKBOPTIONS\=\).*/\1\"${XKBOPTIONS}\"/" \
+			/etc/default/keyboard
+
+	setupcon --save-only
+	udevadm trigger --property-match=ID_INPUT_KEYBOARD=1
+}
+
+apt_install_lang() {
+	###
+	# install debs for lang from deb archive on cd
+	###
+	if [ -n "$NOAPTLANG" ]; then
+		return
+	fi
+
+	LIVEAPT="${FLL_MOUNTPOINT}.2/i18n"
+	if [ ! -d "${LIVEAPT}" ]; then
+		return
+	fi
+
+	APTARCH=$(dpkg --print-architecture)
+	# e.g. try /fll/sr0/i18n/i386/de_AT then the first de_* found
+	if [ -f "${LIVEAPT}/${APTARCH}/${LANG%%[.]*}" ]; then
+		# we have the variant requested
+		LANGPACKS=$(cat "${LIVEAPT}/${APTARCH}/${LANG%%[.]*}")
+	elif [ "${LANG%%[_]*}" != 'en' ]; then
+		# try fll-locales to find one
+		for lf in ${LIVEAPT}/${APTARCH}/${LANG%[_]*}*; do
+			if [ -f "${lf}" ]; then
+				# we have a file for the language
+				LANGPACKS=$(cat "${lf}")
+				break
+			fi
+		done
+		[ -z "${LANGPACKS}" ] && return
+	else
+		# it's english and we don't have the variant requested
+		return
+	fi
+
+	log_daemon_msg "${NAME}"
+	log_action_begin_msg " installing language packages for '${LANG}'"
+
+	# don't touch apt if it has been used
+	if [ "/var/lib/dpkg/status" -nt "$(fll_get_mnt)/${FLL_IMAGE_LOCATION}" ]; then
+		log_failure_msg " dpkg already updated"
+		return
+	fi
+
+	LIVEAPTSOURCES=$(mktemp -d -t liveapt.XXXXXX)
+	APTGETBASE="apt-get -o Dir::Etc=$LIVEAPTSOURCES"
+	echo 'deb file://'${LIVEAPT}' sid main' > ${LIVEAPTSOURCES}/sources.list
+	mkdir ${LIVEAPTSOURCES}/preferences.d
+
+	if ! ${APTGETBASE} update > /dev/null; then
+		log_failure_msg " apt-get update for i18n packages from cd failed"
+		apt_install_lang_clean
+		return
+	fi
+
+	APTGETBASE="${APTGETBASE} --allow-unauthenticated --assume-yes --no-remove"
+
+	# do a dry-run to calculate size of packages and that will be used
+	APTUSESRAW=$(LANG=C ${APTGETBASE} --print-uris install ${LANGPACKS} | \
+		awk '/^After\ this\ operation\,\ /{print $4}')
+	APTUSES=${APTUSESRAW%%[.]*MB}
+	APTUSES=$(echo $APTUSESRAW | sed 's|MB$||;')
+
+	# lets assume it is <MB and ok if it's not in MB
+	if [ "${APTUSES}" != "${APTUSESRAW}" ]; then
+		APTUSES=$(echo $APTUSES | sed 's|\.[0-9]*$||;')
+
+		# get a free memory figure
+		FREEMEM=$(LANG=C free -m | awk '/\-\/\+\ buffers/{print $4}')
+
+		# check free - used > minspace (256M)
+		MEMAFTER=$(( ${FREEMEM} - ${APTUSES} ))
+		if [ ${MEMAFTER} -lt 256 ]; then
+			log_warning_msg " minimum 256MB free ram needed for i18n packages"
+			log_warning_msg " you would only have ${MEMAFTER}MB free, not installing"
+			apt_install_lang_clean
+			return
+		fi
+
+		# check used/free > minratio
+		USESRATIO=$(( ${FREEMEM} / ${APTUSES} ))
+		if [ ${USESRATIO} -lt 5 ]; then
+			log_warning_msg " i18n packages would use (${APTUSES}MB) more then 20% of available memory (${FREEMEM}MB), not installing."
+			apt_install_lang_clean
+			return
+		fi
+	fi
+
+	# install the packages
+	${APTGETBASE} install ${LANGPACKS} > /dev/null
+
+	# clean up
+	apt_install_lang_clean
+}
+
+apt_install_lang_clean() {
+	echo '' > ${LIVEAPTSOURCES}/sources.list
+	apt-get -o Dir::Etc=$LIVEAPTSOURCES update > /dev/null
+	apt-get -o Dir::Etc=$LIVEAPTSOURCES clean > /dev/null
+	rm -rf ${LIVEAPTSOURCES}
+	log_end_msg "${?}"
+}
+
+localize_sources_list() {
+# deploy load balancing for siduction mirrors
+# atm we these usable mirrors:
+#   1) ftp.spline.de
+#   2) ftp.uni-stuttgart.de
+#   3) packages.siduction.org
+# REPOS:
+#   3) extra
+#   4) fixes        - provided directly via packages.siduction.org
+
+	case "$(mawk 'BEGIN{print int(9 * rand())}')" in
+	    0|1|3) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany
+	         FLL_MIRROR="http://ftp.spline.de/pub/siduction/"
+	         ;;
+	    4|5|6)   # Universtity Stuttgart
+	         FLL_MIRROR="http://ftp.uni-stuttgart.de/siduction/"
+	         ;;
+	    *)   # siduction main mirror
+	         FLL_MIRROR="http://packages.siduction.org/"
+	         ;;
+	esac
+
+	target="/etc/apt/sources.list.d/debian.list"
+	echo "# debian loadbalancer" > ${target}
+	echo "deb      http://httpredir.debian.org/debian/ unstable main contrib non-free" >> ${target}
+	echo "#deb-src http://httpredir.debian.org/debian/ unstable main contrib non-free" >> ${target}
+
+
+	target="/etc/apt/sources.list.d/extra.list"
+        echo "deb      ${FLL_MIRROR}extra unstable main" > ${target}
+        echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
+        echo "" >> ${target}
+
+	target="/etc/apt/sources.list.d/fixes.list"
+        echo "deb      ${FLL_MIRROR}fixes unstable main contrib non-free" > ${target}
+        echo "#deb-src ${FLL_MIRROR}fixes unstable main contrib non-free" >> ${target}
+        echo "" >> ${target}
+}
+
+save_locale_variables() {
+	for var in FLL_MIRROR CHARMAP CODESET FONTFACE FONTSIZE \
+		   XKBMODEL XKBLAYOUT XKBVARIANT XKBOPTIONS; do
+		val=$(eval echo \$${var})
+		echo "${var}=\"${val}\""
+	done > "/etc/default/${NAME}"
+}
+
+case "${1}" in
+	start)
+		set_timezone
+		set_locale
+		set_console
+		apt_install_lang
+		localize_sources_list
+		save_locale_variables
+		;;
+	stop)
+		# no-op
+		;;
+	restart|reload|force-reload)
+		echo "Error: argument '${1}' not supported" >&2
+		exit 3
+		;;
+	localize)
+		# no output
+		log_daemon_msg() { :; }
+		log_action_begin_msg() { :; }
+		log_end_msg() { :; }
+		# localize
+		set_locale
+		set_console
+		apt_install_lang
+		localize_sources_list
+		save_locale_variables
+		;;
+	status)
+		log_success_msg "${0} is no dæmon."
+		exit 0
+		;;
+	*)
+		echo "Usage: ${NAME} {start|stop|list|localize}" >&2
+		exit 3
+		;;
+esac
+
+:

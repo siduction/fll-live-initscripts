@@ -176,7 +176,7 @@ static char* device_vfstype(struct udev_device *device)
 			return NULL;
 		}
 		
-		blkid_probe_set_request(pr, BLKID_PROBREQ_TYPE);
+		blkid_probe_set_superblocks_flags(pr, BLKID_PROBREQ_TYPE);
 		
 		if (ioctl(fd, BLKGETSIZE64, &size) != 0)
 			size = 0;
@@ -630,8 +630,6 @@ int main(int argc, char **argv)
 	}
 
 	udev_enumerate_add_match_subsystem(u_enum, "block");
-	udev_enumerate_add_match_property(u_enum, "DEVTYPE", "disk");
-	udev_enumerate_add_match_property(u_enum, "DEVTYPE", "partition");
 	udev_enumerate_scan_devices(u_enum);
 
 	u_first_list_ent = udev_enumerate_get_list_entry(u_enum);
@@ -639,15 +637,19 @@ int main(int argc, char **argv)
 		struct udev_device *device;
 		struct udev *context;
 		const char *name;
+		char dt[255];
 
 		context = udev_enumerate_get_udev(u_enum);
 		name = udev_list_entry_get_name(u_list_ent);
 		device = udev_device_new_from_syspath(context, name);
 		if (device == NULL)
 			continue;
-
-		if (device_flagged(device, opts.ignore_given,
-				   opts.ignore_arg)) {
+		strcpy(dt,udev_device_get_property_value(device,"DEVTYPE"));
+		if (
+		   ((strncmp(dt,"disk",4)) && (strncmp(dt,"partition",9)))
+		   ||
+		   (device_flagged(device, opts.ignore_given, opts.ignore_arg))
+		   ){
 			udev_device_unref(device);
 			continue;
 		}
