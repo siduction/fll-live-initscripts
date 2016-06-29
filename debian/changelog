@@ -1,8 +1,23 @@
-fll-live-initscripts (4.3.6) UNRELEASED; urgency=medium
+fll-live-initscripts (4.3.6.3) unstable; urgency=medium
 
+  * Fixed fll-live-initscripts.fll-xdm.init
+    - Decoupled WM and DESKTOP detection
+    - added Cinnamon and Mate
+    - added muffin (cinnamon) and marco (mate)
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 26 Jun 2016 03:56:55 +0200
+
+fll-live-initscripts (4.3.6) unstable; urgency=medium
+
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Mar 2016 06:34:33 +0100
+  [ Alf Gaida ]
+  * release it - most of our relevant changes are in, but not tested 
+  * Bump standards to 3.9.8, no changes needeed
+  * fix typo in control
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 25 Jun 2016 14:51:52 +0200
 
 fll-live-initscripts (4.3.5) unstable; urgency=medium
 

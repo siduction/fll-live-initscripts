@@ -201,44 +201,56 @@ setup_wm() {
 	if [ -z "${DESKTOP}" ]; then
 		# in the absence of an explicit destop= cheatcode setting,
 		# these defaults are checked in reverse order
-		[ -x "/usr/bin/icewm" ] && DESKTOP="icewm"		# 7th
-		[ -x "/usr/bin/startfluxbox" ] && DESKTOP="fluxbox"	# 6th
-		[ -x "/usr/bin/startlxde" ] && \
-			[ -x "/usr/bin/openbox" ] && DESKTOP="lxde"	# 5th
-		[ -x "/usr/bin/startlxqt" ] && \
-			[ -x "/usr/bin/openbox" ] && DESKTOP="lxqt"	# 4th
-		[ -x "/usr/bin/xfwm4" ] && DESKTOP="xfce"		# 3rd
-		[ -x "/usr/bin/metacity" ] && DESKTOP="gnome"		# 2nd
-		[ -x "/usr/bin/startkde" ] && DESKTOP="kde"		# 1st
+		[ -x "/usr/bin/icewm" ]			&& DESKTOP="icewm"	# 9th
+		[ -x "/usr/bin/startfluxbox" ]		&& DESKTOP="fluxbox"    # 8th
+		[ -x "/usr/bin/startlxde" ]		&& DESKTOP="lxde" 	# 7th
+		[ -x "/usr/bin/startlxqt" ]		&& DESKTOP="lxqt"	# 6th
+		[ -x "/usr/bin/startxfce4" ]		&& DESKTOP="xfce"	# 5th
+		[ -x "/usr/bin/gnome-session" ]		&& DESKTOP="gnome"	# 4th
+		[ -x "/usr/bin/startkde" ]		&& DESKTOP="kde"	# 3rd
+                [ -s "/usr/bin/mate-session" ]		&& DESKTOP="mate" 	# 2nd
+		[ -s "/usr/bin/cinnamon-session" ]	&& DESKTOP="cinnamon"	# 1st
 	fi
 
+	if [ -z "${WM}" ]; then
+                # choose wm - if not set otherwise
+                [ -x "/usr/bin/icewm" ]		&& WM="/usr/bin/icewm"		# 9th
+                [ -x "/usr/bin/startfluxbox" ]	&& WM="/usr/bin/startfluxbox"	# 8th - xorg, kde-fallback
+                [ -x "/usr/bin/openbox" ]	&& WM="/usr/bin/openbox"	# 7th - lxde
+                [ -x "/usr/bin/xfwm4" ]		&& WM="/usr/bin/xfwm4"		# 6th - xfce, lxqt
+                [ -x "/usr/bin/metacity" ]	&& WM="/usr/bin/metacity"	# 5th - Gnome fallback
+                [ -x "/usr/bin/marco" ]		&& WM="/usr/bin/marco"		# 4th - Mate
+		[ -x "/usr/bin/muffin" ]	&& WM="/usr/bin/muffin"		# 3rd - Cinnamon
+                [ -s "/usr/bin/mutter" ]        && WM="/usr/bin/mutter"         # 2nd - Gnome current
+                [ -x "/usr/bin/startkde" ]      && WM="/usr/bin/startkde"       # 1st - KDE
+
+        fi
+
 	case "${DESKTOP}" in
+		cinnamon)
+			XSESSION="cinnamon"
+			;;
 		flux*)
-			WM="/usr/bin/startfluxbox"
 			XSESSION="fluxbox"
 			;;
 		gnome)
-			WM="/usr/bin/metacity"
 			XSESSION="gnome"
 			;;
 		icewm)
-			WM="/usr/bin/icewm"
 			XSESSION="IceWM"
 			;;
 		kde)
-			WM="/usr/bin/startkde"
 			XSESSION="plasma"
 			;;
 		lxde)
-			WM="/usr/bin/openbox"
 			XSESSION="LXDE"
 			;;
 		lxqt)
-			WM="/usr/bin/openbox"
 			XSESSION="lxqt"
 			;;
+                mate)   XSESSION="mate"
+			;;
 		xfce*)
-			WM="/usr/bin/xfwm4"
 			XSESSION="xfce"
 			;;
 		*)
