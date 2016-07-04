@@ -11,19 +11,14 @@
 
 
 case $LANG in
-    de_DE.utf8)
-        sed -e "s/@LAYOUTS@/'de','us'/" \
-            /usr/share/fll-live-initscripts/90_keyboardlayouts.gschema.override  \
-            > /usr/share/glib-2.0/schemas/90_keyboardlayouts.gschema.override
-        ;;
     en_US.utf8)
-        sed -e "s/@LAYOUTS@/'us','de'/" \
+        sed -e "s/('xkb','@LAYOUTS@'),//" \
             /usr/share/fll-live-initscripts/90_keyboardlayouts.gschema.override  \
             > /usr/share/glib-2.0/schemas/90_keyboardlayouts.gschema.override
         ;;
     *)
         XLANG=${LANG:0:2}
-        sed -e "s/@LAYOUTS@/'${XLANG}','us'/" \
+        sed -e "s/@LAYOUTS@/${XLANG}/" \
            /usr/share/fll-live-initscripts/90_keyboardlayouts.gschema.override  \
            > /usr/share/glib-2.0/schemas/90_keyboardlayouts.gschema.override
 

@@ -1,3 +1,2 @@
-[org.gnome.libgnomekbd.keyboard]
-layouts=[@LAYOUTS@]
-
+[org.gnome.desktop.input-sources]
+sources=[('xkb','@LAYOUTS@'),('xkb','us')]

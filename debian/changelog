@@ -1,3 +1,9 @@
+fll-live-initscripts (4.3.6.4) unstable; urgency=medium
+
+  * set $LANG as default for gnome and cinnamon if not english
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Mon, 04 Jul 2016 08:24:55 +0300
+
 fll-live-initscripts (4.3.6.3) unstable; urgency=medium
 
   * Fixed fll-live-initscripts.fll-xdm.init
