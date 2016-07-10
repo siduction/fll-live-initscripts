@@ -313,14 +313,20 @@ set_locale()
         echo "lxdekb-lang-set ${LANG}"
         setlxdekblanguages
     fi
+
+    # copy gnome autostart for keyboard
+    if [ -n "${KEYTABLE}" ]; then
+        cp -af /usr/share/fll-live-initscripts/etc/xdg/autostart/setgnomekbd.desktop /etc/xdg/autostart/
+    fi
+
     case ${FLL_FLAVOUR} in
         cinnamon)
-            echo "cinnamon setgconfschemas"
-            setgconfschemas;
+            echo "cinnamon setcinnamonschemas"
+            setcinnamonschemas;
             ;;
         gnome)
-            echo "gnome setgconfschemas"
-            setgconfschemas;
+            echo "gnome setgnomeschemas"
+            setgnomeschemas;
             ;;
         lxde)
             echo "lxde set languages"

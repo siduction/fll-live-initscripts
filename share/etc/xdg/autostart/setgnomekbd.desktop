@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Set keyboard
+Type=Application
+Exec=setgnomekeyboard
+Terminal=false
+Categories=System;

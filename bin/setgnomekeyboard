@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. /etc/default/keyboard
+
+if [ "${XKBLAYOUT}" != "us" ]; then
+    setxkbmap -layout ${XKBLAYOUT}
+fi

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# XKBMODEL="linux"
+# XKBLAYOUT="de"
+# XKBVARIANT="nodeadkeys"
+. /etc/default/keyboard
+
+# LANG=de_DE.utf8
+. /etc/default/locale
+
+
+
+case $LANG in
+    en_US.utf8)
+        sed -e "s/('xkb','@LAYOUTS@'),//" \
+            /usr/share/fll-live-initscripts/90_org.gnome.keyboard.input-sources.gschema.override  \
+            > /usr/share/glib-2.0/schemas/90_org.gnome.keyboard.input-sources.gschema.override
+        ;;
+    *)
+        XLANG=${LANG:0:2}
+        sed -e "s/@LAYOUTS@/${XLANG}/" \
+           /usr/share/fll-live-initscripts/90_org.gnome.keyboard.input-sources.gschema.override  \
+           > /usr/share/glib-2.0/schemas/90_org.gnome.keyboard.input-sources.gschema.override
+
+        ;;
+esac
+
+glib-compile-schemas /usr/share/glib-2.0/schemas/

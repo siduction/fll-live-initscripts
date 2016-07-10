@@ -36,6 +36,9 @@ case "$1" in
 		rm -f /etc/default/fll-locales
 		# fll-live-initramfs may have created this file
 		rm -f /etc/udev/rules.d/70-fll-live.rules
+		if [ -f /etc/xdg/autostart/setgnomekbd.desktop ]; then
+			rm -f /etc/xdg/autostart/setgnomekbd.desktop
+		fi
 		;;
 	upgrade|failed-upgrade|disappear)
 		;;

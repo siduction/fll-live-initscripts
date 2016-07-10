@@ -1,3 +1,10 @@
+fll-live-initscripts (4.3.6.5) unstable; urgency=medium
+
+  * changes for gnome and cinnamon default $LANG if not english
+    - added gnome support for keytable if not english
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Wed, 06 Jul 2016 16:42:55 +0300
+
 fll-live-initscripts (4.3.6.4) unstable; urgency=medium
 
   * set $LANG as default for gnome and cinnamon if not english
