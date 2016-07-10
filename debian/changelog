@@ -1,3 +1,9 @@
+fll-live-initscripts (4.3.6.6) unstable; urgency=medium
+
+  * changed setgnomekbd.desktop to be runned in WindowManager phase
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Sun, 10 Jul 2016 13:14:55 +0300
+
 fll-live-initscripts (4.3.6.5) unstable; urgency=medium
 
   * changes for gnome and cinnamon default $LANG if not english

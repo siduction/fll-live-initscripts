@@ -3,4 +3,5 @@ Name=Set keyboard
 Type=Application
 Exec=setgnomekeyboard
 Terminal=false
-Categories=System;
+X-GNOME-Autostart-Phase=WindowManager
+
