@@ -1,3 +1,9 @@
+fll-live-initscripts (4.3.6.7) unstable; urgency=medium
+
+  * changed setcinnmonschemas to have keytable= for cinnamon
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Wed, 13 Jul 2016 13:38:55 +0300
+
 fll-live-initscripts (4.3.6.6) unstable; urgency=medium
 
   * changed setgnomekbd.desktop to be runned in WindowManager phase

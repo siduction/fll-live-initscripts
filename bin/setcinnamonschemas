@@ -15,6 +15,10 @@ case $LANG in
         sed -e "s/'@LAYOUTS@',//" \
             /usr/share/fll-live-initscripts/91_org.cinnamon.keyboard.input-sources.gschema.override  \
             > /usr/share/glib-2.0/schemas/91_org.cinnamon.keyboard.input-sources.gschema.override
+        if [ "${XKBLAYOUT}" != "us" ] ; then
+            sed -i -e "s/'us'/'${XKBLAYOUT}'/" \
+            /usr/share/glib-2.0/schemas/91_org.cinnamon.keyboard.input-sources.gschema.override
+        fi
         ;;
     *)
         XLANG=${LANG:0:2}
@@ -24,5 +28,6 @@ case $LANG in
 
         ;;
 esac
+
 
 glib-compile-schemas /usr/share/glib-2.0/schemas/
