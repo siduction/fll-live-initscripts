@@ -522,8 +522,8 @@ save_locale_variables() {
 case "${1}" in
 	start)
 		set_timezone
-		set_locale
 		set_console
+		set_locale
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
@@ -541,8 +541,8 @@ case "${1}" in
 		log_action_begin_msg() { :; }
 		log_end_msg() { :; }
 		# localize
-		set_locale
 		set_console
+		set_locale
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
