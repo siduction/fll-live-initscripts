@@ -1,0 +1,15 @@
+[Unit]
+Description=confirm this is a live system
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/default/distro
+ExecStart=/usr/bin/test -d "${FLL_MOUNTPOINT}"
+Restart=no
+
+[Install]
+WantedBy=basic.target

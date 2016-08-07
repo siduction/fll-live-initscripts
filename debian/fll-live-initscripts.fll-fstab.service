@@ -1,0 +1,18 @@
+[Unit]
+Description=generate live fstab
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=shutdown.target local-fs-pre.target
+Requires=fll-live.service
+After=fll-live.service
+ConditionKernelCommandLine=!nofstab
+ConditionKernelCommandLine=!fstab=no
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/fll_fstab_generator --file /etc/fstab --mkdir --nomounts --noswap
+Restart=no
+
+[Install]
+WantedBy=basic.target

@@ -1,22 +1,14 @@
 #!/bin/sh
 
-### BEGIN INIT INFO
-# Provides:          fll-xdm
-# Required-Start:    fll-adduser
-# Required-Stop:
-# X-Start-Before:    gdm3 kdm lightdm lxdm slim sddm wdm xdm
-# Default-Start:     S
-# Default-Stop:
-# Short-Description: detect and setup X desktop manager
 # Description:       The purpose of this script is to detect and configure an
-#                    installed X desktop manager (i.e. sddm, kdm, gdm3 etc.).
-### END INIT INFO
+#                    installed X desktop manager (i.e. sddm, lightdm, gdm3 etc.).
 
 ###
-# F.U.L.L.S.T.O.R.Y init script
+# F.U.L.L.S.T.O.R.Y
 #
 # Copyright: (C) 2007-2008 Kel Modderman <kel@otaku42.de>
 # Copyright: (C) 2007-2016 Stefan Lippers-Hollmann <s.l-h@gmx.de>
+# Copyright: (C) 2016 Niall Walsh <niallwalsh@celtux.org>
 # License:   GPLv2
 #
 # F.U.L.L.S.T.O.R.Y Project Homepage:
@@ -43,11 +35,6 @@ fi
 # VERBOSE setting and other rcS variables
 ###
 #. /lib/init/vars.sh
-
-###
-# source lsb functions
-###
-. /lib/lsb/init-functions
 
 ###
 # source fll functions
@@ -90,13 +77,6 @@ setup_gdm3() {
 		-e "s/^\(\[daemon\]$\)/\1\nAutomaticLogin\=${FLL_LIVE_USER}\nAutomaticLoginEnable\=true\n \
 			\nTimedLoginEnable\=true\nTimedLogin\=${FLL_LIVE_USER}\nTimedLoginDelay\=1/" \
 			/etc/gdm3/daemon.conf
-}
-
-setup_kdm() {
-	# autologin
-	echo "AUTOLOGINUSER=${FLL_LIVE_USER}"	>  /etc/default/kdm.d/autologin
-	echo "AUTOLOGINAGAIN=true"		>> /etc/default/kdm.d/autologin
-	echo "AUTOLOGINDELAY=0"			>> /etc/default/kdm.d/autologin
 }
 
 setup_lightdm() {
@@ -149,52 +129,38 @@ setup_x_cursor_theme() {
 setup_dm() {
 	SLIM="$(which slim 2>/dev/null)"
 	if [ -x "${SLIM}" ]; then
-		log_daemon_msg "${NAME}"; log_action_begin_msg " configuring slim"
+		echo "configuring slim"
 		setup_slim && echo "${SLIM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
-		log_end_msg "${?}"
 	fi
 
 	GDM3="$(which gdm3 2>/dev/null)"
 	if [ -x "${GDM3}" ]; then
-		log_daemon_msg "${NAME}"; log_action_begin_msg " configuring gdm3"
+		echo "configuring gdm3"
 		setup_gdm3 && echo "${GDM3}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
-		log_end_msg "${?}"
 	fi
 
 	LXDM="$(which lxdm 2>/dev/null)"
 	if [ -x "${LXDM}" ]; then
-		log_daemon_msg "${NAME}"; log_action_begin_msg " configuring lxdm"
+		echo "configuring lxdm"
 		setup_lxdm && echo "${LXDM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
-		log_end_msg "${?}"
 	fi
 
 	LIGHTDM="$(which lightdm 2>/dev/null)"
 	if [ -x "${LIGHTDM}" ]; then
-		log_daemon_msg "${NAME}"; log_action_begin_msg " configuring lightdm"
+		echo "configuring lightdm"
 		setup_lightdm && echo "${LIGHTDM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
-		log_end_msg "${?}"
-	fi
-
-	KDM="$(which kdm 2>/dev/null)"
-	if [ -x "${KDM}" ]; then
-		log_daemon_msg "${NAME}"; log_action_begin_msg " configuring kdm"
-		setup_kdm && echo "${KDM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
-		log_end_msg "${?}"
 	fi
 
 	# Handle sddm last, making it the default display manager
 	# ...unless overriden below
 	SDDM="$(which sddm 2>/dev/null)"
 	if [ -x "${SDDM}" ]; then
-		log_daemon_msg "${NAME}"; log_action_begin_msg " configuring sddm"
+		echo "configuring sddm"
 		setup_sddm && echo "${SDDM}" >"${DEFAULT_DISPLAY_MANAGER_FILE}"
-		log_end_msg "${?}"
 	fi
 }
 
 setup_wm() {
-	log_daemon_msg "${NAME}"
-
 	FLL_LIVE_USER_GROUP=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 4)
 	FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
 
@@ -254,14 +220,13 @@ setup_wm() {
 			XSESSION="xfce"
 			;;
 		*)
-			log_action_msg " desktop '${DESKTOP}' is not available"
-			log_end_msg 0
+			echo "unknown desktop: ${DESKTOP}"
 			return 1
 			;;
 	esac
 
 	if [ -x "${WM}" ]; then
-		log_action_begin_msg " setting up window manager '${WM}'"
+		echo "setting up window manager '${WM}'"
 		echo "[Desktop]"		>  ${FLL_LIVE_USER_HOME}/.dmrc
 		echo "Session=${XSESSION}"	>> ${FLL_LIVE_USER_HOME}/.dmrc
 		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER_GROUP}" "${FLL_LIVE_USER_HOME}/.dmrc"
@@ -274,40 +239,13 @@ setup_wm() {
 
 		update-alternatives --set x-window-manager "${WM}" >/dev/null
 
-		log_end_msg "${?}"
-
 		return 0
 	else
-		log_action_msg " desktop '${DESKTOP}' is not available"
-		log_end_msg 0
+		echo "desktop '${DESKTOP}' is not available"
 		return 1
 	fi
 }
 
-case "${1}" in
-	start)
-		setup_x_cursor_theme
-		setup_dm
-		setup_wm
-		;;
-	stop)
-		;;
-	restart|force-reload)
-		echo "Error: argument '${1}' not supported" >&2
-		exit 3
-		;;
-	kde|gnome|flux*|xfce*|icewm|lxde|lxqt)
-		DESKTOP="${1}"
-		setup_wm
-		;;
-	status)
-		log_success_msg "${0} is no dæmon."
-		exit 0
-		;;
-	*)
-		echo "Usage: ${NAME} {start|stop}" >&2
-		exit 3
-		;;
-esac
-
-:
+setup_x_cursor_theme
+setup_dm
+setup_wm

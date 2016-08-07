@@ -1,0 +1,17 @@
+[Unit]
+Description=add live user and setup sudo and root user env
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=shutdown.target
+Requires=fll-live.service fll-cmdline.service
+After=fll-live.service fll-cmdline.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/default/distro
+ExecStart=/usr/share/fll-live-initscripts/fll_live_adduser
+Restart=no
+
+[Install]
+WantedBy=basic.target

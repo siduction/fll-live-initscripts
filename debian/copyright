@@ -4,15 +4,16 @@ Upstream-Contact: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Source: git://github.com/fullstory/fll-live-initscripts.git
 
 Files: *
-Copyright: 2007-2008 Kel Modderman <kel@otaku42.de>
-           2007-2015 Stefan Lippers-Hollmann <s.l-h@gmx.net>
-           2008-2012 Niall Walsh <niallwalsh@users.berlios.de>
+Copyright: 2007-2008, Kel Modderman <kel@otaku42.de>
+           2007-2016, Stefan Lippers-Hollmann <s.l-h@gmx.net>
+           2008-2016, Niall Walsh <niallwalsh@users.berlios.de>
 License: GPL-2.0
 Comment:
  Some code and concepts derived from initscripts-sidux-live.
  Copyright: Klaus Knopper <knopper@knopper.net>
             Jörg Schirottke <master@kanotix.com>
             Stefan Lippers-Hollmann <s.l-h@gmx.net>
+ .
  debian/fll-live-initscripts.fll-reboot.init was inspired by
  /etc/init.d/umountfs from initscripts (2.86.ds1-38).
  Copyright: 1997-2005, Miquel van Smoorenburg <miquels@cistron.nl>
@@ -33,12 +34,12 @@ Comment:
 
 
 Files: debian/*
-Copyright: 2012-2014 Angelescu Ovidiu <convbsd@siduction.org>
-           2011-2014 Alf Gaida <agaida@siduction.org>
-           2007-2010 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+Copyright: 2012-2016 Angelescu Ovidiu <convbsd@siduction.org>
+           2011-2016 Alf Gaida <agaida@siduction.org>
+           2007-2016 Stefan Lippers-Hollmann <s.l-h@gmx.net>
+           2008-2016, Niall Walsh <niallwalsh@users.berlios.de>
            2007-2008 Kel Modderman <kel@otaku42.de>
 License: GPL-2.0
-
 
 License: GPL-2.0
  This package is free software; you can redistribute it and/or modify

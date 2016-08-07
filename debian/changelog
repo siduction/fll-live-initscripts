@@ -1,3 +1,56 @@
+fll-live-initscripts (4.4.4.2) unstable; urgency=medium
+
+  * Fixed typo in fixes url  
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 08 Aug 2016 00:39:25 +0200
+
+fll-live-initscripts (4.4.4.1) unstable; urgency=medium
+
+  * Catch up with upstream . xorg-config is missed, will do later
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 08 Aug 2016 00:14:08 +0200
+
+fll-live-initscripts (4.4.4) unstable; urgency=medium
+
+  [ Stefan Lippers-Hollmann ]
+  * NOT RELEASED YET
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 08 Aug 2016 00:13:33 +0200
+
+fll-live-initscripts (4.4.3) unstable; urgency=medium
+
+  * slightly refactor wayland detection.
+  * fix typo.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 30 Jul 2016 00:22:25 +0200
+
+fll-live-initscripts (4.4.2) unstable; urgency=medium
+
+  [ Niall Walsh ]
+  * change kde x-window-manager alternative to kwin_x11
+
+  [ Stefan Lippers-Hollmann ]
+  * prepare for kwin_wayland.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 30 Jul 2016 00:04:49 +0200
+
+fll-live-initscripts (4.4.1) unstable; urgency=medium
+
+  * update linitan overrides.
+  * bump standards version to 3.9.8, no changes necessary.
+  * distro-defaults: no need to ship /etc/insserv/overrides/ anymore.
+  * use https for the Vcs-Git URI.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 29 Jul 2016 21:54:26 +0200
+
+fll-live-initscripts (4.4.0) unstable; urgency=medium
+
+  * make snakeoil-cert service conditional on make-ssl-cert.
+  * add fll-live and fll-cmdline services.
+  * switch fstab, adduser, xdm and locales to services.
+
+ -- Niall Walsh <niallwalsh@celtux.org>  Fri, 29 Jul 2016 17:20:44 +0100
+
 fll-live-initscripts (4.3.6.9) unstable; urgency=medium
 
   * some minor changes
@@ -48,7 +101,7 @@ fll-live-initscripts (4.3.6.3) unstable; urgency=medium
 fll-live-initscripts (4.3.6) unstable; urgency=medium
 
   [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+  * drop support for kdm, it's no longer available in Debian.
 
   [ Alf Gaida ]
   * release it - most of our relevant changes are in, but not tested 

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+updateimageloc=""
+
+for param in $(cat /proc/cmdline); do
+        case "${param}" in
+                username=*)
+                        FLL_LIVE_USER="${param#username=}"
+                        sed -i "s/^FLL_LIVE_USER=.*/FLL_LIVE_USER=\"${FLL_LIVE_USER}\"/" \
+                                /etc/default/distro
+                        ;;
+                image_dir=*)
+                        FLL_IMAGE_DIR="${param#image_dir=}"
+                        FLL_IMAGE_LOCATION="${FLL_IMAGE_DIR}/${FLL_IMAGE_FILE}"
+                        updateimageloc="true"
+                        ;;
+                image_name=*)
+                        FLL_IMAGE_FILE="${param#image_name=}"
+                        FLL_IMAGE_LOCATION="${FLL_IMAGE_DIR}/${FLL_IMAGE_FILE}"
+                        updateimageloc="true"
+                        ;;
+        esac
+done
+
+if [ -n "${updateimageloc}" ]; then
+        sed -i "s/^FLL_IMAGE_DIR=.*/FLL_IMAGE_DIR=\"${FLL_IMAGE_DIR}\"/;
+                s/^FLL_IMAGE_LOCATION=.*/FLL_IMAGE_LOCATION=\"${FLL_IMAGE_LOCATION}\"/" \
+                /etc/default/distro
+fi

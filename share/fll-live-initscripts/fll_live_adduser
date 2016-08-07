@@ -1,0 +1,38 @@
+#!/bin/sh
+
+if getent passwd "${FLL_LIVE_USER}" >/dev/null 2>&1; then
+	log_action_begin_msg " user '${FLL_LIVE_USER}' exists"
+	return 0
+fi
+
+adduser --disabled-password --gecos "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" 
+
+
+for file in '.bash_logout' '.bash_profile' '.bashrc' '.profile'; do
+        if [ -f /etc/skel/${file} ] && [ ! -f /root/${file} ]; then
+                cp /etc/skel/${file} /root/${file}
+        fi
+done
+
+:> /root/.hushlogin
+
+if [ -w /etc/pam.d/login ]; then
+        sed -i '/^[^#].*pam_lastlog\.so/s/^/# /' /etc/pam.d/login
+fi
+
+if [ ! -e "/etc/sudoers.d/15_${FLL_DISTRO_NAME}" ]; then
+	# append sudoers entry
+	cat >> "/etc/sudoers.d/15_${FLL_DISTRO_NAME}" \
+<<EOF
+# WARNING: This allows the unprivileged ${FLL_LIVE_USER} user to start commands as root
+# WARNING: This is totally insecure and (almost) makes ${FLL_LIVE_USER} a second root account.
+# WARNING: Never allow external access to the ${FLL_LIVE_USER} user!!!
+${FLL_LIVE_USER} ALL=(ALL:ALL) NOPASSWD: ALL
+EOF
+	chmod 0440 "/etc/sudoers.d/15_${FLL_DISTRO_NAME}"
+fi
+
+FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
+grep -s -q 'alias su' ${FLL_LIVE_USER_HOME}/.bashrc || \
+printf "\nalias su='sudo su'\nalias sux='sudo sux'\n" \
+        >> ${FLL_LIVE_USER_HOME}/.bashrc

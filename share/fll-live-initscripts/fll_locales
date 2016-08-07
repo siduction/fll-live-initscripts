@@ -1,24 +1,15 @@
 #!/bin/sh
 
-### BEGIN INIT INFO
-# Provides:          fll-locales
-# Required-Start:    mountdevsubfs
-# Required-Stop:
-# X-Start-Before:    keyboard-setup
-# X-Interactive:     true
-# Default-Start:     S
-# Default-Stop:
-# Short-Description: live media locale autoconfigurator
 # Description:       The purpose of fll-locales is to calculate required
 #                    strings to configure the locale settings of system
 #                    according to given lang= string.
-### END INIT INFO
 
 ###
-# F.U.L.L.S.T.O.R.Y init script
+# F.U.L.L.S.T.O.R.Y
 #
 # Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
 #            (C) 2008 Michael Deelwater <michael.deelwater@googlemail.com>
+#            (C) 2016 Niall Walsh <niallwalsh@celtux.org>
 # License:   GPLv2
 #
 # F.U.L.L.S.T.O.R.Y Project Homepage:
@@ -46,16 +37,6 @@ fi
 if [ "${FLL_DISTRO_MODE}" != "live" ]; then
 	[ -n "${FLL_LANG}" ] || exit 0
 fi
-
-###
-# VERBOSE setting and other rcS variables
-###
-#. /lib/init/vars.sh
-
-###
-# source lsb functions
-###
-. /lib/lsb/init-functions
 
 ###
 # source fll functions
@@ -93,11 +74,6 @@ XKBOPTIONS="lv3:ralt_switch,compose:lwin,grp:alt_shift_toggle"
 if [ -f /proc/cmdline ]; then
 	for param in $(cat /proc/cmdline); do
 		case "${param}" in
-			flldebug=*)
-				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
-					fll_redirect
-				fi
-				;;
 			lang=*)
 				LANGUAGE=$(awk 'BEGIN{ print tolower("'"${param#lang=}"'") }')
 				;;
@@ -112,14 +88,6 @@ if [ -f /proc/cmdline ]; then
 				;;
 			noaptlang)
 				NOAPTLANG="yes"
-				;;
-			image_dir=*)
-				FLL_IMAGE_DIR="${param#image_dir=}"
-				FLL_IMAGE_LOCATION="${FLL_IMAGE_DIR}/${FLL_IMAGE_FILE}"
-				;;
-			image_name=*)
-				FLL_IMAGE_FILE="${param#image_name=}"
-				FLL_IMAGE_LOCATION="${FLL_IMAGE_DIR}/${FLL_IMAGE_FILE}"
 				;;
 			xkboptions=*)
 				KBOPTIONS="${param#xkboptions=}"
@@ -275,10 +243,9 @@ set_timezone()
 	# configure timezone, fallback to UTC
 	###
 	[ -f "/usr/share/zoneinfo/${TZ}" ] || TZ="Etc/UTC"
-	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring timezone data for '${TZ}'"
+	echo "configuring timezone data for '${TZ}'"
 	echo "${TZ}" > /etc/timezone
 	rm -f /etc/localtime && cp -f "/usr/share/zoneinfo/${TZ}" /etc/localtime
-	log_end_msg "${?}"
 
 	###
 	# hack rcS, make localtime default, unless tz=Etc/UTC or utc=yes
@@ -300,13 +267,11 @@ set_locale()
 	###
 	# select default locale and configure console-data via debconf
 	###
-	log_daemon_msg "${NAME}"; log_action_begin_msg " configuring locales for '${LANG}'"
+	echo "configuring locales for '${LANG}'"
 
 	echo "locales locales/default_environment_locale select ${LANG}" | \
 		debconf-set-selections
 	update-locale "LANG=${LANG}"
-
-	log_end_msg "${?}"
 
     # mod for lxde
     if [ -f /usr/bin/setlxdekblanguages ]; then
@@ -344,7 +309,6 @@ set_locale()
             echo "xfce set languages"
             ;;
     esac
-
 }
 
 set_console()
@@ -404,12 +368,11 @@ apt_install_lang() {
 		return
 	fi
 
-	log_daemon_msg "${NAME}"
-	log_action_begin_msg " installing language packages for '${LANG}'"
+	echo "installing language packages for '${LANG}'"
 
 	# don't touch apt if it has been used
 	if [ "/var/lib/dpkg/status" -nt "$(fll_get_mnt)/${FLL_IMAGE_LOCATION}" ]; then
-		log_failure_msg " dpkg already updated"
+		echo "dpkg already updated"
 		return
 	fi
 
@@ -419,7 +382,7 @@ apt_install_lang() {
 	mkdir ${LIVEAPTSOURCES}/preferences.d
 
 	if ! ${APTGETBASE} update > /dev/null; then
-		log_failure_msg " apt-get update for i18n packages from cd failed"
+		echo "apt-get update for i18n packages from cd failed"
 		apt_install_lang_clean
 		return
 	fi
@@ -442,8 +405,8 @@ apt_install_lang() {
 		# check free - used > minspace (256M)
 		MEMAFTER=$(( ${FREEMEM} - ${APTUSES} ))
 		if [ ${MEMAFTER} -lt 256 ]; then
-			log_warning_msg " minimum 256MB free ram needed for i18n packages"
-			log_warning_msg " you would only have ${MEMAFTER}MB free, not installing"
+			echo "minimum 256MB free ram needed for i18n packages"
+			echo "you would only have ${MEMAFTER}MB free, not installing"
 			apt_install_lang_clean
 			return
 		fi
@@ -451,7 +414,7 @@ apt_install_lang() {
 		# check used/free > minratio
 		USESRATIO=$(( ${FREEMEM} / ${APTUSES} ))
 		if [ ${USESRATIO} -lt 5 ]; then
-			log_warning_msg " i18n packages would use (${APTUSES}MB) more then 20% of available memory (${FREEMEM}MB), not installing."
+			echo "i18n packages would use (${APTUSES}MB) more then 20% of available memory (${FREEMEM}MB), not installing."
 			apt_install_lang_clean
 			return
 		fi
@@ -469,7 +432,6 @@ apt_install_lang_clean() {
 	apt-get -o Dir::Etc=$LIVEAPTSOURCES update > /dev/null
 	apt-get -o Dir::Etc=$LIVEAPTSOURCES clean > /dev/null
 	rm -rf ${LIVEAPTSOURCES}
-	log_end_msg "${?}"
 }
 
 localize_sources_list() {
@@ -509,7 +471,7 @@ localize_sources_list() {
         echo "" >> ${target}
 
 	target="/etc/apt/sources.list.d/fixes.list"
-        echo "deb      http;//packages.siduction.org/fixes unstable main contrib non-free" > ${target}
+        echo "deb      http://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
         echo "#deb-src http://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
         echo "" >> ${target}
 }
@@ -525,37 +487,22 @@ save_locale_variables() {
 case "${1}" in
 	start)
 		set_timezone
-		set_console
 		set_locale
+		set_console
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
-		;;
-	stop)
-		# no-op
-		;;
-	restart|reload|force-reload)
-		echo "Error: argument '${1}' not supported" >&2
-		exit 3
 		;;
 	localize)
-		# no output
-		log_daemon_msg() { :; }
-		log_action_begin_msg() { :; }
-		log_end_msg() { :; }
 		# localize
-		set_console
 		set_locale
+		set_console
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
 		;;
-	status)
-		log_success_msg "${0} is no dæmon."
-		exit 0
-		;;
 	*)
-		echo "Usage: ${NAME} {start|stop|list|localize}" >&2
+		echo "Usage: ${NAME} {start|localize}" >&2
 		exit 3
 		;;
 esac

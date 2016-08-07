@@ -1,0 +1,16 @@
+[Unit]
+Description=localise live system
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=shutdown.target console-screen.service keyboard-setup.service
+Requires=fll-live.service fll-cmdline.service
+After=fll-live.service fll-cmdline.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/share/fll-live-initscripts/fll_locales start
+Restart=no
+
+[Install]
+WantedBy=basic.target
