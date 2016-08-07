@@ -31,7 +31,7 @@ chrooted() {
 
 case "$1" in
 	configure)
-		for file in gdm3 kdm lightdm lxdm slim wdm xdm; do
+		for file in gdm3 lightdm lxdm slim wdm xdm; do
 				rm -f "/etc/insserv/overrides/${file}"
 		done
 

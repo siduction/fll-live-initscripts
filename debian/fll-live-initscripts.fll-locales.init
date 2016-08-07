@@ -483,13 +483,16 @@ localize_sources_list() {
 #   4) fixes        - provided directly via packages.siduction.org
 
 	case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-	    0|1|3) # Free University Berlin/ spline (Student Project LInux NEtwork), Germany
+	    0|1|3)
+	         # Free University Berlin/ spline (Student Project LInux NEtwork), Germany
 	         FLL_MIRROR="http://ftp.spline.de/pub/siduction/"
 	         ;;
-	    4|5|6)   # Universtity Stuttgart
+	    4|5|6)
+	         # Universtity Stuttgart
 	         FLL_MIRROR="http://ftp.uni-stuttgart.de/siduction/"
 	         ;;
-	    *)   # siduction main mirror
+	    *)
+	         # siduction main mirror
 	         FLL_MIRROR="http://packages.siduction.org/"
 	         ;;
 	esac
@@ -506,8 +509,8 @@ localize_sources_list() {
         echo "" >> ${target}
 
 	target="/etc/apt/sources.list.d/fixes.list"
-        echo "deb      ${FLL_MIRROR}fixes unstable main contrib non-free" > ${target}
-        echo "#deb-src ${FLL_MIRROR}fixes unstable main contrib non-free" >> ${target}
+        echo "deb      http;//packages.siduction.org/fixes unstable main contrib non-free" > ${target}
+        echo "#deb-src http://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
         echo "" >> ${target}
 }
 
