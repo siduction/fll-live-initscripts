@@ -273,7 +273,7 @@ set_locale()
 		debconf-set-selections
 	update-locale "LANG=${LANG}"
 
-    # mod for lxde
+    # mod for  lxde
     if [ -f /usr/bin/setlxdekblanguages ]; then
         echo "lxdekb-lang-set ${LANG}"
         setlxdekblanguages
