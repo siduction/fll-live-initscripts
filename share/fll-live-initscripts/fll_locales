@@ -482,16 +482,16 @@ save_locale_variables() {
 case "${1}" in
 	start)
 		set_timezone
-		set_locale
 		set_console
+		set_locale
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
 		;;
 	localize)
 		# localize
-		set_locale
 		set_console
+		set_locale
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables

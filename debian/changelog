@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.4.7) unstable; urgency=medium
+
+  * changed order of set_locale with set_console in fll-locales
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 16 Aug 2016 17:20:03 +0300
+
 fll-live-initscripts (4.4.4.6) unstable; urgency=medium
 
   * fixed setgnomeschemas
