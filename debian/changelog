@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.4.5) unstable; urgency=medium
+
+  * removed setgnomekbd from fll-locales
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 16 Aug 2016 12:50:03 +0300
+
 fll-live-initscripts (4.4.4.4) unstable; urgency=medium
 
   * changed keytable= for gnome
