@@ -1,6 +1,5 @@
 bin/set*                             usr/bin
 fll                                  lib/init
-share/etc/xdg/autostart/*     usr/share/fll-live-initscripts/etc/xdg/autostart/     
 share/fll-live-initscripts/*  usr/share/fll-live-initscripts/
 networking/fll-networkd-one          usr/share/fll-live-initscripts/
 networking/dhcp.network              etc/systemd/network/

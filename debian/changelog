@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.4.4) unstable; urgency=medium
+
+  * changed keytable= for gnome
+
+ -- Angelescu Ovidiu <convbsd@siduction.org>  Tue, 16 Aug 2016 12:48:07 +0300
+
 fll-live-initscripts (4.4.4.3) unstable; urgency=medium
 
   * sddm Relogin=false

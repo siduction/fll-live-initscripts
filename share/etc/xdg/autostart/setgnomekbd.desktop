@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Set keyboard
-Type=Application
-Exec=setgnomekeyboard
-Terminal=false
-X-GNOME-Autostart-Phase=WindowManager
-
