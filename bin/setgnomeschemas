@@ -25,21 +25,8 @@ case $LANG in
         ;;
 esac
 
-case $XKBLAYOUT in
-    en_US.utf8)
-        sed -e "s/('xkb','@LAYOUTS@'),//" \
-            /usr/share/fll-live-initscripts/90_org.gnome.keyboard.input-sources.gschema.override  \
-            > /usr/share/glib-2.0/schemas/90_org.gnome.keyboard.input-sources.gschema.override
-        ;;
-    *)
-        sed -e "s/('xkb','@LAYOUTS@'),('xkb','us')/('xkb','${XKBLAYOUT}'),('xkb','us')" \
-           /usr/share/fll-live-initscripts/90_org.gnome.keyboard.input-sources.gschema.override  \
-           > /usr/share/glib-2.0/schemas/90_org.gnome.keyboard.input-sources.gschema.override
-        ;;
-esac
-
-if [ "$LANG" = "en_US.utf8" -a "${XKBLAYOUT}" !="en" ]; then
-    sed -i "/s/us/${XKBLAYOUT}/g" /usr/share/glib-2.0/schemas/90_org.gnome.keyboard.input-sources.gschema.override
+if [ "$LANG" = "en_US.utf8" -a "${XKBLAYOUT}" != "en" ]; then
+    sed -i "s/us/${XKBLAYOUT}/g" /usr/share/glib-2.0/schemas/90_org.gnome.keyboard.input-sources.gschema.override
 fi
 
 glib-compile-schemas /usr/share/glib-2.0/schemas/
