@@ -449,15 +449,15 @@ localize_sources_list() {
 	         FLL_MIRROR="http://ftp.uni-stuttgart.de/siduction/"
 	         ;;
 	    *)
-	         # siduction main mirror
-	         FLL_MIRROR="http://packages.siduction.org/"
+	         # siduction main mirror, with TLS since Sunday, 21/08/2016
+	         FLL_MIRROR="https://packages.siduction.org/"
 	         ;;
 	esac
 
 	target="/etc/apt/sources.list.d/debian.list"
 	echo "# debian loadbalancer" > ${target}
-	echo "deb      http://httpredir.debian.org/debian/ unstable main contrib non-free" >> ${target}
-	echo "#deb-src http://httpredir.debian.org/debian/ unstable main contrib non-free" >> ${target}
+	echo "deb      http://deb.debian.org/debian/ unstable main contrib non-free" >> ${target}
+	echo "#deb-src http://deb.debian.org/debian/ unstable main contrib non-free" >> ${target}
 
 
 	target="/etc/apt/sources.list.d/extra.list"
@@ -466,8 +466,8 @@ localize_sources_list() {
         echo "" >> ${target}
 
 	target="/etc/apt/sources.list.d/fixes.list"
-        echo "deb      http://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
-        echo "#deb-src http://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
+        echo "deb      https://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
+        echo "#deb-src https://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
         echo "" >> ${target}
 }
 
