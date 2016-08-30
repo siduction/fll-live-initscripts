@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.4.9) unstable; urgency=medium
+
+  * set sddm- and cursor-theme 
+
+ -- Alf Gaida <agaida@siduction.org>  Tue, 30 Aug 2016 23:30:39 +0200
+
 fll-live-initscripts (4.4.4.8) unstable; urgency=medium
 
   * update sources, closes #1898
