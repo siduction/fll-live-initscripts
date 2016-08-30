@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.4.10) unstable; urgency=medium
+
+  * set the themes in the right section
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 31 Aug 2016 01:10:52 +0200
+
 fll-live-initscripts (4.4.4.9) unstable; urgency=medium
 
   * set sddm- and cursor-theme 

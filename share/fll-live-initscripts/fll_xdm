@@ -103,8 +103,10 @@ setup_lxdm() {
 }
 
 setup_sddm() {
-	printf "[Autologin]\nRelogin=false\nUser=${FLL_LIVE_USER}\nCurrent=${FLL_DISTRO_CODENAME_SAFE}\nCursorTheme=adwaita\n" \
+	printf "[Autologin]\nRelogin=false\nUser=${FLL_LIVE_USER}\n\n" \
 		>/etc/sddm.conf
+        printf "[Theme]\nCurrent=${FLL_DISTRO_CODENAME_SAFE}\nCursorTheme=adwaita\n" \
+		>>/etc/sddm.conf
 }
 
 setup_slim() {
