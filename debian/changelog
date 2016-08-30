@@ -1,3 +1,10 @@
+fll-live-initscripts (4.4.4.8) unstable; urgency=medium
+
+  * update sources, closes #1898
+  * add myself to uploaders
+
+ -- Jens Theede <musca@siduction.org>  Mon, 29 Aug 2016 00:39:38 +0200
+
 fll-live-initscripts (4.4.4.7) unstable; urgency=medium
 
   * changed order of set_locale with set_console in fll-locales

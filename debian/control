@@ -3,7 +3,8 @@ Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Uploaders: Joaquim Boura <x-un-i@sapo.pt>,
  Niall Walsh <niallwalsh@celtux.org>,
  Alf Gaida <agaida@siduction.org>,
- Angelescu Ovidiu <convbsd@siduction.org>
+ Angelescu Ovidiu <convbsd@siduction.org>,
+ Jens Theede <musca@siduction.org>
 Section: misc
 Priority: optional
 Build-Depends: debhelper (>= 9.20120115),
