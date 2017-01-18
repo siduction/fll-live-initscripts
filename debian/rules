@@ -6,6 +6,7 @@
 override_dh_installinit:
 	dh_installinit --package=fll-live-initscripts --no-start --name=fll-reboot
 	dh_installinit --package=fll-live-initscripts --no-start --name=fll-xorgconfig
+	dh_installinit --package=fll-live-initscripts --no-start --name=fll-calamares
 	dh_installinit
 
 override_dh_systemd_enable:

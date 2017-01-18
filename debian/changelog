@@ -1,3 +1,15 @@
+fll-live-initscripts (4.4.4.11.2) unstable; urgency=medium
+
+  * fix starting behaviour 
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 18 Jan 2017 14:49:31 -0500
+
+fll-live-initscripts (4.4.4.11.1) unstable; urgency=medium
+
+  * added fll-calamares.init
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 18 Jan 2017 13:45:28 -0500
+
 fll-live-initscripts (4.4.4.10) unstable; urgency=medium
 
   * set the themes in the right section
