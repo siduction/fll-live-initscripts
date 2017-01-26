@@ -4,7 +4,7 @@
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
-	dh ${@} --parallel --with=systemd
+	dh ${@}
 
 override_dh_installinit:
 	dh_installinit --package=fll-live-initscripts --no-start --name=fll-reboot

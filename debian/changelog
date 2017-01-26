@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.5.1) unstable; urgency=medium
+
+  * some modifications for compat 10
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 26 Jan 2017 17:42:07 +0100
+
 fll-live-initscripts (4.4.5) unstable; urgency=medium
 
   * major clean up and get closer with upstream
