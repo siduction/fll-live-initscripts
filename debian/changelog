@@ -1,14 +1,14 @@
-fll-live-initscripts (4.4.4.11.2) unstable; urgency=medium
+fll-live-initscripts (4.4.5) unstable; urgency=medium
 
-  * fix starting behaviour 
+  * major clean up and get closer with upstream
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 18 Jan 2017 14:49:31 -0500
+ -- Alf Gaida <agaida@siduction.org>  Thu, 26 Jan 2017 16:59:23 +0100
 
-fll-live-initscripts (4.4.4.11.1) unstable; urgency=medium
+fll-live-initscripts (4.4.4.12) unstable; urgency=medium
 
-  * added fll-calamares.init
+  * new version, no changes
 
- -- Alf Gaida <agaida@siduction.org>  Wed, 18 Jan 2017 13:45:28 -0500
+ -- Alf Gaida <agaida@siduction.org>  Tue, 24 Jan 2017 23:55:15 +0100
 
 fll-live-initscripts (4.4.4.10) unstable; urgency=medium
 

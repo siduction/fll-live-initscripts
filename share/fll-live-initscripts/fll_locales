@@ -272,38 +272,6 @@ set_locale()
 	echo "locales locales/default_environment_locale select ${LANG}" | \
 		debconf-set-selections
 	update-locale "LANG=${LANG}"
-
-    # mod for  lxde
-    if [ -f /usr/bin/setlxdekblanguages ]; then
-        echo "lxdekb-lang-set ${LANG}"
-        setlxdekblanguages
-    fi
-
-    case ${FLL_FLAVOUR} in
-        cinnamon)
-            echo "cinnamon setcinnamonschemas"
-            setcinnamonschemas;
-            ;;
-        gnome)
-            echo "gnome setgnomeschemas"
-            setgnomeschemas;
-            ;;
-        lxde)
-            echo "lxde set languages"
-            ;;
-        lxqt)
-            echo "lxqt set languages"
-            ;;
-        mate)
-            ;;
-        kde)
-            ;;
-        xorg)
-            ;;
-        xfce)
-            echo "xfce set languages"
-            ;;
-    esac
 }
 
 set_console()
@@ -482,16 +450,16 @@ save_locale_variables() {
 case "${1}" in
 	start)
 		set_timezone
-		set_console
 		set_locale
+		set_console
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables
 		;;
 	localize)
 		# localize
-		set_console
 		set_locale
+		set_console
 		apt_install_lang
 		localize_sources_list
 		save_locale_variables

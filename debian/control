@@ -1,15 +1,13 @@
 Source: fll-live-initscripts
 Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
-Uploaders: Joaquim Boura <x-un-i@sapo.pt>,
- Niall Walsh <niallwalsh@celtux.org>,
- Alf Gaida <agaida@siduction.org>,
- Angelescu Ovidiu <convbsd@siduction.org>,
- Jens Theede <musca@siduction.org>
+Uploaders: Alf Gaida <agaida@siduction.org>,
+           Angelescu Ovidiu <convbsd@siduction.org>,
+           Jens Theede <musca@siduction.org>
 Section: misc
 Priority: optional
-Build-Depends: debhelper (>= 9.20120115),
+Build-Depends: debhelper (>= 10),
  dh-systemd,
- asciidoc,
+ asciidoc-base,
  docbook,
  gengetopt,
  xsltproc,
@@ -21,8 +19,8 @@ Build-Depends: debhelper (>= 9.20120115),
  libudev-dev,
  libxml2-utils
 Standards-Version: 3.9.8
-Vcs-Browser: http://git.siduction.org/?p=packages/siduction-repository/fll-live-initscripts.git
-Vcs-Git: git://git.siduction.org/packages/siduction-repository/fll-live-initscripts
+Vcs-Browser: https://git.siduction.org/extra/fll-live-initscripts.git
+Vcs-Git: https://git.siduction.org/extra/fll-live-initscripts.git
 
 Package: distro-defaults
 Architecture: all
@@ -42,7 +40,6 @@ Depends: ${misc:Depends},
  eject,
  fll-live-utils,
  procps,
- ceni,
  keyboard-configuration,
  lsb-base,
  systemd-sysv (>= 217-2~)

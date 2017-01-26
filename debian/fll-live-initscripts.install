@@ -1,4 +1,3 @@
-bin/set*                             usr/bin
 fll                                  lib/init
 share/fll-live-initscripts/*  usr/share/fll-live-initscripts/
 networking/fll-networkd-one          usr/share/fll-live-initscripts/
