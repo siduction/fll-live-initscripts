@@ -103,10 +103,9 @@ setup_lxdm() {
 }
 
 setup_sddm() {
-	printf "[Autologin]\nRelogin=false\nUser=${FLL_LIVE_USER}\n\n" \
-		>/etc/sddm.conf
-        printf "[Theme]\nCurrent=${FLL_DISTRO_CODENAME_SAFE}\nCursorTheme=adwaita\n" \
-		>>/etc/sddm.conf
+    if [ -w /etc/sddm.conf ]; then
+        sed -i "s|User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
+    fi
 }
 
 setup_slim() {
@@ -122,11 +121,6 @@ setup_slim() {
 		printf "auto_login\tyes\n" >> /etc/slim.conf
 }
 
-setup_x_cursor_theme() {
-	if [ -e /usr/share/icons/DMZ-Black/cursor.theme ]; then
-		update-alternatives --set x-cursor-theme /usr/share/icons/DMZ-Black/cursor.theme >/dev/null
-	fi
-}
 
 setup_dm() {
 	SLIM="$(which slim 2>/dev/null)"
@@ -235,8 +229,7 @@ setup_wm() {
 
 		# configure sddm
 		if [ -w /etc/sddm.conf ]; then
-			sed -i "s|^Relogin=.*|&\nSession=${XSESSION}.desktop|" \
-				/etc/sddm.conf
+			sed -i "s|Session=|Session=${XSESSION}.desktop|" /etc/sddm.conf
 		fi
 
 		update-alternatives --set x-window-manager "${WM}" >/dev/null
@@ -248,6 +241,5 @@ setup_wm() {
 	fi
 }
 
-setup_x_cursor_theme
 setup_dm
 setup_wm

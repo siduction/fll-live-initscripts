@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.5.2) unstable; urgency=medium
+
+  * fix sddm autologin handling 
+
+ -- Alf Gaida <agaida@siduction.org>  Fri, 27 Jan 2017 22:34:16 +0100
+
 fll-live-initscripts (4.4.5.1) unstable; urgency=medium
 
   * some modifications for compat 10
