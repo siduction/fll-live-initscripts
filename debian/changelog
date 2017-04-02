@@ -1,3 +1,21 @@
+fll-live-initscripts (4.4.8) unstable; urgency=medium
+
+  * provide liquorix.list for i386 builds with liquorix kernels
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 02 Apr 2017 23:49:26 +0200
+
+fll-live-initscripts (4.4.7) unstable; urgency=medium
+
+  * fixed user and session replacement with sed
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 01 Mar 2017 23:30:40 +0100
+
+fll-live-initscripts (4.4.6) unstable; urgency=medium
+
+  * revert a faulty upload
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 20 Feb 2017 02:35:47 +0100
+
 fll-live-initscripts (4.4.5.2) unstable; urgency=medium
 
   * fix sddm autologin handling 
