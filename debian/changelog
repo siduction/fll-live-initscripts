@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.9) unstable; urgency=medium
+
+  * fixed typo : -> ; 
+
+ -- Alf Gaida <agaida@siduction.org>  Fri, 07 Apr 2017 18:30:26 +0200
+
 fll-live-initscripts (4.4.8) unstable; urgency=medium
 
   * provide liquorix.list for i386 builds with liquorix kernels

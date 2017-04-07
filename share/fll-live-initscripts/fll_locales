@@ -429,23 +429,23 @@ localize_sources_list() {
 
 
 	target="/etc/apt/sources.list.d/extra.list"
-        echo "deb      ${FLL_MIRROR}extra unstable main" > ${target}
-        echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
-        echo "" >> ${target}
+	echo "deb      ${FLL_MIRROR}extra unstable main" > ${target}
+	echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
+	echo "" >> ${target}
 
 	target="/etc/apt/sources.list.d/fixes.list"
-        echo "deb      https://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
-        echo "#deb-src https://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
-        echo "" >> ${target}
+	echo "deb      https://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
+	echo "#deb-src https://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
+	echo "" >> ${target}
 
-        # we don't provide a i386 kernel anymore - we choose the fine liquorix kernel instead.
-        # so we should provide a upgrade path for this kernel
-        if $(uname -v | grep -q liquorix): then
-            target="/etc/apt/sources.list.d/liquorix.list"
-            echo "deb     http://liquorix.net/debian sid main" > ${target}
-            echo "deb-src http://liquorix.net/debian sid main" >> ${target}
-            echo "" >> ${target}
-        fi
+	# we don't provide a i386 kernel anymore - we choose the fine liquorix kernel instead.
+	# so we should provide a upgrade path for this kernel
+	if $(uname -v | grep -q liquorix); then
+		target="/etc/apt/sources.list.d/liquorix.list"
+		echo "deb     http://liquorix.net/debian sid main" > ${target}
+		echo "deb-src http://liquorix.net/debian sid main" >> ${target}
+		echo "" >> ${target}
+	fi
 
 }
 
