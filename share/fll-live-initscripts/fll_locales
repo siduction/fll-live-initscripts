@@ -435,7 +435,7 @@ localize_sources_list() {
 
 	target="/etc/apt/sources.list.d/extra.list"
         echo "# This is the default mirror, choosen at first boot." > ${target}
-        echo "# One might consider to choose the geographical nearest or the fastest mirror." > ${target}
+        echo "# One might consider to choose the geographical nearest or the fastest mirror." >> ${target}
 	echo "deb      ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "" >> ${target}

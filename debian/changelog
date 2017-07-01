@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.11) unstable; urgency=medium
+
+  * fixed a typo on extra.list generation
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 01 Jul 2017 12:43:55 +0200
+
 fll-live-initscripts (4.4.10) unstable; urgency=medium
 
   * added some commented out entries to debian.list and siduction.list 
