@@ -439,6 +439,9 @@ localize_sources_list() {
 	echo "deb      ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "" >> ${target}
+      	echo "# deb     http://packages.siduction.org/extra unstable main" >> ${target}
+        echo "# deb-src http://packages.siduction.org/extra unstable main" >> ${target}
+        echo "" >> ${target}
         echo "# deb     http://ftp.spline.de/pub/siduction/extra unstable main" >> ${target}
         echo "# deb-src http://ftp.spline.de/pub/siduction/extra unstable main" >> ${target}
         echo "" >> ${target}
@@ -463,6 +466,12 @@ localize_sources_list() {
 	target="/etc/apt/sources.list.d/fixes.list"
 	echo "deb      https://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
 	echo "#deb-src https://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
+	echo "" >> ${target}
+
+	target="/etc/apt/sources.list.d/dbgsym.list"
+	echo "# deb http://debug.mirrors.debian.org/debian-debug/ testing-debug main contrib non-free" > ${target}
+	echo "# deb http://debug.mirrors.debian.org/debian-debug/ unstable-debug main contrib non-free" >> ${target}
+	echo "# deb http://debug.mirrors.debian.org/debian-debug/ experimental-debug main contrib non-free" >> ${target}
 	echo "" >> ${target}
 
 	# we don't provide a i386 kernel anymore - we choose the fine liquorix kernel instead.

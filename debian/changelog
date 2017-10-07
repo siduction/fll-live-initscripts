@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.12) unstable; urgency=medium
+
+  * added dbgsym repos (Closes: #2)
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 07 Oct 2017 17:25:08 +0200
+
 fll-live-initscripts (4.4.11) unstable; urgency=medium
 
   * fixed a typo on extra.list generation
