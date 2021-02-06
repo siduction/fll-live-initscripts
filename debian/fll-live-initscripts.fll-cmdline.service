@@ -11,7 +11,7 @@ ConditionFileNotEmpty=/proc/cmdline
 Type=oneshot
 RemainAfterExit=yes
 EnvironmentFile=/etc/default/distro
-ExecStart=/usr/share/fll-live-initscripts/fll_cmdline
+ExecStart=/usr/share/fll-live-initscripts/fll_live_cmdline
 Restart=no
 
 [Install]
