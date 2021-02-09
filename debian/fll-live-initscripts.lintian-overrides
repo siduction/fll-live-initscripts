@@ -5,7 +5,7 @@ fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/f
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-locales: required-start
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-reboot: required-stop
 fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-xdm: required-start
-fll-live-xorgconfig: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-xorgconfig: required-start
+fll-live-initscripts: init.d-script-missing-dependency-on-remote_fs etc/init.d/fll-xorgconfig: required-start
 
 # fll-reboot needs to replace sysvinit's reboot, therefore we indeed don't stop
 # in runlevel 1.

@@ -1,3 +1,57 @@
+fll-live-initscripts (4.4.16) unstable; urgency=medium
+
+  * revert "remove fll-xdm.service, seems obsolete"
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Tue, 09 Feb 2021 19:17:57 +0100
+
+fll-live-initscripts (4.4.15)  unstable; urgency=medium
+
+  * remove fll-xdm.service, seems obsolete
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sat, 06 Feb 2021 15:25:33 +0100
+
+fll-live-initscripts (4.4.13.6) unstable; urgency=medium
+
+  * Acquire::Check-Date=false as we don't have network in some cases 
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 28 Feb 2019 20:16:24 +0100
+
+fll-live-initscripts (4.4.13.5) unstable; urgency=medium
+
+  * setupcon --save
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 28 Feb 2019 20:04:12 +0100
+
+fll-live-initscripts (4.4.13.4) unstable; urgency=medium
+
+  * fixed fll_live_cmdline
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 28 Feb 2019 19:58:01 +0100
+
+fll-live-initscripts (4.4.13.3) unstable; urgency=medium
+
+  * trusted and insecure allowed
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 28 Feb 2019 18:40:00 +0100
+
+fll-live-initscripts (4.4.13.2) unstable; urgency=medium
+
+  * locales before console-setup.service
+
+ -- Alf Gaida <agaida@siduction.org>  Thu, 28 Feb 2019 03:47:25 +0100
+
+fll-live-initscripts (4.4.13.1) unstable; urgency=medium
+
+  * back to compat 10
+
+ -- Alf Gaida <agaida@siduction.org>  Mon, 26 Nov 2018 00:08:53 +0100
+
+fll-live-initscripts (4.4.13) unstable; urgency=medium
+
+  * sudo su -> sudo su - 
+
+ -- Alf Gaida <agaida@siduction.org>  Sun, 25 Nov 2018 23:05:43 +0100
+
 fll-live-initscripts (4.4.12) unstable; urgency=medium
 
   * added dbgsym repos (Closes: #2)
