@@ -294,9 +294,7 @@ EOF
 		-e "s/^\(XKBOPTIONS\=\).*/\1\"${XKBOPTIONS}\"/" \
 			/etc/default/keyboard
 
-#	setupcon --save-only
-	setupcon --save
-
+	setupcon --save-only
 	udevadm trigger --property-match=ID_INPUT_KEYBOARD=1
 }
 
@@ -343,7 +341,7 @@ apt_install_lang() {
 
 	LIVEAPTSOURCES=$(mktemp -d -t liveapt.XXXXXX)
 	APTGETBASE="apt-get -o Dir::Etc=$LIVEAPTSOURCES"
-	echo 'deb [ trusted=yes allow-insecure=yes ] file://'${LIVEAPT}' sid main' > ${LIVEAPTSOURCES}/sources.list
+	echo 'deb file://'${LIVEAPT}' sid main' > ${LIVEAPTSOURCES}/sources.list
 	mkdir ${LIVEAPTSOURCES}/preferences.d
 
 	if ! ${APTGETBASE} update > /dev/null; then
@@ -352,7 +350,7 @@ apt_install_lang() {
 		return
 	fi
 
-	APTGETBASE="${APTGETBASE} -o Acquire::Check-Date=false --allow-unauthenticated  --assume-yes --no-remove"
+	APTGETBASE="${APTGETBASE} --allow-unauthenticated --assume-yes --no-remove"
 
 	# do a dry-run to calculate size of packages and that will be used
 	APTUSESRAW=$(LANG=C ${APTGETBASE} --print-uris install ${LANGPACKS} | \

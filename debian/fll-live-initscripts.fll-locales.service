@@ -2,7 +2,7 @@
 Description=localise live system
 DefaultDependencies=no
 Conflicts=shutdown.target
-Before=shutdown.target console-screen.service console-setup.service keyboard-setup.service
+Before=shutdown.target console-screen.service keyboard-setup.service
 Requires=fll-live.service fll-cmdline.service
 After=fll-live.service fll-cmdline.service
 

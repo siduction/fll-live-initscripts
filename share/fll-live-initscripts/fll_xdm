@@ -1,0 +1,245 @@
+#!/bin/sh
+
+# Description:       The purpose of this script is to detect and configure an
+#                    installed X desktop manager (i.e. sddm, lightdm, gdm3 etc.).
+
+###
+# F.U.L.L.S.T.O.R.Y
+#
+# Copyright: (C) 2007-2008 Kel Modderman <kel@otaku42.de>
+# Copyright: (C) 2007-2016 Stefan Lippers-Hollmann <s.l-h@gmx.de>
+# Copyright: (C) 2016 Niall Walsh <niallwalsh@celtux.org>
+# License:   GPLv2
+#
+# F.U.L.L.S.T.O.R.Y Project Homepage:
+# https://github.com/fullstory
+###
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+NAME="fll-xdm"
+
+###
+# source distro-defaults, no-op unless in live mode
+###
+FLL_DISTRO_MODE="installed"
+
+if [ -r /etc/default/distro ]; then
+	. /etc/default/distro
+fi
+
+if [ "${FLL_DISTRO_MODE}" != "live" ]; then
+	exit 0
+fi
+
+###
+# VERBOSE setting and other rcS variables
+###
+#. /lib/init/vars.sh
+
+###
+# source fll functions
+###
+. /lib/init/fll
+
+###
+# debian's default-display-manager control file
+###
+DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
+
+###
+# cheatcode handling
+###
+if [ -f /proc/cmdline ]; then
+	for param in $(cat /proc/cmdline); do
+		case "${param}" in
+			flldebug=*)
+				if [ "${param#flldebug=}" = "${NAME#fll-}" ] || [ "${param#flldebug=}" = "all" ]; then
+					fll_redirect
+				fi
+				;;
+			desktop=*)
+				if [ -z "${DESKTOP}" ]; then
+					DESKTOP="${param#desktop=}"
+				fi
+				;;
+		esac
+	done
+fi
+
+setup_gdm3() {
+	# autologin + greeter theme
+	# timed login required for login after x restart
+	sed -i	-e "/^AutomaticLogin\=.*/d" \
+		-e "/^AutomaticLoginEnable\=.*/d" \
+		-e "/^TimedLoginEnable\=.*/d" \
+		-e "/^TimedLogin\=.*/d" \
+		-e "/^TimedLoginDelay\=.*/d" \
+		-e "s/^\(\[daemon\]$\)/\1\nAutomaticLogin\=${FLL_LIVE_USER}\nAutomaticLoginEnable\=true\n \
+			\nTimedLoginEnable\=true\nTimedLogin\=${FLL_LIVE_USER}\nTimedLoginDelay\=1/" \
+			/etc/gdm3/daemon.conf
+}
+
+setup_lightdm() {
+	# set autologin user and set timeout to zero
+	mkdir -p /etc/lightdm/lightdm.conf.d
+	if [ ! -e /etc/lightdm/lightdm.conf.d/80_fll-live-initscripts.conf ]; then
+		cat >/etc/lightdm/lightdm.conf.d/80_fll-live-initscripts.conf <<EOF
+[SeatDefaults]
+greeter-hide-users=false
+autologin-user=${FLL_LIVE_USER}
+autologin-user-timeout=0
+EOF
+	fi
+}
+
+setup_lxdm() {
+	# set autologin user
+	if [ -L /etc/lxdm/default.conf ] && [ ! -e /etc/lxdm/live.conf ]; then
+		rm -f /etc/lxdm/default.conf
+		sed "s/^# autologin=.*/&\nautologin=${FLL_LIVE_USER}/" \
+			/etc/lxdm/lxdm.conf >/etc/lxdm/live.conf
+		ln -fs live.conf /etc/lxdm/default.conf
+	fi
+}
+
+setup_sddm() {
+    if [ -w /etc/sddm.conf ]; then
+        sed -i "s|^User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
+    fi
+}
+
+setup_slim() {
+	# set autologin for $FLL_LIVE_USER to yes
+	sed -i	-e "s/^default_user.*/\#FLL\#&/" \
+		-e "s/^\#FLL\#\(default_user[ \t]*${FLL_LIVE_USER}$\)/\1/" \
+		-e "s/^auto_login.*/\#FLL\#&/" \
+		-e "s/^\#FLL\#\(auto_login[ \t]*yes$\)/\1/" \
+			/etc/slim.conf
+	grep -q ^default_user /etc/slim.conf || \
+		printf "default_user\t${FLL_LIVE_USER}\n" >> /etc/slim.conf
+	grep -q ^auto_login /etc/slim.conf || \
+		printf "auto_login\tyes\n" >> /etc/slim.conf
+}
+
+
+setup_dm() {
+	SLIM="$(which slim 2>/dev/null)"
+	if [ -x "${SLIM}" ]; then
+		echo "configuring slim"
+		setup_slim && echo "${SLIM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
+	fi
+
+	GDM3="$(which gdm3 2>/dev/null)"
+	if [ -x "${GDM3}" ]; then
+		echo "configuring gdm3"
+		setup_gdm3 && echo "${GDM3}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
+	fi
+
+	LXDM="$(which lxdm 2>/dev/null)"
+	if [ -x "${LXDM}" ]; then
+		echo "configuring lxdm"
+		setup_lxdm && echo "${LXDM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
+	fi
+
+	LIGHTDM="$(which lightdm 2>/dev/null)"
+	if [ -x "${LIGHTDM}" ]; then
+		echo "configuring lightdm"
+		setup_lightdm && echo "${LIGHTDM}" > "${DEFAULT_DISPLAY_MANAGER_FILE}"
+	fi
+
+	# Handle sddm last, making it the default display manager
+	# ...unless overriden below
+	SDDM="$(which sddm 2>/dev/null)"
+	if [ -x "${SDDM}" ]; then
+		echo "configuring sddm"
+		setup_sddm && echo "${SDDM}" >"${DEFAULT_DISPLAY_MANAGER_FILE}"
+	fi
+}
+
+setup_wm() {
+	FLL_LIVE_USER_GROUP=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 4)
+	FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
+
+	if [ -z "${DESKTOP}" ]; then
+		# in the absence of an explicit destop= cheatcode setting,
+		# these defaults are checked in reverse order
+		[ -x "/usr/bin/icewm" ]			&& DESKTOP="icewm"	# 9th
+		[ -x "/usr/bin/startfluxbox" ]		&& DESKTOP="fluxbox"    # 8th
+		[ -x "/usr/bin/startlxde" ]		&& DESKTOP="lxde" 	# 7th
+		[ -x "/usr/bin/startlxqt" ]		&& DESKTOP="lxqt"	# 6th
+		[ -x "/usr/bin/startxfce4" ]		&& DESKTOP="xfce"	# 5th
+		[ -x "/usr/bin/gnome-session" ]		&& DESKTOP="gnome"	# 4th
+		[ -x "/usr/bin/startkde" ]		&& DESKTOP="kde"	# 3rd
+                [ -s "/usr/bin/mate-session" ]		&& DESKTOP="mate" 	# 2nd
+		[ -s "/usr/bin/cinnamon-session" ]	&& DESKTOP="cinnamon"	# 1st
+	fi
+
+	if [ -z "${WM}" ]; then
+                # choose wm - if not set otherwise
+                [ -x "/usr/bin/icewm" ]		&& WM="/usr/bin/icewm"		# 9th
+                [ -x "/usr/bin/startfluxbox" ]	&& WM="/usr/bin/startfluxbox"	# 8th - xorg, kde-fallback
+                [ -x "/usr/bin/openbox" ]	&& WM="/usr/bin/openbox"	# 7th - lxde
+                [ -x "/usr/bin/xfwm4" ]		&& WM="/usr/bin/xfwm4"		# 6th - xfce, lxqt
+                [ -x "/usr/bin/metacity" ]	&& WM="/usr/bin/metacity"	# 5th - Gnome fallback
+                [ -x "/usr/bin/marco" ]		&& WM="/usr/bin/marco"		# 4th - Mate
+		[ -x "/usr/bin/muffin" ]	&& WM="/usr/bin/muffin"		# 3rd - Cinnamon
+                [ -s "/usr/bin/mutter" ]        && WM="/usr/bin/mutter"         # 2nd - Gnome current
+                [ -x "/usr/bin/startkde" ]      && WM="/usr/bin/startkde"       # 1st - KDE
+
+        fi
+
+	case "${DESKTOP}" in
+		cinnamon)
+			XSESSION="cinnamon"
+			;;
+		flux*)
+			XSESSION="fluxbox"
+			;;
+		gnome)
+			XSESSION="gnome"
+			;;
+		icewm)
+			XSESSION="IceWM"
+			;;
+		kde)
+			XSESSION="plasma"
+			;;
+		lxde)
+			XSESSION="LXDE"
+			;;
+		lxqt)
+			XSESSION="lxqt"
+			;;
+                mate)   XSESSION="mate"
+			;;
+		xfce*)
+			XSESSION="xfce"
+			;;
+		*)
+			echo "unknown desktop: ${DESKTOP}"
+			return 1
+			;;
+	esac
+
+	if [ -x "${WM}" ]; then
+		echo "setting up window manager '${WM}'"
+		echo "[Desktop]"		>  ${FLL_LIVE_USER_HOME}/.dmrc
+		echo "Session=${XSESSION}"	>> ${FLL_LIVE_USER_HOME}/.dmrc
+		chown "${FLL_LIVE_USER}:${FLL_LIVE_USER_GROUP}" "${FLL_LIVE_USER_HOME}/.dmrc"
+
+		# configure sddm
+		if [ -w /etc/sddm.conf ]; then
+			sed -i "s|^Session=|Session=${XSESSION}.desktop|" /etc/sddm.conf
+		fi
+
+		update-alternatives --set x-window-manager "${WM}" >/dev/null
+
+		return 0
+	else
+		echo "desktop '${DESKTOP}' is not available"
+		return 1
+	fi
+}
+
+setup_dm
+setup_wm

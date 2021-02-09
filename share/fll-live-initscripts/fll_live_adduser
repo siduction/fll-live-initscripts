@@ -34,5 +34,5 @@ fi
 
 FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
 grep -s -q 'alias su' ${FLL_LIVE_USER_HOME}/.bashrc || \
-printf "\nalias su='sudo su - '\n" \
+printf "\nalias su='sudo su'\nalias sux='sudo sux'\n" \
         >> ${FLL_LIVE_USER_HOME}/.bashrc

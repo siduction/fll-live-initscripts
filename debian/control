@@ -5,7 +5,7 @@ Uploaders: Alf Gaida <agaida@siduction.org>,
            Jens Theede <musca@siduction.org>
 Section: misc
 Priority: optional
-Build-Depends: debhelper (>= 11),
+Build-Depends: debhelper (>= 10),
                asciidoc-base,
                docbook,
                gengetopt,
@@ -17,7 +17,7 @@ Build-Depends: debhelper (>= 11),
                libblkid-dev,
                libudev-dev,
                libxml2-utils
-Standards-Version: 4.2.1
+Standards-Version: 3.9.8
 Vcs-Browser: https://git.siduction.org/extra/fll-live-initscripts.git
 Vcs-Git: https://git.siduction.org/extra/fll-live-initscripts.git
 
