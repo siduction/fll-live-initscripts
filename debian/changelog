@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.17) unstable; urgency=medium
+
+  * add timedatectl set-timezone $(timedatectl | awk '/Local/{printf $6}') to fll-locales
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Wed, 10 Feb 2021 16:09:51 +0100
+
 fll-live-initscripts (4.4.16) unstable; urgency=medium
 
   * revert "remove fll-xdm.service, seems obsolete"
