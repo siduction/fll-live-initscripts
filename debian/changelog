@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.18) unstable; urgency=medium
+
+  * remove timedatectl set-timezone CET to fll-locales
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Wed, 10 Feb 2021 18:29:56 +0100
+
 fll-live-initscripts (4.4.17) unstable; urgency=medium
 
   * add timedatectl set-timezone $(timedatectl | awk '/Local/{printf $6}') to fll-locales
