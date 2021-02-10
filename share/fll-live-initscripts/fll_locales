@@ -260,6 +260,7 @@ set_timezone()
 		/sbin/hwclock --rtc=/dev/rtc0 --systz
 		/sbin/hwclock --rtc=/dev/rtc0 --hctosys
 	fi
+	timedatectl set-timezone $(timedatectl | awk '/Local/{printf $6}')
 }
 
 set_locale()
