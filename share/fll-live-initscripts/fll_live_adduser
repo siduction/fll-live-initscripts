@@ -36,5 +36,6 @@ FLL_LIVE_USER_HOME=$(getent passwd ${FLL_LIVE_USER} | cut -d\: -f 6)
 grep -s -q 'alias su' ${FLL_LIVE_USER_HOME}/.bashrc || \
 printf "\nalias su='sudo su - '\n" \
         >> ${FLL_LIVE_USER_HOME}/.bashrc
+
 mkdir -p ${FLL_LIVE_USER_HOME}/.config/autostart
-cp -a /usr/share/fll-live-initscrips/fixclock.desktop ${FLL_LIVE_USER_HOME}/.config/autostart
+cp -a /usr/share/fll-live-initscripts/fixclock.desktop ${FLL_LIVE_USER_HOME}/.config/autostart/
