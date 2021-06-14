@@ -402,21 +402,46 @@ apt_install_lang_clean() {
 localize_sources_list() {
 # deploy load balancing for siduction mirrors
 # atm we these usable mirrors:
-#   1) ftp.spline.de
-#   2) ftp.uni-stuttgart.de
-#   3) packages.siduction.site
+#   1) ftp.gwdg.de
+#   2) siduction.office-vienna.at
+#   3) ftp.uni-stuttgart.de
+#   4) packages.siduction.site
 # REPOS:
 #   3) extra
 #   4) fixes        - provided directly via packages.siduction.site
 
 	case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-	    0|1|3)
+	    0)
 	         # Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen, Germany
 	         FLL_MIRROR="https://ftp.gwdg.de/pub/linux/siduction/"
 	         ;;
-	    4|5|6)
-	         # University Stuttgart
+	    1)
+	         # OfficeVienna EDV-Dienstleistungen und IT-Consulting, Austria
+	         FLL_MIRROR="https://siduction.office-vienna.at/"
+	         ;;
+	    3)
+	         # Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen, Germany
+	         FLL_MIRROR="https://ftp.gwdg.de/pub/linux/siduction/"
+	         ;;
+	    4)
+	         # University Stuttgart, Germany
 	         FLL_MIRROR="https://ftp.uni-stuttgart.de/siduction/"
+	         ;;
+	    5)
+	         # BelNet, Belgium
+	         FLL_MIRROR="https://ftp.belnet.be/mirror/siduction/"
+	         ;;
+	    6)
+	         # EasyLee, Netherlands
+	         FLL_MIRROR="https://mirror.easylee.nl/siduction/"
+	         ;;
+        7)
+	         # Studenten Net Twente, Netherlands
+	         FLL_MIRROR="https://ftp.snt.utwente.nl/pub/linux/siduction/"
+	         ;;
+        8)
+	         # Consortium GARR, Italy
+	         FLL_MIRROR="https://siduction.mirror.garr.it/"
 	         ;;
 	    *)
 	         # siduction main mirror, with TLS since Sunday, 21/08/2016
