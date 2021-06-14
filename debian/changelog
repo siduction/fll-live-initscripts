@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.22) unstable; urgency=medium
+
+  * fix siduction mirror, add mirrors to fixes.list
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 14 Jun 2021 21:10:50 +0200
+
 fll-live-initscripts (4.4.21) unstable; urgency=medium
 
   * remove all fixclock things, it doesn't work

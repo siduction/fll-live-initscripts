@@ -441,8 +441,8 @@ localize_sources_list() {
 	echo "deb      ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "" >> ${target}
-      	echo "# deb     http://packages.siduction.org/extra unstable main" >> ${target}
-        echo "# deb-src http://packages.siduction.org/extra unstable main" >> ${target}
+      	echo "# deb     http://packages.siduction.site/extra unstable main" >> ${target}
+        echo "# deb-src http://packages.siduction.site/extra unstable main" >> ${target}
         echo "" >> ${target}
         echo "# deb     http://ftp.spline.de/pub/siduction/extra unstable main" >> ${target}
         echo "# deb-src http://ftp.spline.de/pub/siduction/extra unstable main" >> ${target}
@@ -466,9 +466,35 @@ localize_sources_list() {
         echo "# deb-src http://www.las.ic.unicamp.br/pub/siduction/extra unstable main" >> ${target}
 
 	target="/etc/apt/sources.list.d/fixes.list"
-	echo "deb      https://packages.siduction.org/fixes unstable main contrib non-free" > ${target}
-	echo "#deb-src https://packages.siduction.org/fixes unstable main contrib non-free" >> ${target}
+        echo "# This is the default mirror, choosen at first boot." > ${target}
+        echo "# One might consider to choose the geographical nearest or the fastest mirror." >> ${target}
+	echo "deb      ${FLL_MIRROR}fixes unstable main" >> ${target}
+	echo "#deb-src ${FLL_MIRROR}fixes unstable main" >> ${target}
 	echo "" >> ${target}
+      	echo "# deb     http://packages.siduction.site/fixes unstable main" >> ${target}
+        echo "# deb-src http://packages.siduction.site/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     http://ftp.spline.de/pub/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src http://ftp.spline.de/pub/siduction/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     http://ftp.uni-stuttgart.de/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src http://ftp.uni-stuttgart.de/siduction/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     https://mirror.math.princeton.edu/pub/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src https://mirror.math.princeton.edu/pub/siduction/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     http://mirror.lug.udel.edu/pub/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src http://mirror.lug.udel.edu/pub/siduction/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     http://ftp.gtlib.gatech.edu/pub/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src http://ftp.gtlib.gatech.edu/pub/siduction/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     https://liquorix.net/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src https://liquorix.net/siduction/fixes unstable main" >> ${target}
+        echo "" >> ${target}
+        echo "# deb     http://www.las.ic.unicamp.br/pub/siduction/fixes unstable main" >> ${target}
+        echo "# deb-src http://www.las.ic.unicamp.br/pub/siduction/fixes unstable main" >> ${target}
+
 
 	target="/etc/apt/sources.list.d/dbgsym.list"
 	echo "# deb http://debug.mirrors.debian.org/debian-debug/ testing-debug main contrib non-free" > ${target}
