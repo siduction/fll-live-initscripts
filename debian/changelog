@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.23) unstable; urgency=medium
+
+  * package mirror updtaes by vinzv
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 14 Jun 2021 21:55:43 +0200
+
 fll-live-initscripts (4.4.22) unstable; urgency=medium
 
   * fix siduction mirror, add mirrors to fixes.list
