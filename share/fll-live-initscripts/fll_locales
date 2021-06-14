@@ -441,8 +441,8 @@ localize_sources_list() {
 	echo "deb      ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}extra unstable main" >> ${target}
 	echo "" >> ${target}
-      	echo "# deb     http://packages.siduction.site/extra unstable main" >> ${target}
-        echo "# deb-src http://packages.siduction.site/extra unstable main" >> ${target}
+      	echo "# deb     https://packages.siduction.site/extra unstable main" >> ${target}
+        echo "# deb-src https://packages.siduction.site/extra unstable main" >> ${target}
         echo "" >> ${target}
         echo "# deb     http://ftp.spline.de/pub/siduction/extra unstable main" >> ${target}
         echo "# deb-src http://ftp.spline.de/pub/siduction/extra unstable main" >> ${target}
@@ -471,8 +471,8 @@ localize_sources_list() {
 	echo "deb      ${FLL_MIRROR}fixes unstable main" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}fixes unstable main" >> ${target}
 	echo "" >> ${target}
-      	echo "# deb     http://packages.siduction.site/fixes unstable main" >> ${target}
-        echo "# deb-src http://packages.siduction.site/fixes unstable main" >> ${target}
+      	echo "# deb     https://packages.siduction.site/fixes unstable main" >> ${target}
+        echo "# deb-src https://packages.siduction.site/fixes unstable main" >> ${target}
         echo "" >> ${target}
         echo "# deb     http://ftp.spline.de/pub/siduction/fixes unstable main" >> ${target}
         echo "# deb-src http://ftp.spline.de/pub/siduction/fixes unstable main" >> ${target}
