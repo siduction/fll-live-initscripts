@@ -451,14 +451,14 @@ localize_sources_list() {
 
 	target="/etc/apt/sources.list.d/debian.list"
 	echo "# debian loadbalancer" > ${target}
-	echo "deb      http://deb.debian.org/debian/ unstable main contrib non-free" >> ${target}
-	echo "#deb-src http://deb.debian.org/debian/ unstable main contrib non-free" >> ${target}
+	echo "deb      https://deb.debian.org/debian/ unstable main contrib non-free" >> ${target}
+	echo "#deb-src https://deb.debian.org/debian/ unstable main contrib non-free" >> ${target}
         echo "" >> ${target}
-        echo "# deb     http://deb.debian.org/debian/ experimental main contrib non-free" >> ${target}
-        echo "# deb-src http://deb.debian.org/debian/ experimental main contrib non-free" >> ${target}
+        echo "# deb     https://deb.debian.org/debian/ experimental main contrib non-free" >> ${target}
+        echo "# deb-src https://deb.debian.org/debian/ experimental main contrib non-free" >> ${target}
         echo "" >> ${target}
-        echo "# deb      http://incoming.debian.org/debian-buildd buildd-unstable main contrib non-free" >> ${target}
-        echo "# deb-src  http://incoming.debian.org/debian-buildd buildd-unstable main contrib non-free" >> ${target}
+        echo "# deb      https://incoming.debian.org/debian-buildd buildd-unstable main contrib non-free" >> ${target}
+        echo "# deb-src  https://incoming.debian.org/debian-buildd buildd-unstable main contrib non-free" >> ${target}
 
 	target="/etc/apt/sources.list.d/extra.list"
         echo "# This is the default mirror, choosen at first boot." > ${target}
@@ -623,8 +623,8 @@ localize_sources_list() {
 	# so we should provide a upgrade path for this kernel
 	if $(uname -v | grep -q liquorix); then
 		target="/etc/apt/sources.list.d/liquorix.list"
-		echo "deb     http://liquorix.net/debian sid main" > ${target}
-		echo "deb-src http://liquorix.net/debian sid main" >> ${target}
+		echo "deb     https://liquorix.net/debian sid main" > ${target}
+		echo "deb-src https://liquorix.net/debian sid main" >> ${target}
 		echo "" >> ${target}
 	fi
 
