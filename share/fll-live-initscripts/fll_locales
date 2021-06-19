@@ -584,9 +584,10 @@ localize_sources_list() {
         echo "# italy" >> ${target}
         echo "# deb     https://siduction.mirror.garr.it/fixes unstable main" >> ${target}
         echo "# deb-src https://siduction.mirror.garr.it/fixes unstable main" >> ${target}
-        echo "" >> ${target}        echo "" >> ${target}
+        echo "" >> ${target}
         echo "# deb     http://mirror.lug.udel.edu/pub/siduction/extra unstable main" >> ${target}
         echo "# deb-src http://mirror.lug.udel.edu/pub/siduction/extra unstable main" >> ${target}
+        echo "" >> ${target}
         echo "# netherlands" >> ${target}
         echo "# deb     https://mirror.easylee.nl/siduction/fixes unstable main" >> ${target}
         echo "# deb-src https://mirror.easylee.nl/siduction/fixes unstable main" >> ${target}
