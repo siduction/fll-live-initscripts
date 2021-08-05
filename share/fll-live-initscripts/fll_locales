@@ -431,15 +431,11 @@ localize_sources_list() {
 	         # BelNet, Belgium
 	         FLL_MIRROR="https://ftp.belnet.be/mirror/siduction/"
 	         ;;
-	    6)
-	         # EasyLee, Netherlands
-	         FLL_MIRROR="https://mirror.easylee.nl/siduction/"
-	         ;;
-        7)
+        6)
 	         # Studenten Net Twente, Netherlands
 	         FLL_MIRROR="https://ftp.snt.utwente.nl/pub/linux/siduction/"
 	         ;;
-        8)
+        7)
 	         # Consortium GARR, Italy
 	         FLL_MIRROR="https://siduction.mirror.garr.it/"
 	         ;;
@@ -511,9 +507,6 @@ localize_sources_list() {
         echo "# deb-src https://siduction.mirror.garr.it/extra unstable main" >> ${target}
         echo "" >> ${target}
         echo "# Netherlands" >> ${target}
-        echo "# deb     https://mirror.easylee.nl/siduction/extra unstable main" >> ${target}
-        echo "# deb-src https://mirror.easylee.nl/siduction/extra unstable main" >> ${target}
-        echo "" >> ${target}
         echo "# deb     https://ftp.snt.utwente.nl/pub/linux/siduction/extra unstable main" >> ${target}
         echo "# deb-src https://ftp.snt.utwente.nl/pub/linux/siduction/extra unstable main" >> ${target}
         echo "" >> ${target}
@@ -589,9 +582,6 @@ localize_sources_list() {
         echo "# deb-src http://mirror.lug.udel.edu/pub/siduction/extra unstable main" >> ${target}
         echo "" >> ${target}
         echo "# netherlands" >> ${target}
-        echo "# deb     https://mirror.easylee.nl/siduction/fixes unstable main" >> ${target}
-        echo "# deb-src https://mirror.easylee.nl/siduction/fixes unstable main" >> ${target}
-        echo "" >> ${target}
         echo "# deb     https://ftp.snt.utwente.nl/pub/linux/siduction/fixes unstable main" >> ${target}
         echo "# deb-src https://ftp.snt.utwente.nl/pub/linux/siduction/fixes unstable main" >> ${target}
         echo "" >> ${target}
