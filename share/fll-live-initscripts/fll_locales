@@ -441,7 +441,7 @@ localize_sources_list() {
 	         ;;
 	    *)
 	         # siduction main mirror, with TLS since Sunday, 21/08/2016
-	         FLL_MIRROR="https://packages.siduction.site/"
+	         FLL_MIRROR="https://packages.siduction.org/"
 	         ;;
 	esac
 
@@ -479,8 +479,8 @@ localize_sources_list() {
         echo "# deb-src https://mirror.cedia.org.ec/siduction/extra unstable main" >> ${target}
         echo "" >> ${target}
         echo "# Germany" >> ${target}
-      	echo "# deb     https://packages.siduction.site/extra unstable main" >> ${target}
-        echo "# deb-src https://packages.siduction.site/extra unstable main" >> ${target}
+      	echo "# deb     https://packages.siduction.org/extra unstable main" >> ${target}
+        echo "# deb-src https://packages.siduction.org/extra unstable main" >> ${target}
         echo "" >> ${target}
         echo "# deb     https://ftp.gwdg.de/pub/linux/siduction/extra unstable main" >> ${target}
         echo "# deb-src https://ftp.gwdg.de/pub/linux/siduction/extra unstable main" >> ${target}
@@ -551,8 +551,8 @@ localize_sources_list() {
         echo "# deb-src https://mirror.cedia.org.ec/siduction/fixes unstable main" >> ${target}
         echo "" >> ${target}
         echo "# germany" >> ${target}
-      	echo "# deb     https://packages.siduction.site/fixes unstable main" >> ${target}
-        echo "# deb-src https://packages.siduction.site/fixes unstable main" >> ${target}
+      	echo "# deb     https://packages.siduction.org/fixes unstable main" >> ${target}
+        echo "# deb-src https://packages.siduction.org/fixes unstable main" >> ${target}
         echo "" >> ${target}
         echo "# deb     https://ftp.gwdg.de/pub/linux/siduction/fixes unstable main" >> ${target}
         echo "# deb-src https://ftp.gwdg.de/pub/linux/siduction/fixes unstable main" >> ${target}

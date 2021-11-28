@@ -1,3 +1,15 @@
+fll-live-initscripts (4.4.31) unstable; urgency=medium
+
+  * fix repos for mirror roulette
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sun, 28 Nov 2021 21:57:01 +0100
+
+fll-live-initscripts (4.4.30) unstable; urgency=medium
+
+  * fix another typo
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sun, 28 Nov 2021 21:00:38 +0100
+
 fll-live-initscripts (4.4.29) unstable; urgency=medium
 
   * fix typo

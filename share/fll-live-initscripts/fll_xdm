@@ -169,7 +169,7 @@ setup_wm() {
 		[ -x "/usr/bin/startlxqt" ]		&& DESKTOP="lxqt"	# 6th
 		[ -x "/usr/bin/startxfce4" ]		&& DESKTOP="xfce"	# 5th
 		[ -x "/usr/bin/gnome-session" ]		&& DESKTOP="gnome"	# 4th
-		[ -x "/usr/bin/startplasma-x11" ]	&& DESKTOP="plasma"	# 3rd
+		[ -x "/usr/bin/kwin_x11" ]		&& DESKTOP="plasma"	# 3rd
                 [ -s "/usr/bin/mate-session" ]		&& DESKTOP="mate" 	# 2nd
 		[ -s "/usr/bin/cinnamon-session" ]	&& DESKTOP="cinnamon"	# 1st
 	fi
@@ -184,7 +184,7 @@ setup_wm() {
                 [ -x "/usr/bin/marco" ]		&& WM="/usr/bin/marco"		# 4th - Mate
 		[ -x "/usr/bin/muffin" ]	&& WM="/usr/bin/muffin"		# 3rd - Cinnamon
                 [ -s "/usr/bin/mutter" ]        && WM="/usr/bin/mutter"         # 2nd - Gnome current
-                [ -x "/usr/bin/startplasma-x11" ]      && WM="/usr/bin/kwin_x11"       # 1st - KDE
+                [ -x "/usr/bin/kwin_x11" ]      && WM="/usr/bin/kwin_x11"       # 1st - KDE
 
         fi
 
