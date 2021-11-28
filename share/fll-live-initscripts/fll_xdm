@@ -103,9 +103,8 @@ setup_lxdm() {
 }
 
 setup_sddm() {
-    if [ -d /etc/sddm.conf.d ]; then
-	echo "setting uo sddm"
-#        sed -i "s|^User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
+    if [ -d /etc/sddm.conf ]; then
+	 sed -i "s|^User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
     fi
 }
 
@@ -230,7 +229,7 @@ setup_wm() {
 
 		# configure sddm
 		if [ -w /etc/sddm.conf ]; then
-			echo "alles gut"
+			sed -i "s|^Session=|Session=${XSESSION}.desktop|" /etc/sddm.conf
 		fi
 
 		update-alternatives --set x-window-manager "${WM}" >/dev/null
