@@ -102,11 +102,11 @@ setup_lxdm() {
 	fi
 }
 
-setup_sddm() {
-    if [ -w /etc/sddm.conf ]; then
-        sed -i "s|^User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
-    fi
-}
+#setup_sddm() {
+#    if [ -w /etc/sddm.conf ]; then
+#        sed -i "s|^User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
+#    fi
+#}
 
 setup_slim() {
 	# set autologin for $FLL_LIVE_USER to yes
