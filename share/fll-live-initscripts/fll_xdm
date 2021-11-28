@@ -102,11 +102,12 @@ setup_lxdm() {
 	fi
 }
 
-#setup_sddm() {
-#    if [ -w /etc/sddm.conf ]; then
+setup_sddm() {
+    if [ -d /etc/sddm.conf.d ]; then
+	echo "setting uo sddm"
 #        sed -i "s|^User=|User=${FLL_LIVE_USER}|" /etc/sddm.conf
-#    fi
-#}
+    fi
+}
 
 setup_slim() {
 	# set autologin for $FLL_LIVE_USER to yes
@@ -169,7 +170,7 @@ setup_wm() {
 		[ -x "/usr/bin/startlxqt" ]		&& DESKTOP="lxqt"	# 6th
 		[ -x "/usr/bin/startxfce4" ]		&& DESKTOP="xfce"	# 5th
 		[ -x "/usr/bin/gnome-session" ]		&& DESKTOP="gnome"	# 4th
-		[ -x "/usr/bin/startkde" ]		&& DESKTOP="kde"	# 3rd
+		[ -x "/usr/bin/plasma_session" ]	&& DESKTOP="plasma"	# 3rd
                 [ -s "/usr/bin/mate-session" ]		&& DESKTOP="mate" 	# 2nd
 		[ -s "/usr/bin/cinnamon-session" ]	&& DESKTOP="cinnamon"	# 1st
 	fi
@@ -184,7 +185,7 @@ setup_wm() {
                 [ -x "/usr/bin/marco" ]		&& WM="/usr/bin/marco"		# 4th - Mate
 		[ -x "/usr/bin/muffin" ]	&& WM="/usr/bin/muffin"		# 3rd - Cinnamon
                 [ -s "/usr/bin/mutter" ]        && WM="/usr/bin/mutter"         # 2nd - Gnome current
-                [ -x "/usr/bin/startkde" ]      && WM="/usr/bin/startkde"       # 1st - KDE
+                [ -x "/usr/bin/plasma_session" ]      && WM="/usr/bin/plasma_session"       # 1st - KDE
 
         fi
 
@@ -229,7 +230,7 @@ setup_wm() {
 
 		# configure sddm
 		if [ -w /etc/sddm.conf ]; then
-			sed -i "s|^Session=|Session=${XSESSION}.desktop|" /etc/sddm.conf
+			echo "alles gut"
 		fi
 
 		update-alternatives --set x-window-manager "${WM}" >/dev/null

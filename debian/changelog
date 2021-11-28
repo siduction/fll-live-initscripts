@@ -1,3 +1,15 @@
+fll-live-initscripts (4.4.26) unstable; urgency=medium
+
+  * fix fll_xdm
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sun, 28 Nov 2021 17:43:39 +0100
+
+fll-live-initscripts (4.4.25) unstable; urgency=medium
+
+  * removed sddm part in fll-xdm
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Sun, 28 Nov 2021 11:28:00 +0100
+
 fll-live-initscripts (4.4.24) unstable; urgency=medium
 
   * fix fixes.list for live medium
