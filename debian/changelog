@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.33) unstable; urgency=medium
+
+  * remove fstab_generator
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Thu, 04 Aug 2022 10:40:21 +0200
+
 fll-live-initscripts (4.4.32) unstable; urgency=medium
 
   * fix time
