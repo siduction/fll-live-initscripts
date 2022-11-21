@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.34) unstable; urgency=medium
+
+  * reintegrate sbin/fll_fstab_generator
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 21 Nov 2022 20:07:42 +0100
+
 fll-live-initscripts (4.4.33) unstable; urgency=medium
 
   * remove fstab_generator
