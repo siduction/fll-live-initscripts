@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.35) unstable; urgency=medium
+
+  * sources.list for debian: non-free ==> non-free-firmware
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 30 Jan 2023 15:19:04 +0100
+
 fll-live-initscripts (4.4.34) unstable; urgency=medium
 
   * reintegrate sbin/fll_fstab_generator
