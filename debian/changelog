@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.36) unstable; urgency=medium
+
+  * try to fix wrong timezone
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 13 Mar 2023 21:18:24 +0100
+
 fll-live-initscripts (4.4.35) unstable; urgency=medium
 
   * sources.list for debian: non-free ==> non-free-firmware

@@ -245,8 +245,8 @@ set_timezone()
 	[ -f "/usr/share/zoneinfo/${TZ}" ] || TZ="Etc/UTC"
 	echo "configuring timezone data for '${TZ}'"
 	echo "${TZ}" > /etc/timezone
-	rm -f /etc/localtime && cp -f "/usr/share/zoneinfo/${TZ}" /etc/localtime
-
+	rm -f /etc/localtime && ln -s "/usr/share/zoneinfo/${TZ}" /etc/localtime
+#	rm -f /etc/localtime && cp -f "/usr/share/zoneinfo/${TZ}" /etc/localtime
 	###
 	# hack rcS, make localtime default, unless tz=Etc/UTC or utc=yes
 	###
