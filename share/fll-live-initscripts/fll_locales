@@ -7,16 +7,17 @@
 ###
 # F.U.L.L.S.T.O.R.Y
 #
-# Copyright: (C) 2007 - 2008 Kel Modderman <kel@otaku42.de>
+# Copyright: (C) 2007 - 2024 Kel Modderman <kelvmod@gmail.com>
 #            (C) 2008 Michael Deelwater <michael.deelwater@googlemail.com>
 #            (C) 2016 Niall Walsh <niallwalsh@celtux.org>
+#            (C) 2017 - 2024 Stefan Lippers-Hollmann <s.l-h@gmx.de>
 # License:   GPLv2
 #
 # F.U.L.L.S.T.O.R.Y Project Homepage:
 # https://github.com/fullstory
 ###
 
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/usr/sbin:/usr/bin
 NAME="fll-locales"
 
 if [ "${1}" = "list" ]; then
@@ -63,7 +64,7 @@ FONTSIZE="16"
 ###
 # some keyboard-configuration defaults
 ###
-XKBMODEL="linux"
+XKBMODEL="pc105"
 XKBLAYOUT="us"
 XKBVARIANT=""
 XKBOPTIONS="lv3:ralt_switch,compose:lwin,grp:alt_shift_toggle"
@@ -267,7 +268,7 @@ set_locale()
 	###
 	# select default locale and configure console-data via debconf
 	###
-	echo "configuring locales for '${LANG}'"
+	echo "${NAME}: configuring locales for '${LANG}'"
 
 	echo "locales locales/default_environment_locale select ${LANG}" | \
 		debconf-set-selections
@@ -431,10 +432,10 @@ localize_sources_list() {
 	         # BelNet, Belgium
 	         FLL_MIRROR="https://ftp.belnet.be/mirror/siduction/"
 	         ;;
-        6)
-	         # Studenten Net Twente, Netherlands
-	         FLL_MIRROR="https://ftp.snt.utwente.nl/pub/linux/siduction/"
-	         ;;
+#        6)
+#	         # Studenten Net Twente, Netherlands
+#	         FLL_MIRROR="https://ftp.snt.utwente.nl/pub/linux/siduction/"
+#	         ;;
         7)
 	         # Consortium GARR, Italy
 	         FLL_MIRROR="https://siduction.mirror.garr.it/"
