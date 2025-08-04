@@ -412,197 +412,200 @@ localize_sources_list() {
 #   4) fixes        - provided directly via packages.siduction.site
 
 	case "$(mawk 'BEGIN{print int(9 * rand())}')" in
-	    0)
-	         # Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen, Germany
-	         FLL_MIRROR="https://ftp.gwdg.de/pub/linux/siduction/"
-	         ;;
-	    1)
-	         # OfficeVienna EDV-Dienstleistungen und IT-Consulting, Austria
-	         FLL_MIRROR="https://siduction.office-vienna.at/"
-	         ;;
-	    3)
-	         # Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen, Germany
-	         FLL_MIRROR="https://ftp.gwdg.de/pub/linux/siduction/"
-	         ;;
-	    4)
-	         # University Stuttgart, Germany
-	         FLL_MIRROR="https://ftp.uni-stuttgart.de/siduction/"
-	         ;;
-	    5)
-	         # BelNet, Belgium
-	         FLL_MIRROR="https://ftp.belnet.be/mirror/siduction/"
-	         ;;
-#        6)
-#	         # Studenten Net Twente, Netherlands
-#	         FLL_MIRROR="https://ftp.snt.utwente.nl/pub/linux/siduction/"
-#	         ;;
-        7)
-	         # Consortium GARR, Italy
-	         FLL_MIRROR="https://siduction.mirror.garr.it/"
-	         ;;
-	    *)
-	         # siduction main mirror, with TLS since Sunday, 21/08/2016
-	         FLL_MIRROR="https://packages.siduction.org/"
-	         ;;
+		0)
+		 # Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen, Germany
+		 FLL_MIRROR="https://ftp.gwdg.de/pub/linux/siduction/"
+		 ;;
+		1)
+		 # OfficeVienna EDV-Dienstleistungen und IT-Consulting, Austria
+		 FLL_MIRROR="https://siduction.office-vienna.at/"
+		 ;;
+		2)
+		 #
+		 ;;
+		3)
+		 # Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen, Germany
+		 FLL_MIRROR="https://ftp.gwdg.de/pub/linux/siduction/"
+		 ;;
+		4)
+		 # University Stuttgart, Germany
+		 FLL_MIRROR="https://ftp.uni-stuttgart.de/siduction/"
+		 ;;
+		5)
+		 # BelNet, Belgium
+		 FLL_MIRROR="https://ftp.belnet.be/mirror/siduction/"
+		 ;;
+		6)
+		 # Studenten Net Twente, Netherlands
+		 FLL_MIRROR="https://ftp.snt.utwente.nl/pub/linux/siduction/"
+		 ;;
+		7)
+		 # Consortium GARR, Italy
+		 FLL_MIRROR="https://siduction.mirror.garr.it/"
+		 ;;
+		*)
+		 # siduction main mirror, with TLS since Sunday, 21/08/2016
+		 FLL_MIRROR="https://packages.siduction.org/"
+		 ;;
 	esac
 
 	target="/etc/apt/sources.list.d/debian.list"
 	echo "# debian loadbalancer" > ${target}
 	echo "deb      https://deb.debian.org/debian/ unstable main non-free-firmware" >> ${target}
 	echo "#deb-src https://deb.debian.org/debian/ unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://deb.debian.org/debian/ experimental main non-free-firmware" >> ${target}
-        echo "# deb-src https://deb.debian.org/debian/ experimental main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb      https://incoming.debian.org/debian-buildd buildd-unstable main non-free-firmware" >> ${target}
-        echo "# deb-src  https://incoming.debian.org/debian-buildd buildd-unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://deb.debian.org/debian/ experimental main non-free-firmware" >> ${target}
+	echo "# deb-src https://deb.debian.org/debian/ experimental main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb      https://incoming.debian.org/debian-buildd buildd-unstable main non-free-firmware" >> ${target}
+	echo "# deb-src  https://incoming.debian.org/debian-buildd buildd-unstable main non-free-firmware" >> ${target}
 
 	target="/etc/apt/sources.list.d/extra.list"
-        echo "# This is the default mirror, choosen at first boot." > ${target}
-        echo "# One might consider to choose the geographical nearest or the fastest mirror." >> ${target}
+	echo "# This is the default mirror, choosen at first boot." > ${target}
+	echo "# One might consider to choose the geographical nearest or the fastest mirror." >> ${target}
 	echo "deb      ${FLL_MIRROR}extra unstable main non-free-firmware" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}extra unstable main non-free-firmware" >> ${target}
 	echo "" >> ${target}
-        echo "# Austria" >> ${target}
-        echo "# deb     https://siduction.office-vienna.at/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://siduction.office-vienna.at/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Belgium" >> ${target}
-        echo "# deb     https://ftp.belnet.be/mirror/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.belnet.be/mirror/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Denmark" >> ${target}
-        echo "# deb     https://mirrors.dotsrc.org/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirrors.dotsrc.org/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Ecuador" >> ${target}
-        echo "# deb     https://mirror.cedia.org.ec/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror.cedia.org.ec/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Germany" >> ${target}
-      	echo "# deb     https://packages.siduction.org/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://packages.siduction.org/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://ftp.gwdg.de/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.gwdg.de/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://ftp.halifax.rwth-aachen.de/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.halifax.rwth-aachen.de/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     http://ftp.spline.de/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://ftp.spline.de/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     http://ftp.uni-stuttgart.de/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://ftp.uni-stuttgart.de/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Hong Kong" >> ${target}
-        echo "# deb     https://mirror-hk.koddos.net/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror-hk.koddos.net/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Hungary" >> ${target}
-        echo "# deb     https://quantum-mirror.hu/mirrors/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://quantum-mirror.hu/mirrors/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Italy" >> ${target}
-        echo "# deb     https://siduction.mirror.garr.it/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://siduction.mirror.garr.it/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Netherlands" >> ${target}
-        echo "# deb     https://ftp.snt.utwente.nl/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.snt.utwente.nl/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Russia" >> ${target}
-        echo "# deb     https://mirror.yandex.ru/mirrors/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror.yandex.ru/mirrors/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# Sweden" >> ${target}
-        echo "# deb     https://ftp.acc.umu.se/mirror/siduction.org/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.acc.umu.se/mirror/siduction.org/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# United States" >> ${target}
-        echo "# deb     http://ftp.gtlib.gatech.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://ftp.gtlib.gatech.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://mirror.math.princeton.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror.math.princeton.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://liquorix.net/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://liquorix.net/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# Austria" >> ${target}
+	echo "# deb     https://siduction.office-vienna.at/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://siduction.office-vienna.at/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Belgium" >> ${target}
+	echo "# deb     https://ftp.belnet.be/mirror/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.belnet.be/mirror/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Denmark" >> ${target}
+	echo "# deb     https://mirrors.dotsrc.org/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirrors.dotsrc.org/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Ecuador" >> ${target}
+	echo "# deb     https://mirror.cedia.org.ec/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror.cedia.org.ec/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Germany" >> ${target}
+	echo "# deb     https://packages.siduction.org/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://packages.siduction.org/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://ftp.gwdg.de/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.gwdg.de/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://ftp.halifax.rwth-aachen.de/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.halifax.rwth-aachen.de/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     http://ftp.spline.de/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://ftp.spline.de/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     http://ftp.uni-stuttgart.de/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://ftp.uni-stuttgart.de/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Hong Kong" >> ${target}
+	echo "# deb     https://mirror-hk.koddos.net/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror-hk.koddos.net/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Hungary" >> ${target}
+	echo "# deb     https://quantum-mirror.hu/mirrors/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://quantum-mirror.hu/mirrors/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Italy" >> ${target}
+	echo "# deb     https://siduction.mirror.garr.it/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://siduction.mirror.garr.it/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Netherlands" >> ${target}
+	echo "# deb     https://ftp.snt.utwente.nl/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.snt.utwente.nl/pub/linux/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Russia" >> ${target}
+	echo "# deb     https://mirror.yandex.ru/mirrors/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror.yandex.ru/mirrors/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# Sweden" >> ${target}
+	echo "# deb     https://ftp.acc.umu.se/mirror/siduction.org/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.acc.umu.se/mirror/siduction.org/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# United States" >> ${target}
+	echo "# deb     http://ftp.gtlib.gatech.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://ftp.gtlib.gatech.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://mirror.math.princeton.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror.math.princeton.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://liquorix.net/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://liquorix.net/siduction/extra unstable main non-free-firmware" >> ${target}
 
 	target="/etc/apt/sources.list.d/fixes.list"
-        echo "# This is the default mirror, choosen at first boot." > ${target}
-        echo "# One might consider to choose the geographical nearest or the fastest mirror." >> ${target}
+	echo "# This is the default mirror, choosen at first boot." > ${target}
+	echo "# One might consider to choose the geographical nearest or the fastest mirror." >> ${target}
 	echo "deb      ${FLL_MIRROR}fixes unstable main non-free-firmware" >> ${target}
 	echo "#deb-src ${FLL_MIRROR}fixes unstable main non-free-firmware" >> ${target}
 	echo "" >> ${target}
-        echo "# austria" >> ${target}
-        echo "# deb     https://siduction.office-vienna.at/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://siduction.office-vienna.at/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# belgium" >> ${target}
-        echo "# deb     https://ftp.belnet.be/mirror/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.belnet.be/mirror/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# denmark" >> ${target}
-        echo "# deb     https://mirrors.dotsrc.org/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirrors.dotsrc.org/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# ecuador" >> ${target}
-        echo "# deb     https://mirror.cedia.org.ec/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror.cedia.org.ec/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# germany" >> ${target}
-      	echo "# deb     https://packages.siduction.org/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://packages.siduction.org/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://ftp.gwdg.de/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.gwdg.de/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://ftp.halifax.rwth-aachen.de/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.halifax.rwth-aachen.de/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     http://ftp.spline.de/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://ftp.spline.de/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     http://ftp.uni-stuttgart.de/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://ftp.uni-stuttgart.de/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# hong kong" >> ${target}
-        echo "# deb     https://mirror-hk.koddos.net/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror-hk.koddos.net/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# hungary" >> ${target}
-        echo "# deb     https://quantum-mirror.hu/mirrors/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://quantum-mirror.hu/mirrors/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# italy" >> ${target}
-        echo "# deb     https://siduction.mirror.garr.it/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://siduction.mirror.garr.it/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     http://mirror.lug.udel.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://mirror.lug.udel.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# netherlands" >> ${target}
-        echo "# deb     https://ftp.snt.utwente.nl/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.snt.utwente.nl/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# russia" >> ${target}
-        echo "# deb     https://mirror.yandex.ru/mirrors/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror.yandex.ru/mirrors/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# sweden" >> ${target}
-        echo "# deb     https://ftp.acc.umu.se/mirror/siduction.org/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://ftp.acc.umu.se/mirror/siduction.org/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# united states" >> ${target}
-        echo "# deb     http://ftp.gtlib.gatech.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src http://ftp.gtlib.gatech.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://mirror.math.princeton.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://mirror.math.princeton.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "" >> ${target}
-        echo "# deb     https://liquorix.net/siduction/fixes unstable main non-free-firmware" >> ${target}
-        echo "# deb-src https://liquorix.net/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# austria" >> ${target}
+	echo "# deb     https://siduction.office-vienna.at/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://siduction.office-vienna.at/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# belgium" >> ${target}
+	echo "# deb     https://ftp.belnet.be/mirror/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.belnet.be/mirror/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# denmark" >> ${target}
+	echo "# deb     https://mirrors.dotsrc.org/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirrors.dotsrc.org/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# ecuador" >> ${target}
+	echo "# deb     https://mirror.cedia.org.ec/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror.cedia.org.ec/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# germany" >> ${target}
+	echo "# deb     https://packages.siduction.org/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://packages.siduction.org/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://ftp.gwdg.de/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.gwdg.de/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://ftp.halifax.rwth-aachen.de/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.halifax.rwth-aachen.de/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     http://ftp.spline.de/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://ftp.spline.de/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     http://ftp.uni-stuttgart.de/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://ftp.uni-stuttgart.de/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# hong kong" >> ${target}
+	echo "# deb     https://mirror-hk.koddos.net/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror-hk.koddos.net/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# hungary" >> ${target}
+	echo "# deb     https://quantum-mirror.hu/mirrors/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://quantum-mirror.hu/mirrors/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# italy" >> ${target}
+	echo "# deb     https://siduction.mirror.garr.it/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://siduction.mirror.garr.it/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     http://mirror.lug.udel.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://mirror.lug.udel.edu/pub/siduction/extra unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# netherlands" >> ${target}
+	echo "# deb     https://ftp.snt.utwente.nl/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.snt.utwente.nl/pub/linux/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# russia" >> ${target}
+	echo "# deb     https://mirror.yandex.ru/mirrors/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror.yandex.ru/mirrors/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# sweden" >> ${target}
+	echo "# deb     https://ftp.acc.umu.se/mirror/siduction.org/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://ftp.acc.umu.se/mirror/siduction.org/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# united states" >> ${target}
+	echo "# deb     http://ftp.gtlib.gatech.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src http://ftp.gtlib.gatech.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://mirror.math.princeton.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://mirror.math.princeton.edu/pub/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "" >> ${target}
+	echo "# deb     https://liquorix.net/siduction/fixes unstable main non-free-firmware" >> ${target}
+	echo "# deb-src https://liquorix.net/siduction/fixes unstable main non-free-firmware" >> ${target}
 
 
 	target="/etc/apt/sources.list.d/dbgsym.list"
