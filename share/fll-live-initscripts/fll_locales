@@ -402,22 +402,21 @@ apt_install_lang_clean() {
 
 write_deb822() {
 # Preparation an entry for the .sources files.
-enable=$6
-for typ in $(echo "$2"); do
-	if [ "X$typ" == "Xdeb-src" ]; then
-		enable="no"
-		echo "" >> $1
-	fi
+	for typ in $(echo "${types}"); do
+		if [ "X${typ}" == "Xdeb-src" ]; then
+			yes_no="no"
+			echo "" >> ${target}
+		fi
 	
-cat << EOF >> $1
-	Types:      $typ
-	URIs:       $3
-	Suites:     $4
-	Components: $5
-	Enabled:    $enable
-	Signed-By:  $7
-EOF	
-done
+	cat << EOF >> ${target}
+	Types:      ${typ}
+	URIs:       ${url}
+	Suites:     ${suites}
+	Components: ${compo}
+	Enabled:    ${yes_no}
+	Signed-By:  ${key}
+EOF
+	done
 }
 
 localize_sources() {
@@ -524,60 +523,70 @@ localize_sources() {
 	nr=${#mirror[@]}
 	NR="$(mawk 'BEGIN{print int('"$nr"' * rand())}')"
 	FLL_MIRROR=${mirror[NR]}
-	## FEHLERTEST einbauen
-	# if -z $FLL_MIRROR
-
 
 	# debian.sources
 	target="/etc/apt/sources.list.d/debian.sources"
+	types="deb deb-src"
 	url="https://deb.debian.org/debian/"
+	suites="unstable"
 	compo="main non-free-firmware"
+	yes_no="yes"
 	key="/usr/share/keyrings/debian-archive-keyring.gpg"
 
 	echo "# debian loadbalancer" > ${target}
 	echo "" >> ${target}
-	write_deb822 "${target}" "deb deb-src" "$url" "unstable" "$compo" "yes" "$key"
+	write_deb822
 
+	suites="experimental"
+	yes_no="no"
 	echo "" >> ${target}
 	echo "" >> ${target}
-	write_deb822 "${target}" "deb deb-src" "$url" "experimental" "$compo" "no" "$key"
+	write_deb822
 
 	url="https://incoming.debian.org/debian-buildd"
+	suites="buildd-unstable"
 	echo "" >> ${target}
 	echo "" >> ${target}
-	write_deb822 "${target}" "deb deb-src" "$url" "buildd-unstable" "$compo" "no" "$key"
+	write_deb822
 
 
 	# debian debug.sources
 	target="/etc/apt/sources.list.d/dbgsym.sources"
+	types="deb"
 	url="https://debug.mirrors.debian.org/debian-debug"
+	suites="testing-debug"
 	compo="main contrib non-free-firmware"
-
 	echo "# debian debug" > ${target}
 	echo "" >> ${target}
-	write_deb822 "${target}" "deb" "$url" "testing-debug" "$compo" "no" "$key"
+	write_deb822
 
+	suites="unstable-debug"
 	echo "" >> ${target}
-	write_deb822 "${target}" "deb" "$url" "unstable-debug" "$compo" "no" "$key"
+	write_deb822
 
+	suites="experimental-debug"
 	echo "" >> ${target}
-	write_deb822 "${target}" "deb" "$url" "experimental-debug" "$compo" "no" "$key"
+	write_deb822
 
 
 	# siduction extra.sources and fixes.sources
-	key="/usr/share/keyrings/siduction-archive-keyring.gpg"
+	types="deb deb-src"
+	suites="unstable"
 	compo="main non-free-firmware"
+	key="/usr/share/keyrings/siduction-archive-keyring.gpg"
 
 	for target_file in "extra.sources" "fixes.sources"; do
 		target="/etc/apt/sources.list.d/$target_file"
+		url="${FLL_MIRROR}"
+		yes_no="yes"
 		
-cat << EOF > $target
+		cat << EOF > $target
 # This is the default mirror, choosen at first boot.
 # One might consider to choose the geographical nearest or the fastest mirror.
 
 EOF
 		
-		write_deb822 "${target}" "deb deb-src" "$FLL_MIRROR" "unstable" "$compo" "yes" "$key"
+		write_deb822
 		
 		for country in ${full_list[@]}; do
 			number=1
@@ -592,21 +601,25 @@ EOF
 					echo "" >> ${target}
 					echo "" >> ${target}
 				fi
-				write_deb822 "${target}" "deb deb-src" "$url" "unstable" "$compo" "no" "$key"
+				write_deb822
 				((++number))
 			done
 		done
 	done
 
-	## TO DO
-	#	# we don't provide a i386 kernel anymore - we choose the fine liquorix kernel instead.
-	#	# so we should provide a upgrade path for this kernel
-	#	if $(uname -v | grep -q liquorix); then
-	#		target="/etc/apt/sources.list.d/liquorix.list"
-	#		echo "deb     https://liquorix.net/debian sid main" > ${target}
-	#		echo "deb-src https://liquorix.net/debian sid main" >> ${target}
-	#		echo "" >> ${target}
-	#	fi
+	# we don't provide a i386 kernel anymore -
+	# we choose the fine liquorix kernel instead.
+	# so we should provide a upgrade path for this kernel
+	target="/etc/apt/sources.list.d/liquorix.sources"
+	url="https://liquorix.net/debian"
+	suites="sid"
+	compo="main"
+	yes_no="no"
+	key="/usr/share/keyrings/liquorix-keyring.gpg"
+
+	echo "# liquorix kernel" > ${target}
+	echo "" >> ${target}
+	write_deb822
 }
 
 save_locale_variables() {
