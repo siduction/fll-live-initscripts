@@ -575,9 +575,9 @@ localize_sources() {
 	compo="main non-free-firmware"
 	key="/usr/share/keyrings/siduction-archive-keyring.gpg"
 
-	for target_file in "extra.sources" "fixes.sources"; do
-		target="/etc/apt/sources.list.d/$target_file"
-		url="${FLL_MIRROR}"
+	for target_file in "extra" "fixes"; do
+		target="/etc/apt/sources.list.d/${target_file}.sources"
+		url="${FLL_MIRROR}${target_file}"
 		yes_no="yes"
 		
 		cat << EOF > $target
@@ -597,6 +597,7 @@ EOF
 			# Set and use indirection to access array values.
 			choice=$country[@]
 			for url in ${!choice}; do
+				url="${url}/${target_file}"
 				if [ $number -gt 1 ]; then
 					echo "" >> ${target}
 					echo "" >> ${target}
