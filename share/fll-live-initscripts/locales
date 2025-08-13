@@ -15,7 +15,7 @@ fll_locale_cheats() {
 	# the list of all ll_CC we know by cheat
 	[ -n "${FLL_LOCALE_CHEATS}" ] && return
 
-	FLL_LOCALE_CHEATS=$(awk 'BEGIN{FS="\t"} {print $1" "}' ${LOCALE_FILE})
+	FLL_LOCALE_CHEATS=$(awk 'BEGIN{FS="\t"} NR>1 {print $1" "}' ${LOCALE_FILE})
 }
 
 fll_locale_lang() {
@@ -38,18 +38,9 @@ fll_locale_lang() {
 }
 
 fll_locale_demo() {
-	# set KB{M|L|V|O}, TZ for LANG
-	c=3
-
-	for optname in XKBMODEL XKBLAYOUT XKBVARIANT XKBOPTIONS TZ; do
-		# extract value from file
-		v=$(awk 'BEGIN{FS="\t"} /^'$1'\t/{print $'${c}'}' ${LOCALE_FILE})
-
-		if [ -n "${v}" ]; then
-			# set variable to value
-			eval ${optname}=${v}
-		fi
-
-		c=$((c+1))
-	done
+	eval $(awk 'BEGIN{ FS="\t" }
+		/^'$1'\t/ {
+			if ($3) printf "XKBLAYOUT=\"%s\"\n", $3
+			if ($4) printf "XKBVARIANT=\"%s\"\n", $4
+		}' ${LOCALE_FILE})
 }
