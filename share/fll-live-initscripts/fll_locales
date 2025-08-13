@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Description:       The purpose of fll-locales is to calculate required
 #                    strings to configure the locale settings of system
