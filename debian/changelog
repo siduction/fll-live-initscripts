@@ -1,6 +1,46 @@
+fll-live-initscripts (4.4.44) unstable; urgency=medium
+
+  * Remove obsolete *.list files.
+
+ -- Axel Konrad <ak-li@siduction.org> Sun, 17 Aug 2025
+
+fll-live-initscripts (4.4.43) unstable; urgency=medium
+
+  * fix shebang
+  * Transfer from mainstream
+
+ -- Axel Konrad <ak-li@siduction.org> Wed, 13 Aug 2025
+
+fll-live-initscripts (4.4.42) unstable; urgency=medium
+
+  * Merge pull request #2 from siduction/deb822
+
+ -- Ferdinand Thommes  Tue, 12 Aug 2025
+
+fll-live-initscripts (4.4.41) unstable; urgency=medium
+
+  * fix URIs with 'extra' and 'fixes'
+
+ -- Axel Konrad <ak-li@siduction.org> Mon, 11 Aug 2025
+
+fll-live-initscripts (4.4.40) unstable; urgency=medium
+
+  * sources format DEB822
+  * change to format deb822
+
+ -- Axel Konrad <ak-li@siduction.org> Sun, 10 Aug 2025
+
+fll-live-initscripts (4.4.39) unstable; urgency=medium
+
+  * fix space and tab in fll_locales
+  * updated fll_locales partially from https://github.com/fullstory/
+  * updated locales.csv from https://github.com/fullstory/ and fix de_DE
+
+ -- Axel Konrad <ak-li@siduction.org> Mon, 04 Aug 2025
+
 fll-live-initscripts (4.4.38) unstable; urgency=medium
 
-  * fix typo in generating soiurces
+  * fix typo in generating sources
 
  -- Torsten Wohlfarth <towo@siduction.org>  Sat, 04 Nov 2023 16:16:48 +0100
 

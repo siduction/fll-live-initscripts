@@ -621,6 +621,12 @@ EOF
 	echo "# liquorix kernel" > ${target}
 	echo "" >> ${target}
 	write_deb822
+
+	# Remove obsolete *.list files, if any.
+	if ls *.list &>/dev/null; then
+		echo "Remove obsolete *.list files."
+		rm *.list
+	fi
 }
 
 save_locale_variables() {
