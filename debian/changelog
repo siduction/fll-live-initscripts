@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.45) unstable; urgency=medium
+
+  * Secure the previous commit
+
+ -- Axel Konrad <ak-li@siduction.org> Sun, 17 Aug 2025
+
 fll-live-initscripts (4.4.44) unstable; urgency=medium
 
   * Remove obsolete *.list files.

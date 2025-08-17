@@ -622,10 +622,10 @@ EOF
 	echo "" >> ${target}
 	write_deb822
 
-	# Remove obsolete *.list files, if any.
-	if ls *.list &>/dev/null; then
+	# Remove obsolete .list files if .sources files have been created.
+	if ls /etc/apt/sources.list.d/*.sources &>/dev/null; then
 		echo "Remove obsolete *.list files."
-		rm *.list
+		find /etc/apt/sources.list.d/ -maxdepth 1 -name "*.list" -delete
 	fi
 }
 
