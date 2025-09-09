@@ -592,7 +592,7 @@ EOF
 			number=1
 			echo "" >> ${target}
 			echo "" >> ${target}
-			echo "$country:" >> ${target}
+			echo "# $country:" >> ${target}
 			
 			# Set and use indirection to access array values.
 			choice=$country[@]
