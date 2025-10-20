@@ -3,12 +3,14 @@ fll-live-initscripts (4.4.46) unstable; urgency=medium
   [ Axel Konrad ]
   * write_deb822(), remove leading tab
 
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 20 Oct 2025 23:51:12 +0200
+
 fll-live-initscripts (4.4.45) unstable; urgency=medium
 
   [ Axel Konrad ]
   * Secure the previous commit
 
- -- Torsten Wohlfarth <towo@siduction.org>  Fri, 17 Oct 2025 15:47:37 +0200
+ -- Torsten Wohlfarth <towo@siduction.org>  Sun, 19 Oct 2025 23:51:48 +0200
 
 fll-live-initscripts (4.4.44) unstable; urgency=medium
 
