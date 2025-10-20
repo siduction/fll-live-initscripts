@@ -1,3 +1,8 @@
+fll-live-initscripts (4.4.46) unstable; urgency=medium
+
+  [ Axel Konrad ]
+  * write_deb822(), remove leading tab
+
 fll-live-initscripts (4.4.45) unstable; urgency=medium
 
   [ Axel Konrad ]

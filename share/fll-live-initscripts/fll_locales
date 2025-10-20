@@ -408,13 +408,13 @@ write_deb822() {
 			echo "" >> ${target}
 		fi
 	
-	cat << EOF >> ${target}
-	Types:      ${typ}
-	URIs:       ${url}
-	Suites:     ${suites}
-	Components: ${compo}
-	Enabled:    ${yes_no}
-	Signed-By:  ${key}
+cat << EOF >> ${target}
+Types:      ${typ}
+URIs:       ${url}
+Suites:     ${suites}
+Components: ${compo}
+Enabled:    ${yes_no}
+Signed-By:  ${key}
 EOF
 	done
 }
