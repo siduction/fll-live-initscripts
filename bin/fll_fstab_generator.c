@@ -537,7 +537,8 @@ static void process_disk(struct udev_device *device, int disk)
 		if (opts.noswap_flag)
 			goto end_process_disk;
 
-		print_mntent(fs_spec, "none", fs_vfstype, "sw", 0, 0);
+/*		print_mntent(fs_spec, "none", fs_vfstype, "sw", 0, 0); */
+		print_mntent(fs_spec, "swap", fs_vfstype, "defaults,noatime", 0, 0);
 
 		if (opts.swapon_flag &&
 		    swapon(udev_device_get_devnode(device), 0) == -1) {
@@ -589,10 +590,10 @@ end_process_disk:
 
 int main(int argc, char **argv)
 {
-        struct udev *udev;
+	struct udev *udev;
 	struct udev_enumerate *u_enum;
-        struct udev_list_entry *u_list_ent;
-        struct udev_list_entry *u_first_list_ent;
+	struct udev_list_entry *u_list_ent;
+	struct udev_list_entry *u_first_list_ent;
 	int disk = 0;
 
 	if (cmdline_parser(argc, argv, &opts) != 0) {

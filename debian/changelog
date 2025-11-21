@@ -1,3 +1,11 @@
+fll-live-initscripts (4.4.47) unstable; urgency=medium
+
+  [ Axel Konrad ]
+  * file /bin/fll_fstab_generator.c
+    swap adapt to current standard.
+
+ -- 
+
 fll-live-initscripts (4.4.46) unstable; urgency=medium
 
   [ Axel Konrad ]
