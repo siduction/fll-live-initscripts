@@ -1,10 +1,12 @@
 fll-live-initscripts (4.4.47) unstable; urgency=medium
 
-  [ Axel Konrad ]
+  * fix adduser
+
+    [ Axel Konrad ]
   * file /bin/fll_fstab_generator.c
     swap adapt to current standard.
 
- -- 
+ -- Torsten Wohlfarth <towo@siduction.org>  Thu, 09 Apr 2026 17:03:04 +0200
 
 fll-live-initscripts (4.4.46) unstable; urgency=medium
 
