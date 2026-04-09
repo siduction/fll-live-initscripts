@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if getent passwd "${FLL_LIVE_USER}" >/dev/null 2>&1; then
-	log_action_begin_msg " user '${FLL_LIVE_USER}' exists"
+	printf " user '${FLL_LIVE_USER}' exists"
 	return 0
 fi
 
-adduser --disabled-password --gecos "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" 
+adduser --disabled-password --comment "${FLL_LIVE_USER}" "${FLL_LIVE_USER}" 
 
 
 for file in '.bash_logout' '.bash_profile' '.bashrc' '.profile'; do
