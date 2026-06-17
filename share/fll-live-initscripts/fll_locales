@@ -125,7 +125,7 @@ if [ "$GPU_COUNT" -ge 2 ]; then
     elif echo "$LSPCI_ALL" | grep -i "vga" | grep -Eiq "amd|ati"; then
         for mod in nouveau vmwgfx i915 xe; do modprobe -r $mod 2>/dev/null || true; done
     fi
-
+    printf "blacklist nouveau\n" > /etc/modprobe.d/blacklist-nvidia-fix.conf
 else
     # Single-GPU-System (Nur eine Karte vorhanden - hier schlägt der Sid-Modalias-Bug zu!)
     

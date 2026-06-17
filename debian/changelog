@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.49) unstable; urgency=medium
+
+  * add blacklist for nouveau
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Wed, 17 Jun 2026 17:02:31 +0200
+
 fll-live-initscripts (4.4.48) unstable; urgency=medium
 
   * try to fix the graphics kernel module disaster
