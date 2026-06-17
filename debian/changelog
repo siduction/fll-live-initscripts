@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.48) unstable; urgency=medium
+
+  * try to fix the graphics kernel module disaster
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Wed, 17 Jun 2026 16:27:53 +0200
+
 fll-live-initscripts (4.4.47) unstable; urgency=medium
 
   * fix adduser
