@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.50) unstable; urgency=medium
+
+  * remove the blacklist workaround
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Thu, 18 Jun 2026 10:15:05 +0200
+
 fll-live-initscripts (4.4.49) unstable; urgency=medium
 
   * add blacklist for nouveau

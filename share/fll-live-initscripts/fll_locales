@@ -111,33 +111,33 @@ if ! systemd-detect-virt -q; then
 fi
 
 # Speicher die lspci-Ausgabe einmal in Variablen, das spart massiven CPU-Overhead beim Booten
-LSPCI_ALL="$(lspci)"
-GPU_COUNT=$(lspci -n | grep -c " 03[0-9a-f]\{2\}:")
+#LSPCI_ALL="$(lspci)"
+#GPU_COUNT=$(lspci -n | grep -c " 03[0-9a-f]\{2\}:")
 
 # Prüfen, ob wir ein echtes Hybrid- oder Multi-GPU-System haben (mindestens 2 GPUs)
-if [ "$GPU_COUNT" -ge 2 ]; then
-    
-    # Hybrid-Fall A: Intel ist die primäre iGPU -> Rest weg (speziell Nouveau/Radeon-Ballast)
-    if echo "$LSPCI_ALL" | grep -i "vga" | grep -iq "intel"; then
-        for mod in nouveau vmwgfx amdgpu radeon; do modprobe -r $mod 2>/dev/null || true; done
-        
-    # Hybrid-Fall B: AMD ist die primäre iGPU -> Rest weg (speziell Nouveau/Intel-Ballast)
-    elif echo "$LSPCI_ALL" | grep -i "vga" | grep -Eiq "amd|ati"; then
-        for mod in nouveau vmwgfx i915 xe; do modprobe -r $mod 2>/dev/null || true; done
-    fi
-    printf "blacklist nouveau\n" > /etc/modprobe.d/blacklist-nvidia-fix.conf
-else
-    # Single-GPU-System (Nur eine Karte vorhanden - hier schlägt der Sid-Modalias-Bug zu!)
-    
-    # Reines Intel-System -> Alle Geistertreiber rigoros entladen
-    if echo "$LSPCI_ALL" | grep -i "vga" | grep -iq "intel"; then
-        for mod in nouveau vmwgfx amdgpu radeon; do modprobe -r $mod 2>/dev/null || true; done
-        
-    # Reines AMD-System -> Alle Geistertreiber rigoros entladen
-    elif echo "$LSPCI_ALL" | grep -i "vga" | grep -Eiq "amd|ati"; then
-        for mod in nouveau vmwgfx i915 xe; do modprobe -r $mod 2>/dev/null || true; done
-    fi
-fi
+#if [ "$GPU_COUNT" -ge 2 ]; then
+#    
+#    # Hybrid-Fall A: Intel ist die primäre iGPU -> Rest weg (speziell Nouveau/Radeon-Ballast)
+#    if echo "$LSPCI_ALL" | grep -i "vga" | grep -iq "intel"; then
+#        for mod in nouveau vmwgfx amdgpu radeon; do modprobe -r $mod 2>/dev/null || true; done
+#        
+#    # Hybrid-Fall B: AMD ist die primäre iGPU -> Rest weg (speziell Nouveau/Intel-Ballast)
+#    elif echo "$LSPCI_ALL" | grep -i "vga" | grep -Eiq "amd|ati"; then
+#        for mod in nouveau vmwgfx i915 xe; do modprobe -r $mod 2>/dev/null || true; done
+#    fi
+#    printf "blacklist nouveau\n" > /etc/modprobe.d/blacklist-nvidia-fix.conf
+#else
+#    # Single-GPU-System (Nur eine Karte vorhanden - hier schlägt der Sid-Modalias-Bug zu!)
+#    
+#    # Reines Intel-System -> Alle Geistertreiber rigoros entladen
+#    if echo "$LSPCI_ALL" | grep -i "vga" | grep -iq "intel"; then
+#        for mod in nouveau vmwgfx amdgpu radeon; do modprobe -r $mod 2>/dev/null || true; done
+#        
+#    # Reines AMD-System -> Alle Geistertreiber rigoros entladen
+#    elif echo "$LSPCI_ALL" | grep -i "vga" | grep -Eiq "amd|ati"; then
+#        for mod in nouveau vmwgfx i915 xe; do modprobe -r $mod 2>/dev/null || true; done
+#    fi
+#fi
 
 ###
 # allow FLL_LANG environment variable to trump
