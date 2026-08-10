@@ -1,3 +1,9 @@
+fll-live-initscripts (4.4.51) unstable; urgency=medium
+
+  * removed not available mirrors
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Mon, 10 Aug 2026 20:49:24 +0200
+
 fll-live-initscripts (4.4.50) unstable; urgency=medium
 
   * remove the blacklist workaround

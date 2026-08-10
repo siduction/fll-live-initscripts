@@ -483,13 +483,10 @@ localize_sources() {
 	Germany=(\
 		https://packages.siduction.org/ \
 		https://ftp.gwdg.de/pub/linux/siduction/ \
-		https://ftp.halifax.rwth-aachen.de/siduction/ \
 		https://ftp.spline.de/pub/siduction/ \
 		https://ftp.uni-stuttgart.de/siduction/)
 	Hong_Kong=(\
 		https://mirror-hk.koddos.net/siduction/)
-	Hungary=(\
-		https://quantum-mirror.hu/mirrors/pub/siduction/)
 	Italy=(\
 		https://siduction.mirror.garr.it/)
 	Netherlands=(\
